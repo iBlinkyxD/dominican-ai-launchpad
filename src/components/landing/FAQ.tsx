@@ -58,7 +58,7 @@ const FAQ = () => {
 
             {/* Still Have Questions Card */}
             <ScrollAnimation animation="fade-up" delay={200}>
-              <div className="relative bg-white/30 backdrop-blur-xl border border-white/20 rounded-3xl p-8 shadow-[0_4px_40px_-12px_rgba(0,0,0,0.08)]">
+              <div className="group relative bg-card/90 backdrop-blur-xl border border-border/30 rounded-3xl p-8 shadow-[0_4px_40px_-12px_hsl(var(--foreground)/0.08),inset_0_1px_0_hsl(0_0%_100%/0.3)] hover:shadow-[0_8px_50px_-12px_hsl(var(--foreground)/0.12)] hover:-translate-y-1 transition-all duration-500 overflow-hidden before:absolute before:inset-0 before:bg-gradient-to-br before:from-white/40 before:via-transparent before:to-white/10 before:pointer-events-none before:rounded-3xl">
                 <h3 className="font-display text-2xl text-foreground mb-3">Still Have Questions?</h3>
                 <p className="text-muted-foreground mb-6">
                   <a
@@ -108,7 +108,7 @@ const FAQ = () => {
             {faqs.map((faq, index) => (
               <ScrollAnimation key={index} animation="fade-left" delay={index * 100}>
                 <div
-                  className={`bg-card rounded-2xl shadow-[0_2px_20px_-8px_rgba(0,0,0,0.06)] border border-border/50 overflow-hidden transition-all duration-300 ${openIndex === index ? "shadow-[0_4px_30px_-8px_rgba(0,0,0,0.1)]" : ""
+                  className={`group relative bg-card/90 backdrop-blur-xl rounded-2xl shadow-[0_2px_20px_-8px_hsl(var(--foreground)/0.06),inset_0_1px_0_hsl(0_0%_100%/0.25)] border border-border/30 overflow-hidden transition-all duration-500 hover:-translate-y-0.5 before:absolute before:inset-0 before:bg-gradient-to-br before:from-white/30 before:via-transparent before:to-white/5 before:pointer-events-none before:rounded-2xl ${openIndex === index ? "shadow-[0_8px_40px_-8px_hsl(var(--foreground)/0.1)]" : "hover:shadow-[0_6px_30px_-8px_hsl(var(--foreground)/0.08)]"
                     }`}
                 >
                   <button
