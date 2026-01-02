@@ -1,75 +1,42 @@
-import { ArrowRight, Sparkles, Users, BookOpen, Award } from "lucide-react";
+import { Sparkles, Video, GraduationCap, BadgeCheck, LayoutGrid, Crown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const Hero = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Animated Wave Background */}
+    <section className="relative min-h-screen flex flex-col overflow-hidden bg-background">
+      {/* Gradient Background */}
       <div className="absolute inset-0 z-0">
-        {/* Base gradient */}
-        <div className="absolute inset-0 bg-gradient-to-br from-brand-blue via-brand-red/80 to-brand-blue animate-gradient" />
-        
-        {/* Wave layers */}
-        <div className="absolute inset-0 opacity-30">
-          <svg
-            className="absolute bottom-0 left-0 w-[200%] h-full animate-wave"
-            viewBox="0 0 1440 320"
-            preserveAspectRatio="none"
-          >
-            <path
-              fill="hsl(0 72% 45% / 0.3)"
-              d="M0,192L48,197.3C96,203,192,213,288,229.3C384,245,480,267,576,250.7C672,235,768,181,864,181.3C960,181,1056,235,1152,234.7C1248,235,1344,181,1392,154.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
-            />
-          </svg>
-          <svg
-            className="absolute bottom-0 left-0 w-[200%] h-full animate-wave"
-            style={{ animationDelay: "-5s", animationDuration: "25s" }}
-            viewBox="0 0 1440 320"
-            preserveAspectRatio="none"
-          >
-            <path
-              fill="hsl(215 70% 25% / 0.3)"
-              d="M0,64L48,80C96,96,192,128,288,128C384,128,480,96,576,90.7C672,85,768,107,864,144C960,181,1056,235,1152,234.7C1248,235,1344,181,1392,154.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
-            />
-          </svg>
-        </div>
-
-        {/* Floating orbs */}
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-brand-red/20 rounded-full blur-3xl animate-pulse-slow" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-brand-blue/20 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: "-2s" }} />
-        <div className="absolute top-1/2 right-1/3 w-48 h-48 bg-brand-red-light/15 rounded-full blur-2xl animate-float" />
+        <div className="absolute inset-0 bg-gradient-to-b from-pink-200/60 via-pink-100/30 to-background" />
+        <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-pink-300/30 rounded-full blur-3xl" />
+        <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-purple-200/20 rounded-full blur-3xl" />
       </div>
 
       {/* Content */}
-      <div className="relative z-10 container mx-auto section-padding pt-24 pb-16">
+      <div className="relative z-10 flex-1 flex flex-col items-center justify-center container mx-auto section-padding pt-32 pb-16">
         <div className="max-w-4xl mx-auto text-center">
           {/* Trust Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 mb-8 animate-fade-in">
-            <Sparkles className="w-4 h-4 text-yellow-300" />
-            <span className="text-sm font-medium text-white/90">
-              Trusted by 5,000+ Happy Learners
-            </span>
+          <div 
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-foreground text-background text-sm font-medium mb-10 animate-fade-in"
+          >
+            <Sparkles className="w-4 h-4" />
+            <span>Trusted by 20,000+ Happy Learners</span>
           </div>
 
           {/* Headline */}
           <h1 
-            className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight animate-slide-up"
+            className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-8 leading-[1.1] tracking-tight animate-slide-up"
             style={{ animationDelay: "0.1s" }}
           >
-            Empowering the
-            <span className="block mt-2 bg-gradient-to-r from-white via-red-200 to-white bg-clip-text text-transparent">
-              Dominican Republic
-            </span>
-            with AI Innovation
+            Laying the digital foundation for a smarter, stronger Dominican Republic.
           </h1>
 
           {/* Subheadline */}
           <p 
-            className="text-lg sm:text-xl text-white/80 max-w-2xl mx-auto mb-10 animate-slide-up"
+            className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 animate-slide-up"
             style={{ animationDelay: "0.2s" }}
           >
-            Join the leading community fostering artificial intelligence education, 
-            research, and innovation across the Caribbean.
+            Our mission is to foster responsible innovation, education, and collaboration in 
+            the field of artificial intelligence across the Dominican Republic.
           </p>
 
           {/* CTA Buttons */}
@@ -79,46 +46,76 @@ const Hero = () => {
           >
             <Button 
               size="lg"
-              className="btn-glossy text-primary-foreground rounded-full px-8 py-6 text-lg font-semibold group"
+              variant="outline"
+              className="rounded-full px-8 py-6 text-base font-semibold border-foreground/20 bg-card hover:bg-muted"
             >
               View All Courses
-              <ArrowRight className="ml-2 w-5 h-5 transition-transform group-hover:translate-x-1" />
             </Button>
             <Button 
               size="lg"
-              variant="outline"
-              className="rounded-full px-8 py-6 text-lg font-semibold bg-white/10 border-white/30 text-white hover:bg-white/20 hover:text-white backdrop-blur-sm"
+              className="rounded-full px-8 py-6 text-base font-semibold bg-foreground text-background hover:bg-foreground/90"
             >
               Start Learning Now
             </Button>
           </div>
+        </div>
 
-          {/* Floating Feature Cards */}
+        {/* Floating Cards Illustration */}
+        <div 
+          className="relative mt-16 w-full max-w-3xl mx-auto h-[280px] md:h-[320px] animate-fade-in"
+          style={{ animationDelay: "0.5s" }}
+        >
+          {/* Main container card */}
+          <div className="absolute inset-x-0 bottom-0 h-[200px] md:h-[240px] bg-gradient-to-b from-pink-100/50 to-pink-50/30 rounded-3xl backdrop-blur-sm border border-pink-200/30" />
+
+          {/* Left card - App icons */}
           <div 
-            className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl mx-auto animate-fade-in"
-            style={{ animationDelay: "0.5s" }}
+            className="absolute left-[10%] md:left-[15%] bottom-[60px] md:bottom-[80px] w-[120px] md:w-[160px] h-[140px] md:h-[180px] bg-card rounded-2xl shadow-xl border border-border/50 p-4 transform -rotate-3 hover:rotate-0 transition-transform duration-500 animate-float"
           >
-            {[
-              { icon: BookOpen, label: "Expert-Led Courses", value: "50+" },
-              { icon: Users, label: "Active Community", value: "5K+" },
-              { icon: Award, label: "Certifications", value: "100%" },
-            ].map((item, index) => (
-              <div
-                key={item.label}
-                className="group p-4 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/15 transition-all duration-300 animate-float"
-                style={{ animationDelay: `${index * 0.5}s` }}
-              >
-                <item.icon className="w-8 h-8 text-white/80 mx-auto mb-2" />
-                <div className="text-2xl font-bold text-white">{item.value}</div>
-                <div className="text-sm text-white/70">{item.label}</div>
+            <div className="grid grid-cols-2 gap-2">
+              <div className="w-10 h-10 md:w-14 md:h-14 rounded-xl bg-gradient-to-br from-orange-400 to-pink-500 flex items-center justify-center">
+                <LayoutGrid className="w-5 h-5 md:w-7 md:h-7 text-white" />
               </div>
-            ))}
+              <div className="w-10 h-10 md:w-14 md:h-14 rounded-xl bg-gradient-to-br from-purple-400 to-indigo-500 flex items-center justify-center">
+                <Video className="w-5 h-5 md:w-7 md:h-7 text-white" />
+              </div>
+              <div className="w-10 h-10 md:w-14 md:h-14 rounded-xl bg-green-500 flex items-center justify-center">
+                <div className="w-2 h-2 md:w-3 md:h-3 rounded-full bg-white" />
+              </div>
+              <div className="w-10 h-10 md:w-14 md:h-14 rounded-xl bg-gradient-to-br from-blue-400 to-cyan-400 flex items-center justify-center">
+                <Crown className="w-5 h-5 md:w-7 md:h-7 text-white" />
+              </div>
+            </div>
           </div>
+
+          {/* Right card - Graduate */}
+          <div 
+            className="absolute right-[10%] md:right-[15%] bottom-[60px] md:bottom-[80px] w-[120px] md:w-[160px] h-[140px] md:h-[180px] bg-card rounded-2xl shadow-xl border border-border/50 p-6 transform rotate-3 hover:rotate-0 transition-transform duration-500 animate-float"
+            style={{ animationDelay: "0.3s" }}
+          >
+            <div className="flex flex-col items-center justify-center h-full">
+              <GraduationCap className="w-12 h-12 md:w-16 md:h-16 text-foreground mb-2" />
+              <div className="w-full space-y-2 mt-2">
+                <div className="h-2 bg-muted rounded-full w-full" />
+                <div className="h-2 bg-muted rounded-full w-3/4 mx-auto" />
+              </div>
+            </div>
+          </div>
+
+          {/* Badge check floating */}
+          <div 
+            className="absolute right-[25%] md:right-[30%] top-0 w-14 h-14 md:w-16 md:h-16 bg-card rounded-2xl shadow-lg border border-border/50 flex items-center justify-center animate-float"
+            style={{ animationDelay: "0.6s" }}
+          >
+            <BadgeCheck className="w-8 h-8 md:w-10 md:h-10 text-foreground" />
+          </div>
+
+          {/* Small floating elements */}
+          <div className="absolute left-[5%] top-[30%] w-3 h-3 bg-pink-400/60 rounded-full animate-pulse-slow" />
+          <div className="absolute right-[8%] top-[40%] w-2 h-2 bg-purple-400/60 rounded-full animate-pulse-slow" style={{ animationDelay: "1s" }} />
+          <div className="absolute left-[30%] top-[10%] w-4 h-4 bg-pink-300/40 rounded-full animate-pulse-slow" style={{ animationDelay: "0.5s" }} />
         </div>
       </div>
-
-      {/* Bottom gradient fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent z-10" />
     </section>
   );
 };

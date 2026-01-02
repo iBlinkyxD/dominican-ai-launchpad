@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Crown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import logo from "@/assets/logo.png";
 
@@ -18,7 +18,6 @@ const Header = () => {
   const navLinks = [
     { label: "Courses", href: "#stats" },
     { label: "Reviews", href: "#feedback" },
-    { label: "FAQ", href: "#faq" },
     { label: "Contact", href: "#footer" },
   ];
 
@@ -26,7 +25,7 @@ const Header = () => {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? "bg-background/80 backdrop-blur-xl shadow-lg border-b border-border/50"
+          ? "bg-background/80 backdrop-blur-xl shadow-sm border-b border-border/50"
           : "bg-transparent"
       }`}
     >
@@ -35,34 +34,39 @@ const Header = () => {
           {/* Logo */}
           <a href="#" className="flex items-center gap-3">
             <img src={logo} alt="Dominican AI Association" className="h-10 lg:h-12 w-auto" />
-            <span className="hidden sm:block font-display font-semibold text-lg text-foreground">
-              Dominican AI
-            </span>
+            <div className="hidden sm:block">
+              <div className="font-display font-semibold text-sm text-foreground leading-tight">
+                Dominican Artificial
+              </div>
+              <div className="font-display font-semibold text-sm text-foreground leading-tight">
+                Intelligence Association
+              </div>
+            </div>
           </a>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8">
+          <nav className="hidden md:flex items-center gap-10">
             {navLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
-                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors relative group"
+                className="text-sm font-medium text-foreground hover:text-primary transition-colors"
               >
                 {link.label}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full" />
               </a>
             ))}
           </nav>
 
           {/* Desktop CTA */}
-          <div className="hidden md:flex items-center gap-4">
+          <div className="hidden md:flex items-center gap-6">
             <a
               href="#"
-              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+              className="text-sm font-medium text-foreground hover:text-primary transition-colors"
             >
-              Log in
+              Login
             </a>
-            <Button className="btn-glossy text-primary-foreground rounded-full px-6">
+            <Button className="bg-foreground text-background hover:bg-foreground/90 rounded-full px-6 gap-2">
+              <Crown className="w-4 h-4" />
               Sign Up
             </Button>
           </div>
@@ -96,9 +100,10 @@ const Header = () => {
                 href="#"
                 className="py-3 px-4 text-muted-foreground hover:bg-muted rounded-lg transition-colors"
               >
-                Log in
+                Login
               </a>
-              <Button className="btn-glossy text-primary-foreground mt-2">
+              <Button className="bg-foreground text-background hover:bg-foreground/90 mt-2 gap-2">
+                <Crown className="w-4 h-4" />
                 Sign Up
               </Button>
             </nav>
