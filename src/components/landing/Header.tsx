@@ -22,7 +22,7 @@ const Header = () => {
     { label: "Courses", href: isHomePage ? "#stats" : "/#stats", isAnchor: true },
     { label: "Teams", href: "/teams", isAnchor: false },
     { label: "Reviews", href: isHomePage ? "#feedback" : "/#feedback", isAnchor: true },
-    { label: "Contact", href: isHomePage ? "#footer" : "/#footer", isAnchor: true },
+    { label: "Contact", href: "/contact", isAnchor: false },
   ];
 
   return (
