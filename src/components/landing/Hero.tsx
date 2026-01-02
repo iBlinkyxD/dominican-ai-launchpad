@@ -49,79 +49,50 @@ const Hero = () => {
       <div className="absolute inset-0 z-0 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-pink-200/60 via-pink-100/30 to-background" />
         
-        {/* Aurora layers */}
+        {/* Aurora layers - continuous motion */}
         <div 
-          className="absolute inset-0 opacity-60"
+          className="absolute -inset-[50%] opacity-70"
           style={{
             background: `
-              radial-gradient(ellipse 80% 50% at 20% 40%, rgba(236, 72, 153, 0.3) 0%, transparent 50%),
-              radial-gradient(ellipse 60% 40% at 80% 60%, rgba(168, 85, 247, 0.25) 0%, transparent 50%),
-              radial-gradient(ellipse 70% 50% at 50% 30%, rgba(59, 130, 246, 0.2) 0%, transparent 50%)
+              radial-gradient(ellipse 80% 50% at 20% 40%, rgba(236, 72, 153, 0.4) 0%, transparent 50%),
+              radial-gradient(ellipse 60% 40% at 80% 60%, rgba(168, 85, 247, 0.35) 0%, transparent 50%),
+              radial-gradient(ellipse 70% 50% at 50% 30%, rgba(59, 130, 246, 0.3) 0%, transparent 50%)
             `,
-            animation: 'aurora1 8s ease-in-out infinite alternate',
+            animation: 'auroraMove1 15s ease-in-out infinite',
           }}
         />
         
         <div 
-          className="absolute inset-0 opacity-50"
+          className="absolute -inset-[50%] opacity-60"
           style={{
             background: `
-              radial-gradient(ellipse 60% 60% at 70% 20%, rgba(236, 72, 153, 0.35) 0%, transparent 50%),
-              radial-gradient(ellipse 50% 40% at 30% 70%, rgba(139, 92, 246, 0.3) 0%, transparent 50%),
-              radial-gradient(ellipse 80% 50% at 60% 50%, rgba(34, 211, 238, 0.15) 0%, transparent 50%)
+              radial-gradient(ellipse 60% 60% at 70% 20%, rgba(236, 72, 153, 0.45) 0%, transparent 50%),
+              radial-gradient(ellipse 50% 40% at 30% 70%, rgba(139, 92, 246, 0.4) 0%, transparent 50%),
+              radial-gradient(ellipse 80% 50% at 60% 50%, rgba(34, 211, 238, 0.25) 0%, transparent 50%)
             `,
-            animation: 'aurora2 10s ease-in-out infinite alternate-reverse',
+            animation: 'auroraMove2 18s ease-in-out infinite',
           }}
         />
         
         <div 
-          className="absolute inset-0 opacity-40"
+          className="absolute -inset-[50%] opacity-50"
           style={{
             background: `
-              radial-gradient(ellipse 50% 80% at 40% 50%, rgba(251, 146, 60, 0.2) 0%, transparent 50%),
-              radial-gradient(ellipse 70% 40% at 80% 30%, rgba(192, 132, 252, 0.25) 0%, transparent 50%),
-              radial-gradient(ellipse 60% 50% at 20% 80%, rgba(96, 165, 250, 0.2) 0%, transparent 50%)
+              radial-gradient(ellipse 50% 80% at 40% 50%, rgba(251, 146, 60, 0.3) 0%, transparent 50%),
+              radial-gradient(ellipse 70% 40% at 80% 30%, rgba(192, 132, 252, 0.35) 0%, transparent 50%),
+              radial-gradient(ellipse 60% 50% at 20% 80%, rgba(96, 165, 250, 0.3) 0%, transparent 50%)
             `,
-            animation: 'aurora3 12s ease-in-out infinite alternate',
+            animation: 'auroraMove3 20s ease-in-out infinite',
           }}
         />
 
         {/* Interactive mouse-following aurora glow */}
         <div
-          className="absolute w-[800px] h-[800px] rounded-full blur-3xl opacity-30 transition-all duration-1000 ease-out pointer-events-none"
+          className="absolute w-[800px] h-[800px] rounded-full blur-3xl opacity-40 transition-all duration-1000 ease-out pointer-events-none"
           style={{
-            background: 'radial-gradient(circle, rgba(236, 72, 153, 0.4) 0%, rgba(168, 85, 247, 0.2) 40%, transparent 70%)',
+            background: 'radial-gradient(circle, rgba(236, 72, 153, 0.5) 0%, rgba(168, 85, 247, 0.3) 40%, transparent 70%)',
             left: `calc(50% + ${mousePosition.x * 200}px - 400px)`,
             top: `calc(50% + ${mousePosition.y * 200}px - 400px)`,
-          }}
-        />
-
-        {/* Floating particles */}
-        {[...Array(12)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute rounded-full transition-transform duration-500 ease-out"
-            style={{
-              width: `${4 + (i % 4) * 3}px`,
-              height: `${4 + (i % 4) * 3}px`,
-              left: `${10 + (i * 7)}%`,
-              top: `${15 + (i * 5) % 60}%`,
-              background: `hsl(${320 + i * 15}, 70%, ${70 + (i % 3) * 10}%)`,
-              opacity: 0.4 + (i % 3) * 0.15,
-              transform: `translate(${mousePosition.x * (20 + i * 5)}px, ${mousePosition.y * (15 + i * 4)}px)`,
-              animation: `float ${3 + i * 0.5}s ease-in-out infinite alternate`,
-              animationDelay: `${i * 0.2}s`,
-            }}
-          />
-        ))}
-
-        {/* Subtle shimmer overlay */}
-        <div 
-          className="absolute inset-0 opacity-[0.02]"
-          style={{
-            backgroundImage: `radial-gradient(circle, hsl(var(--foreground)) 1px, transparent 1px)`,
-            backgroundSize: '50px 50px',
-            animation: 'shimmer 20s linear infinite',
           }}
         />
       </div>
@@ -269,57 +240,73 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* CSS for aurora and float animations */}
+      {/* CSS for aurora animations */}
       <style>{`
-        @keyframes float {
-          0% { transform: translateY(0px); }
-          100% { transform: translateY(-20px); }
-        }
-        @keyframes aurora1 {
+        @keyframes auroraMove1 {
           0% { 
-            transform: translateX(-5%) translateY(-5%) scale(1); 
+            transform: translateX(-10%) translateY(-5%) rotate(0deg); 
             filter: hue-rotate(0deg);
           }
-          50% { 
-            transform: translateX(5%) translateY(5%) scale(1.1); 
+          25% { 
+            transform: translateX(5%) translateY(10%) rotate(3deg); 
             filter: hue-rotate(15deg);
           }
-          100% { 
-            transform: translateX(-3%) translateY(3%) scale(1.05); 
+          50% { 
+            transform: translateX(10%) translateY(-5%) rotate(-2deg); 
             filter: hue-rotate(-10deg);
           }
-        }
-        @keyframes aurora2 {
-          0% { 
-            transform: translateX(5%) translateY(5%) scale(1.1) rotate(5deg); 
-            filter: hue-rotate(10deg);
-          }
-          50% { 
-            transform: translateX(-5%) translateY(-3%) scale(1) rotate(-5deg); 
-            filter: hue-rotate(-15deg);
-          }
-          100% { 
-            transform: translateX(3%) translateY(-5%) scale(1.15) rotate(3deg); 
-            filter: hue-rotate(5deg);
-          }
-        }
-        @keyframes aurora3 {
-          0% { 
-            transform: translateX(-3%) translateY(3%) scale(1.05) rotate(-3deg); 
-            filter: hue-rotate(-5deg);
-          }
-          50% { 
-            transform: translateX(3%) translateY(-3%) scale(0.95) rotate(3deg); 
+          75% { 
+            transform: translateX(-5%) translateY(5%) rotate(2deg); 
             filter: hue-rotate(20deg);
           }
           100% { 
-            transform: translateX(5%) translateY(5%) scale(1.1) rotate(-5deg); 
-            filter: hue-rotate(-15deg);
+            transform: translateX(-10%) translateY(-5%) rotate(0deg); 
+            filter: hue-rotate(0deg);
           }
         }
-        @keyframes shimmer {
-          0% { transform: translateX(0) translateY(0); }
-          100% { transform: translateX(50px) translateY(50px); }
+        @keyframes auroraMove2 {
+          0% { 
+            transform: translateX(10%) translateY(5%) rotate(2deg); 
+            filter: hue-rotate(10deg);
+          }
+          25% { 
+            transform: translateX(-5%) translateY(-10%) rotate(-3deg); 
+            filter: hue-rotate(-20deg);
+          }
+          50% { 
+            transform: translateX(-10%) translateY(10%) rotate(3deg); 
+            filter: hue-rotate(5deg);
+          }
+          75% { 
+            transform: translateX(5%) translateY(-5%) rotate(-2deg); 
+            filter: hue-rotate(25deg);
+          }
+          100% { 
+            transform: translateX(10%) translateY(5%) rotate(2deg); 
+            filter: hue-rotate(10deg);
+          }
+        }
+        @keyframes auroraMove3 {
+          0% { 
+            transform: translateX(-5%) translateY(10%) rotate(-2deg); 
+            filter: hue-rotate(-5deg);
+          }
+          25% { 
+            transform: translateX(10%) translateY(-5%) rotate(2deg); 
+            filter: hue-rotate(15deg);
+          }
+          50% { 
+            transform: translateX(5%) translateY(-10%) rotate(-3deg); 
+            filter: hue-rotate(-15deg);
+          }
+          75% { 
+            transform: translateX(-10%) translateY(5%) rotate(3deg); 
+            filter: hue-rotate(10deg);
+          }
+          100% { 
+            transform: translateX(-5%) translateY(10%) rotate(-2deg); 
+            filter: hue-rotate(-5deg);
+          }
         }
       `}</style>
     </section>
