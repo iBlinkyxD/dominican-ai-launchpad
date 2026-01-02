@@ -1,5 +1,6 @@
 import { Star, Heart, Linkedin } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { ScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const testimonials = [
   {
@@ -38,7 +39,7 @@ const Feedback = () => {
         {/* Header Row */}
         <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-16">
           {/* Left side - Title and CTA */}
-          <div className="max-w-xl mb-10 lg:mb-0">
+          <ScrollAnimation animation="fade-right" className="max-w-xl mb-10 lg:mb-0">
             {/* Badge */}
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border bg-card shadow-sm mb-6">
               <Heart className="w-4 h-4 text-primary fill-primary" />
@@ -56,60 +57,60 @@ const Feedback = () => {
             <Button className="btn-glossy text-primary-foreground rounded-full px-8 py-6 text-base font-semibold">
               Start Learning Now
             </Button>
-          </div>
+          </ScrollAnimation>
 
           {/* Right side - Decorative elements */}
-          <div className="hidden lg:flex items-center gap-4 text-muted-foreground/40 text-2xl mt-8">
+          <ScrollAnimation animation="fade-left" delay={200} className="hidden lg:flex items-center gap-4 text-muted-foreground/40 text-2xl mt-8">
             <span>✦</span>
             <span>✳</span>
             <span className="text-3xl">+</span>
-          </div>
+          </ScrollAnimation>
         </div>
 
         {/* Testimonial Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {testimonials.map((testimonial, index) => (
-            <div
+            <ScrollAnimation
               key={testimonial.id}
-              className="bg-card rounded-3xl p-8 shadow-[0_4px_40px_-12px_rgba(0,0,0,0.08)] hover:shadow-[0_8px_50px_-12px_rgba(0,0,0,0.12)] transition-all duration-500"
-              style={{
-                animationDelay: `${index * 100}ms`,
-              }}
+              animation="fade-up"
+              delay={index * 150}
             >
-              {/* Top row - Stars and LinkedIn */}
-              <div className="flex items-center justify-between mb-6">
-                <div className="flex items-center gap-1">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
-                  ))}
+              <div className="bg-card rounded-3xl p-8 shadow-[0_4px_40px_-12px_rgba(0,0,0,0.08)] hover:shadow-[0_8px_50px_-12px_rgba(0,0,0,0.12)] transition-all duration-500 h-full">
+                {/* Top row - Stars and LinkedIn */}
+                <div className="flex items-center justify-between mb-6">
+                  <div className="flex items-center gap-1">
+                    {[...Array(testimonial.rating)].map((_, i) => (
+                      <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
+                    ))}
+                  </div>
+                  <div className="w-8 h-8 rounded-lg bg-[#0A66C2] flex items-center justify-center">
+                    <Linkedin className="w-4 h-4 text-white" />
+                  </div>
                 </div>
-                <div className="w-8 h-8 rounded-lg bg-[#0A66C2] flex items-center justify-center">
-                  <Linkedin className="w-4 h-4 text-white" />
+
+                {/* Quote */}
+                <p className="text-foreground/80 italic text-base leading-relaxed mb-8">
+                  "{testimonial.content}"
+                </p>
+
+                {/* Author */}
+                <div className="flex items-center gap-4">
+                  <img
+                    src={testimonial.avatar}
+                    alt={testimonial.name}
+                    className="w-12 h-12 rounded-full object-cover"
+                  />
+                  <div>
+                    <h4 className="font-semibold text-foreground">
+                      {testimonial.name}
+                    </h4>
+                    <p className="text-sm text-muted-foreground">
+                      {testimonial.role}
+                    </p>
+                  </div>
                 </div>
               </div>
-
-              {/* Quote */}
-              <p className="text-foreground/80 italic text-base leading-relaxed mb-8">
-                "{testimonial.content}"
-              </p>
-
-              {/* Author */}
-              <div className="flex items-center gap-4">
-                <img
-                  src={testimonial.avatar}
-                  alt={testimonial.name}
-                  className="w-12 h-12 rounded-full object-cover"
-                />
-                <div>
-                  <h4 className="font-semibold text-foreground">
-                    {testimonial.name}
-                  </h4>
-                  <p className="text-sm text-muted-foreground">
-                    {testimonial.role}
-                  </p>
-                </div>
-              </div>
-            </div>
+            </ScrollAnimation>
           ))}
         </div>
       </div>
