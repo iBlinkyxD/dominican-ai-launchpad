@@ -70,7 +70,7 @@ const Teams = () => {
                 {teamMembers.map((member, index) => (
                   <ScrollAnimation key={member.id} animation="fade-up" delay={index * 100}>
                     <div
-                      className={`group relative bg-card/90 backdrop-blur-xl rounded-3xl overflow-hidden transition-all duration-500 cursor-pointer border border-border/30 ${member.rotation} ${member.hoverRotation}`}
+                      className="group relative bg-card/90 backdrop-blur-xl rounded-3xl overflow-hidden transition-all duration-500 cursor-pointer border border-border/30 hover:scale-105 hover:-translate-y-2"
                       style={{
                         boxShadow:
                           "0 20px 60px -15px hsl(var(--foreground) / 0.08), 0 8px 20px -8px hsl(var(--foreground) / 0.05), inset 0 1px 0 hsl(0 0% 100% / 0.3)",
