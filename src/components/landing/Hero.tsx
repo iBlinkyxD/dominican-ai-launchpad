@@ -1,17 +1,32 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Sparkles, Video, GraduationCap, BadgeCheck, LayoutGrid, Crown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const Hero = () => {
   const [scrollY, setScrollY] = useState(0);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const heroRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
       setScrollY(window.scrollY);
     };
 
+    const handleMouseMove = (e: MouseEvent) => {
+      if (heroRef.current) {
+        const rect = heroRef.current.getBoundingClientRect();
+        const x = (e.clientX - rect.left - rect.width / 2) / rect.width;
+        const y = (e.clientY - rect.top - rect.height / 2) / rect.height;
+        setMousePosition({ x, y });
+      }
+    };
+
     window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("mousemove", handleMouseMove);
+    };
   }, []);
 
   // Parallax transform values based on scroll
@@ -19,18 +34,76 @@ const Hero = () => {
     transform: `translateY(${scrollY * speed}px)`,
   });
 
+  // Interactive mouse movement
+  const mouseParallax = (intensity: number) => ({
+    transform: `translate(${mousePosition.x * intensity}px, ${mousePosition.y * intensity}px)`,
+  });
+
   return (
-    <section className="relative min-h-screen flex flex-col overflow-hidden" style={{ background: "radial-gradient(circle at 50% 50%, #1A4F8B, transparent 70%)" }}>
-      {/* Gradient Background */}
+    <section 
+      ref={heroRef}
+      className="relative min-h-screen flex flex-col overflow-hidden" 
+      style={{ background: "radial-gradient(circle at 50% 50%, #1A4F8B, transparent 70%)" }}
+    >
+      {/* Animated Gradient Background */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-b from-pink-200/60 via-pink-100/30 to-background" />
+        
+        {/* Animated floating orbs */}
         <div
-          className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-pink-300/30 rounded-full blur-3xl transition-transform duration-100"
-          style={parallax(0.05)}
+          className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-pink-300/30 rounded-full blur-3xl transition-transform duration-700 ease-out"
+          style={{
+            transform: `translate(${mousePosition.x * 30}px, ${mousePosition.y * 30 + scrollY * 0.05}px)`,
+          }}
         />
         <div
-          className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-purple-200/20 rounded-full blur-3xl transition-transform duration-100"
-          style={parallax(0.03)}
+          className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-purple-200/20 rounded-full blur-3xl transition-transform duration-700 ease-out"
+          style={{
+            transform: `translate(${mousePosition.x * -20}px, ${mousePosition.y * -20 + scrollY * 0.03}px)`,
+          }}
+        />
+        
+        {/* Additional animated gradient orbs */}
+        <div
+          className="absolute bottom-1/4 left-1/3 w-[400px] h-[400px] bg-blue-200/20 rounded-full blur-3xl transition-transform duration-1000 ease-out animate-pulse"
+          style={{
+            transform: `translate(${mousePosition.x * 40}px, ${mousePosition.y * 25}px)`,
+          }}
+        />
+        <div
+          className="absolute top-1/3 right-1/3 w-[300px] h-[300px] bg-orange-200/15 rounded-full blur-3xl transition-transform duration-1000 ease-out"
+          style={{
+            transform: `translate(${mousePosition.x * -35}px, ${mousePosition.y * 35}px)`,
+          }}
+        />
+
+        {/* Floating particles */}
+        {[...Array(12)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute rounded-full transition-transform duration-500 ease-out"
+            style={{
+              width: `${4 + (i % 4) * 3}px`,
+              height: `${4 + (i % 4) * 3}px`,
+              left: `${10 + (i * 7)}%`,
+              top: `${15 + (i * 5) % 60}%`,
+              background: `hsl(${320 + i * 15}, 70%, ${70 + (i % 3) * 10}%)`,
+              opacity: 0.4 + (i % 3) * 0.15,
+              transform: `translate(${mousePosition.x * (20 + i * 5)}px, ${mousePosition.y * (15 + i * 4)}px)`,
+              animation: `float ${3 + i * 0.5}s ease-in-out infinite alternate`,
+              animationDelay: `${i * 0.2}s`,
+            }}
+          />
+        ))}
+
+        {/* Grid overlay for subtle texture */}
+        <div 
+          className="absolute inset-0 opacity-[0.03] transition-transform duration-500"
+          style={{
+            backgroundImage: `radial-gradient(circle, hsl(var(--foreground)) 1px, transparent 1px)`,
+            backgroundSize: '50px 50px',
+            transform: `translate(${mousePosition.x * 10}px, ${mousePosition.y * 10}px)`,
+          }}
         />
       </div>
 
@@ -88,15 +161,17 @@ const Hero = () => {
         >
           {/* Main container card */}
           <div
-            className="absolute inset-x-0 bottom-0 h-[200px] md:h-[240px] bg-white/30 backdrop-blur-xl border border-white/20 rounded-3xl transition-transform duration-300 ease-out"
-            style={parallax(0.08)}
+            className="absolute inset-x-0 bottom-0 h-[200px] md:h-[240px] bg-white/30 backdrop-blur-xl border border-white/20 rounded-3xl transition-transform duration-500 ease-out"
+            style={{
+              transform: `translateY(${scrollY * 0.08}px) rotateX(${mousePosition.y * 2}deg) rotateY(${mousePosition.x * 2}deg)`,
+            }}
           />
 
           {/* Left card - App icons */}
           <div
-            className="absolute left-[10%] md:left-[15%] bottom-[60px] md:bottom-[80px] w-[120px] md:w-[160px] h-[140px] md:h-[180px] bg-white/30 backdrop-blur-xl border border-white/20 rounded-2xl p-4 transform -rotate-3 hover:rotate-0 transition-all duration-500 ease-out"
+            className="absolute left-[10%] md:left-[15%] bottom-[60px] md:bottom-[80px] w-[120px] md:w-[160px] h-[140px] md:h-[180px] bg-white/30 backdrop-blur-xl border border-white/20 rounded-2xl p-4 hover:rotate-0 transition-all duration-500 ease-out"
             style={{
-              transform: `translateY(${scrollY * -0.15}px) rotate(-3deg)`,
+              transform: `translateY(${scrollY * -0.15}px) translate(${mousePosition.x * -15}px, ${mousePosition.y * -10}px) rotate(-3deg)`,
             }}
           >
             <div className="grid grid-cols-2 gap-2">
@@ -119,7 +194,7 @@ const Hero = () => {
           <div
             className="absolute right-[10%] md:right-[15%] bottom-[60px] md:bottom-[80px] w-[120px] md:w-[160px] h-[140px] md:h-[180px] bg-white/30 backdrop-blur-xl border border-white/20 rounded-2xl p-6 hover:rotate-0 transition-all duration-500 ease-out"
             style={{
-              transform: `translateY(${scrollY * -0.12}px) rotate(3deg)`,
+              transform: `translateY(${scrollY * -0.12}px) translate(${mousePosition.x * 15}px, ${mousePosition.y * -10}px) rotate(3deg)`,
             }}
           >
             <div className="flex flex-col items-center justify-center h-full">
@@ -133,37 +208,55 @@ const Hero = () => {
 
           {/* Badge check floating */}
           <div
-            className="absolute right-[25%] md:right-[30%] top-0 w-14 h-14 md:w-16 md:h-16 bg-card rounded-2xl shadow-lg border border-border/50 flex items-center justify-center transition-transform duration-300 ease-out"
+            className="absolute right-[25%] md:right-[30%] top-0 w-14 h-14 md:w-16 md:h-16 bg-card rounded-2xl shadow-lg border border-border/50 flex items-center justify-center transition-all duration-500 ease-out"
             style={{
-              transform: `translateY(${scrollY * -0.2}px)`,
+              transform: `translateY(${scrollY * -0.2}px) translate(${mousePosition.x * 25}px, ${mousePosition.y * 20}px)`,
             }}
           >
             <BadgeCheck className="w-8 h-8 md:w-10 md:h-10 text-foreground" />
           </div>
 
-          {/* Small floating elements with parallax */}
+          {/* Small floating elements with parallax + mouse */}
           <div
-            className="absolute left-[5%] top-[30%] w-3 h-3 bg-pink-400/60 rounded-full transition-transform duration-300 ease-out"
-            style={parallax(-0.25)}
+            className="absolute left-[5%] top-[30%] w-3 h-3 bg-pink-400/60 rounded-full transition-all duration-300 ease-out"
+            style={{
+              transform: `translateY(${scrollY * -0.25}px) translate(${mousePosition.x * 30}px, ${mousePosition.y * 25}px)`,
+            }}
           />
           <div
-            className="absolute right-[8%] top-[40%] w-2 h-2 bg-purple-400/60 rounded-full transition-transform duration-300 ease-out"
-            style={parallax(-0.18)}
+            className="absolute right-[8%] top-[40%] w-2 h-2 bg-purple-400/60 rounded-full transition-all duration-300 ease-out"
+            style={{
+              transform: `translateY(${scrollY * -0.18}px) translate(${mousePosition.x * -20}px, ${mousePosition.y * 30}px)`,
+            }}
           />
           <div
-            className="absolute left-[30%] top-[10%] w-4 h-4 bg-pink-300/40 rounded-full transition-transform duration-300 ease-out"
-            style={parallax(-0.22)}
+            className="absolute left-[30%] top-[10%] w-4 h-4 bg-pink-300/40 rounded-full transition-all duration-300 ease-out"
+            style={{
+              transform: `translateY(${scrollY * -0.22}px) translate(${mousePosition.x * 35}px, ${mousePosition.y * -20}px)`,
+            }}
           />
           <div
-            className="absolute right-[20%] bottom-[50%] w-2 h-2 bg-indigo-300/50 rounded-full transition-transform duration-300 ease-out"
-            style={parallax(-0.15)}
+            className="absolute right-[20%] bottom-[50%] w-2 h-2 bg-indigo-300/50 rounded-full transition-all duration-300 ease-out"
+            style={{
+              transform: `translateY(${scrollY * -0.15}px) translate(${mousePosition.x * -25}px, ${mousePosition.y * 35}px)`,
+            }}
           />
           <div
-            className="absolute left-[20%] bottom-[40%] w-3 h-3 bg-orange-300/40 rounded-full transition-transform duration-300 ease-out"
-            style={parallax(-0.28)}
+            className="absolute left-[20%] bottom-[40%] w-3 h-3 bg-orange-300/40 rounded-full transition-all duration-300 ease-out"
+            style={{
+              transform: `translateY(${scrollY * -0.28}px) translate(${mousePosition.x * 40}px, ${mousePosition.y * -30}px)`,
+            }}
           />
         </div>
       </div>
+
+      {/* CSS for float animation */}
+      <style>{`
+        @keyframes float {
+          0% { transform: translateY(0px); }
+          100% { transform: translateY(-20px); }
+        }
+      `}</style>
     </section>
   );
 };
