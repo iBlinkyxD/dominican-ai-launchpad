@@ -1,11 +1,14 @@
 import { useState, useEffect } from "react";
 import { Menu, X, Crown } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import logo from "@/assets/logo.png";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation();
+  const isHomePage = location.pathname === "/";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -16,9 +19,10 @@ const Header = () => {
   }, []);
 
   const navLinks = [
-    { label: "Courses", href: "#stats" },
-    { label: "Reviews", href: "#feedback" },
-    { label: "Contact", href: "#footer" },
+    { label: "Courses", href: isHomePage ? "#stats" : "/#stats", isAnchor: true },
+    { label: "Teams", href: "/teams", isAnchor: false },
+    { label: "Reviews", href: isHomePage ? "#feedback" : "/#feedback", isAnchor: true },
+    { label: "Contact", href: "/contact", isAnchor: false },
   ];
 
   return (
@@ -31,20 +35,30 @@ const Header = () => {
       <div className="container mx-auto section-padding">
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
-          <a href="#" className="flex items-center gap-3">
+          <Link to="/" className="flex items-center gap-3">
             <img src={'/assets/logo.png'} alt="Dominican AI Association" className="h-10 lg:h-12 w-auto" />
-          </a>
+          </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-10">
             {navLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                className="text-sm font-medium text-foreground hover:text-primary transition-colors"
-              >
-                {link.label}
-              </a>
+              link.isAnchor ? (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  className="text-sm font-medium text-foreground hover:text-primary transition-colors"
+                >
+                  {link.label}
+                </a>
+              ) : (
+                <Link
+                  key={link.label}
+                  to={link.href}
+                  className="text-sm font-medium text-foreground hover:text-primary transition-colors"
+                >
+                  {link.label}
+                </Link>
+              )
             ))}
           </nav>
 
@@ -77,14 +91,25 @@ const Header = () => {
           <div className="md:hidden absolute top-full left-0 right-0 bg-background/95 backdrop-blur-xl border-b border-border shadow-lg">
             <nav className="flex flex-col p-4 gap-2">
               {navLinks.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="py-3 px-4 text-foreground hover:bg-muted rounded-lg transition-colors"
-                >
-                  {link.label}
-                </a>
+                link.isAnchor ? (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="py-3 px-4 text-foreground hover:bg-muted rounded-lg transition-colors"
+                  >
+                    {link.label}
+                  </a>
+                ) : (
+                  <Link
+                    key={link.label}
+                    to={link.href}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="py-3 px-4 text-foreground hover:bg-muted rounded-lg transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                )
               ))}
               <hr className="my-2 border-border" />
               <a

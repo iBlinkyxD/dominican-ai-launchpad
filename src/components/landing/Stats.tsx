@@ -64,31 +64,41 @@ const StatCard = ({ icon: Icon, iconGradient, iconColor, value, suffix, label, d
     <ScrollAnimation animation="fade-up" delay={delay}>
       <div
         ref={ref}
-        className={`relative bg-card/80 backdrop-blur-sm rounded-3xl p-8 md:p-10 flex flex-col items-center text-center transition-all duration-500 hover:-translate-y-2 ${rotation}`}
+        className={`group relative bg-card/90 backdrop-blur-xl rounded-3xl p-8 md:p-10 flex flex-col items-center text-center transition-all duration-500 cursor-pointer ${rotation}`}
         style={{
-          boxShadow: "0 20px 60px -15px rgba(0,0,0,0.08), 0 8px 20px -8px rgba(0,0,0,0.05)",
-          background: "linear-gradient(145deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.85) 100%)",
-          border: "1px solid rgba(255,255,255,0.8)",
+          boxShadow: "0 20px 60px -15px hsl(var(--foreground) / 0.08), 0 8px 20px -8px hsl(var(--foreground) / 0.05), inset 0 1px 0 hsl(0 0% 100% / 0.3)",
+          background: "linear-gradient(145deg, hsl(var(--card)) 0%, hsl(var(--card) / 0.85) 100%)",
+          border: "1px solid hsl(var(--border) / 0.3)",
+          transformStyle: "preserve-3d",
         }}
       >
-        {/* Glossy overlay */}
+        {/* Glossy overlay - enhanced on hover */}
         <div
-          className="absolute inset-0 rounded-3xl pointer-events-none"
+          className="absolute inset-0 rounded-3xl pointer-events-none transition-opacity duration-500 group-hover:opacity-80"
           style={{
-            background: "linear-gradient(135deg, rgba(255,255,255,0.4) 0%, transparent 50%)",
+            background: "linear-gradient(135deg, hsl(0 0% 100% / 0.5) 0%, transparent 40%, transparent 60%, hsl(0 0% 100% / 0.1) 100%)",
+            opacity: 0.6,
+          }}
+        />
+        
+        {/* Secondary shine effect on hover */}
+        <div
+          className="absolute inset-0 rounded-3xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+          style={{
+            background: "radial-gradient(ellipse at 30% 0%, hsl(0 0% 100% / 0.3) 0%, transparent 50%)",
           }}
         />
 
         {/* Icon */}
         <div
-          className={`relative w-16 h-16 rounded-2xl flex items-center justify-center mb-6 ${iconGradient}`}
-          style={{ boxShadow: "0 8px 20px -6px rgba(0,0,0,0.15)" }}
+          className={`relative w-16 h-16 rounded-2xl flex items-center justify-center mb-6 transition-transform duration-500 group-hover:scale-110 group-hover:-translate-y-1 ${iconGradient}`}
+          style={{ boxShadow: "0 8px 20px -6px hsl(var(--foreground) / 0.15)" }}
         >
-          <Icon className={`w-8 h-8 ${iconColor}`} strokeWidth={1.5} />
+          <Icon className={`w-8 h-8 ${iconColor} transition-transform duration-500 group-hover:scale-110`} strokeWidth={1.5} />
         </div>
 
         {/* Number */}
-        <div className="font-display text-4xl md:text-5xl font-medium text-foreground mb-2 tracking-tight">
+        <div className="font-display text-4xl md:text-5xl font-medium text-foreground mb-2 tracking-tight transition-transform duration-500 group-hover:scale-105">
           {count.toLocaleString()}
           <span className="text-primary">{suffix}</span>
         </div>
@@ -110,7 +120,7 @@ const Stats = () => {
       suffix: "+",
       label: "Hours of Content",
       delay: 0,
-      rotation: "md:rotate-[-4deg] md:translate-y-4",
+      rotation: "md:rotate-[-4deg] md:translate-y-4 hover:md:rotate-[-2deg] hover:-translate-y-2 hover:shadow-[0_30px_80px_-20px_hsl(var(--foreground)/0.12)]",
     },
     {
       icon: Mail,
@@ -120,7 +130,7 @@ const Stats = () => {
       suffix: "+",
       label: "Courses",
       delay: 100,
-      rotation: "md:scale-105 z-10",
+      rotation: "md:scale-105 z-10 hover:md:scale-110 hover:-translate-y-3 hover:shadow-[0_35px_90px_-20px_hsl(var(--foreground)/0.15)]",
     },
     {
       icon: Users,
@@ -130,7 +140,7 @@ const Stats = () => {
       suffix: "k+",
       label: "Students",
       delay: 200,
-      rotation: "md:rotate-[4deg] md:translate-y-4",
+      rotation: "md:rotate-[4deg] md:translate-y-4 hover:md:rotate-[2deg] hover:-translate-y-2 hover:shadow-[0_30px_80px_-20px_hsl(var(--foreground)/0.12)]",
     },
   ];
 
