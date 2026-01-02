@@ -15,32 +15,24 @@ const teamMembers = [
     name: "Team Member Name",
     role: "President",
     image: teamMember1,
-    rotation: "md:rotate-[-4deg] md:translate-y-4",
-    hoverRotation: "hover:md:rotate-[-2deg] hover:-translate-y-2",
   },
   {
     id: 2,
     name: "Team Member Name",
     role: "Vice President",
     image: teamMember2,
-    rotation: "md:scale-105 z-10",
-    hoverRotation: "hover:md:scale-110 hover:-translate-y-3",
   },
   {
     id: 3,
     name: "Team Member Name",
     role: "Secretary General",
     image: teamMember3,
-    rotation: "md:rotate-[4deg] md:translate-y-4",
-    hoverRotation: "hover:md:rotate-[2deg] hover:-translate-y-2",
   },
   {
     id: 4,
     name: "Team Member Name",
     role: "Technical Director",
     image: teamMember4,
-    rotation: "md:rotate-[-3deg] md:translate-y-2",
-    hoverRotation: "hover:md:rotate-[-1deg] hover:-translate-y-2",
   },
 ];
 
@@ -48,12 +40,12 @@ const Teams = () => {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      
+
       <main className="pt-24 pb-16">
         {/* Hero Section */}
         <section className="py-16 relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-pink-50/50 via-background to-blue-50/50" />
-          
+
           <div className="container mx-auto section-padding relative z-10">
             <ScrollAnimation animation="fade-up" className="text-center mb-16">
               {/* Badge */}
@@ -67,7 +59,8 @@ const Teams = () => {
               </h1>
 
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                The passionate individuals behind the Dominican AI Association, dedicated to advancing AI education and innovation in the Caribbean.
+                The passionate individuals behind the Dominican AI Association, dedicated to advancing AI education and
+                innovation in the Caribbean.
               </p>
             </ScrollAnimation>
 
@@ -79,7 +72,8 @@ const Teams = () => {
                     <div
                       className={`group relative bg-card/90 backdrop-blur-xl rounded-3xl overflow-hidden transition-all duration-500 cursor-pointer border border-border/30 ${member.rotation} ${member.hoverRotation}`}
                       style={{
-                        boxShadow: "0 20px 60px -15px hsl(var(--foreground) / 0.08), 0 8px 20px -8px hsl(var(--foreground) / 0.05), inset 0 1px 0 hsl(0 0% 100% / 0.3)",
+                        boxShadow:
+                          "0 20px 60px -15px hsl(var(--foreground) / 0.08), 0 8px 20px -8px hsl(var(--foreground) / 0.05), inset 0 1px 0 hsl(0 0% 100% / 0.3)",
                         background: "linear-gradient(145deg, hsl(var(--card)) 0%, hsl(var(--card) / 0.85) 100%)",
                         transformStyle: "preserve-3d",
                       }}
@@ -88,11 +82,12 @@ const Teams = () => {
                       <div
                         className="absolute inset-0 rounded-3xl pointer-events-none transition-opacity duration-500 group-hover:opacity-80 z-10"
                         style={{
-                          background: "linear-gradient(135deg, hsl(0 0% 100% / 0.5) 0%, transparent 40%, transparent 60%, hsl(0 0% 100% / 0.1) 100%)",
+                          background:
+                            "linear-gradient(135deg, hsl(0 0% 100% / 0.5) 0%, transparent 40%, transparent 60%, hsl(0 0% 100% / 0.1) 100%)",
                           opacity: 0.6,
                         }}
                       />
-                      
+
                       {/* Secondary shine on hover */}
                       <div
                         className="absolute inset-0 rounded-3xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"
@@ -110,7 +105,7 @@ const Teams = () => {
                         />
                         {/* Image overlay gradient */}
                         <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 via-foreground/20 to-transparent" />
-                        
+
                         {/* Social Icons */}
                         <div className="absolute top-4 right-4 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                           <div className="w-8 h-8 rounded-full bg-card/90 backdrop-blur-sm flex items-center justify-center shadow-md transition-transform hover:scale-110">
@@ -124,12 +119,8 @@ const Teams = () => {
 
                       {/* Info */}
                       <div className="relative p-6 text-center">
-                        <h3 className="font-display text-lg font-medium text-foreground mb-1">
-                          {member.name}
-                        </h3>
-                        <p className="text-sm text-muted-foreground">
-                          {member.role}
-                        </p>
+                        <h3 className="font-display text-lg font-medium text-foreground mb-1">{member.name}</h3>
+                        <p className="text-sm text-muted-foreground">{member.role}</p>
                       </div>
                     </div>
                   </ScrollAnimation>
