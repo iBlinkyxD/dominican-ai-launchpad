@@ -1,6 +1,7 @@
 import { Facebook, Twitter, Linkedin, Instagram, Youtube, Mail, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { ScrollAnimation } from "@/hooks/useScrollAnimation";
 import logo from "@/assets/logo.png";
 
 const Footer = () => {
@@ -40,33 +41,35 @@ const Footer = () => {
       {/* Newsletter Section */}
       <div className="bg-gradient-to-r from-pink-50/80 via-background to-purple-50/80 py-16">
         <div className="container mx-auto section-padding">
-          <div className="bg-card rounded-3xl p-8 md:p-12 shadow-[0_4px_40px_-12px_rgba(0,0,0,0.08)] border border-border/50">
-            <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-              <div className="text-center md:text-left">
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-semibold mb-4">
-                  <Mail className="w-3 h-3" />
-                  Newsletter
+          <ScrollAnimation animation="fade-up">
+            <div className="bg-card rounded-3xl p-8 md:p-12 shadow-[0_4px_40px_-12px_rgba(0,0,0,0.08)] border border-border/50">
+              <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+                <div className="text-center md:text-left">
+                  <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-semibold mb-4">
+                    <Mail className="w-3 h-3" />
+                    Newsletter
+                  </div>
+                  <h3 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-2">
+                    Stay Updated with AI Trends
+                  </h3>
+                  <p className="text-muted-foreground">
+                    Get the latest courses, events, and AI insights delivered to your inbox.
+                  </p>
                 </div>
-                <h3 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-2">
-                  Stay Updated with AI Trends
-                </h3>
-                <p className="text-muted-foreground">
-                  Get the latest courses, events, and AI insights delivered to your inbox.
-                </p>
-              </div>
-              <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
-                <Input
-                  type="email"
-                  placeholder="Enter your email"
-                  className="rounded-full px-6 h-12 min-w-[280px] border-border bg-background"
-                />
-                <Button className="bg-foreground text-background hover:bg-foreground/90 rounded-full h-12 px-6 gap-2">
-                  Subscribe
-                  <ArrowRight className="w-4 h-4" />
-                </Button>
+                <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
+                  <Input
+                    type="email"
+                    placeholder="Enter your email"
+                    className="rounded-full px-6 h-12 min-w-[280px] border-border bg-background"
+                  />
+                  <Button className="bg-foreground text-background hover:bg-foreground/90 rounded-full h-12 px-6 gap-2">
+                    Subscribe
+                    <ArrowRight className="w-4 h-4" />
+                  </Button>
+                </div>
               </div>
             </div>
-          </div>
+          </ScrollAnimation>
         </div>
       </div>
 
@@ -75,7 +78,7 @@ const Footer = () => {
         <div className="container mx-auto section-padding">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-12">
             {/* Brand Column */}
-            <div className="lg:col-span-2">
+            <ScrollAnimation animation="fade-up" className="lg:col-span-2">
               <a href="#" className="flex items-center gap-3 mb-6">
                 <img src={logo} alt="Dominican AI Association" className="h-12 w-auto" />
                 <div>
@@ -105,10 +108,10 @@ const Footer = () => {
                   </a>
                 ))}
               </div>
-            </div>
+            </ScrollAnimation>
 
             {/* Programs Column */}
-            <div>
+            <ScrollAnimation animation="fade-up" delay={100}>
               <h4 className="font-display font-semibold text-foreground mb-6">Programs</h4>
               <ul className="space-y-4">
                 {footerLinks.programs.map((link) => (
@@ -122,10 +125,10 @@ const Footer = () => {
                   </li>
                 ))}
               </ul>
-            </div>
+            </ScrollAnimation>
 
             {/* Company Column */}
-            <div>
+            <ScrollAnimation animation="fade-up" delay={200}>
               <h4 className="font-display font-semibold text-foreground mb-6">Company</h4>
               <ul className="space-y-4">
                 {footerLinks.company.map((link) => (
@@ -139,10 +142,10 @@ const Footer = () => {
                   </li>
                 ))}
               </ul>
-            </div>
+            </ScrollAnimation>
 
             {/* Support Column */}
-            <div>
+            <ScrollAnimation animation="fade-up" delay={300}>
               <h4 className="font-display font-semibold text-foreground mb-6">Support</h4>
               <ul className="space-y-4">
                 {footerLinks.support.map((link) => (
@@ -156,28 +159,30 @@ const Footer = () => {
                   </li>
                 ))}
               </ul>
-            </div>
+            </ScrollAnimation>
           </div>
 
           {/* Bottom Bar */}
-          <div className="pt-8 border-t border-border">
-            <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-              <p className="text-muted-foreground text-sm text-center md:text-left">
-                © {currentYear} Dominican AI Association. All rights reserved.
-              </p>
-              <div className="flex items-center gap-6 text-sm">
-                <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
-                  Privacy
-                </a>
-                <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
-                  Terms
-                </a>
-                <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
-                  Cookies
-                </a>
+          <ScrollAnimation animation="fade-up" delay={400}>
+            <div className="pt-8 border-t border-border">
+              <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+                <p className="text-muted-foreground text-sm text-center md:text-left">
+                  © {currentYear} Dominican AI Association. All rights reserved.
+                </p>
+                <div className="flex items-center gap-6 text-sm">
+                  <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
+                    Privacy
+                  </a>
+                  <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
+                    Terms
+                  </a>
+                  <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
+                    Cookies
+                  </a>
+                </div>
               </div>
             </div>
-          </div>
+          </ScrollAnimation>
         </div>
       </div>
     </footer>

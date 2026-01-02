@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { Clock, BookOpen, Users, Rocket, Cloud, Camera, Cpu, Zap } from "lucide-react";
+import { ScrollAnimation } from "@/hooks/useScrollAnimation";
 
 interface StatCardProps {
   icon: React.ElementType;
@@ -59,34 +60,31 @@ const StatCard = ({ icon: Icon, iconBg, iconColor, value, suffix, label, delay }
   }, [isVisible, value, delay]);
 
   return (
-    <div
-      ref={ref}
-      className="relative bg-card rounded-3xl p-8 md:p-10 shadow-[0_4px_40px_-12px_rgba(0,0,0,0.1)] hover:shadow-[0_8px_50px_-12px_rgba(0,0,0,0.15)] transition-all duration-500 flex flex-col items-center text-center"
-      style={{
-        opacity: isVisible ? 1 : 0,
-        transform: isVisible ? "translateY(0)" : "translateY(30px)",
-        transition: `all 0.6s ease-out ${delay}ms`,
-      }}
-    >
-      {/* Icon */}
-      <div 
-        className={`w-20 h-20 rounded-2xl flex items-center justify-center mb-8 ${iconBg}`}
-        style={{ boxShadow: "0 8px 24px -8px rgba(0,0,0,0.15)" }}
+    <ScrollAnimation animation="fade-up" delay={delay}>
+      <div
+        ref={ref}
+        className="relative bg-card rounded-3xl p-8 md:p-10 shadow-[0_4px_40px_-12px_rgba(0,0,0,0.1)] hover:shadow-[0_8px_50px_-12px_rgba(0,0,0,0.15)] transition-all duration-500 flex flex-col items-center text-center"
       >
-        <Icon className={`w-10 h-10 ${iconColor}`} />
+        {/* Icon */}
+        <div 
+          className={`w-20 h-20 rounded-2xl flex items-center justify-center mb-8 ${iconBg}`}
+          style={{ boxShadow: "0 8px 24px -8px rgba(0,0,0,0.15)" }}
+        >
+          <Icon className={`w-10 h-10 ${iconColor}`} />
+        </div>
+        
+        {/* Number */}
+        <div className="font-display text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-3 tracking-tight">
+          {count.toLocaleString()}
+          <span className="text-primary">{suffix}</span>
+        </div>
+        
+        {/* Label */}
+        <p className="text-sm md:text-base text-muted-foreground font-semibold uppercase tracking-widest">
+          {label}
+        </p>
       </div>
-      
-      {/* Number */}
-      <div className="font-display text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-3 tracking-tight">
-        {count.toLocaleString()}
-        <span className="text-primary">{suffix}</span>
-      </div>
-      
-      {/* Label */}
-      <p className="text-sm md:text-base text-muted-foreground font-semibold uppercase tracking-widest">
-        {label}
-      </p>
-    </div>
+    </ScrollAnimation>
   );
 };
 
@@ -137,7 +135,7 @@ const Stats = () => {
       
       <div className="container mx-auto section-padding">
         {/* Header */}
-        <div className="text-center mb-16">
+        <ScrollAnimation animation="fade-up" className="text-center mb-16">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border bg-card shadow-sm mb-6">
             <span className="text-lg">🎓</span>
             <span className="text-sm font-medium text-foreground">We Offer</span>
@@ -151,7 +149,7 @@ const Stats = () => {
             From critical skills to technical topics, we support your professional development
             with courses that help you grow and succeed.
           </p>
-        </div>
+        </ScrollAnimation>
 
         {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 max-w-5xl mx-auto mb-20">
@@ -161,7 +159,7 @@ const Stats = () => {
         </div>
 
         {/* Partners Section */}
-        <div className="max-w-4xl mx-auto">
+        <ScrollAnimation animation="fade-up" delay={300} className="max-w-4xl mx-auto">
           <div className="flex items-center gap-4 mb-8">
             <div className="flex-1 h-px bg-border" />
             <p className="text-sm text-muted-foreground whitespace-nowrap">
@@ -171,17 +169,16 @@ const Stats = () => {
           </div>
 
           <div className="flex flex-wrap items-center justify-center gap-8 md:gap-12">
-            {partners.map((partner) => (
-              <div 
-                key={partner.name}
-                className="flex items-center gap-2 text-muted-foreground/70 hover:text-foreground transition-colors"
-              >
-                <partner.icon className="w-6 h-6" />
-                <span className="font-display font-semibold text-lg">{partner.name}</span>
-              </div>
+            {partners.map((partner, index) => (
+              <ScrollAnimation key={partner.name} animation="fade-up" delay={400 + index * 100}>
+                <div className="flex items-center gap-2 text-muted-foreground/70 hover:text-foreground transition-colors">
+                  <partner.icon className="w-6 h-6" />
+                  <span className="font-display font-semibold text-lg">{partner.name}</span>
+                </div>
+              </ScrollAnimation>
             ))}
           </div>
-        </div>
+        </ScrollAnimation>
       </div>
     </section>
   );
