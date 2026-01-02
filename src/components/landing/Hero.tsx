@@ -20,7 +20,7 @@ const Hero = () => {
   });
 
   return (
-    <section className="relative min-h-screen flex flex-col overflow-hidden bg-background">
+    <section className="relative min-h-screen flex flex-col overflow-hidden" style={{ background: "radial-gradient(circle at 50% 50%, #1A4F8B, transparent 70%)" }}>
       {/* Gradient Background */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-b from-pink-200/60 via-pink-100/30 to-background" />
@@ -38,14 +38,14 @@ const Hero = () => {
       <div className="relative z-10 flex-1 flex flex-col items-center justify-center container mx-auto section-padding pt-32 pb-16">
         <div className="max-w-4xl mx-auto text-center">
           {/* Trust Badge */}
-          <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-foreground text-background text-sm font-medium mb-10 animate-fade-in">
-            <Sparkles className="w-4 h-4" />
-            <span>Trusted by 20,000+ Happy Learners</span>
+          <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/30 backdrop-blur-md border border-white/20 shadow-[0_0_15px_rgba(255,255,255,0.15)] text-foreground text-sm font-medium mb-10 animate-fade-in hover:bg-white/20 transition-all duration-300">
+            <Sparkles className="w-4 h-4 text-yellow-300 fill-yellow-300/20" />
+            <span className="drop-shadow-sm">Trusted by 20,000+ Happy Learners</span>
           </div>
 
           {/* Headline */}
           <h1
-            className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold text-foreground mb-8 leading-[1.1] tracking-tight animate-slide-up"
+            className="font-display text-4xl sm:text-4xl md:text-5xl lg:text-6xl  text-foreground mb-8 leading-[1.1] tracking-tight animate-slide-up"
             style={{ animationDelay: "0.1s" }}
           >
             Laying the digital foundation for a smarter, stronger Dominican Republic.
@@ -53,7 +53,7 @@ const Hero = () => {
 
           {/* Subheadline */}
           <p
-            className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 animate-slide-up"
+            className="text-lg md:text-xl text-foreground max-w-3xl mx-auto mb-10 animate-slide-up"
             style={{ animationDelay: "0.2s" }}
           >
             Our mission is to foster responsible innovation, education, and collaboration in the field of artificial
@@ -88,13 +88,13 @@ const Hero = () => {
         >
           {/* Main container card */}
           <div
-            className="absolute inset-x-0 bottom-0 h-[200px] md:h-[240px] bg-gradient-to-b from-pink-100/50 to-pink-50/30 rounded-3xl backdrop-blur-sm border border-pink-200/30 transition-transform duration-300 ease-out"
+            className="absolute inset-x-0 bottom-0 h-[200px] md:h-[240px] bg-white/30 backdrop-blur-xl border border-white/20 rounded-3xl transition-transform duration-300 ease-out"
             style={parallax(0.08)}
           />
 
           {/* Left card - App icons */}
           <div
-            className="absolute left-[10%] md:left-[15%] bottom-[60px] md:bottom-[80px] w-[120px] md:w-[160px] h-[140px] md:h-[180px] bg-card rounded-2xl shadow-xl border border-border/50 p-4 transform -rotate-3 hover:rotate-0 transition-all duration-500 ease-out"
+            className="absolute left-[10%] md:left-[15%] bottom-[60px] md:bottom-[80px] w-[120px] md:w-[160px] h-[140px] md:h-[180px] bg-white/30 backdrop-blur-xl border border-white/20 rounded-2xl p-4 transform -rotate-3 hover:rotate-0 transition-all duration-500 ease-out"
             style={{
               transform: `translateY(${scrollY * -0.15}px) rotate(-3deg)`,
             }}
@@ -117,7 +117,7 @@ const Hero = () => {
 
           {/* Right card - Graduate */}
           <div
-            className="absolute right-[10%] md:right-[15%] bottom-[60px] md:bottom-[80px] w-[120px] md:w-[160px] h-[140px] md:h-[180px] bg-card rounded-2xl shadow-xl border border-border/50 p-6 hover:rotate-0 transition-all duration-500 ease-out"
+            className="absolute right-[10%] md:right-[15%] bottom-[60px] md:bottom-[80px] w-[120px] md:w-[160px] h-[140px] md:h-[180px] bg-white/30 backdrop-blur-xl border border-white/20 rounded-2xl p-6 hover:rotate-0 transition-all duration-500 ease-out"
             style={{
               transform: `translateY(${scrollY * -0.12}px) rotate(3deg)`,
             }}

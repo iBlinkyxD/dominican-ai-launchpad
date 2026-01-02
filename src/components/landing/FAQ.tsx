@@ -58,7 +58,7 @@ const FAQ = () => {
 
             {/* Still Have Questions Card */}
             <ScrollAnimation animation="fade-up" delay={200}>
-              <div className="bg-card rounded-3xl p-8 shadow-[0_4px_40px_-12px_rgba(0,0,0,0.08)] border border-border/50">
+              <div className="relative bg-white/30 backdrop-blur-xl border border-white/20 rounded-3xl p-8 shadow-[0_4px_40px_-12px_rgba(0,0,0,0.08)]">
                 <h3 className="font-display text-2xl text-foreground mb-3">Still Have Questions?</h3>
                 <p className="text-muted-foreground mb-6">
                   <a
@@ -108,9 +108,8 @@ const FAQ = () => {
             {faqs.map((faq, index) => (
               <ScrollAnimation key={index} animation="fade-left" delay={index * 100}>
                 <div
-                  className={`bg-card rounded-2xl shadow-[0_2px_20px_-8px_rgba(0,0,0,0.06)] border border-border/50 overflow-hidden transition-all duration-300 ${
-                    openIndex === index ? "shadow-[0_4px_30px_-8px_rgba(0,0,0,0.1)]" : ""
-                  }`}
+                  className={`bg-card rounded-2xl shadow-[0_2px_20px_-8px_rgba(0,0,0,0.06)] border border-border/50 overflow-hidden transition-all duration-300 ${openIndex === index ? "shadow-[0_4px_30px_-8px_rgba(0,0,0,0.1)]" : ""
+                    }`}
                 >
                   <button
                     onClick={() => toggleFaq(index)}
@@ -123,9 +122,8 @@ const FAQ = () => {
                   </button>
 
                   <div
-                    className={`overflow-hidden transition-all duration-300 ease-out ${
-                      openIndex === index ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
-                    }`}
+                    className={`overflow-hidden transition-all duration-300 ease-out ${openIndex === index ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
+                      }`}
                   >
                     <div className="px-6 pb-6 text-muted-foreground leading-relaxed">{faq.answer}</div>
                   </div>

@@ -29,20 +29,20 @@ const Footer = () => {
   };
 
   const socialLinks = [
-    { icon: Facebook, href: "#", label: "Facebook" },
-    { icon: Twitter, href: "#", label: "Twitter" },
-    { icon: Linkedin, href: "#", label: "LinkedIn" },
-    { icon: Instagram, href: "#", label: "Instagram" },
-    { icon: Youtube, href: "#", label: "YouTube" },
+    { icon: Facebook, href: "https://facebook.com/daia_official", label: "Facebook" },
+    { icon: Twitter, href: "https://x.com/daia_official", label: "Twitter" },
+    { icon: Linkedin, href: "https://linkedin.com/company/daia_official", label: "LinkedIn" },
+    { icon: Instagram, href: "https://instagram.com/daia.do", label: "Instagram" },
+    { icon: Youtube, href: "https://www.youtube.com/channel/UCQzLflrAQSQoen02x1yonvg", label: "YouTube" },
   ];
 
   return (
     <footer id="footer" className="relative overflow-hidden">
       {/* Newsletter Section */}
-      <div className="bg-gradient-to-r from-pink-50/80 via-background to-purple-50/80 py-16">
+      <div className="bg-gradient-to-r from-pink-50/90 via-background to-purple-50/80 py-16">
         <div className="container mx-auto section-padding">
           <ScrollAnimation animation="fade-up">
-            <div className="bg-card rounded-3xl p-8 md:p-12 shadow-[0_4px_40px_-12px_rgba(0,0,0,0.08)] border border-border/50">
+            <div className="bg-white/30 backdrop-blur-xl border border-white/20 rounded-3xl p-8 md:p-12 shadow-[0_4px_40px_-12px_rgba(0,0,0,0.08)] border border-border/50">
               <div className="flex flex-col md:flex-row items-center justify-between gap-8">
                 <div className="text-center md:text-left">
                   <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-semibold mb-4">
@@ -80,11 +80,8 @@ const Footer = () => {
             {/* Brand Column */}
             <ScrollAnimation animation="fade-up" className="lg:col-span-2">
               <a href="#" className="flex items-center gap-3 mb-6">
-                <img src={logo} alt="Dominican AI Association" className="h-12 w-auto" />
-                <div>
-                  <div className="font-display text-foreground leading-tight">Dominican AI</div>
-                  <div className="text-sm text-muted-foreground">Association</div>
-                </div>
+                <img src={'/assets/logo.png'} alt="Dominican AI Association" className="h-12 w-auto" />
+
               </a>
               <p className="text-muted-foreground mb-6 max-w-sm leading-relaxed">
                 Empowering the Dominican Republic with world-class AI education and fostering innovation across the
@@ -96,6 +93,7 @@ const Footer = () => {
                 {socialLinks.map((social) => (
                   <a
                     key={social.label}
+                    target="_blank"
                     href={social.href}
                     aria-label={social.label}
                     className="w-10 h-10 rounded-full bg-muted flex items-center justify-center text-muted-foreground hover:bg-foreground hover:text-background transition-all duration-300"

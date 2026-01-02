@@ -23,25 +23,16 @@ const Header = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? "bg-background/80 backdrop-blur-xl shadow-sm border-b border-border/50"
-          : "bg-transparent"
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
+        ? "bg-background/80 backdrop-blur-xl shadow-sm border-b border-border/50"
+        : "bg-transparent"
+        }`}
     >
       <div className="container mx-auto section-padding">
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
           <a href="#" className="flex items-center gap-3">
-            <img src={logo} alt="Dominican AI Association" className="h-10 lg:h-12 w-auto" />
-            <div className="hidden sm:block">
-              <div className="font-display font-semibold text-sm text-foreground leading-tight">
-                Dominican Artificial
-              </div>
-              <div className="font-display font-semibold text-sm text-foreground leading-tight">
-                Intelligence Association
-              </div>
-            </div>
+            <img src={'/assets/logo.png'} alt="Dominican AI Association" className="h-10 lg:h-12 w-auto" />
           </a>
 
           {/* Desktop Navigation */}

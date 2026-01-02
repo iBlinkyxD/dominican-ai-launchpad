@@ -72,7 +72,7 @@ const StatCard = ({ icon: Icon, iconGradient, iconColor, value, suffix, label, d
         }}
       >
         {/* Glossy overlay */}
-        <div 
+        <div
           className="absolute inset-0 rounded-3xl pointer-events-none"
           style={{
             background: "linear-gradient(135deg, rgba(255,255,255,0.4) 0%, transparent 50%)",
@@ -138,7 +138,7 @@ const Stats = () => {
     { icon: "📷", name: "Camera" },
     { icon: "☁️", name: "Cloudly" },
     { icon: "🚀", name: "Startup" },
-    { icon: "</>" , name: "Codelify" },
+    { icon: "</>", name: "Codelify" },
     { icon: "⚡", name: "Techlify" },
   ];
 
@@ -188,8 +188,8 @@ const Stats = () => {
           <div className="relative overflow-hidden">
             <div className="flex animate-marquee">
               {marqueePartners.map((partner, index) => (
-                <div 
-                  key={`${partner.name}-${index}`} 
+                <div
+                  key={`${partner.name}-${index}`}
                   className="flex items-center gap-2 text-muted-foreground/60 hover:text-foreground transition-colors mx-8 shrink-0"
                 >
                   <span className="text-xl">{partner.icon}</span>
