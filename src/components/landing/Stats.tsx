@@ -24,7 +24,7 @@ const StatCard = ({ icon: Icon, iconBg, iconColor, value, suffix, label, delay }
           setIsVisible(true);
         }
       },
-      { threshold: 0.3 }
+      { threshold: 0.3 },
     );
 
     if (ref.current) {
@@ -66,23 +66,21 @@ const StatCard = ({ icon: Icon, iconBg, iconColor, value, suffix, label, delay }
         className="relative bg-card rounded-3xl p-8 md:p-10 shadow-[0_4px_40px_-12px_rgba(0,0,0,0.1)] hover:shadow-[0_8px_50px_-12px_rgba(0,0,0,0.15)] transition-all duration-500 flex flex-col items-center text-center"
       >
         {/* Icon */}
-        <div 
+        <div
           className={`w-20 h-20 rounded-2xl flex items-center justify-center mb-8 ${iconBg}`}
           style={{ boxShadow: "0 8px 24px -8px rgba(0,0,0,0.15)" }}
         >
           <Icon className={`w-10 h-10 ${iconColor}`} />
         </div>
-        
+
         {/* Number */}
         <div className="font-display text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-3 tracking-tight">
           {count.toLocaleString()}
           <span className="text-primary">{suffix}</span>
         </div>
-        
+
         {/* Label */}
-        <p className="text-sm md:text-base text-muted-foreground font-semibold uppercase tracking-widest">
-          {label}
-        </p>
+        <p className="text-sm md:text-base text-muted-foreground font-semibold uppercase tracking-widest">{label}</p>
       </div>
     </ScrollAnimation>
   );
@@ -90,32 +88,32 @@ const StatCard = ({ icon: Icon, iconBg, iconColor, value, suffix, label, delay }
 
 const Stats = () => {
   const stats = [
-    { 
-      icon: Clock, 
-      iconBg: "bg-gradient-to-br from-red-100 to-red-50", 
+    {
+      icon: Clock,
+      iconBg: "bg-gradient-to-br from-red-100 to-red-50",
       iconColor: "text-primary",
-      value: 200, 
-      suffix: "+", 
-      label: "Hours of Content", 
-      delay: 0 
+      value: 200,
+      suffix: "+",
+      label: "Hours of Content",
+      delay: 0,
     },
-    { 
-      icon: BookOpen, 
-      iconBg: "bg-gradient-to-br from-blue-100 to-blue-50", 
+    {
+      icon: BookOpen,
+      iconBg: "bg-gradient-to-br from-blue-100 to-blue-50",
       iconColor: "text-accent",
-      value: 50, 
-      suffix: "+", 
-      label: "Courses", 
-      delay: 100 
+      value: 50,
+      suffix: "+",
+      label: "Courses",
+      delay: 100,
     },
-    { 
-      icon: Users, 
-      iconBg: "bg-gradient-to-br from-purple-100 to-purple-50", 
+    {
+      icon: Users,
+      iconBg: "bg-gradient-to-br from-purple-100 to-purple-50",
       iconColor: "text-purple-500",
-      value: 5, 
-      suffix: "k+", 
-      label: "Students", 
-      delay: 200 
+      value: 5,
+      suffix: "k+",
+      label: "Students",
+      delay: 200,
     },
   ];
 
@@ -132,7 +130,7 @@ const Stats = () => {
       {/* Subtle decorative elements */}
       <div className="absolute top-20 left-20 text-muted-foreground/10 text-6xl">✦</div>
       <div className="absolute top-32 right-32 text-muted-foreground/10 text-4xl">✦</div>
-      
+
       <div className="container mx-auto section-padding">
         {/* Header */}
         <ScrollAnimation animation="fade-up" className="text-center mb-16">
@@ -140,14 +138,12 @@ const Stats = () => {
             <span className="text-lg">🎓</span>
             <span className="text-sm font-medium text-foreground">We Offer</span>
           </div>
-          
-          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
-            Boost Your Skills
-          </h2>
-          
+
+          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl text-foreground mb-6">Boost Your Skills</h2>
+
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            From critical skills to technical topics, we support your professional development
-            with courses that help you grow and succeed.
+            From critical skills to technical topics, we support your professional development with courses that help
+            you grow and succeed.
           </p>
         </ScrollAnimation>
 
@@ -162,9 +158,7 @@ const Stats = () => {
         <ScrollAnimation animation="fade-up" delay={300} className="max-w-4xl mx-auto">
           <div className="flex items-center gap-4 mb-8">
             <div className="flex-1 h-px bg-border" />
-            <p className="text-sm text-muted-foreground whitespace-nowrap">
-              Adopted by renowned enterprises such as
-            </p>
+            <p className="text-sm text-muted-foreground whitespace-nowrap">Adopted by renowned enterprises such as</p>
             <div className="flex-1 h-px bg-border" />
           </div>
 

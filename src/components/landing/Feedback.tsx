@@ -8,7 +8,8 @@ const testimonials = [
     name: "María García",
     role: "Data Scientist",
     avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop&crop=face",
-    content: "The courses are top-notch, providing in-depth knowledge that's easy to apply. Each lesson is structured to ensure you fully grasp the material.",
+    content:
+      "The courses are top-notch, providing in-depth knowledge that's easy to apply. Each lesson is structured to ensure you fully grasp the material.",
     rating: 5,
   },
   {
@@ -16,7 +17,8 @@ const testimonials = [
     name: "Carlos Rodríguez",
     role: "ML Engineer",
     avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
-    content: "The courses are excellent, delivering practical insights with ease. Each module is designed to help you fully understand and apply the knowledge.",
+    content:
+      "The courses are excellent, delivering practical insights with ease. Each module is designed to help you fully understand and apply the knowledge.",
     rating: 5,
   },
   {
@@ -24,7 +26,8 @@ const testimonials = [
     name: "Ana Martínez",
     role: "AI Researcher",
     avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face",
-    content: "These courses are exceptional, offering detailed content that's easy to implement. Every lesson is carefully crafted to deepen your understanding.",
+    content:
+      "These courses are exceptional, offering detailed content that's easy to implement. Every lesson is carefully crafted to deepen your understanding.",
     rating: 5,
   },
 ];
@@ -34,7 +37,7 @@ const Feedback = () => {
     <section id="feedback" className="min-h-screen flex items-center py-24 relative overflow-hidden">
       {/* Gradient background */}
       <div className="absolute inset-0 bg-gradient-to-br from-pink-50/50 via-background to-blue-50/50" />
-      
+
       <div className="container mx-auto section-padding relative z-10">
         {/* Header Row */}
         <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-16">
@@ -45,11 +48,11 @@ const Feedback = () => {
               <Heart className="w-4 h-4 text-primary fill-primary" />
               <span className="text-sm font-medium text-foreground">Testimonials</span>
             </div>
-            
-            <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
+
+            <h2 className="font-display text-4xl md:text-5xl lg:text-6xl text-foreground mb-6">
               Our Students feedback
             </h2>
-            
+
             <p className="text-lg text-muted-foreground mb-8">
               Explore the incredible advantages of enrolling in our courses and enhancing your skills.
             </p>
@@ -60,7 +63,11 @@ const Feedback = () => {
           </ScrollAnimation>
 
           {/* Right side - Decorative elements */}
-          <ScrollAnimation animation="fade-left" delay={200} className="hidden lg:flex items-center gap-4 text-muted-foreground/40 text-2xl mt-8">
+          <ScrollAnimation
+            animation="fade-left"
+            delay={200}
+            className="hidden lg:flex items-center gap-4 text-muted-foreground/40 text-2xl mt-8"
+          >
             <span>✦</span>
             <span>✳</span>
             <span className="text-3xl">+</span>
@@ -70,11 +77,7 @@ const Feedback = () => {
         {/* Testimonial Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {testimonials.map((testimonial, index) => (
-            <ScrollAnimation
-              key={testimonial.id}
-              animation="fade-up"
-              delay={index * 150}
-            >
+            <ScrollAnimation key={testimonial.id} animation="fade-up" delay={index * 150}>
               <div className="bg-card rounded-3xl p-8 shadow-[0_4px_40px_-12px_rgba(0,0,0,0.08)] hover:shadow-[0_8px_50px_-12px_rgba(0,0,0,0.12)] transition-all duration-500 h-full">
                 {/* Top row - Stars and LinkedIn */}
                 <div className="flex items-center justify-between mb-6">
@@ -89,9 +92,7 @@ const Feedback = () => {
                 </div>
 
                 {/* Quote */}
-                <p className="text-foreground/80 italic text-base leading-relaxed mb-8">
-                  "{testimonial.content}"
-                </p>
+                <p className="text-foreground/80 italic text-base leading-relaxed mb-8">"{testimonial.content}"</p>
 
                 {/* Author */}
                 <div className="flex items-center gap-4">
@@ -101,12 +102,8 @@ const Feedback = () => {
                     className="w-12 h-12 rounded-full object-cover"
                   />
                   <div>
-                    <h4 className="font-semibold text-foreground">
-                      {testimonial.name}
-                    </h4>
-                    <p className="text-sm text-muted-foreground">
-                      {testimonial.role}
-                    </p>
+                    <h4 className="font-semibold text-foreground">{testimonial.name}</h4>
+                    <p className="text-sm text-muted-foreground">{testimonial.role}</p>
                   </div>
                 </div>
               </div>

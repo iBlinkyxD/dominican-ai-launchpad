@@ -49,7 +49,7 @@ const Footer = () => {
                     <Mail className="w-3 h-3" />
                     Newsletter
                   </div>
-                  <h3 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-2">
+                  <h3 className="font-display text-2xl md:text-3xl text-foreground mb-2">
                     Stay Updated with AI Trends
                   </h3>
                   <p className="text-muted-foreground">
@@ -82,19 +82,15 @@ const Footer = () => {
               <a href="#" className="flex items-center gap-3 mb-6">
                 <img src={logo} alt="Dominican AI Association" className="h-12 w-auto" />
                 <div>
-                  <div className="font-display font-bold text-foreground leading-tight">
-                    Dominican AI
-                  </div>
-                  <div className="text-sm text-muted-foreground">
-                    Association
-                  </div>
+                  <div className="font-display text-foreground leading-tight">Dominican AI</div>
+                  <div className="text-sm text-muted-foreground">Association</div>
                 </div>
               </a>
               <p className="text-muted-foreground mb-6 max-w-sm leading-relaxed">
-                Empowering the Dominican Republic with world-class AI education 
-                and fostering innovation across the Caribbean.
+                Empowering the Dominican Republic with world-class AI education and fostering innovation across the
+                Caribbean.
               </p>
-              
+
               {/* Social Links */}
               <div className="flex items-center gap-3">
                 {socialLinks.map((social) => (
@@ -116,10 +112,7 @@ const Footer = () => {
               <ul className="space-y-4">
                 {footerLinks.programs.map((link) => (
                   <li key={link.label}>
-                    <a
-                      href={link.href}
-                      className="text-muted-foreground hover:text-foreground transition-colors"
-                    >
+                    <a href={link.href} className="text-muted-foreground hover:text-foreground transition-colors">
                       {link.label}
                     </a>
                   </li>
@@ -133,10 +126,7 @@ const Footer = () => {
               <ul className="space-y-4">
                 {footerLinks.company.map((link) => (
                   <li key={link.label}>
-                    <a
-                      href={link.href}
-                      className="text-muted-foreground hover:text-foreground transition-colors"
-                    >
+                    <a href={link.href} className="text-muted-foreground hover:text-foreground transition-colors">
                       {link.label}
                     </a>
                   </li>
@@ -150,10 +140,7 @@ const Footer = () => {
               <ul className="space-y-4">
                 {footerLinks.support.map((link) => (
                   <li key={link.label}>
-                    <a
-                      href={link.href}
-                      className="text-muted-foreground hover:text-foreground transition-colors"
-                    >
+                    <a href={link.href} className="text-muted-foreground hover:text-foreground transition-colors">
                       {link.label}
                     </a>
                   </li>
