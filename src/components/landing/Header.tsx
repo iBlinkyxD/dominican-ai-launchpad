@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
-import { Menu, X, Crown } from "lucide-react";
+import { Menu, X, Crown, ChevronDown, GraduationCap, Plane, Home } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import logo from "@/assets/logo.png";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isSolutionsOpen, setIsSolutionsOpen] = useState(false);
   const location = useLocation();
   const isHomePage = location.pathname === "/";
 
@@ -18,8 +18,13 @@ const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const solutionsLinks = [
+    { label: "DAIA Education", href: "/education", icon: GraduationCap, description: "AI-powered learning platform" },
+    { label: "DAIA Tourism", href: "/tourism", icon: Plane, description: "Coming Soon" },
+    { label: "DAIA Real Estate", href: "/real-estate", icon: Home, description: "Coming Soon" },
+  ];
+
   const navLinks = [
-    { label: "Courses", href: isHomePage ? "#stats" : "/#stats", isAnchor: true },
     { label: "Teams", href: "/teams", isAnchor: false },
     { label: "Reviews", href: isHomePage ? "#feedback" : "/#feedback", isAnchor: true },
     { label: "Contact", href: "/contact", isAnchor: false },
@@ -41,6 +46,41 @@ const Header = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-10">
+            {/* Solutions Dropdown */}
+            <div 
+              className="relative"
+              onMouseEnter={() => setIsSolutionsOpen(true)}
+              onMouseLeave={() => setIsSolutionsOpen(false)}
+            >
+              <button className="flex items-center gap-1 text-sm font-medium text-foreground hover:text-primary transition-colors">
+                Solutions
+                <ChevronDown className={`w-4 h-4 transition-transform ${isSolutionsOpen ? 'rotate-180' : ''}`} />
+              </button>
+              
+              {/* Dropdown Menu */}
+              {isSolutionsOpen && (
+                <div className="absolute top-full left-0 pt-2">
+                  <div className="bg-background/95 backdrop-blur-xl border border-border rounded-xl shadow-xl p-2 min-w-[240px]">
+                    {solutionsLinks.map((item) => (
+                      <Link
+                        key={item.label}
+                        to={item.href}
+                        className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-muted transition-colors group"
+                      >
+                        <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                          <item.icon className="w-5 h-5 text-primary" />
+                        </div>
+                        <div>
+                          <div className="text-sm font-medium text-foreground">{item.label}</div>
+                          <div className="text-xs text-muted-foreground">{item.description}</div>
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+
             {navLinks.map((link) => (
               link.isAnchor ? (
                 <a
@@ -90,6 +130,29 @@ const Header = () => {
         {isMobileMenuOpen && (
           <div className="md:hidden absolute top-full left-0 right-0 bg-background/95 backdrop-blur-xl border-b border-border shadow-lg">
             <nav className="flex flex-col p-4 gap-2">
+              {/* Solutions Section */}
+              <div className="py-2">
+                <div className="px-4 text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">
+                  Solutions
+                </div>
+                {solutionsLinks.map((item) => (
+                  <Link
+                    key={item.label}
+                    to={item.href}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="flex items-center gap-3 py-3 px-4 text-foreground hover:bg-muted rounded-lg transition-colors"
+                  >
+                    <item.icon className="w-5 h-5 text-primary" />
+                    <div>
+                      <div className="text-sm font-medium">{item.label}</div>
+                      <div className="text-xs text-muted-foreground">{item.description}</div>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+              
+              <hr className="my-2 border-border" />
+              
               {navLinks.map((link) => (
                 link.isAnchor ? (
                   <a
