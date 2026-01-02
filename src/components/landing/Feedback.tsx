@@ -46,9 +46,8 @@ const Feedback = () => {
 
       <div className="container mx-auto section-padding relative z-10">
         {/* Header Row */}
-        <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-16">
-          {/* Left side - Title and CTA */}
-          <ScrollAnimation animation="fade-right" className="max-w-xl mb-10 lg:mb-0">
+        <div className="text-center mb-16">
+          <ScrollAnimation animation="fade-up" className="max-w-2xl mx-auto">
             {/* Badge */}
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border bg-card shadow-sm mb-6">
               <Heart className="w-4 h-4 text-primary fill-primary" />
@@ -66,17 +65,6 @@ const Feedback = () => {
             <Button className="btn-glossy text-primary-foreground rounded-full px-8 py-6 text-base font-semibold">
               Start Learning Now
             </Button>
-          </ScrollAnimation>
-
-          {/* Right side - Decorative elements */}
-          <ScrollAnimation
-            animation="fade-left"
-            delay={200}
-            className="hidden lg:flex items-center gap-4 text-muted-foreground/40 text-2xl mt-8"
-          >
-            <span>✦</span>
-            <span>✳</span>
-            <span className="text-3xl">+</span>
           </ScrollAnimation>
         </div>
 
