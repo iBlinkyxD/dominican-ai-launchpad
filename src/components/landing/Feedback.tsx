@@ -78,7 +78,7 @@ const Feedback = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {testimonials.map((testimonial, index) => (
             <ScrollAnimation key={testimonial.id} animation="fade-up" delay={index * 150}>
-              <div className="bg-card rounded-3xl p-8 shadow-[0_4px_40px_-12px_rgba(0,0,0,0.08)] hover:shadow-[0_8px_50px_-12px_rgba(0,0,0,0.12)] transition-all duration-500 h-full">
+              <div className="group relative bg-card/90 backdrop-blur-xl rounded-3xl p-8 shadow-[0_4px_40px_-12px_hsl(var(--foreground)/0.08),inset_0_1px_0_hsl(0_0%_100%/0.3)] hover:shadow-[0_12px_60px_-12px_hsl(var(--foreground)/0.12)] hover:-translate-y-2 transition-all duration-500 h-full overflow-hidden border border-border/30 before:absolute before:inset-0 before:bg-gradient-to-br before:from-white/40 before:via-transparent before:to-white/10 before:pointer-events-none before:rounded-3xl before:transition-opacity before:duration-500 before:opacity-60 hover:before:opacity-80">
                 {/* Top row - Stars and LinkedIn */}
                 <div className="flex items-center justify-between mb-6">
                   <div className="flex items-center gap-1">
