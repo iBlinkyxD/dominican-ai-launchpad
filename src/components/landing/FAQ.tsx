@@ -1,79 +1,133 @@
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+import { useState } from "react";
+import { Plus, X, HelpCircle } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const faqs = [
   {
-    question: "What is the Dominican AI Association?",
-    answer: "The Dominican AI Association is the leading organization dedicated to advancing artificial intelligence education, research, and innovation in the Dominican Republic and across the Caribbean. We provide world-class courses, community support, and industry connections to help individuals and organizations harness the power of AI.",
+    question: "What is Dominican AI Association?",
+    answer: "The Dominican AI Association is the leading organization dedicated to advancing artificial intelligence education, research, and innovation in the Dominican Republic and across the Caribbean.",
   },
   {
-    question: "Who can join the association?",
-    answer: "Anyone with an interest in AI is welcome to join! Whether you're a complete beginner curious about AI, a professional looking to upskill, a student pursuing a career in tech, or an organization wanting to implement AI solutions—we have programs designed for all levels and backgrounds.",
+    question: "Do you have a refund policy?",
+    answer: "Yes, we offer a 30-day money-back guarantee on all our courses. If you're not satisfied with the content, you can request a full refund within 30 days of purchase.",
   },
   {
-    question: "What types of courses do you offer?",
-    answer: "We offer a comprehensive range of AI courses including Machine Learning fundamentals, Deep Learning, Natural Language Processing, Computer Vision, Data Science, AI Ethics, and specialized tracks for business applications. All courses feature hands-on projects, real-world case studies, and are taught by industry experts.",
+    question: "Is the community supportive?",
+    answer: "Absolutely! Our community is one of our greatest strengths. Members actively help each other through Discord, study groups, and mentorship programs. You'll never feel alone on your learning journey.",
   },
   {
-    question: "Are the courses available in Spanish?",
-    answer: "Yes! All our courses are available in both Spanish and English. We believe in making AI education accessible to everyone in the Dominican Republic and Latin America, which is why we prioritize content in our native language while also offering English options for international learners.",
-  },
-  {
-    question: "Do you offer certifications?",
-    answer: "Absolutely! Upon completing our courses, you receive industry-recognized certifications that validate your skills. Our certifications are recognized by major tech companies and can significantly boost your career prospects in the AI field.",
-  },
-  {
-    question: "How can organizations partner with you?",
-    answer: "We offer various partnership opportunities including corporate training programs, research collaborations, internship placements, and sponsorship packages. Contact us through our partnership form, and our team will work with you to create a customized collaboration that meets your organization's goals.",
-  },
-  {
-    question: "Is there financial aid available?",
-    answer: "Yes, we're committed to making AI education accessible to everyone. We offer scholarships, flexible payment plans, and special discounts for students, recent graduates, and individuals from underrepresented communities. Contact our support team to learn about available options.",
-  },
-  {
-    question: "How do I get started?",
-    answer: "Getting started is easy! Simply create a free account on our platform, explore our course catalog, and enroll in the program that best fits your goals. You can also join our community Discord server to connect with fellow learners and mentors right away.",
+    question: "Are there live classes or just recorded content?",
+    answer: "We offer both! Our courses include high-quality recorded content you can access anytime, plus weekly live sessions with instructors for Q&A, project reviews, and hands-on workshops.",
   },
 ];
 
 const FAQ = () => {
-  return (
-    <section id="faq" className="min-h-screen flex items-center py-24 bg-muted/30">
-      <div className="container mx-auto section-padding">
-        <div className="text-center mb-16">
-          <span className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-semibold mb-4">
-            FAQ
-          </span>
-          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
-            Frequently Asked
-            <span className="block gradient-text">Questions</span>
-          </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Find answers to common questions about our programs, membership, and community.
-          </p>
-        </div>
+  const [openIndex, setOpenIndex] = useState<number | null>(1);
 
-        <div className="max-w-3xl mx-auto">
-          <Accordion type="single" collapsible className="space-y-4">
+  const toggleFaq = (index: number) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
+
+  return (
+    <section id="faq" className="min-h-screen flex items-center py-24 relative overflow-hidden">
+      {/* Gradient background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-pink-50/50 via-background to-purple-50/30" />
+      
+      <div className="container mx-auto section-padding relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+          {/* Left Column - Title and Contact Card */}
+          <div>
+            {/* Badge */}
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border bg-card shadow-sm mb-6">
+              <HelpCircle className="w-4 h-4 text-primary" />
+              <span className="text-sm font-medium text-foreground">Faq Hub</span>
+            </div>
+
+            <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-12 leading-tight">
+              Frequently Asked<br />Questions!
+            </h2>
+
+            {/* Still Have Questions Card */}
+            <div className="bg-card rounded-3xl p-8 shadow-[0_4px_40px_-12px_rgba(0,0,0,0.08)] border border-border/50">
+              <h3 className="font-display text-2xl font-bold text-foreground mb-3">
+                Still Have Questions?
+              </h3>
+              <p className="text-muted-foreground mb-6">
+                <a href="#footer" className="text-foreground underline underline-offset-4 hover:text-primary transition-colors">
+                  Contact Us
+                </a>
+                , We are happy to help you
+              </p>
+
+              {/* Avatar Stack */}
+              <div className="flex items-center mb-6">
+                <div className="flex -space-x-3">
+                  <img
+                    src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop&crop=face"
+                    alt="Team member"
+                    className="w-12 h-12 rounded-full border-2 border-card object-cover"
+                  />
+                  <img
+                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face"
+                    alt="Team member"
+                    className="w-12 h-12 rounded-full border-2 border-card object-cover"
+                  />
+                  <img
+                    src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop&crop=face"
+                    alt="Team member"
+                    className="w-12 h-12 rounded-full border-2 border-card object-cover"
+                  />
+                  <img
+                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&h=80&fit=crop&crop=face"
+                    alt="Team member"
+                    className="w-12 h-12 rounded-full border-2 border-card object-cover"
+                  />
+                </div>
+              </div>
+
+              <Button className="bg-foreground text-background hover:bg-foreground/90 rounded-full px-8 py-6 text-base font-semibold">
+                Start Learning Now
+              </Button>
+            </div>
+          </div>
+
+          {/* Right Column - FAQ Accordion */}
+          <div className="space-y-4">
             {faqs.map((faq, index) => (
-              <AccordionItem
+              <div
                 key={index}
-                value={`item-${index}`}
-                className="glass-card rounded-2xl px-6 border-none data-[state=open]:shadow-lg transition-all duration-300"
+                className={`bg-card rounded-2xl shadow-[0_2px_20px_-8px_rgba(0,0,0,0.06)] border border-border/50 overflow-hidden transition-all duration-300 ${
+                  openIndex === index ? "shadow-[0_4px_30px_-8px_rgba(0,0,0,0.1)]" : ""
+                }`}
               >
-                <AccordionTrigger className="text-left text-lg font-semibold text-foreground hover:text-primary hover:no-underline py-6">
-                  {faq.question}
-                </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground text-base leading-relaxed pb-6">
-                  {faq.answer}
-                </AccordionContent>
-              </AccordionItem>
+                <button
+                  onClick={() => toggleFaq(index)}
+                  className="w-full flex items-center justify-between p-6 text-left"
+                >
+                  <span className="font-semibold text-foreground pr-4">
+                    {faq.question}
+                  </span>
+                  <div className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-muted-foreground">
+                    {openIndex === index ? (
+                      <X className="w-5 h-5" />
+                    ) : (
+                      <Plus className="w-5 h-5" />
+                    )}
+                  </div>
+                </button>
+                
+                <div
+                  className={`overflow-hidden transition-all duration-300 ease-out ${
+                    openIndex === index ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
+                  }`}
+                >
+                  <div className="px-6 pb-6 text-muted-foreground leading-relaxed">
+                    {faq.answer}
+                  </div>
+                </div>
+              </div>
             ))}
-          </Accordion>
+          </div>
         </div>
       </div>
     </section>
