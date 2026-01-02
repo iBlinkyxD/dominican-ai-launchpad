@@ -45,35 +45,54 @@ const Hero = () => {
       className="relative min-h-screen flex flex-col overflow-hidden" 
       style={{ background: "radial-gradient(circle at 50% 50%, #1A4F8B, transparent 70%)" }}
     >
-      {/* Animated Gradient Background */}
-      <div className="absolute inset-0 z-0">
+      {/* Aurora Animated Gradient Background */}
+      <div className="absolute inset-0 z-0 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-pink-200/60 via-pink-100/30 to-background" />
         
-        {/* Animated floating orbs */}
-        <div
-          className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-pink-300/30 rounded-full blur-3xl transition-transform duration-700 ease-out"
+        {/* Aurora layers */}
+        <div 
+          className="absolute inset-0 opacity-60"
           style={{
-            transform: `translate(${mousePosition.x * 30}px, ${mousePosition.y * 30 + scrollY * 0.05}px)`,
-          }}
-        />
-        <div
-          className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-purple-200/20 rounded-full blur-3xl transition-transform duration-700 ease-out"
-          style={{
-            transform: `translate(${mousePosition.x * -20}px, ${mousePosition.y * -20 + scrollY * 0.03}px)`,
+            background: `
+              radial-gradient(ellipse 80% 50% at 20% 40%, rgba(236, 72, 153, 0.3) 0%, transparent 50%),
+              radial-gradient(ellipse 60% 40% at 80% 60%, rgba(168, 85, 247, 0.25) 0%, transparent 50%),
+              radial-gradient(ellipse 70% 50% at 50% 30%, rgba(59, 130, 246, 0.2) 0%, transparent 50%)
+            `,
+            animation: 'aurora1 8s ease-in-out infinite alternate',
           }}
         />
         
-        {/* Additional animated gradient orbs */}
-        <div
-          className="absolute bottom-1/4 left-1/3 w-[400px] h-[400px] bg-blue-200/20 rounded-full blur-3xl transition-transform duration-1000 ease-out animate-pulse"
+        <div 
+          className="absolute inset-0 opacity-50"
           style={{
-            transform: `translate(${mousePosition.x * 40}px, ${mousePosition.y * 25}px)`,
+            background: `
+              radial-gradient(ellipse 60% 60% at 70% 20%, rgba(236, 72, 153, 0.35) 0%, transparent 50%),
+              radial-gradient(ellipse 50% 40% at 30% 70%, rgba(139, 92, 246, 0.3) 0%, transparent 50%),
+              radial-gradient(ellipse 80% 50% at 60% 50%, rgba(34, 211, 238, 0.15) 0%, transparent 50%)
+            `,
+            animation: 'aurora2 10s ease-in-out infinite alternate-reverse',
           }}
         />
-        <div
-          className="absolute top-1/3 right-1/3 w-[300px] h-[300px] bg-orange-200/15 rounded-full blur-3xl transition-transform duration-1000 ease-out"
+        
+        <div 
+          className="absolute inset-0 opacity-40"
           style={{
-            transform: `translate(${mousePosition.x * -35}px, ${mousePosition.y * 35}px)`,
+            background: `
+              radial-gradient(ellipse 50% 80% at 40% 50%, rgba(251, 146, 60, 0.2) 0%, transparent 50%),
+              radial-gradient(ellipse 70% 40% at 80% 30%, rgba(192, 132, 252, 0.25) 0%, transparent 50%),
+              radial-gradient(ellipse 60% 50% at 20% 80%, rgba(96, 165, 250, 0.2) 0%, transparent 50%)
+            `,
+            animation: 'aurora3 12s ease-in-out infinite alternate',
+          }}
+        />
+
+        {/* Interactive mouse-following aurora glow */}
+        <div
+          className="absolute w-[800px] h-[800px] rounded-full blur-3xl opacity-30 transition-all duration-1000 ease-out pointer-events-none"
+          style={{
+            background: 'radial-gradient(circle, rgba(236, 72, 153, 0.4) 0%, rgba(168, 85, 247, 0.2) 40%, transparent 70%)',
+            left: `calc(50% + ${mousePosition.x * 200}px - 400px)`,
+            top: `calc(50% + ${mousePosition.y * 200}px - 400px)`,
           }}
         />
 
@@ -96,13 +115,13 @@ const Hero = () => {
           />
         ))}
 
-        {/* Grid overlay for subtle texture */}
+        {/* Subtle shimmer overlay */}
         <div 
-          className="absolute inset-0 opacity-[0.03] transition-transform duration-500"
+          className="absolute inset-0 opacity-[0.02]"
           style={{
             backgroundImage: `radial-gradient(circle, hsl(var(--foreground)) 1px, transparent 1px)`,
             backgroundSize: '50px 50px',
-            transform: `translate(${mousePosition.x * 10}px, ${mousePosition.y * 10}px)`,
+            animation: 'shimmer 20s linear infinite',
           }}
         />
       </div>
@@ -250,11 +269,57 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* CSS for float animation */}
+      {/* CSS for aurora and float animations */}
       <style>{`
         @keyframes float {
           0% { transform: translateY(0px); }
           100% { transform: translateY(-20px); }
+        }
+        @keyframes aurora1 {
+          0% { 
+            transform: translateX(-5%) translateY(-5%) scale(1); 
+            filter: hue-rotate(0deg);
+          }
+          50% { 
+            transform: translateX(5%) translateY(5%) scale(1.1); 
+            filter: hue-rotate(15deg);
+          }
+          100% { 
+            transform: translateX(-3%) translateY(3%) scale(1.05); 
+            filter: hue-rotate(-10deg);
+          }
+        }
+        @keyframes aurora2 {
+          0% { 
+            transform: translateX(5%) translateY(5%) scale(1.1) rotate(5deg); 
+            filter: hue-rotate(10deg);
+          }
+          50% { 
+            transform: translateX(-5%) translateY(-3%) scale(1) rotate(-5deg); 
+            filter: hue-rotate(-15deg);
+          }
+          100% { 
+            transform: translateX(3%) translateY(-5%) scale(1.15) rotate(3deg); 
+            filter: hue-rotate(5deg);
+          }
+        }
+        @keyframes aurora3 {
+          0% { 
+            transform: translateX(-3%) translateY(3%) scale(1.05) rotate(-3deg); 
+            filter: hue-rotate(-5deg);
+          }
+          50% { 
+            transform: translateX(3%) translateY(-3%) scale(0.95) rotate(3deg); 
+            filter: hue-rotate(20deg);
+          }
+          100% { 
+            transform: translateX(5%) translateY(5%) scale(1.1) rotate(-5deg); 
+            filter: hue-rotate(-15deg);
+          }
+        }
+        @keyframes shimmer {
+          0% { transform: translateX(0) translateY(0); }
+          100% { transform: translateX(50px) translateY(50px); }
         }
       `}</style>
     </section>
