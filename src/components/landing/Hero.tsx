@@ -1,32 +1,17 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { Sparkles, Video, GraduationCap, BadgeCheck, LayoutGrid, Crown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const Hero = () => {
   const [scrollY, setScrollY] = useState(0);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const heroRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
       setScrollY(window.scrollY);
     };
 
-    const handleMouseMove = (e: MouseEvent) => {
-      if (heroRef.current) {
-        const rect = heroRef.current.getBoundingClientRect();
-        const x = (e.clientX - rect.left - rect.width / 2) / rect.width;
-        const y = (e.clientY - rect.top - rect.height / 2) / rect.height;
-        setMousePosition({ x, y });
-      }
-    };
-
     window.addEventListener("scroll", handleScroll, { passive: true });
-    window.addEventListener("mousemove", handleMouseMove, { passive: true });
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("mousemove", handleMouseMove);
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   // Parallax transform values based on scroll
@@ -34,66 +19,21 @@ const Hero = () => {
     transform: `translateY(${scrollY * speed}px)`,
   });
 
-  // Interactive mouse movement
-  const mouseParallax = (intensity: number) => ({
-    transform: `translate(${mousePosition.x * intensity}px, ${mousePosition.y * intensity}px)`,
-  });
-
   return (
-    <section 
-      ref={heroRef}
-      className="relative min-h-screen flex flex-col overflow-hidden" 
+    <section
+      className="relative min-h-screen flex flex-col overflow-hidden"
       style={{ background: "radial-gradient(circle at 50% 50%, #1A4F8B, transparent 70%)" }}
     >
-      {/* Aurora Animated Gradient Background */}
-      <div className="absolute inset-0 z-0 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-pink-200/60 via-pink-100/30 to-background" />
-        
-        {/* Aurora layers - continuous motion */}
-        <div 
-          className="absolute -inset-[50%] opacity-70"
-          style={{
-            background: `
-              radial-gradient(ellipse 80% 50% at 20% 40%, rgba(236, 72, 153, 0.4) 0%, transparent 50%),
-              radial-gradient(ellipse 60% 40% at 80% 60%, rgba(168, 85, 247, 0.35) 0%, transparent 50%),
-              radial-gradient(ellipse 70% 50% at 50% 30%, rgba(59, 130, 246, 0.3) 0%, transparent 50%)
-            `,
-            animation: 'auroraMove1 15s ease-in-out infinite',
-          }}
-        />
-        
-        <div 
-          className="absolute -inset-[50%] opacity-60"
-          style={{
-            background: `
-              radial-gradient(ellipse 60% 60% at 70% 20%, rgba(236, 72, 153, 0.45) 0%, transparent 50%),
-              radial-gradient(ellipse 50% 40% at 30% 70%, rgba(139, 92, 246, 0.4) 0%, transparent 50%),
-              radial-gradient(ellipse 80% 50% at 60% 50%, rgba(34, 211, 238, 0.25) 0%, transparent 50%)
-            `,
-            animation: 'auroraMove2 18s ease-in-out infinite',
-          }}
-        />
-        
-        <div 
-          className="absolute -inset-[50%] opacity-50"
-          style={{
-            background: `
-              radial-gradient(ellipse 50% 80% at 40% 50%, rgba(251, 146, 60, 0.3) 0%, transparent 50%),
-              radial-gradient(ellipse 70% 40% at 80% 30%, rgba(192, 132, 252, 0.35) 0%, transparent 50%),
-              radial-gradient(ellipse 60% 50% at 20% 80%, rgba(96, 165, 250, 0.3) 0%, transparent 50%)
-            `,
-            animation: 'auroraMove3 20s ease-in-out infinite',
-          }}
-        />
-
-        {/* Interactive mouse-following aurora glow */}
+      {/* Gradient Background */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 bg-gradient-to-b from-red-200/60 via-pink-100/30 to-background" />
         <div
-          className="absolute w-[800px] h-[800px] rounded-full blur-3xl opacity-40 transition-all duration-1000 ease-out pointer-events-none"
-          style={{
-            background: 'radial-gradient(circle, rgba(236, 72, 153, 0.5) 0%, rgba(168, 85, 247, 0.3) 40%, transparent 70%)',
-            left: `calc(50% + ${mousePosition.x * 200}px - 400px)`,
-            top: `calc(50% + ${mousePosition.y * 200}px - 400px)`,
-          }}
+          className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-pink-300/30 rounded-full blur-3xl transition-transform duration-100"
+          style={parallax(0.05)}
+        />
+        <div
+          className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-purple-200/20 rounded-full blur-3xl transition-transform duration-100"
+          style={parallax(0.03)}
         />
       </div>
 
@@ -151,17 +91,15 @@ const Hero = () => {
         >
           {/* Main container card */}
           <div
-            className="absolute inset-x-0 bottom-0 h-[200px] md:h-[240px] bg-white/30 backdrop-blur-xl border border-white/20 rounded-3xl transition-transform duration-500 ease-out"
-            style={{
-              transform: `translateY(${scrollY * 0.08}px) rotateX(${mousePosition.y * 2}deg) rotateY(${mousePosition.x * 2}deg)`,
-            }}
+            className="absolute inset-x-0 bottom-0 h-[200px] md:h-[240px] bg-white/30 backdrop-blur-xl border border-white/20 rounded-3xl transition-transform duration-300 ease-out"
+            style={parallax(0.08)}
           />
 
           {/* Left card - App icons */}
           <div
-            className="absolute left-[10%] md:left-[15%] bottom-[60px] md:bottom-[80px] w-[120px] md:w-[160px] h-[140px] md:h-[180px] bg-white/30 backdrop-blur-xl border border-white/20 rounded-2xl p-4 hover:rotate-0 transition-all duration-500 ease-out"
+            className="absolute left-[10%] md:left-[15%] bottom-[60px] md:bottom-[80px] w-[120px] md:w-[160px] h-[140px] md:h-[180px] bg-white/30 backdrop-blur-xl border border-white/20 rounded-2xl p-4 transform -rotate-3 hover:rotate-0 transition-all duration-500 ease-out"
             style={{
-              transform: `translateY(${scrollY * -0.15}px) translate(${mousePosition.x * -15}px, ${mousePosition.y * -10}px) rotate(-3deg)`,
+              transform: `translateY(${scrollY * -0.15}px) rotate(-3deg)`,
             }}
           >
             <div className="grid grid-cols-2 gap-2">
@@ -184,7 +122,7 @@ const Hero = () => {
           <div
             className="absolute right-[10%] md:right-[15%] bottom-[60px] md:bottom-[80px] w-[120px] md:w-[160px] h-[140px] md:h-[180px] bg-white/30 backdrop-blur-xl border border-white/20 rounded-2xl p-6 hover:rotate-0 transition-all duration-500 ease-out"
             style={{
-              transform: `translateY(${scrollY * -0.12}px) translate(${mousePosition.x * 15}px, ${mousePosition.y * -10}px) rotate(3deg)`,
+              transform: `translateY(${scrollY * -0.12}px) rotate(3deg)`,
             }}
           >
             <div className="flex flex-col items-center justify-center h-full">
@@ -198,117 +136,37 @@ const Hero = () => {
 
           {/* Badge check floating */}
           <div
-            className="absolute right-[25%] md:right-[30%] top-0 w-14 h-14 md:w-16 md:h-16 bg-card rounded-2xl shadow-lg border border-border/50 flex items-center justify-center transition-all duration-500 ease-out"
+            className="absolute right-[25%] md:right-[30%] top-0 w-14 h-14 md:w-16 md:h-16 bg-card rounded-2xl shadow-lg border border-border/50 flex items-center justify-center transition-transform duration-300 ease-out"
             style={{
-              transform: `translateY(${scrollY * -0.2}px) translate(${mousePosition.x * 25}px, ${mousePosition.y * 20}px)`,
+              transform: `translateY(${scrollY * -0.2}px)`,
             }}
           >
             <BadgeCheck className="w-8 h-8 md:w-10 md:h-10 text-foreground" />
           </div>
 
-          {/* Small floating elements with parallax + mouse */}
+          {/* Small floating elements with parallax */}
           <div
-            className="absolute left-[5%] top-[30%] w-3 h-3 bg-pink-400/60 rounded-full transition-all duration-300 ease-out"
-            style={{
-              transform: `translateY(${scrollY * -0.25}px) translate(${mousePosition.x * 30}px, ${mousePosition.y * 25}px)`,
-            }}
+            className="absolute left-[5%] top-[30%] w-3 h-3 bg-pink-400/60 rounded-full transition-transform duration-300 ease-out"
+            style={parallax(-0.25)}
           />
           <div
-            className="absolute right-[8%] top-[40%] w-2 h-2 bg-purple-400/60 rounded-full transition-all duration-300 ease-out"
-            style={{
-              transform: `translateY(${scrollY * -0.18}px) translate(${mousePosition.x * -20}px, ${mousePosition.y * 30}px)`,
-            }}
+            className="absolute right-[8%] top-[40%] w-2 h-2 bg-purple-400/60 rounded-full transition-transform duration-300 ease-out"
+            style={parallax(-0.18)}
           />
           <div
-            className="absolute left-[30%] top-[10%] w-4 h-4 bg-pink-300/40 rounded-full transition-all duration-300 ease-out"
-            style={{
-              transform: `translateY(${scrollY * -0.22}px) translate(${mousePosition.x * 35}px, ${mousePosition.y * -20}px)`,
-            }}
+            className="absolute left-[30%] top-[10%] w-4 h-4 bg-pink-300/40 rounded-full transition-transform duration-300 ease-out"
+            style={parallax(-0.22)}
           />
           <div
-            className="absolute right-[20%] bottom-[50%] w-2 h-2 bg-indigo-300/50 rounded-full transition-all duration-300 ease-out"
-            style={{
-              transform: `translateY(${scrollY * -0.15}px) translate(${mousePosition.x * -25}px, ${mousePosition.y * 35}px)`,
-            }}
+            className="absolute right-[20%] bottom-[50%] w-2 h-2 bg-indigo-300/50 rounded-full transition-transform duration-300 ease-out"
+            style={parallax(-0.15)}
           />
           <div
-            className="absolute left-[20%] bottom-[40%] w-3 h-3 bg-orange-300/40 rounded-full transition-all duration-300 ease-out"
-            style={{
-              transform: `translateY(${scrollY * -0.28}px) translate(${mousePosition.x * 40}px, ${mousePosition.y * -30}px)`,
-            }}
+            className="absolute left-[20%] bottom-[40%] w-3 h-3 bg-orange-300/40 rounded-full transition-transform duration-300 ease-out"
+            style={parallax(-0.28)}
           />
         </div>
       </div>
-
-      {/* CSS for aurora animations */}
-      <style>{`
-        @keyframes auroraMove1 {
-          0% { 
-            transform: translateX(-10%) translateY(-5%) rotate(0deg); 
-            filter: hue-rotate(0deg);
-          }
-          25% { 
-            transform: translateX(5%) translateY(10%) rotate(3deg); 
-            filter: hue-rotate(15deg);
-          }
-          50% { 
-            transform: translateX(10%) translateY(-5%) rotate(-2deg); 
-            filter: hue-rotate(-10deg);
-          }
-          75% { 
-            transform: translateX(-5%) translateY(5%) rotate(2deg); 
-            filter: hue-rotate(20deg);
-          }
-          100% { 
-            transform: translateX(-10%) translateY(-5%) rotate(0deg); 
-            filter: hue-rotate(0deg);
-          }
-        }
-        @keyframes auroraMove2 {
-          0% { 
-            transform: translateX(10%) translateY(5%) rotate(2deg); 
-            filter: hue-rotate(10deg);
-          }
-          25% { 
-            transform: translateX(-5%) translateY(-10%) rotate(-3deg); 
-            filter: hue-rotate(-20deg);
-          }
-          50% { 
-            transform: translateX(-10%) translateY(10%) rotate(3deg); 
-            filter: hue-rotate(5deg);
-          }
-          75% { 
-            transform: translateX(5%) translateY(-5%) rotate(-2deg); 
-            filter: hue-rotate(25deg);
-          }
-          100% { 
-            transform: translateX(10%) translateY(5%) rotate(2deg); 
-            filter: hue-rotate(10deg);
-          }
-        }
-        @keyframes auroraMove3 {
-          0% { 
-            transform: translateX(-5%) translateY(10%) rotate(-2deg); 
-            filter: hue-rotate(-5deg);
-          }
-          25% { 
-            transform: translateX(10%) translateY(-5%) rotate(2deg); 
-            filter: hue-rotate(15deg);
-          }
-          50% { 
-            transform: translateX(5%) translateY(-10%) rotate(-3deg); 
-            filter: hue-rotate(-15deg);
-          }
-          75% { 
-            transform: translateX(-10%) translateY(5%) rotate(3deg); 
-            filter: hue-rotate(10deg);
-          }
-          100% { 
-            transform: translateX(-5%) translateY(10%) rotate(-2deg); 
-            filter: hue-rotate(-5deg);
-          }
-        }
-      `}</style>
     </section>
   );
 };
