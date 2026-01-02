@@ -1,14 +1,37 @@
+import { useState, useEffect } from "react";
 import { Sparkles, Video, GraduationCap, BadgeCheck, LayoutGrid, Crown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const Hero = () => {
+  const [scrollY, setScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Parallax transform values based on scroll
+  const parallax = (speed: number) => ({
+    transform: `translateY(${scrollY * speed}px)`,
+  });
+
   return (
     <section className="relative min-h-screen flex flex-col overflow-hidden bg-background">
       {/* Gradient Background */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-b from-pink-200/60 via-pink-100/30 to-background" />
-        <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-pink-300/30 rounded-full blur-3xl" />
-        <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-purple-200/20 rounded-full blur-3xl" />
+        <div 
+          className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-pink-300/30 rounded-full blur-3xl transition-transform duration-100"
+          style={parallax(0.05)}
+        />
+        <div 
+          className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-purple-200/20 rounded-full blur-3xl transition-transform duration-100"
+          style={parallax(0.03)}
+        />
       </div>
 
       {/* Content */}
@@ -60,17 +83,23 @@ const Hero = () => {
           </div>
         </div>
 
-        {/* Floating Cards Illustration */}
+        {/* Floating Cards Illustration with Parallax */}
         <div 
           className="relative mt-16 w-full max-w-3xl mx-auto h-[280px] md:h-[320px] animate-fade-in"
           style={{ animationDelay: "0.5s" }}
         >
           {/* Main container card */}
-          <div className="absolute inset-x-0 bottom-0 h-[200px] md:h-[240px] bg-gradient-to-b from-pink-100/50 to-pink-50/30 rounded-3xl backdrop-blur-sm border border-pink-200/30" />
+          <div 
+            className="absolute inset-x-0 bottom-0 h-[200px] md:h-[240px] bg-gradient-to-b from-pink-100/50 to-pink-50/30 rounded-3xl backdrop-blur-sm border border-pink-200/30 transition-transform duration-300 ease-out"
+            style={parallax(0.08)}
+          />
 
           {/* Left card - App icons */}
           <div 
-            className="absolute left-[10%] md:left-[15%] bottom-[60px] md:bottom-[80px] w-[120px] md:w-[160px] h-[140px] md:h-[180px] bg-card rounded-2xl shadow-xl border border-border/50 p-4 transform -rotate-3 hover:rotate-0 transition-transform duration-500 animate-float"
+            className="absolute left-[10%] md:left-[15%] bottom-[60px] md:bottom-[80px] w-[120px] md:w-[160px] h-[140px] md:h-[180px] bg-card rounded-2xl shadow-xl border border-border/50 p-4 transform -rotate-3 hover:rotate-0 transition-all duration-500 ease-out"
+            style={{
+              transform: `translateY(${scrollY * -0.15}px) rotate(-3deg)`,
+            }}
           >
             <div className="grid grid-cols-2 gap-2">
               <div className="w-10 h-10 md:w-14 md:h-14 rounded-xl bg-gradient-to-br from-orange-400 to-pink-500 flex items-center justify-center">
@@ -90,8 +119,10 @@ const Hero = () => {
 
           {/* Right card - Graduate */}
           <div 
-            className="absolute right-[10%] md:right-[15%] bottom-[60px] md:bottom-[80px] w-[120px] md:w-[160px] h-[140px] md:h-[180px] bg-card rounded-2xl shadow-xl border border-border/50 p-6 transform rotate-3 hover:rotate-0 transition-transform duration-500 animate-float"
-            style={{ animationDelay: "0.3s" }}
+            className="absolute right-[10%] md:right-[15%] bottom-[60px] md:bottom-[80px] w-[120px] md:w-[160px] h-[140px] md:h-[180px] bg-card rounded-2xl shadow-xl border border-border/50 p-6 hover:rotate-0 transition-all duration-500 ease-out"
+            style={{
+              transform: `translateY(${scrollY * -0.12}px) rotate(3deg)`,
+            }}
           >
             <div className="flex flex-col items-center justify-center h-full">
               <GraduationCap className="w-12 h-12 md:w-16 md:h-16 text-foreground mb-2" />
@@ -104,16 +135,35 @@ const Hero = () => {
 
           {/* Badge check floating */}
           <div 
-            className="absolute right-[25%] md:right-[30%] top-0 w-14 h-14 md:w-16 md:h-16 bg-card rounded-2xl shadow-lg border border-border/50 flex items-center justify-center animate-float"
-            style={{ animationDelay: "0.6s" }}
+            className="absolute right-[25%] md:right-[30%] top-0 w-14 h-14 md:w-16 md:h-16 bg-card rounded-2xl shadow-lg border border-border/50 flex items-center justify-center transition-transform duration-300 ease-out"
+            style={{
+              transform: `translateY(${scrollY * -0.2}px)`,
+            }}
           >
             <BadgeCheck className="w-8 h-8 md:w-10 md:h-10 text-foreground" />
           </div>
 
-          {/* Small floating elements */}
-          <div className="absolute left-[5%] top-[30%] w-3 h-3 bg-pink-400/60 rounded-full animate-pulse-slow" />
-          <div className="absolute right-[8%] top-[40%] w-2 h-2 bg-purple-400/60 rounded-full animate-pulse-slow" style={{ animationDelay: "1s" }} />
-          <div className="absolute left-[30%] top-[10%] w-4 h-4 bg-pink-300/40 rounded-full animate-pulse-slow" style={{ animationDelay: "0.5s" }} />
+          {/* Small floating elements with parallax */}
+          <div 
+            className="absolute left-[5%] top-[30%] w-3 h-3 bg-pink-400/60 rounded-full transition-transform duration-300 ease-out"
+            style={parallax(-0.25)}
+          />
+          <div 
+            className="absolute right-[8%] top-[40%] w-2 h-2 bg-purple-400/60 rounded-full transition-transform duration-300 ease-out"
+            style={parallax(-0.18)}
+          />
+          <div 
+            className="absolute left-[30%] top-[10%] w-4 h-4 bg-pink-300/40 rounded-full transition-transform duration-300 ease-out"
+            style={parallax(-0.22)}
+          />
+          <div 
+            className="absolute right-[20%] bottom-[50%] w-2 h-2 bg-indigo-300/50 rounded-full transition-transform duration-300 ease-out"
+            style={parallax(-0.15)}
+          />
+          <div 
+            className="absolute left-[20%] bottom-[40%] w-3 h-3 bg-orange-300/40 rounded-full transition-transform duration-300 ease-out"
+            style={parallax(-0.28)}
+          />
         </div>
       </div>
     </section>
