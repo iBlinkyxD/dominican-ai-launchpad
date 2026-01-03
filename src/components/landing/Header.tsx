@@ -90,13 +90,13 @@ const Header = () => {
               Team
             </Link>
 
+            <Link to="/partner" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
+              Partner
+            </Link>
+
             {/* Partner Link - Fourth */}
             <Link to="/contact" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
               Contact
-            </Link>
-
-            <Link to="/partner" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
-              Partner
             </Link>
           </nav>
 
