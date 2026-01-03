@@ -165,12 +165,19 @@ const Header = () => {
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="py-3 px-4 text-foreground hover:bg-muted rounded-lg transition-colors"
               >
-                Teams
+                Team
               </Link>
 
               {/* Partner Link - Fourth */}
               <Link
                 to="/contact"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="py-3 px-4 text-foreground hover:bg-muted rounded-lg transition-colors"
+              >
+                Contact
+              </Link>
+              <Link
+                to="/partner"
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="py-3 px-4 text-foreground hover:bg-muted rounded-lg transition-colors"
               >
