@@ -94,12 +94,20 @@ const Header = () => {
               to="/teams"
               className="text-sm font-medium text-foreground hover:text-primary transition-colors"
             >
-              Teams
+              Team
             </Link>
 
             {/* Partner Link - Fourth */}
             <Link
               to="/contact"
+              className="text-sm font-medium text-foreground hover:text-primary transition-colors"
+            >
+              Contact
+            </Link>
+          </nav>
+
+                      <Link
+              to="/partner"
               className="text-sm font-medium text-foreground hover:text-primary transition-colors"
             >
               Partner
