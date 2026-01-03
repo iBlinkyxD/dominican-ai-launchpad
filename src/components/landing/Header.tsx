@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Menu, X, Crown, ChevronDown, GraduationCap, Plane, Home } from "lucide-react";
+import { Menu, X, Crown, ChevronDown, GraduationCap, Plane, Home, BookOpen, Handshake } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 
@@ -25,9 +25,9 @@ const Header = () => {
   ];
 
   const navLinks = [
+    { label: "Courses", href: "/courses", isAnchor: false, icon: BookOpen },
     { label: "Teams", href: "/teams", isAnchor: false },
-    { label: "Reviews", href: isHomePage ? "#feedback" : "/#feedback", isAnchor: true },
-    { label: "Contact", href: "/contact", isAnchor: false },
+    { label: "Partner", href: "/contact", isAnchor: false, icon: Handshake },
   ];
 
   return (
@@ -46,7 +46,15 @@ const Header = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-10">
-            {/* Solutions Dropdown */}
+            {/* Courses Link - First */}
+            <Link
+              to="/courses"
+              className="text-sm font-medium text-foreground hover:text-primary transition-colors"
+            >
+              Courses
+            </Link>
+
+            {/* Solutions Dropdown - Second */}
             <div 
               className="relative"
               onMouseEnter={() => setIsSolutionsOpen(true)}
@@ -81,25 +89,21 @@ const Header = () => {
               )}
             </div>
 
-            {navLinks.map((link) => (
-              link.isAnchor ? (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  className="text-sm font-medium text-foreground hover:text-primary transition-colors"
-                >
-                  {link.label}
-                </a>
-              ) : (
-                <Link
-                  key={link.label}
-                  to={link.href}
-                  className="text-sm font-medium text-foreground hover:text-primary transition-colors"
-                >
-                  {link.label}
-                </Link>
-              )
-            ))}
+            {/* Teams Link - Third */}
+            <Link
+              to="/teams"
+              className="text-sm font-medium text-foreground hover:text-primary transition-colors"
+            >
+              Teams
+            </Link>
+
+            {/* Partner Link - Fourth */}
+            <Link
+              to="/contact"
+              className="text-sm font-medium text-foreground hover:text-primary transition-colors"
+            >
+              Partner
+            </Link>
           </nav>
 
           {/* Desktop CTA */}
@@ -130,7 +134,18 @@ const Header = () => {
         {isMobileMenuOpen && (
           <div className="md:hidden absolute top-full left-0 right-0 bg-background/95 backdrop-blur-xl border-b border-border shadow-lg">
             <nav className="flex flex-col p-4 gap-2">
-              {/* Solutions Section */}
+              {/* Courses Link - First */}
+              <Link
+                to="/courses"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="py-3 px-4 text-foreground hover:bg-muted rounded-lg transition-colors font-medium"
+              >
+                Courses
+              </Link>
+
+              <hr className="my-2 border-border" />
+
+              {/* Solutions Section - Second */}
               <div className="py-2">
                 <div className="px-4 text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">
                   Solutions
@@ -153,27 +168,24 @@ const Header = () => {
               
               <hr className="my-2 border-border" />
               
-              {navLinks.map((link) => (
-                link.isAnchor ? (
-                  <a
-                    key={link.label}
-                    href={link.href}
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className="py-3 px-4 text-foreground hover:bg-muted rounded-lg transition-colors"
-                  >
-                    {link.label}
-                  </a>
-                ) : (
-                  <Link
-                    key={link.label}
-                    to={link.href}
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className="py-3 px-4 text-foreground hover:bg-muted rounded-lg transition-colors"
-                  >
-                    {link.label}
-                  </Link>
-                )
-              ))}
+              {/* Teams Link - Third */}
+              <Link
+                to="/teams"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="py-3 px-4 text-foreground hover:bg-muted rounded-lg transition-colors"
+              >
+                Teams
+              </Link>
+
+              {/* Partner Link - Fourth */}
+              <Link
+                to="/contact"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="py-3 px-4 text-foreground hover:bg-muted rounded-lg transition-colors"
+              >
+                Partner
+              </Link>
+
               <hr className="my-2 border-border" />
               <a
                 href="#"
