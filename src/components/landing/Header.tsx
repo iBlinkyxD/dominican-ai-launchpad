@@ -32,39 +32,35 @@ const Header = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
-        ? "bg-background/80 backdrop-blur-xl shadow-sm border-b border-border/50"
-        : "bg-transparent"
-        }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled ? "bg-background/80 backdrop-blur-xl shadow-sm border-b border-border/50" : "bg-transparent"
+      }`}
     >
       <div className="container mx-auto section-padding">
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3">
-            <img src={'/assets/logo.png'} alt="Dominican AI Association" className="h-10 lg:h-12 w-auto" />
+            <img src={"/assets/logo.png"} alt="Dominican AI Association" className="h-10 lg:h-12 w-auto" />
           </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-10">
             {/* Courses Link - First */}
-            <Link
-              to="/courses"
-              className="text-sm font-medium text-foreground hover:text-primary transition-colors"
-            >
+            <Link to="/courses" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
               Courses
             </Link>
 
             {/* Solutions Dropdown - Second */}
-            <div 
+            <div
               className="relative"
               onMouseEnter={() => setIsSolutionsOpen(true)}
               onMouseLeave={() => setIsSolutionsOpen(false)}
             >
               <button className="flex items-center gap-1 text-sm font-medium text-foreground hover:text-primary transition-colors">
                 Solutions
-                <ChevronDown className={`w-4 h-4 transition-transform ${isSolutionsOpen ? 'rotate-180' : ''}`} />
+                <ChevronDown className={`w-4 h-4 transition-transform ${isSolutionsOpen ? "rotate-180" : ""}`} />
               </button>
-              
+
               {/* Dropdown Menu */}
               {isSolutionsOpen && (
                 <div className="absolute top-full left-0 pt-2">
@@ -90,36 +86,23 @@ const Header = () => {
             </div>
 
             {/* Teams Link - Third */}
-            <Link
-              to="/teams"
-              className="text-sm font-medium text-foreground hover:text-primary transition-colors"
-            >
+            <Link to="/teams" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
               Team
             </Link>
 
             {/* Partner Link - Fourth */}
-            <Link
-              to="/contact"
-              className="text-sm font-medium text-foreground hover:text-primary transition-colors"
-            >
+            <Link to="/contact" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
               Contact
             </Link>
-          </nav>
 
-                      <Link
-              to="/partner"
-              className="text-sm font-medium text-foreground hover:text-primary transition-colors"
-            >
+            <Link to="/partner" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
               Partner
             </Link>
           </nav>
 
           {/* Desktop CTA */}
           <div className="hidden md:flex items-center gap-6">
-            <a
-              href="#"
-              className="text-sm font-medium text-foreground hover:text-primary transition-colors"
-            >
+            <a href="#" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
               Login
             </a>
             <Button className="bg-foreground text-background hover:bg-foreground/90 rounded-full px-6 gap-2">
@@ -173,9 +156,9 @@ const Header = () => {
                   </Link>
                 ))}
               </div>
-              
+
               <hr className="my-2 border-border" />
-              
+
               {/* Teams Link - Third */}
               <Link
                 to="/teams"
@@ -195,10 +178,7 @@ const Header = () => {
               </Link>
 
               <hr className="my-2 border-border" />
-              <a
-                href="#"
-                className="py-3 px-4 text-muted-foreground hover:bg-muted rounded-lg transition-colors"
-              >
+              <a href="#" className="py-3 px-4 text-muted-foreground hover:bg-muted rounded-lg transition-colors">
                 Login
               </a>
               <Button className="bg-foreground text-background hover:bg-foreground/90 mt-2 gap-2">
