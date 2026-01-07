@@ -12,7 +12,7 @@ import teamMember4 from "@/assets/team/team-member-4.jpeg";
 const teamMembers = [
   {
     id: 1,
-    name: "Team Member Name",
+    name: "Emelys Rivera",
     role: "President",
     image: teamMember1,
   },
