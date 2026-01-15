@@ -11,6 +11,7 @@ import Courses from "./pages/Courses";
 import CourseDetail from "./pages/CourseDetail";
 import ComingSoon from "./pages/ComingSoon";
 import NotFound from "./pages/NotFound";
+import Soon from "./pages/Soon";
 
 const queryClient = new QueryClient();
 
@@ -21,14 +22,14 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/teams" element={<Teams />} />
-          <Route path="/contact" element={<Contact />} />
+          <Route path="/" element={<Soon />} />
+          {/* <Route path="/teams" element={<Teams />} /> */}
+          {/* <Route path="/contact" element={<Contact />} />
           <Route path="/education" element={<Education />} />
           <Route path="/courses" element={<Courses />} />
           <Route path="/courses/:courseId" element={<CourseDetail />} />
           <Route path="/tourism" element={<ComingSoon />} />
-          <Route path="/real-estate" element={<ComingSoon />} />
+          <Route path="/real-estate" element={<ComingSoon />} /> */}
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
