@@ -3,6 +3,11 @@ import { Plus, X, HelpCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ScrollAnimation } from "@/hooks/useScrollAnimation";
 
+import elbaAbreu from "@/assets/profile/elba-abreu-cropped.jpeg";
+import lewisDorismon from "@/assets/profile/lewis-dorismon-cropped.jpeg";
+import emelysRivera from "@/assets/profile/emelys-rivera-cropped.jpeg";
+import kevinJoa from "@/assets/profile/kevin-joa-cropped.jpeg";
+
 const faqs = [
   {
     question: "What is Dominican AI Association?",
@@ -12,17 +17,17 @@ const faqs = [
   {
     question: "Do you have a refund policy?",
     answer:
-      "Yes, we offer a 30-day money-back guarantee on all our courses. If you're not satisfied with the content, you can request a full refund within 30 days of purchase.",
+      "Yes, we offer a 7-day money-back guarantee on all our courses. If you're not satisfied with the content, you can request a full refund within 7 days of purchase.",
   },
   {
     question: "Is the community supportive?",
     answer:
-      "Absolutely! Our community is one of our greatest strengths. Members actively help each other through Discord, study groups, and mentorship programs. You'll never feel alone on your learning journey.",
+      "Absolutely! Our community is one of our greatest strengths. Members actively help each other through study groups, and mentorship programs. You'll never feel alone on your learning journey.",
   },
   {
-    question: "Are there live classes or just recorded content?",
+    question: "Who can participate in DAIA programs?",
     answer:
-      "We offer both! Our courses include high-quality recorded content you can access anytime, plus weekly live sessions with instructors for Q&A, project reviews, and hands-on workshops.",
+      "Students, schools, entrepreneurs, businesses, and institutions can all engage with DAIA. Whether you are a young student learning English, a developer building AI tools, or a company seeking innovation, DAIA creates pathways for growth and collaboration.",
   },
 ];
 
@@ -46,7 +51,7 @@ const FAQ = () => {
               {/* Badge */}
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border bg-card shadow-sm mb-6">
                 <HelpCircle className="w-4 h-4 text-primary" />
-                <span className="text-sm font-medium text-foreground">Faq Hub</span>
+                <span className="text-sm font-medium text-foreground">FAQ Hub</span>
               </div>
 
               <h2 className="font-display text-4xl md:text-5xl lg:text-6xl text-foreground mb-12 leading-tight">
@@ -74,22 +79,22 @@ const FAQ = () => {
                 <div className="flex items-center mb-6">
                   <div className="flex -space-x-3">
                     <img
-                      src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop&crop=face"
+                      src={elbaAbreu}
                       alt="Team member"
                       className="w-12 h-12 rounded-full border-2 border-card object-cover"
                     />
                     <img
-                      src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face"
+                      src={lewisDorismon}
                       alt="Team member"
                       className="w-12 h-12 rounded-full border-2 border-card object-cover"
                     />
                     <img
-                      src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop&crop=face"
+                      src={emelysRivera}
                       alt="Team member"
                       className="w-12 h-12 rounded-full border-2 border-card object-cover"
                     />
                     <img
-                      src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&h=80&fit=crop&crop=face"
+                      src={kevinJoa}
                       alt="Team member"
                       className="w-12 h-12 rounded-full border-2 border-card object-cover"
                     />

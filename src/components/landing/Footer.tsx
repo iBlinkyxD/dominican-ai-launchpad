@@ -9,10 +9,9 @@ const Footer = () => {
 
   const footerLinks = {
     programs: [
-      { label: "AI Fundamentals", href: "#" },
-      { label: "Machine Learning", href: "#" },
-      { label: "Deep Learning", href: "#" },
-      { label: "Data Science", href: "#" },
+      { label: "Introduction to AI", href: "#" },
+      { label: "Learn English with AI", href: "#" },
+      { label: "AI in the Dominican Republic", href: "#" },
     ],
     company: [
       { label: "About Us", href: "#" },
@@ -32,7 +31,7 @@ const Footer = () => {
     { icon: Facebook, href: "https://facebook.com/daia_official", label: "Facebook" },
     { icon: Twitter, href: "https://x.com/daia_official", label: "Twitter" },
     { icon: Linkedin, href: "https://linkedin.com/company/daia_official", label: "LinkedIn" },
-    { icon: Instagram, href: "https://instagram.com/daia.do", label: "Instagram" },
+    { icon: Instagram, href: "https:/instagram.com/daia.do/", label: "Instagram" },
     { icon: Youtube, href: "https://www.youtube.com/channel/UCQzLflrAQSQoen02x1yonvg", label: "YouTube" },
   ];
 
@@ -42,7 +41,7 @@ const Footer = () => {
       <div className="bg-gradient-to-r from-pink-50/90 via-background to-purple-50/80 py-16">
         <div className="container mx-auto section-padding">
           <ScrollAnimation animation="fade-up">
-            <div className="bg-white/30 backdrop-blur-xl border border-white/20 rounded-3xl p-8 md:p-12 shadow-[0_4px_40px_-12px_rgba(0,0,0,0.08)] border border-border/50">
+            <div className="bg-white/30 backdrop-blur-xl border border-white/20 rounded-3xl p-8 md:p-12 shadow-[0_4px_40px_-12px_rgba(0,0,0,0.08)]">
               <div className="flex flex-col md:flex-row items-center justify-between gap-8">
                 <div className="text-center md:text-left">
                   <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-semibold mb-4">

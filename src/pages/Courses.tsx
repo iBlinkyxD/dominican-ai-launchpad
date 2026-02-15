@@ -2,49 +2,56 @@ import { Link } from "react-router-dom";
 import Header from "@/components/landing/Header";
 import Footer from "@/components/landing/Footer";
 import { ScrollAnimation } from "@/hooks/useScrollAnimation";
-import { Star, Clock, Users, BookOpen } from "lucide-react";
+import { Star, Clock, Users, BookOpen, GraduationCap } from "lucide-react";
 import { Button } from "@/components/ui/button";
+
+import course8 from "@/assets/courses/course-8.jpeg";
+import course13 from "@/assets/courses/course-13.jpeg";
+import course15 from "@/assets/courses/course-15.jpeg";
 
 const courses = [
   {
-    id: "ai-fundamentals",
-    title: "AI Fundamentals & Machine Learning",
-    description: "Master the core concepts of artificial intelligence and machine learning. Learn neural networks, deep learning, and practical AI applications.",
-    price: 79,
+    id: "introduction-to-ai",
+    title: "Introduction to AI",
+    description:
+      "Master the core concepts of artificial intelligence and machine learning. Learn neural networks, deep learning, and practical AI applications.",
+    price: 99,
     rating: 4.8,
     students: 1250,
     lessons: 42,
     duration: "20 hours",
     instructor: "Dr. Maria Santos",
-    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=400&fit=crop",
+    image: course13,
     tags: ["AI", "Machine Learning", "Python"],
     featured: true,
   },
   {
-    id: "data-science-python",
-    title: "Data Science with Python Mastery",
-    description: "Comprehensive data science course covering pandas, numpy, visualization, and statistical analysis for real-world applications.",
-    price: 89,
+    id: "learn-english-with-ai",
+    title: "Learn English with AI",
+    description:
+      "Comprehensive data science course covering pandas, numpy, visualization, and statistical analysis for real-world applications.",
+    price: 99,
     rating: 4.9,
     students: 980,
     lessons: 56,
     duration: "28 hours",
     instructor: "Carlos Rodriguez",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop",
+    image: course8,
     tags: ["Python", "Data Science", "Analytics"],
     featured: true,
   },
   {
-    id: "web-development-react",
-    title: "Full Stack Web Development 2024",
-    description: "Build modern web applications with React, Node.js, and databases. From frontend to backend, become a complete developer.",
+    id: "ai-in-the-dominican-republic",
+    title: "AI in the Dominican Republic",
+    description:
+      "Build modern web applications with React, Node.js, and databases. From frontend to backend, become a complete developer.",
     price: 99,
     rating: 4.7,
     students: 2100,
     lessons: 68,
     duration: "35 hours",
     instructor: "Ana Martinez",
-    image: "https://images.unsplash.com/photo-1627398242454-45a1465c2479?w=600&h=400&fit=crop",
+    image: course15,
     tags: ["React", "Node.js", "JavaScript"],
     featured: true,
   },
@@ -54,21 +61,26 @@ const Courses = () => {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      
+
       {/* Hero Section */}
       <section className="pt-32 pb-16 bg-gradient-to-b from-primary/5 to-background">
         <div className="container mx-auto section-padding">
-          <ScrollAnimation animation="fade-up">
+          <ScrollAnimation animation="fade-up" className="text-center">
             <div className="text-center max-w-3xl mx-auto">
-              <span className="inline-block px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium mb-6">
-                Our Courses
-              </span>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
+                <GraduationCap className="w-4 h-4 text-primary" />
+                <span className="text-sm font-medium text-primary">
+                  Our Courses
+                </span>
+              </div>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-medium text-foreground mb-6">
                 Learn with Expert-Led
                 <span className="text-primary"> AI Courses</span>
               </h1>
               <p className="text-lg text-muted-foreground">
-                Explore cutting-edge courses designed to equip you with the skills needed for the AI-driven future. Learn from industry experts and gain practical experience.
+                Explore cutting-edge courses designed to equip you with the
+                skills needed for the AI-driven future. Learn from industry
+                experts and gain practical experience.
               </p>
             </div>
           </ScrollAnimation>
@@ -76,12 +88,16 @@ const Courses = () => {
       </section>
 
       {/* Courses Grid */}
-      <section className="py-20">
+      <section className="pb-16">
         <div className="container mx-auto section-padding">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {courses.map((course, index) => (
-              <ScrollAnimation key={course.id} animation="fade-up" delay={index * 100}>
-                <Link to={`/courses/${course.id}`} className="group block">
+              <ScrollAnimation
+                key={course.id}
+                animation="fade-up"
+                delay={index * 100}
+              >
+                <Link to={`#`} className="group block">
                   <div className="bg-card border border-border rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
                     {/* Course Image */}
                     <div className="relative aspect-video overflow-hidden">
@@ -137,17 +153,25 @@ const Courses = () => {
                       <div className="flex items-center justify-between mb-4">
                         <div className="flex items-center gap-1">
                           <Star className="w-4 h-4 text-yellow-500 fill-yellow-500" />
-                          <span className="font-medium text-foreground">{course.rating}</span>
-                          <span className="text-muted-foreground">({course.students.toLocaleString()})</span>
+                          <span className="font-medium text-foreground">
+                            {course.rating}
+                          </span>
+                          <span className="text-muted-foreground">
+                            ({course.students.toLocaleString()})
+                          </span>
                         </div>
-                        <span className="text-sm text-muted-foreground">{course.instructor}</span>
+                        <span className="text-sm text-muted-foreground">
+                          {course.instructor}
+                        </span>
                       </div>
 
                       {/* Price & CTA */}
                       <div className="flex items-center justify-between pt-4 border-t border-border">
-                        <span className="text-2xl font-bold text-foreground">${course.price}</span>
+                        <span className="text-2xl font-bold text-foreground">
+                          ${course.price}
+                        </span>
                         <Button className="bg-primary hover:bg-primary/90">
-                          View Course
+                          TBA
                         </Button>
                       </div>
                     </div>
@@ -167,9 +191,13 @@ const Courses = () => {
               Ready to Start Learning?
             </h2>
             <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
-              Join thousands of students who are already advancing their careers with our expert-led courses.
+              Join thousands of students who are already advancing their careers
+              with our expert-led courses.
             </p>
-            <Button size="lg" className="bg-foreground text-background hover:bg-foreground/90 rounded-full px-8">
+            <Button
+              size="lg"
+              className="bg-foreground text-background hover:bg-foreground/90 rounded-full px-8"
+            >
               Browse All Courses
             </Button>
           </ScrollAnimation>

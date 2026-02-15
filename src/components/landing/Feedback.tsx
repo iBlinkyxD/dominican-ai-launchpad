@@ -2,12 +2,16 @@ import { Star, Heart, Linkedin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ScrollAnimation } from "@/hooks/useScrollAnimation";
 
+import alvinNoel from "@/assets/feedback/alvin-noel.jpeg";
+import joseMiguel from "@/assets/feedback/jose-miguel.jpeg";
+import mariolis from "@/assets/feedback/mariolis.jpeg";
+
 const testimonials = [
   {
     id: 1,
-    name: "María García",
-    role: "Data Scientist",
-    avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop&crop=face",
+    name: "Alvin Noel Morillo",
+    role: "English Student",
+    avatar: alvinNoel,
     content:
       "The courses are top-notch, providing in-depth knowledge that's easy to apply. Each lesson is structured to ensure you fully grasp the material.",
     rating: 5,
@@ -16,9 +20,9 @@ const testimonials = [
   },
   {
     id: 2,
-    name: "Carlos Rodríguez",
-    role: "ML Engineer",
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
+    name: "Mariolis",
+    role: "English Student",
+    avatar: mariolis,
     content:
       "The courses are excellent, delivering practical insights with ease. Each module is designed to help you fully understand and apply the knowledge.",
     rating: 5,
@@ -27,9 +31,9 @@ const testimonials = [
   },
   {
     id: 3,
-    name: "Ana Martínez",
-    role: "AI Researcher",
-    avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face",
+    name: "Jose Miguel Gutierrez",
+    role: "English Student",
+    avatar: joseMiguel,
     content:
       "These courses are exceptional, offering detailed content that's easy to implement. Every lesson is carefully crafted to deepen your understanding.",
     rating: 5,

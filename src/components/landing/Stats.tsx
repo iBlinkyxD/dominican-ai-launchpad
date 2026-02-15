@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import { Calendar, Mail, Users } from "lucide-react";
+import { Calendar, Mail, Users, FileUser, MapPin } from "lucide-react";
 import { ScrollAnimation } from "@/hooks/useScrollAnimation";
 
 interface StatCardProps {
@@ -113,22 +113,22 @@ const StatCard = ({ icon: Icon, iconGradient, iconColor, value, suffix, label, d
 const Stats = () => {
   const stats = [
     {
-      icon: Calendar,
+      icon: FileUser,
       iconGradient: "bg-gradient-to-br from-rose-200 via-rose-100 to-rose-50",
       iconColor: "text-rose-500",
       value: 100,
       suffix: "+",
-      label: "Hours of Content",
+      label: "Hours of Curriculum",
       delay: 0,
       rotation: "md:rotate-[-4deg] md:translate-y-4 hover:md:rotate-[-2deg] hover:-translate-y-2 hover:shadow-[0_30px_80px_-20px_hsl(var(--foreground)/0.12)]",
     },
     {
-      icon: Mail,
+      icon: MapPin,
       iconGradient: "bg-gradient-to-br from-sky-200 via-sky-100 to-sky-50",
       iconColor: "text-sky-500",
-      value: 15,
+      value: 3,
       suffix: "+",
-      label: "Courses",
+      label: "Provinces Engaged",
       delay: 100,
       rotation: "md:scale-105 z-10 hover:md:scale-110 hover:-translate-y-3 hover:shadow-[0_35px_90px_-20px_hsl(var(--foreground)/0.15)]",
     },
@@ -136,7 +136,7 @@ const Stats = () => {
       icon: Users,
       iconGradient: "bg-gradient-to-br from-violet-200 via-violet-100 to-violet-50",
       iconColor: "text-violet-500",
-      value: 20,
+      value: 3,
       suffix: "k+",
       label: "Students",
       delay: 200,
