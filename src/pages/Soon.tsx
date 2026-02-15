@@ -20,7 +20,7 @@ const Soon = () => {
   }, []);
 
   useEffect(() => {
-    const targetDate = new Date("2026-02-14T21:00:00-05:00").getTime();
+    const targetDate = new Date("2026-02-14T22:00:00-05:00").getTime();
 
     const updateCountdown = () => {
       const now = new Date().getTime();
