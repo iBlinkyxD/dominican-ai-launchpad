@@ -43,7 +43,7 @@ const Hero = () => {
           {/* Trust Badge */}
           <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/30 backdrop-blur-md border border-white/20 shadow-[0_0_15px_rgba(255,255,255,0.15)] text-foreground text-sm font-medium mb-10 animate-fade-in hover:bg-white/20 transition-all duration-300">
             <Sparkles className="w-4 h-4 text-yellow-300 fill-yellow-300/20" />
-            <span className="drop-shadow-sm">Trusted by 3,000+ Happy Learners</span>
+            <span className="drop-shadow-sm">Trusted by 4,000+ Happy Learners</span>
           </div>
 
           {/* Headline */}
