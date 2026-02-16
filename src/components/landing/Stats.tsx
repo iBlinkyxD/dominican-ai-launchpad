@@ -242,7 +242,7 @@ const Stats = () => {
           <div className="flex items-center gap-4 mb-8">
             <div className="flex-1 h-px bg-border" />
             <p className="text-xs text-muted-foreground whitespace-nowrap font-normal">
-              Adopted by renowned enterprises such as
+              Our Infrastructure Partners
             </p>
             <div className="flex-1 h-px bg-border" />
           </div>

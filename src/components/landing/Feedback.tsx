@@ -4,7 +4,7 @@ import { ScrollAnimation } from "@/hooks/useScrollAnimation";
 
 import alvinNoel from "@/assets/feedback/alvin-noel.jpeg";
 import joseMiguel from "@/assets/feedback/jose-miguel.jpeg";
-import mariolis from "@/assets/feedback/mariolis.jpeg";
+import mariolisGalvez from "@/assets/feedback/mariolis-galvez.jpeg";
 
 const testimonials = [
   {
@@ -12,17 +12,17 @@ const testimonials = [
     name: "Alvin Noel Morillo",
     role: "English Student",
     avatar: alvinNoel,
-    content: `“Honestly, this program really helped me get comfortable speaking English. The exercises were easy to follow, and I actually started feeling confident after a few weeks.”`,
+    content: `Honestly, this program really helped me get comfortable speaking English. The exercises were easy to follow, and I actually started feeling confident after a few weeks.`,
     rating: 5,
     rotation: "md:rotate-[-4deg] md:translate-y-4",
     hoverRotation: "hover:md:rotate-[-2deg] hover:-translate-y-2",
   },
   {
     id: 2,
-    name: "Mariolis",
+    name: "Mariolis Gálvez Belen",
     role: "English Student",
-    avatar: mariolis,
-    content: `“Professor Dorismon makes learning fun. I wasn’t expecting to enjoy grammar this much, but his way of explaining things just clicks.”`,
+    avatar: mariolisGalvez,
+    content: `Professor Dorismon makes learning fun. I wasn’t expecting to enjoy grammar this much, but his way of explaining things just clicks.`,
     rating: 5,
     rotation: "md:scale-105 z-10",
     hoverRotation: "hover:md:scale-110 hover:-translate-y-3",
@@ -33,7 +33,7 @@ const testimonials = [
     role: "English Student",
     avatar: joseMiguel,
     content:
-      `“I liked that the lessons were practical. I can actually use what I learned in real conversations now. Definitely worth it.”`,
+      `I liked that the lessons were practical. I can actually use what I learned in real conversations now. Definitely worth it.`,
     rating: 5,
     rotation: "md:rotate-[4deg] md:translate-y-4",
     hoverRotation: "hover:md:rotate-[2deg] hover:-translate-y-2",
