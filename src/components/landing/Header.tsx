@@ -56,22 +56,19 @@ const Header = () => {
           label: "Educa One",
           href: "#",
           description: "National Academic Operating System",
-          icon: Monitor,
-          comingSoon: true,
+          icon: Monitor
         },
         {
           label: "Scholar One",
           href: "#",
           description: "AI-Powered Student Performance Platform",
-          icon: Smartphone,
-          comingSoon: true,
+          icon: Smartphone
         },
         {
           label: "Quisqueya AI",
           href: "#",
           description: "Your National AI Assistant",
-          icon: Brain,
-          comingSoon: true,
+          icon: Brain
         },
       ],
     },
@@ -82,15 +79,13 @@ const Header = () => {
           label: "Isla Intelligence",
           href: "#",
           description: "Smart Destination Insights",
-          icon: TreePalm,
-          comingSoon: true,
+          icon: TreePalm
         },
         {
           label: "CulturaConnect",
           href: "#",
           description: "Language Through Real Life",
-          icon: Earth,
-          comingSoon: true,
+          icon: Earth
         },
       ],
     },
@@ -101,15 +96,13 @@ const Header = () => {
           label: "TerraVision AI",
           href: "#",
           description: "Data-Driven Property Insights",
-          icon: Home,
-          comingSoon: Brain,
+          icon: Home
         },
         {
           label: "TitleTrust DR",
           href: "#",
           description: "Secure Digital Ownership Verification",
-          icon: ShieldCheck,
-          comingSoon: true,
+          icon: ShieldCheck
         },
       ],
     },
@@ -120,29 +113,25 @@ const Header = () => {
       label: "Partners",
       href: "/partners",
       icon: Home,
-      description: "Building the Future Together",
-      comingSoon: false,
+      description: "Building the Future Together"
     },
     {
       label: "Scholarship",
       href: "#",
       icon: GraduationCap,
-      description: "Empowering Tomorrow’s Leaders",
-      comingSoon: true,
+      description: "Empowering Tomorrow’s Leaders"
     },
     {
       label: "News",
       href: "#",
       icon: Newspaper,
-      description: "Updates from DAIA",
-      comingSoon: true,
+      description: "Updates from DAIA"
     },
     {
       label: "Blog",
       href: "#",
       icon: NotebookPen,
-      description: "Insights on AI and Innovation",
-      comingSoon: true,
+      description: "Insights on AI and Innovation"
     },
   ];
 
@@ -198,9 +187,9 @@ const Header = () => {
 
               {/* Dropdown Menu */}
               {isSolutionsOpen && (
-                <div className="absolute top-full -left-80 pt-4">
+                <div className="absolute top-full -left-[400px] pt-4">
                   <div className="bg-background/95 backdrop-blur-xl border border-border rounded-2xl shadow-xl p-6 w-max">
-                    <div className="grid gap-8 grid-cols-[220px_auto_auto_auto]">
+                    <div className="grid gap-8 grid-cols-[220px_220px_220px_220px]">
                       {/* RIGHT IMAGE COLUMN */}
                       <div className="relative w-[220px] h-[320px] rounded-xl overflow-hidden bg-muted">
                         <img
@@ -235,21 +224,14 @@ const Header = () => {
                                 to={item.href}
                                 className="flex items-start gap-3 p-3 rounded-lg hover:bg-muted transition-colors group"
                               >
-                                <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                                  <item.icon className="w-4 h-4 text-primary" />
+                                <div className="w-9 h-9 shrink-0  rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                                  <item.icon className="w-4 h-4  text-primary" />
                                 </div>
 
                                 <div>
-                                  <div className="flex items-center gap-2">
                                     <span className="text-sm font-medium text-foreground">
                                       {item.label}
                                     </span>
-                                    {item.comingSoon && (
-                                      <span className="text-xs bg-yellow-200 text-yellow-800 px-2 py-0.5 rounded-full font-semibold">
-                                        Coming Soon
-                                      </span>
-                                    )}
-                                  </div>
                                   <div className="text-xs text-muted-foreground">
                                     {item.description}
                                   </div>
@@ -300,18 +282,9 @@ const Header = () => {
                           <item.icon className="w-5 h-5 text-blue-950" />
                         </div>
                         <div>
-                          <div className="flex items-center gap-2">
                             <span className="text-sm font-medium text-foreground">
                               {item.label}
                             </span>
-
-                            {item.comingSoon && (
-                              <span className="text-xs bg-yellow-200 text-yellow-800 px-2 py-0.5 rounded-full font-semibold">
-                                Coming Soon
-                              </span>
-                            )}
-                          </div>
-
                           <div className="text-xs text-muted-foreground">
                             {item.description}
                           </div>
