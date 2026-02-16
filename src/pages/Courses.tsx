@@ -14,7 +14,7 @@ const courses = [
     id: "introduction-to-ai",
     title: "Introduction to AI",
     description:
-      "Master the core concepts of artificial intelligence and machine learning. Learn neural networks, deep learning, and practical AI applications.",
+      "Understand the basics, explore real-world applications, and unlock the power of AI for your future.",
     price: 99,
     rating: 4.8,
     students: 1250,
@@ -22,14 +22,14 @@ const courses = [
     duration: "20 hours",
     instructor: "Dr. Maria Santos",
     image: course13,
-    tags: ["AI", "Machine Learning", "Python"],
+    tags: ["Foundations", "Intelligence", "Future"],
     featured: true,
   },
   {
     id: "learn-english-with-ai",
     title: "Learn English with AI",
     description:
-      "Comprehensive data science course covering pandas, numpy, visualization, and statistical analysis for real-world applications.",
+      "Practice, improve, and communicate confidently with AI-guided lessons and real conversations.",
     price: 99,
     rating: 4.9,
     students: 980,
@@ -37,14 +37,14 @@ const courses = [
     duration: "28 hours",
     instructor: "Carlos Rodriguez",
     image: course8,
-    tags: ["Python", "Data Science", "Analytics"],
+    tags: ["Language", "Practice", "Confidence"],
     featured: true,
   },
   {
     id: "ai-in-the-dominican-republic",
     title: "AI in the Dominican Republic",
     description:
-      "Build modern web applications with React, Node.js, and databases. From frontend to backend, become a complete developer.",
+      "Discover how AI is transforming industries, solving challenges, and creating opportunities in the Dominican Republic.",
     price: 99,
     rating: 4.7,
     students: 2100,
@@ -52,7 +52,7 @@ const courses = [
     duration: "35 hours",
     instructor: "Ana Martinez",
     image: course15,
-    tags: ["React", "Node.js", "JavaScript"],
+    tags: ["Innovation", "Impact", "Solutions"],
     featured: true,
   },
 ];
