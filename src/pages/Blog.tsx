@@ -7,7 +7,7 @@ import Footer from "@/components/landing/Footer";
 import partner1 from "../assets/partner/partner-1.jpeg";
 
 import elbaAbreu from "@/assets/profile/elba-abreu-cropped.jpeg";
-import lewisDorismon from "@/assets/profile/lewis-dorismon-cropped.jpeg";
+import luisDorismon from "@/assets/profile/luis-dorismon-cropped.jpeg";
 import emelysRivera from "@/assets/profile/emelys-rivera-cropped.jpeg";
 import kevinJoa from "@/assets/profile/kevin-joa-cropped.jpeg";
 
@@ -22,7 +22,7 @@ const blogList = [
     author: [
       {
         name: "Lewis Dorismon",
-        avatar: lewisDorismon,
+        avatar: luisDorismon,
       },
     ],
     publishedDate: "February 2, 2026",
