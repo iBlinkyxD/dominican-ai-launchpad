@@ -187,9 +187,9 @@ const Header = () => {
 
               {/* Dropdown Menu */}
               {isSolutionsOpen && (
-                <div className="absolute top-full -left-[400px] pt-4">
+                <div className="absolute top-full -left-[370px] pt-4">
                   <div className="bg-background/95 backdrop-blur-xl border border-border rounded-2xl shadow-xl p-6 w-max">
-                    <div className="grid gap-8 grid-cols-[220px_220px_220px_220px]">
+                    <div className="grid gap-6 grid-cols-[220px_220px_220px_220px]">
                       {/* RIGHT IMAGE COLUMN */}
                       <div className="relative w-[220px] h-[320px] rounded-xl overflow-hidden bg-muted">
                         <img
@@ -224,8 +224,8 @@ const Header = () => {
                                 to={item.href}
                                 className="flex items-start gap-3 p-3 rounded-lg hover:bg-muted transition-colors group"
                               >
-                                <div className="w-9 h-9 shrink-0  rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                                  <item.icon className="w-4 h-4  text-primary" />
+                                <div className="w-9 h-9 shrink-0 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                                  <item.icon className="w-4 h-4 text-primary" />
                                 </div>
 
                                 <div>
@@ -271,14 +271,14 @@ const Header = () => {
               {/* Dropdown Menu */}
               {isCompanyOpen && (
                 <div className="absolute top-full left-0 pt-2">
-                  <div className="bg-background/95 backdrop-blur-xl border border-border rounded-xl shadow-xl p-2 min-w-[400px]">
+                  <div className="bg-background/95 backdrop-blur-xl border border-border rounded-xl shadow-xl p-2 min-w-[280px]">
                     {companyLinks.map((item) => (
                       <Link
                         key={item.label}
                         to={item.href}
                         className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-muted transition-colors group"
                       >
-                        <div className="w-10 h-10 rounded-lg bg-blue-500/10 flex items-center justify-center group-hover:bg-blue-200 transition-colors">
+                        <div className="w-10 h-10 shrink-0 rounded-lg bg-blue-500/10 flex items-center justify-center group-hover:bg-blue-200 transition-colors">
                           <item.icon className="w-5 h-5 text-blue-950" />
                         </div>
                         <div>
