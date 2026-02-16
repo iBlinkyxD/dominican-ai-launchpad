@@ -16,6 +16,7 @@ import {
   TreePalm,
   Earth,
   ShieldCheck,
+  GraduationCap,
 } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -125,7 +126,7 @@ const Header = () => {
     {
       label: "Scholarship",
       href: "#",
-      icon: Plane,
+      icon: GraduationCap,
       description: "Empowering Tomorrow’s Leaders",
       comingSoon: true,
     },

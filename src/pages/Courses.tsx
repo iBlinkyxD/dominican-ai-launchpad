@@ -17,10 +17,10 @@ const courses = [
       "Understand the basics, explore real-world applications, and unlock the power of AI for your future.",
     price: 99,
     rating: 4.8,
-    students: 1250,
+    students: 0,
     lessons: 42,
     duration: "20 hours",
-    instructor: "Dr. Maria Santos",
+    instructor: "Salomón / Solomon",
     image: course13,
     tags: ["Foundations", "Intelligence", "Future"],
     featured: true,
@@ -32,10 +32,10 @@ const courses = [
       "Practice, improve, and communicate confidently with AI-guided lessons and real conversations.",
     price: 99,
     rating: 4.9,
-    students: 980,
+    students: 32,
     lessons: 56,
     duration: "28 hours",
-    instructor: "Carlos Rodriguez",
+    instructor: "Lewis Dorismon",
     image: course8,
     tags: ["Language", "Practice", "Confidence"],
     featured: true,
@@ -47,10 +47,10 @@ const courses = [
       "Discover how AI is transforming industries, solving challenges, and creating opportunities in the Dominican Republic.",
     price: 99,
     rating: 4.7,
-    students: 2100,
+    students: 0,
     lessons: 68,
     duration: "35 hours",
-    instructor: "Ana Martinez",
+    instructor: "Salomón / Solomon",
     image: course15,
     tags: ["Innovation", "Impact", "Solutions"],
     featured: true,
@@ -156,9 +156,11 @@ const Courses = () => {
                           <span className="font-medium text-foreground">
                             {course.rating}
                           </span>
-                          <span className="text-muted-foreground">
-                            ({course.students.toLocaleString()})
-                          </span>
+                          {course.students > 0 && (
+                            <span className="text-muted-foreground">
+                              ({course.students.toLocaleString()})
+                            </span>
+                          )}
                         </div>
                         <span className="text-sm text-muted-foreground">
                           {course.instructor}
@@ -171,7 +173,7 @@ const Courses = () => {
                           ${course.price}
                         </span>
                         <Button className="bg-primary hover:bg-primary/90">
-                          TBA
+                          Join Watchlist
                         </Button>
                       </div>
                     </div>

@@ -45,13 +45,13 @@ const Contact = () => {
     {
       icon: Mail,
       title: "Email",
-      value: "contact@daia.org",
-      href: "mailto:contact@daia.org",
+      value: "hello@daia.do",
+      href: "mailto:hello@daia.do",
     },
     {
       icon: Phone,
       title: "Phone",
-      value: "+1 (809) 555-0123",
+      value: "+1 (849) 472-5777",
       href: "tel:+18095550123",
     },
     {
