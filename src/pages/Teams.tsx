@@ -27,7 +27,7 @@ const teamMembers = [
   {
     id: 3,
     name: "Emelys Rivera",
-    role: "Financial Officer",
+    role: "Controller",
     image: teamMember3,
   },
   {
