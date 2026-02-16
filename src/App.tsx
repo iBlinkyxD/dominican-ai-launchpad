@@ -32,19 +32,36 @@ const App = () => (
         <Routes>
           {/* <Route path="/" element={<Soon />} /> */}
           <Route path="/" element={<Index />} />
-          <Route path="/teams" element={<Teams />} />
-          <Route path="/contact" element={<Contact />} />
-          {/* <Route path="/education" element={<Education />} /> */}
+
           <Route path="/courses" element={<Courses />} />
-          {/* <Route path="/courses/:courseId" element={<CourseDetail />} />
-          <Route path="/tourism" element={<ComingSoon />} />
-          <Route path="/real-estate" element={<ComingSoon />} /> */}
+          <Route path="/courses/:courseId" element={<CourseDetail />} />
+
+          <Route path="/educa-one" element={<ComingSoon />} />
+          <Route path="/scholar-one" element={<ComingSoon />} />
+          <Route path="/quisqueya-ai" element={<ComingSoon />} />
+
+          <Route path="/isla-intelligence" element={<ComingSoon />} />
+          <Route path="/culturaconnect" element={<ComingSoon />} />
+
+          <Route path="/terravision-ai" element={<ComingSoon />} />
+          <Route path="/titletrust-dr" element={<ComingSoon />} />
+
+          <Route path="/teams" element={<Teams />} />
+
           <Route path="/partners" element={<Partners />} />
           <Route path="/partners/:partnerId" element={<PartnerDetail />} />
-          {/* <Route path="/news" element={<News />} />
+          <Route path="/scholarship" element={<ComingSoon />} />
+          <Route path="/news" element={<News />} />
           <Route path="/news/:newsId" element={<NewsDetail />} />
           <Route path="/blog" element={<Blog />} />
-          <Route path="/blog/:blogId" element={<BlogDetail />} /> */}
+          <Route path="/blog/:blogId" element={<BlogDetail />} />
+
+          <Route path="/contact" element={<Contact />} />
+{/* 
+          <Route path="/education" element={<Education />} />
+          <Route path="/tourism" element={<ComingSoon />} />
+          <Route path="/real-estate" element={<ComingSoon />} /> */}
+
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

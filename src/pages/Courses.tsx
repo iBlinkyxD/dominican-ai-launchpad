@@ -5,57 +5,7 @@ import { ScrollAnimation } from "@/hooks/useScrollAnimation";
 import { Star, Clock, Users, BookOpen, GraduationCap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-import course8 from "@/assets/courses/course-8.jpeg";
-import course13 from "@/assets/courses/course-13.jpeg";
-import course15 from "@/assets/courses/course-15.jpeg";
-
-const courses = [
-  {
-    id: "introduction-to-ai",
-    title: "Introduction to AI",
-    description:
-      "Understand the basics, explore real-world applications, and unlock the power of AI for your future.",
-    price: 99,
-    rating: 4.8,
-    students: 0,
-    lessons: 42,
-    duration: "20 hours",
-    instructor: "Prof. Salomón / Solomon",
-    image: course13,
-    tags: ["Foundations", "Intelligence", "Future"],
-    featured: true,
-  },
-  {
-    id: "learn-english-with-ai",
-    title: "Learn English with AI",
-    description:
-      "Practice, improve, and communicate confidently with AI-guided lessons and real conversations.",
-    price: 99,
-    rating: 4.9,
-    students: 32,
-    lessons: 56,
-    duration: "28 hours",
-    instructor: "Prof. Luis Dorismon",
-    image: course8,
-    tags: ["Language", "Practice", "Confidence"],
-    featured: true,
-  },
-  {
-    id: "ai-in-the-dominican-republic",
-    title: "AI in the Dominican Republic",
-    description:
-      "Discover how AI is transforming industries, solving challenges, and creating opportunities in the Dominican Republic.",
-    price: 99,
-    rating: 4.7,
-    students: 0,
-    lessons: 68,
-    duration: "35 hours",
-    instructor: "Prof. Salomón / Solomon",
-    image: course15,
-    tags: ["Innovation", "Impact", "Solutions"],
-    featured: true,
-  },
-];
+import { coursesList } from "@/data/courses/list";
 
 const Courses = () => {
   return (
@@ -91,9 +41,9 @@ const Courses = () => {
       <section className="pb-16">
         <div className="container mx-auto section-padding">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {courses.map((course, index) => (
+            {coursesList.map((course, index) => (
               <ScrollAnimation
-                key={course.id}
+                key={course.slug}
                 animation="fade-up"
                 delay={index * 100}
               >

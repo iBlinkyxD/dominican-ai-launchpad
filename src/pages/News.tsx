@@ -5,36 +5,7 @@ import { ScrollAnimation } from "@/hooks/useScrollAnimation";
 import Header from "@/components/landing/Header";
 import Footer from "@/components/landing/Footer";
 
-const newsItems = [
-  {
-    id: 1,
-    date: "January 29, 2026",
-    category: "Product",
-    title: "Cras in turpis non libero vestibulum semper",
-    partner: "DAIA + INTEC",
-  },
-  {
-    id: 2,
-    date: "January 27, 2026",
-    category: "Product",
-    title: "Duis posuere neque ac porta malesuada",
-    partner: "DAIA + Apollo-E",
-  },
-  {
-    id: 3,
-    date: "January 20, 2026",
-    category: "Product",
-    title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-    partner: "DAIA + Apollo-E",
-  },
-  {
-    id: 4,
-    date: "January 14, 2026",
-    category: "Product",
-    title: "Duis rhoncus turpis eu elementum viverra",
-    partner: "DAIA + INTEC",
-  },
-];
+import { newsList } from "@/data/news/list";
 
 const News = () => {
   return (
@@ -67,27 +38,36 @@ const News = () => {
 
             <div className="mx-auto px-6 py-6">
               <div className="space-y-8">
-                {newsItems.map((item, index) => (
+                {newsList.map((news, index) => (
                   <ScrollAnimation
-                    key={item.id}
+                    key={news.slug}
                     animation="fade-up"
                     delay={index * 100}
                   >
-                    <Link to={`/news/${item.id}`} className="group block">
+                    <Link to={`/news/${news.slug}`} className="group block">
                       <div className="grid grid-cols-1 md:grid-cols-12 gap-y-4 md:gap-y-0 items-start transition-all duration-300 hover:-translate-y-1">
                         {/* DATE */}
                         <div className="order-3 md:order-1 md:col-span-3 md:border-l md:border-l-gray-500 md:border-r md:border-r-blue-950 pl-4">
-                          <p className="text-base text-gray-500">{item.date}</p>
+                          <p className="text-base text-gray-500">
+                            {" "}
+                            {new Date(
+                              news.publishedDate + "T00:00:00",
+                            ).toLocaleDateString("en-US", {
+                              year: "numeric",
+                              month: "long",
+                              day: "numeric",
+                            })}
+                          </p>
                         </div>
 
                         {/* CATEGORY + TITLE */}
                         <div className="order-1 md:order-2 md:col-span-6 space-y-3 text-left md:pl-0">
                           <h2 className="font-semibold text-blue-950 text-base tracking-wide border-l border-blue-950 pl-4 md:border-none">
-                            {item.category}
+                            {news.category}
                           </h2>
 
                           <h1 className="md:text-2xl text-xl font-bold text-black leading-snug pl-4">
-                            {item.title}
+                            {news.title}
                           </h1>
                         </div>
 
@@ -95,7 +75,7 @@ const News = () => {
                         <div className="order-4 md:order-3 md:col-span-3 md:border-l md:border-gray-400 md:border-dashed pl-4">
                           <div className="bg-gray-100 rounded-2xl h-80 md:h-40 flex items-center justify-center transition-all duration-300 group-hover:shadow-md ">
                             <span className="text-gray-700 font-medium">
-                              {item.partner}
+                              {news.partner}
                             </span>
                           </div>
                         </div>

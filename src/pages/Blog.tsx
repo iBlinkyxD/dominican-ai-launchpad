@@ -4,100 +4,8 @@ import { ScrollAnimation } from "@/hooks/useScrollAnimation";
 import Header from "@/components/landing/Header";
 import Footer from "@/components/landing/Footer";
 
-import partner1 from "../assets/partner/partner-1.jpeg";
-
-import elbaAbreu from "@/assets/profile/elba-abreu-cropped.jpeg";
-import luisDorismon from "@/assets/profile/luis-dorismon-cropped.jpeg";
-import emelysRivera from "@/assets/profile/emelys-rivera-cropped.jpeg";
-import kevinJoa from "@/assets/profile/kevin-joa-cropped.jpeg";
-
-const blogList = [
-  {
-    id: "ai-in-education-2026",
-    title: "How AI Is Transforming Education in 2026",
-    preview:
-      "From adaptive learning systems to AI tutors, explore how artificial intelligence is reshaping classrooms across the globe.",
-    tags: ["AI", "Education", "EdTech"],
-    duration: "7m",
-    author: [
-      {
-        name: "Lewis Dorismon",
-        avatar: luisDorismon,
-      },
-    ],
-    publishedDate: "February 2, 2026",
-    thumbnail: partner1,
-  },
-  {
-    id: "future-of-tourism-ai",
-    title: "The Future of Tourism Powered by AI",
-    preview:
-      "Discover how predictive analytics and smart automation are redefining the tourism experience for travelers and businesses.",
-    tags: ["AI", "Tourism", "Innovation"],
-    duration: "6m",
-    author: [
-      {
-        name: "Kevin Joa",
-        avatar: kevinJoa,
-      },
-      {
-        name: "Emelys Rivera",
-        avatar: emelysRivera,
-      },
-    ],
-    publishedDate: "January 18, 2026",
-    thumbnail: partner1,
-  },
-  {
-    id: "real-estate-automation",
-    title: "AI Automation in Real Estate: What’s Next?",
-    preview:
-      "From intelligent property valuation to AI-driven customer insights, real estate is entering a new digital era.",
-    tags: ["AI", "Real Estate", "Automation"],
-    duration: "8m",
-    author: [
-      {
-        name: "Elba Abreu",
-        avatar: elbaAbreu,
-      },
-    ],
-    publishedDate: "January 10, 2026",
-    thumbnail: partner1,
-  },
-  // {
-  //   id: "ethical-ai-framework",
-  //   title: "Building an Ethical AI Framework for Startups",
-  //   preview:
-  //     "A practical guide to implementing responsible AI principles while scaling your startup efficiently.",
-  //   tags: ["Ethics", "AI Policy", "Startups"],
-  //   duration: "9m",
-  //   author: ["Sofia Ramirez", "Daniel Cruz"],
-  //   publishedDate: "December 22, 2025",
-  //   thumbnail: partner1,
-  // },
-  // {
-  //   id: "ai-student-app-impact",
-  //   title: "Inside the DAIA Student App: Empowering Learners with AI",
-  //   preview:
-  //     "A deep dive into how AI-driven personalization is helping students learn smarter and faster.",
-  //   tags: ["AI", "Mobile App", "Education"],
-  //   duration: "5m",
-  //   author: ["Miguel Fernandez"],
-  //   publishedDate: "December 5, 2025",
-  //   thumbnail: partner1,
-  // },
-  // {
-  //   id: "ai-workshops-business",
-  //   title: "Why AI Workshops Are Essential for Modern Businesses",
-  //   preview:
-  //     "Hands-on AI workshops are becoming the fastest way for companies to upskill teams and stay competitive.",
-  //   tags: ["Workshops", "AI Training", "Business"],
-  //   duration: "4m",
-  //   author: ["Laura Perez", "Javier Morales"],
-  //   publishedDate: "November 28, 2025",
-  //   thumbnail: partner1,
-  // },
-];
+import { authors } from "@/data/blog/author";
+import { blogList } from "@/data/blog/list";
 
 const Blog = () => {
   const latestBlog = [...blogList].sort(
@@ -105,7 +13,7 @@ const Blog = () => {
       new Date(b.publishedDate).getTime() - new Date(a.publishedDate).getTime(),
   )[0];
 
-  const otherBlogs = blogList.filter((blog) => blog.id !== latestBlog.id);
+  const otherBlogs = blogList.filter((blog) => blog.slug !== latestBlog.slug);
 
   return (
     <div className="min-h-screen bg-background">
@@ -137,7 +45,7 @@ const Blog = () => {
 
             <section className="py-8 relative overflow-hidden">
               <ScrollAnimation animation="fade-up" className="mb-8">
-                <Link to={`/blog/${latestBlog.id}`} className="group block">
+                <Link to={`/blog/${latestBlog.slug}`} className="group block">
                   <div className="bg-card border rounded-3xl p-8 grid md:grid-cols-2 gap-8 items-center w-3/4 mx-auto overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
                     {/* LEFT CONTENT */}
                     <div className="space-y-6">
@@ -170,14 +78,19 @@ const Blog = () => {
                         <div className="flex items-center gap-4">
                           {/* Avatars */}
                           <div className="flex -space-x-3">
-                            {latestBlog.author.map((a, index) => (
-                              <img
-                                key={index}
-                                src={a.avatar}
-                                alt={a.name}
-                                className="w-10 h-10 rounded-full border-2 border-background object-cover"
-                              />
-                            ))}
+                            {latestBlog.authorIds.map((id) => {
+                              const author = authors[id];
+
+                              if (!author) return null;
+                              return (
+                                <img
+                                  key={author.id}
+                                  src={author.avatar}
+                                  alt={author.name}
+                                  className="w-10 h-10 rounded-full border-2 border-background object-cover"
+                                />
+                              );
+                            })}
                           </div>
 
                           {/* Text */}
@@ -186,13 +99,27 @@ const Blog = () => {
                               Written by
                             </p>
                             <p className="font-medium">
-                              {latestBlog.author.map((a) => a.name).join(", ")}
+                              {latestBlog.authorIds
+                                .map((id) => authors[id]?.name)
+                                .filter(Boolean)
+                                .join(", ")}{" "}
                             </p>
                           </div>
                         </div>
 
-                        <div className="text-sm text-muted-foreground">
-                          Posted on {latestBlog.publishedDate}
+                        <div>
+                          <p className="text-sm text-muted-foreground">
+                            Posted on
+                          </p>
+                          <p className="text-sm text-muted-foreground">
+                            {new Date(
+                              latestBlog.publishedDate + "T00:00:00",
+                            ).toLocaleDateString("en-US", {
+                              year: "numeric",
+                              month: "long",
+                              day: "numeric",
+                            })}
+                          </p>
                         </div>
                       </div>
                     </div>
@@ -220,11 +147,11 @@ const Blog = () => {
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch auto-rows-fr">
                   {otherBlogs.map((blog, index) => (
                     <ScrollAnimation
-                      key={blog.id}
+                      key={blog.slug}
                       animation="fade-up"
                       delay={index * 100}
                     >
-                      <Link to={`/blog/${blog.id}`} className="group block">
+                      <Link to={`/blog/${blog.slug}`} className="group block">
                         <div className="bg-card border border-border rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 h-[500px] flex flex-col">
                           {/* Blog Image */}
                           <div className="relative aspect-video overflow-hidden">
@@ -270,7 +197,10 @@ const Blog = () => {
                                   Written by
                                 </p>
                                 <p className="text-xs text-gray-500 group-hover:text-black transition-colors">
-                                  {blog.author.join(", ")}
+                                  {blog.authorIds
+                                    .map((id) => authors[id]?.name)
+                                    .filter(Boolean)
+                                    .join(", ")}
                                 </p>
                               </div>
 
@@ -279,7 +209,13 @@ const Blog = () => {
                                   Posted on
                                 </p>
                                 <p className="text-xs text-gray-500 group-hover:text-black transition-colors">
-                                  {blog.publishedDate}
+                                  {new Date(
+                                    blog.publishedDate + "T00:00:00",
+                                  ).toLocaleDateString("en-US", {
+                                    year: "numeric",
+                                    month: "long",
+                                    day: "numeric",
+                                  })}
                                 </p>
                               </div>
                             </div>

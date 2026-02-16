@@ -1,10 +1,4 @@
-// blogData.ts
-import elbaAbreu from "@/assets/profile/elba-abreu-cropped.jpeg";
-import luisDorismon from "@/assets/profile/luis-dorismon-cropped.jpeg";
-import emelysRivera from "@/assets/profile/emelys-rivera-cropped.jpeg";
-import kevinJoa from "@/assets/profile/kevin-joa-cropped.jpeg";
-
-import partner1 from "@/assets/partner/partner-1.jpeg";
+import escuelaPrimeraJesusMaestro from "@/assets/partner/escuela-primera-jesus-maestro.jpeg";
 
 export interface BlogContentItem {
   type: "paragraph" | "heading" | "list";
@@ -18,9 +12,9 @@ export interface Author {
 }
 
 export interface BlogPost {
-  id: string;
+  slug: string;
   title: string;
-  author: Author[];
+  authorIds: string[];
   publishedDate: string;
   duration: string;
   tags: string[];
@@ -28,20 +22,15 @@ export interface BlogPost {
   content: BlogContentItem[];
 }
 
-export const blogData: Record<string, BlogPost> = {
+export const blogPost: Record<string, BlogPost> = {
   "ai-in-education-2026": {
-    id: "ai-in-education-2026",
+    slug: "ai-in-education-2026",
     title: "How AI Is Transforming Education in 2026",
-    author: [
-      {
-        name: "Lewis Dorismon",
-        avatar: luisDorismon,
-      },
-    ],
-    publishedDate: "February 2, 2026",
+    authorIds: ["luis"],
+    publishedDate: "2026-02-02",
     duration: "7m",
     tags: ["AI", "Education", "EdTech"],
-    thumbnail: partner1,
+    thumbnail: escuelaPrimeraJesusMaestro,
     content: [
       {
         type: "paragraph",
@@ -142,22 +131,13 @@ export const blogData: Record<string, BlogPost> = {
     ],
   },
   "future-of-tourism-ai": {
-    id: "future-of-tourism-ai",
+    slug: "future-of-tourism-ai",
     title: "The Future of Tourism Powered by AI",
-    author: [
-      {
-        name: "Kevin Joa",
-        avatar: kevinJoa,
-      },
-      {
-        name: "Emelys Rivera",
-        avatar: emelysRivera,
-      },
-    ],
-    publishedDate: "January 18, 2026",
+    authorIds: ["kevin", "emelys"],
+    publishedDate: "2026-01-18",
     duration: "6m",
     tags: ["AI", "Tourism", "Innovation"],
-    thumbnail: partner1,
+    thumbnail: escuelaPrimeraJesusMaestro,
     content: [
       {
         type: "paragraph",
@@ -212,18 +192,13 @@ export const blogData: Record<string, BlogPost> = {
     ],
   },
   "real-estate-automation": {
-    id: "real-estate-automation",
+    slug: "real-estate-automation",
     title: "AI Automation in Real Estate: What’s Next?",
-    author: [
-      {
-        name: "Elba Abreu",
-        avatar: elbaAbreu,
-      },
-    ],
-    publishedDate: "January 10, 2026",
+    authorIds: ["elba"],
+    publishedDate: "2026-01-10",
     duration: "8m",
     tags: ["AI", "Real Estate", "Automation"],
-    thumbnail: partner1,
+    thumbnail: escuelaPrimeraJesusMaestro,
     content: [
       {
         type: "paragraph",

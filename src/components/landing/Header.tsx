@@ -54,19 +54,19 @@ const Header = () => {
       items: [
         {
           label: "Educa One",
-          href: "#",
+          href: "/educa-one",
           description: "National Academic Operating System",
           icon: Monitor
         },
         {
           label: "Scholar One",
-          href: "#",
+          href: "/scholar-one",
           description: "AI-Powered Student Performance Platform",
           icon: Smartphone
         },
         {
           label: "Quisqueya AI",
-          href: "#",
+          href: "/quisqueya-ai",
           description: "Your National AI Assistant",
           icon: Brain
         },
@@ -77,13 +77,13 @@ const Header = () => {
       items: [
         {
           label: "Isla Intelligence",
-          href: "#",
+          href: "/isla-intelligence",
           description: "Smart Destination Insights",
           icon: TreePalm
         },
         {
           label: "CulturaConnect",
-          href: "#",
+          href: "/culturaconnect",
           description: "Language Through Real Life",
           icon: Earth
         },
@@ -94,13 +94,13 @@ const Header = () => {
       items: [
         {
           label: "TerraVision AI",
-          href: "#",
+          href: "/terravision-ai",
           description: "Data-Driven Property Insights",
           icon: Home
         },
         {
           label: "TitleTrust DR",
-          href: "#",
+          href: "/titletrust-dr",
           description: "Secure Digital Ownership Verification",
           icon: ShieldCheck
         },
@@ -117,7 +117,7 @@ const Header = () => {
     },
     {
       label: "Scholarship",
-      href: "#",
+      href: "/scholarship",
       icon: GraduationCap,
       description: "Empowering Tomorrow’s Leaders"
     },
@@ -222,6 +222,7 @@ const Header = () => {
                               <Link
                                 key={item.label}
                                 to={item.href}
+                                onClick={() => setIsSolutionsOpen(false)}
                                 className="flex items-start gap-3 p-3 rounded-lg hover:bg-muted transition-colors group"
                               >
                                 <div className="w-9 h-9 shrink-0 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
@@ -276,6 +277,7 @@ const Header = () => {
                       <Link
                         key={item.label}
                         to={item.href}
+                        onClick={() => setIsSolutionsOpen(false)}
                         className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-muted transition-colors group"
                       >
                         <div className="w-10 h-10 shrink-0 rounded-lg bg-blue-500/10 flex items-center justify-center group-hover:bg-blue-200 transition-colors">
