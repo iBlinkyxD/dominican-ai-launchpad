@@ -20,7 +20,7 @@ const teamMembers = [
   },
   {
     id: 2,
-    name: "Lewis Dorismon",
+    name: "Luis Dorismon",
     role: "Vice President",
     image: teamMember2,
   },

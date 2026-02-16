@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { ScrollAnimation } from "@/hooks/useScrollAnimation";
 
 import elbaAbreu from "@/assets/profile/elba-abreu-cropped.jpeg";
-import lewisDorismon from "@/assets/profile/lewis-dorismon-cropped.jpeg";
+import luisDorismon from "@/assets/profile/luis-dorismon-cropped.jpeg";
 import emelysRivera from "@/assets/profile/emelys-rivera-cropped.jpeg";
 import kevinJoa from "@/assets/profile/kevin-joa-cropped.jpeg";
 
@@ -84,7 +84,7 @@ const FAQ = () => {
                       className="w-12 h-12 rounded-full border-2 border-card object-cover"
                     />
                     <img
-                      src={lewisDorismon}
+                      src={luisDorismon}
                       alt="Team member"
                       className="w-12 h-12 rounded-full border-2 border-card object-cover"
                     />
