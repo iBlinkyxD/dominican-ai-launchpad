@@ -1,0 +1,30 @@
+{
+    "contact": {
+        "badge": "Contáctanos",
+        "title": "Contáctanos",
+        "description": "¿Tienes preguntas sobre la IA en la República Dominicana? ¿Quieres colaborar o unirte a nuestra misión? Nos encantaría saber de ti.",
+        "form": {
+            "name": "Nombre",
+            "namePlaceholder": "Tu nombre",
+            "email": "Correo electrónico",
+            "emailPlaceholder": "tu@email.com",
+            "subject": "Asunto",
+            "subjectPlaceholder": "¿De qué se trata?",
+            "message": "Mensaje",
+            "messagePlaceholder": "Cuéntanos más...",
+            "send": "Enviar mensaje",
+            "sending": "Enviando..."
+        },
+        "toast": {
+            "successTitle": "¡Mensaje enviado!",
+            "successDescription": "Nos pondremos en contacto contigo lo antes posible."
+        },
+        "contactInfo": {
+            "email": "Correo electrónico",
+            "phone": "Teléfono",
+            "location": "Ubicación",
+            "address": "Santo Domingo, República Dominicana",
+            "mapLabel": "Santo Domingo, RD"
+        }
+    }
+}

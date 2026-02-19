@@ -1,0 +1,53 @@
+{
+  "comingSoon": {
+    "badge": "Próximamente",
+    "problem": "Problema",
+    "solution": "Solución",
+    "notifyText": "Sé el primero en enterarte cuando lancemos",
+    "emailPlaceholder": "Ingresa tu correo electrónico",
+    "notifyButton": "Notifícame",
+    "backHome": "← Volver al inicio"
+  },
+  "pages": {
+    "educa-one": {
+      "title": "Educa One",
+      "problem": "Los sistemas escolares públicos suelen operar con recursos limitados, procesos manuales y comunicación fragmentada, lo que dificulta que los docentes gestionen su carga laboral y que los padres participen activamente en la educación de sus hijos.",
+      "solution": "Educa One es una plataforma integral alineada con el Ministerio de Educación que digitaliza calificaciones, reportes y comunicación, brindando a docentes, padres, coordinadores y directores acceso seguro basado en roles para colaborar de manera fluida y apoyar el éxito estudiantil."
+    },
+    "scholar-one": {
+      "title": "Scholar One",
+      "problem": "Los estudiantes de hoy dominan la tecnología, pero gran parte de su tiempo frente a la pantalla es poco productivo, y a menudo carecen de visibilidad en tiempo real sobre su desempeño académico y áreas de mejora.",
+      "solution": "Scholar One transforma la experiencia móvil del estudiante en un sistema de aprendizaje inteligente, donde las calificaciones se gamifican, el progreso es visible y tutores impulsados por IA se adaptan en tiempo real para ayudar a dominar materias y desarrollar habilidades lingüísticas."
+    },
+    "quisqueya-ai": {
+      "title": "Quisqueya AI",
+      "problem": "Aunque los asistentes globales de IA brindan respuestas generales, a menudo carecen del contexto cultural y la comprensión local necesarios para servir verdaderamente a individuos, empresas e instituciones de la República Dominicana.",
+      "solution": "Quisqueya AI es un asistente nacional culturalmente inteligente, entrenado en el idioma, la historia, las instituciones y el espíritu de la República Dominicana para ofrecer orientación relevante, contextualizada y alineada con la identidad nacional."
+    },
+    "isla-intelligence": {
+      "title": "Isla Intelligence",
+      "problem": "Soluciones Inmobiliarias Inteligentes",
+      "solution": "Encuentra la propiedad perfecta con servicios inmobiliarios impulsados por IA. Emparejamiento inteligente, recorridos virtuales y análisis basados en datos para compradores y vendedores."
+    },
+    "culturaconnect": {
+      "title": "CulturaConnect",
+      "problem": "El aprendizaje de idiomas suele carecer de inmersión auténtica, lo que dificulta alcanzar verdadera fluidez y confianza cultural.",
+      "solution": "CulturaConnect conecta a los estudiantes con anfitriones locales para una inmersión real en español mediante conversaciones significativas y conexión humana genuina."
+    },
+    "terravision-ai": {
+      "title": "TerraVision AI",
+      "problem": "Soluciones Inmobiliarias Inteligentes",
+      "solution": "Encuentra la propiedad perfecta con servicios inmobiliarios impulsados por IA. Emparejamiento inteligente, recorridos virtuales y análisis basados en datos para compradores y vendedores."
+    },
+    "titletrust-dr": {
+      "title": "TitleTrust DR",
+      "problem": "Experiencias Turísticas Impulsadas por IA",
+      "solution": "Descubre la República Dominicana como nunca antes con soluciones turísticas mejoradas con IA. Recomendaciones inteligentes, planificación fluida y experiencias inolvidables."
+    },
+    "scholarship": {
+      "title": "Beca",
+      "problem": "Soluciones Inmobiliarias Inteligentes",
+      "solution": "Encuentra la propiedad perfecta con servicios inmobiliarios impulsados por IA. Emparejamiento inteligente, recorridos virtuales y análisis basados en datos para compradores y vendedores."
+    }
+  }
+}

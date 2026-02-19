@@ -4,14 +4,15 @@ import { ScrollAnimation } from "@/hooks/useScrollAnimation";
 import Header from "@/components/landing/Header";
 import Footer from "@/components/landing/Footer";
 import { teamMembers } from "@/data/team";
+import { useTranslation } from "react-i18next";
 
 const Teams = () => {
+  const { t } = useTranslation("team");
   return (
     <div className="min-h-screen bg-background">
       <Header />
 
       <main className="pt-24 pb-16">
-        
         {/* Hero Section */}
         <section
           aria-labelledby="team-hero"
@@ -22,18 +23,16 @@ const Teams = () => {
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border bg-card shadow-sm mb-6">
                 <Users className="w-4 h-4 text-primary" />
                 <span className="text-sm font-medium text-foreground">
-                  Our Team
+                  {t(`team.badge`)}
                 </span>
               </div>
 
               <h1 className="font-display text-4xl md:text-5xl lg:text-6xl text-foreground mb-6">
-                Meet Our Amazing Team
+                {t(`team.title`)}
               </h1>
 
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                The passionate individuals behind the Dominican AI Association,
-                dedicated to advancing AI education and innovation in the
-                Caribbean.
+                {t(`team.description`)}
               </p>
             </ScrollAnimation>
           </div>
@@ -108,7 +107,7 @@ const Teams = () => {
                         {member.name}
                       </h3>
                       <p className="text-sm text-muted-foreground">
-                        {member.role}
+                        {t(`team.roles.${member.roleKey}`)}
                       </p>
                     </div>
                   </div>
@@ -127,7 +126,7 @@ const Teams = () => {
               to="/"
               className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
             >
-              ← Back to Home
+              {t(`team.backHome`)}
             </Link>
           </ScrollAnimation>
         </section>

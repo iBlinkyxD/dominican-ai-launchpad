@@ -9,6 +9,7 @@ import anthropic from "@/assets/carosuel/anthropic.png";
 import aws from "@/assets/carosuel/aws.png";
 import apple from "@/assets/carosuel/apple.png";
 import stripe from "@/assets/carosuel/stripe.png";
+import { useTranslation } from "react-i18next";
 
 interface StatCardProps {
   icon: React.ElementType;
@@ -137,6 +138,7 @@ const StatCard = ({
 };
 
 const Stats = () => {
+  const { t } = useTranslation("home");
   const stats = [
     {
       icon: FileUser,
@@ -144,7 +146,7 @@ const Stats = () => {
       iconColor: "text-rose-500",
       value: 100,
       suffix: "+",
-      label: "Hours of Curriculum",
+      label: t("stats.cards.hours"),
       delay: 0,
       rotation:
         "md:rotate-[-4deg] md:translate-y-4 hover:md:rotate-[-2deg] hover:-translate-y-2 hover:shadow-[0_30px_80px_-20px_hsl(var(--foreground)/0.12)]",
@@ -155,7 +157,7 @@ const Stats = () => {
       iconColor: "text-sky-500",
       value: 3,
       suffix: "+",
-      label: "Provinces Engaged",
+      label: t("stats.cards.provinces"),
       delay: 100,
       rotation:
         "md:scale-105 z-10 hover:md:scale-110 hover:-translate-y-3 hover:shadow-[0_35px_90px_-20px_hsl(var(--foreground)/0.15)]",
@@ -167,7 +169,7 @@ const Stats = () => {
       iconColor: "text-violet-500",
       value: 3,
       suffix: "k+",
-      label: "Students",
+      label: t("stats.cards.students"),
       delay: 200,
       rotation:
         "md:rotate-[4deg] md:translate-y-4 hover:md:rotate-[2deg] hover:-translate-y-2 hover:shadow-[0_30px_80px_-20px_hsl(var(--foreground)/0.12)]",
@@ -206,18 +208,16 @@ const Stats = () => {
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border bg-card shadow-sm mb-6">
             <span className="text-base">🎓</span>
             <span className="text-sm font-normal text-foreground">
-              We Offer
+              {t("stats.badge")}
             </span>
           </div>
 
           <h2 className="font-display text-3xl md:text-4xl lg:text-5xl text-foreground mb-4 font-medium">
-            Boost Your Skills
+            {t("stats.title")}
           </h2>
 
           <p className="text-sm md:text-base text-muted-foreground max-w-2xl mx-auto font-normal leading-relaxed">
-            From critical skills to technical topics, we support your
-            professional development with courses that help you grow and
-            succeed.
+            {t("stats.description")}
           </p>
         </ScrollAnimation>
 
@@ -242,7 +242,7 @@ const Stats = () => {
           <div className="flex items-center gap-4 mb-8">
             <div className="flex-1 h-px bg-border" />
             <p className="text-xs text-muted-foreground whitespace-nowrap font-normal">
-              Our Infrastructure Partners
+              {t("stats.partners")}
             </p>
             <div className="flex-1 h-px bg-border" />
           </div>

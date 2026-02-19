@@ -6,8 +6,11 @@ import { Star, Clock, Users, BookOpen, GraduationCap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 import { coursesList } from "@/data/courses/list";
+import { useTranslation } from "react-i18next";
 
 const Courses = () => {
+  const { t } = useTranslation("courses");
+
   return (
     <div className="min-h-screen bg-background">
       <Header />
@@ -20,17 +23,17 @@ const Courses = () => {
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
                 <GraduationCap className="w-4 h-4 text-primary" />
                 <span className="text-sm font-medium text-primary">
-                  Our Courses
+                  {t("courses.badge")}
                 </span>
               </div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-medium text-foreground mb-6">
-                Learn with Expert-Led
-                <span className="text-primary"> AI Courses</span>
+                {t("courses.heroTitleStart")}
+                <span className="text-primary">
+                  {t("courses.heroTitleHighlight")}
+                </span>
               </h1>
               <p className="text-lg text-muted-foreground">
-                Explore cutting-edge courses designed to equip you with the
-                skills needed for the AI-driven future. Learn from industry
-                experts and gain practical experience.
+                {t("courses.heroDescription")}
               </p>
             </div>
           </ScrollAnimation>
@@ -53,12 +56,12 @@ const Courses = () => {
                     <div className="relative aspect-video overflow-hidden">
                       <img
                         src={course.image}
-                        alt={course.title}
+                        alt={t(`coursesDetails.${course.i18nKey}.title`)}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       />
                       {course.featured && (
                         <span className="absolute top-4 left-4 px-3 py-1 bg-primary text-primary-foreground text-xs font-semibold rounded-full">
-                          Featured
+                          {t("courses.featured")}
                         </span>
                       )}
                     </div>
@@ -67,9 +70,13 @@ const Courses = () => {
                     <div className="p-6">
                       {/* Tags */}
                       <div className="flex flex-wrap gap-2 mb-3">
-                        {course.tags.map((tag) => (
+                        {(
+                          t(`coursesDetails.${course.i18nKey}.tags`, {
+                            returnObjects: true,
+                          }) as string[]
+                        )?.map((tag, index) => (
                           <span
-                            key={tag}
+                            key={index}
                             className="px-2 py-1 bg-muted text-muted-foreground text-xs rounded-md"
                           >
                             {tag}
@@ -79,23 +86,25 @@ const Courses = () => {
 
                       {/* Title */}
                       <h3 className="text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors line-clamp-2">
-                        {course.title}
+                        {t(`coursesDetails.${course.i18nKey}.title`)}
                       </h3>
 
                       {/* Description */}
                       <p className="text-muted-foreground text-sm mb-4 line-clamp-2">
-                        {course.description}
+                        {t(`coursesDetails.${course.i18nKey}.description`)}
                       </p>
 
                       {/* Stats */}
                       <div className="flex items-center gap-4 text-sm text-muted-foreground mb-4">
                         <div className="flex items-center gap-1">
                           <Clock className="w-4 h-4" />
-                          <span>{course.duration}</span>
+                          <span>{t(`coursesDetails.${course.i18nKey}.duration`)}</span>
                         </div>
                         <div className="flex items-center gap-1">
                           <BookOpen className="w-4 h-4" />
-                          <span>{course.lessons} lessons</span>
+                          <span>
+                            {course.lessons} {t("courses.lessons")}
+                          </span>
                         </div>
                       </div>
 
@@ -123,7 +132,7 @@ const Courses = () => {
                           ${course.price}
                         </span>
                         <Button className="bg-primary hover:bg-primary/90">
-                          Join Watchlist
+                          {t("courses.joinWatchlist")}
                         </Button>
                       </div>
                     </div>
@@ -140,17 +149,16 @@ const Courses = () => {
         <div className="container mx-auto section-padding text-center">
           <ScrollAnimation animation="fade-up">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Ready to Start Learning?
+              {t("courses.ctaTitle")}
             </h2>
             <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
-              Join thousands of students who are already advancing their careers
-              with our expert-led courses.
+              {t("courses.ctaDescription")}
             </p>
             <Button
               size="lg"
               className="bg-foreground text-background hover:bg-foreground/90 rounded-full px-8"
             >
-              Browse All Courses
+              {t("courses.ctaButton")}
             </Button>
           </ScrollAnimation>
         </div>

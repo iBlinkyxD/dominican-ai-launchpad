@@ -1,0 +1,16 @@
+{
+    "team": {
+        "badge": "Nuestro Equipo",
+        "title": "Conoce a Nuestro Increíble Equipo",
+        "description": "Las personas apasionadas detrás de la Asociación Dominicana de Inteligencia Artificial, dedicadas a impulsar la educación en IA y la innovación en el Caribe.",
+        "backHome": "← Volver al Inicio",
+        "roles": {
+            "legalCounsel": "Asesor Legal",
+            "vicePresident": "Vicepresidente",
+            "controller": "Controller",
+            "chiefSteward": "Director Ejecutivo",
+            "coordinator": "Coordinadora",
+            "softwareDeveloper": "Desarrollador de Software"
+        }
+    }
+}

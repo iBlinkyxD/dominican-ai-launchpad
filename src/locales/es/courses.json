@@ -1,0 +1,203 @@
+{
+  "courses": {
+    "badge": "Nuestros Cursos",
+    "heroTitleStart": "Aprende con",
+    "heroTitleHighlight": " Cursos de IA dirigidos por expertos",
+    "heroDescription": "Explora cursos innovadores diseñados para brindarte las habilidades necesarias para el futuro impulsado por la IA. Aprende de expertos de la industria y adquiere experiencia práctica.",
+    "featured": "Destacado",
+    "lessons": "lecciones",
+    "joinWatchlist": "Agregar a la Lista",
+    "ctaTitle": "¿Listo para comenzar a aprender?",
+    "ctaDescription": "Únete a miles de estudiantes que ya están avanzando en sus carreras con nuestros cursos dirigidos por expertos.",
+    "ctaButton": "Ver Todos los Cursos"
+  },
+  "coursesDetails": {
+    "introAI": {
+      "title": "Introducción a la IA",
+      "subtitle": "Domina los conceptos de IA desde lo básico hasta redes neuronales avanzadas con proyectos prácticos",
+      "description": "Comprende los fundamentos, explora aplicaciones reales y desbloquea el poder de la inteligencia artificial para tu futuro.",
+      "duration": "20 horas",
+      "tags": ["Fundamentos", "Inteligencia", "Futuro"],
+      "benefits": [
+        "Construye aplicaciones de IA desde cero",
+        "Oportunidades de crecimiento profesional",
+        "Conocimiento para innovar",
+        "Certificación reconocida en la industria",
+        "Mejora del rendimiento",
+        "Ruta de aprendizaje estructurada",
+        "Crecimiento personal",
+        "Mantente actualizado"
+      ],
+      "requirements": [
+        "Conocimientos básicos de programación en Python",
+        "Comprensión básica de matemáticas",
+        "Computadora con acceso a internet",
+        "Deseo de aprender conceptos de IA",
+        "No se requiere experiencia previa en IA"
+      ],
+      "whatToExpect": "Desarrolla habilidades prácticas en inteligencia artificial con herramientas modernas y un enfoque estructurado. Desde conceptos básicos hasta redes neuronales avanzadas, estarás preparado para desafíos reales.",
+      "curriculum": [
+        {
+          "title": "Módulo 1: Introducción a IA/ML y Python",
+          "lessons": [
+            "¿Qué es IA y ML?",
+            "Configuración del entorno Python",
+            "Python básico para IA",
+            "Tu primer programa de IA"
+          ]
+        },
+        {
+          "title": "Módulo 2: Desarrollo de Redes Neuronales",
+          "lessons": [
+            "Comprendiendo las neuronas",
+            "Construcción de redes neuronales",
+            "Funciones de activación",
+            "Fundamentos de entrenamiento"
+          ]
+        },
+        {
+          "title": "Módulo 3: Fundamentos de Deep Learning",
+          "lessons": [
+            "Arquitecturas CNN",
+            "RNN y LSTM",
+            "Transfer learning",
+            "Optimización de modelos"
+          ]
+        },
+        {
+          "title": "Módulo 4: Proyecto Final y Despliegue",
+          "lessons": [
+            "Planificación del proyecto",
+            "Construcción del modelo de IA",
+            "Pruebas y validación",
+            "Estrategias de despliegue"
+          ]
+        }
+      ]
+    },
+    "learnEnglishAI": {
+      "title": "Aprende Inglés con IA",
+      "subtitle": "Mejora tu fluidez en inglés con lecciones guiadas por IA y práctica en situaciones reales",
+      "description": "Practica, mejora y comunícate con confianza mediante lecciones guiadas por IA y conversaciones reales.",
+      "duration": "28 horas",
+      "tags": ["Idioma", "Práctica", "Confianza"],
+      "benefits": [
+        "Conversaciones interactivas con IA",
+        "Mejora de la pronunciación",
+        "Escenarios prácticos del mundo real",
+        "Ampliación de vocabulario",
+        "Desarrollo de confianza",
+        "Ritmo de aprendizaje flexible",
+        "Avance profesional",
+        "Certificado incluido"
+      ],
+      "requirements": [
+        "Comprensión básica del inglés",
+        "Acceso a internet",
+        "Disposición para practicar diariamente",
+        "No se requieren conocimientos avanzados de gramática"
+      ],
+      "whatToExpect": "Este curso inmersivo de inglés te ayudará a ganar fluidez a través de conversaciones reales y práctica impulsada por IA. Mejora tu pronunciación, vocabulario y habilidades de comunicación en un entorno estructurado e interactivo.",
+      "curriculum": [
+        {
+          "title": "Módulo 1: Fundamentos del Inglés",
+          "lessons": [
+            "Repaso básico de gramática",
+            "Vocabulario esencial",
+            "Fundamentos de pronunciación",
+            "Conversaciones simples"
+          ]
+        },
+        {
+          "title": "Módulo 2: Comunicación en la Vida Real",
+          "lessons": [
+            "Situaciones cotidianas",
+            "Inglés básico para negocios",
+            "Conversaciones de viaje",
+            "Práctica para hablar con confianza"
+          ]
+        },
+        {
+          "title": "Módulo 3: Fluidez Avanzada",
+          "lessons": [
+            "Modismos y expresiones",
+            "Comprensión auditiva",
+            "Fundamentos de oratoria",
+            "Simulaciones de conversación con IA"
+          ]
+        },
+        {
+          "title": "Módulo 4: Evaluación Final",
+          "lessons": [
+            "Prueba práctica de conversación",
+            "Evaluación de fluidez",
+            "Plan de mejora y retroalimentación",
+            "Emisión de certificado"
+          ]
+        }
+      ]
+    },
+    "aiDR": {
+      "title": "IA en la República Dominicana",
+      "subtitle": "Descubre cómo la IA está transformando industrias y oportunidades a nivel local",
+      "description": "Explora cómo la IA está resolviendo desafíos y creando innovación en la República Dominicana.",
+      "duration": "35 horas",
+      "tags": ["Innovación", "Impacto", "Soluciones"],
+      "benefits": [
+        "Comprender el impacto local de la IA",
+        "Casos reales de la República Dominicana",
+        "Perspectivas de colaboración industrial",
+        "Estrategias de innovación",
+        "Tendencias del sector público y privado",
+        "Panorama de oportunidades profesionales",
+        "Networking comunitario",
+        "Acceso de por vida"
+      ],
+      "requirements": [
+        "Conocimientos básicos de tecnología",
+        "Interés en innovación",
+        "Computadora con acceso a internet",
+        "No se requieren conocimientos avanzados de IA"
+      ],
+      "whatToExpect": "Aprende cómo la inteligencia artificial está transformando empresas, salud, educación y servicios públicos en la República Dominicana. Obtén información sobre implementaciones reales y oportunidades futuras.",
+      "curriculum": [
+        {
+          "title": "Módulo 1: Panorama de la IA en la RD",
+          "lessons": [
+            "Visión general del ecosistema de IA",
+            "Ecosistema tecnológico local",
+            "Innovaciones en startups",
+            "Iniciativas gubernamentales"
+          ]
+        },
+        {
+          "title": "Módulo 2: Aplicaciones en la Industria",
+          "lessons": [
+            "IA en la salud",
+            "IA en las finanzas",
+            "IA en la educación",
+            "Desarrollo de ciudades inteligentes"
+          ]
+        },
+        {
+          "title": "Módulo 3: Negocios e Innovación",
+          "lessons": [
+            "Oportunidades de emprendimiento",
+            "Tendencias de inversión",
+            "Transformación digital",
+            "Estudios de caso"
+          ]
+        },
+        {
+          "title": "Módulo 4: Futuro de la IA en la RD",
+          "lessons": [
+            "Tecnologías emergentes",
+            "Transformación de la fuerza laboral",
+            "Ética y regulación",
+            "Proyecto final"
+          ]
+        }
+      ]
+    }
+  }
+}

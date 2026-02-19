@@ -1,0 +1,203 @@
+{
+  "courses": {
+    "badge": "Our Courses",
+    "heroTitleStart": "Learn with Expert-Led",
+    "heroTitleHighlight": " AI Courses",
+    "heroDescription": "Explore cutting-edge courses designed to equip you with the skills needed for the AI-driven future. Learn from industry experts and gain practical experience.",
+    "featured": "Featured",
+    "lessons": "lessons",
+    "joinWatchlist": "Join Watchlist",
+    "ctaTitle": "Ready to Start Learning?",
+    "ctaDescription": "Join thousands of students who are already advancing their careers with our expert-led courses.",
+    "ctaButton": "Browse All Courses"
+  },
+  "coursesDetails": {
+    "introAI": {
+      "title": "Introduction to AI",
+      "subtitle": "Master AI concepts from basics to advanced neural networks with hands-on projects",
+      "description": "Understand the basics, explore real-world applications, and unlock the power of AI for your future.",
+      "duration": "20 hours",
+      "tags": ["Foundations", "Intelligence", "Future"],
+      "benefits": [
+        "Build AI applications from scratch",
+        "Career advancement opportunities",
+        "Knowledge for innovation",
+        "Industry-recognized certification",
+        "Increased performance",
+        "Structured learning path",
+        "Personal growth",
+        "Stay up-to-date"
+      ],
+      "requirements": [
+        "Basic knowledge of Python programming",
+        "Understanding of basic mathematics",
+        "A computer with internet access",
+        "Desire to learn AI concepts",
+        "No prior AI experience required"
+      ],
+      "whatToExpect": "Unlock the full potential of AI with practical hands-on skills using modern tools and frameworks. This structured learning path covers everything from basic concepts to advanced neural networks, preparing you for real-world challenges and industry opportunities.",
+      "curriculum": [
+        {
+          "title": "Module 1: Introduction to AI/ML and Python",
+          "lessons": [
+            "What is AI and ML?",
+            "Setting up Python environment",
+            "Basic Python for AI",
+            "Your first AI program"
+          ]
+        },
+        {
+          "title": "Module 2: Neural Network Development",
+          "lessons": [
+            "Understanding neurons",
+            "Building neural networks",
+            "Activation functions",
+            "Training basics"
+          ]
+        },
+        {
+          "title": "Module 3: Deep Learning Fundamentals",
+          "lessons": [
+            "CNN architectures",
+            "RNN and LSTM",
+            "Transfer learning",
+            "Model optimization"
+          ]
+        },
+        {
+          "title": "Module 4: Final Project and Deployment",
+          "lessons": [
+            "Project planning",
+            "Building the AI model",
+            "Testing and validation",
+            "Deployment strategies"
+          ]
+        }
+      ]
+    },
+    "learnEnglishAI": {
+      "title": "Learn English with AI",
+      "subtitle": "Improve your English fluency with AI-guided lessons and real-world practice",
+      "description": "Practice, improve, and communicate confidently with AI-guided lessons and real conversations.",
+      "duration": "28 hours",
+      "tags": ["Language", "Practice", "Confidence"],
+      "benefits": [
+        "Interactive AI conversations",
+        "Pronunciation improvement",
+        "Real-world practice scenarios",
+        "Vocabulary expansion",
+        "Confidence building",
+        "Flexible learning pace",
+        "Career advancement",
+        "Certificate included"
+      ],
+      "requirements": [
+        "Basic understanding of English",
+        "Internet access",
+        "Willingness to practice daily",
+        "No advanced grammar knowledge required"
+      ],
+      "whatToExpect": "This immersive English course helps you gain fluency through real conversations and AI-powered practice. Improve pronunciation, vocabulary, and communication skills in a structured and interactive environment.",
+      "curriculum": [
+        {
+          "title": "Module 1: English Foundations",
+          "lessons": [
+            "Basic grammar review",
+            "Essential vocabulary",
+            "Pronunciation basics",
+            "Simple conversations"
+          ]
+        },
+        {
+          "title": "Module 2: Real-Life Communication",
+          "lessons": [
+            "Everyday situations",
+            "Business English basics",
+            "Travel conversations",
+            "Confidence speaking practice"
+          ]
+        },
+        {
+          "title": "Module 3: Advanced Fluency",
+          "lessons": [
+            "Idioms and expressions",
+            "Listening comprehension",
+            "Public speaking basics",
+            "AI conversation simulations"
+          ]
+        },
+        {
+          "title": "Module 4: Final Assessment",
+          "lessons": [
+            "Practical conversation test",
+            "Fluency evaluation",
+            "Feedback and improvement plan",
+            "Certificate issuance"
+          ]
+        }
+      ]
+    },
+    "aiDR": {
+      "title": "AI in the Dominican Republic",
+      "subtitle": "Discover how AI is transforming industries and opportunities locally",
+      "description": "Explore how AI is solving challenges and creating innovation in the Dominican Republic.",
+      "duration": "35 hours",
+      "tags": ["Innovation", "Impact", "Solutions"],
+      "benefits": [
+        "Understand AI local impact",
+        "Real Dominican case studies",
+        "Industry collaboration insights",
+        "Innovation strategies",
+        "Government & private sector trends",
+        "Career opportunities overview",
+        "Community networking",
+        "Lifetime access"
+      ],
+      "requirements": [
+        "Basic technology knowledge",
+        "Interest in innovation",
+        "Computer with internet",
+        "No advanced AI knowledge required"
+      ],
+      "whatToExpect": "Learn how artificial intelligence is transforming businesses, healthcare, education, and public services in the Dominican Republic. Gain insights into real-world implementations and future opportunities.",
+      "curriculum": [
+        {
+          "title": "Module 1: AI Overview in the DR",
+          "lessons": [
+            "AI landscape overview",
+            "Local technology ecosystem",
+            "Startup innovations",
+            "Government initiatives"
+          ]
+        },
+        {
+          "title": "Module 2: Industry Applications",
+          "lessons": [
+            "AI in healthcare",
+            "AI in finance",
+            "AI in education",
+            "Smart cities development"
+          ]
+        },
+        {
+          "title": "Module 3: Business & Innovation",
+          "lessons": [
+            "Entrepreneurship opportunities",
+            "Investment trends",
+            "Digital transformation",
+            "Case studies"
+          ]
+        },
+        {
+          "title": "Module 4: Future of AI in the DR",
+          "lessons": [
+            "Emerging technologies",
+            "Workforce transformation",
+            "Ethics and regulation",
+            "Final project"
+          ]
+        }
+      ]
+    }
+  }
+}

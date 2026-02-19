@@ -8,8 +8,10 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
 import { partners } from "@/data/partner/list";
+import { useTranslation } from "react-i18next";
 
 const Partner = () => {
+  const { t } = useTranslation("partner")
   const [selected, setSelected] = useState("All");
   const [query, setQuery] = useState("");
 
@@ -36,16 +38,16 @@ const Partner = () => {
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border bg-card shadow-sm mb-6">
                 <Users className="w-4 h-4 text-primary" />
                 <span className="text-sm font-medium text-foreground">
-                  Partners
+                  {t(`partner.badge`)}
                 </span>
               </div>
 
               <h1 className="font-display font-medium text-4xl md:text-5xl lg:text-6xl text-foreground mb-6">
-                Our Partners
+                {t(`partner.title`)}
               </h1>
 
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                The light moves faster when we move together.
+                {t(`partner.subtitle`)}
               </p>
             </ScrollAnimation>
           </div>
@@ -61,7 +63,7 @@ const Partner = () => {
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground h-4 w-4" />
                 <Input
                   type="text"
-                  placeholder="Search..."
+                  placeholder={t(`partner.searchPlaceholder`)}
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
                   className="pl-9"
@@ -79,7 +81,7 @@ const Partner = () => {
                       : "bg-background text-foreground hover:bg-background/90"
                   }`}
                 >
-                  All
+                  {t(`partner.filters.all`)}
                 </Button>
 
                 <Button
@@ -91,7 +93,7 @@ const Partner = () => {
                       : "bg-background text-foreground hover:bg-background/90"
                   }`}
                 >
-                  School
+                  {t(`partner.filters.school`)}
                 </Button>
 
                 <Button
@@ -103,7 +105,7 @@ const Partner = () => {
                       : "bg-background text-foreground hover:bg-background/90"
                   }`}
                 >
-                  University
+                  {t(`partner.filters.university`)}
                 </Button>
 
                 <Button
@@ -115,7 +117,7 @@ const Partner = () => {
                       : "bg-background text-foreground hover:bg-background/90"
                   }`}
                 >
-                  Company
+                  {t(`partner.filters.company`)}
                 </Button>
               </div>
             </div>
@@ -148,7 +150,7 @@ const Partner = () => {
                                 `}
                           >
                             {" "}
-                            {partner.role}
+                            {t(`partner.roles.${partner.role}`)}
                           </span>
                         }
                       </div>
@@ -180,7 +182,7 @@ const Partner = () => {
               to="/"
               className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
             >
-              ← Back to Home
+              {t(`partner.backHome`)}
             </Link>
           </ScrollAnimation>
         </section>

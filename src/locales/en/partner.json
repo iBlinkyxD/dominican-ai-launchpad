@@ -1,0 +1,20 @@
+{
+    "partner": {
+        "badge": "Partners",
+        "title": "Our Partners",
+        "subtitle": "The light moves faster when we move together.",
+        "searchPlaceholder": "Search...",
+        "filters": {
+            "all": "All",
+            "school": "School",
+            "university": "University",
+            "company": "Company"
+        },
+        "roles": {
+            "school": "School",
+            "university": "University",
+            "company": "Company"
+        },
+        "backHome": "← Back to Home"
+    }
+}

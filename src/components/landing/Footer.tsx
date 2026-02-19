@@ -1,38 +1,64 @@
-import { Facebook, Twitter, Linkedin, Instagram, Youtube, Mail, ArrowRight } from "lucide-react";
+import {
+  Facebook,
+  Twitter,
+  Linkedin,
+  Instagram,
+  Youtube,
+  Mail,
+  ArrowRight,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ScrollAnimation } from "@/hooks/useScrollAnimation";
 import logo from "@/assets/logo.png";
+import { useTranslation } from "react-i18next";
 
 const Footer = () => {
+  const { t } = useTranslation("home");
   const currentYear = new Date().getFullYear();
 
   const footerLinks = {
     programs: [
-      { label: "Introduction to AI", href: "#" },
-      { label: "Learn English with AI", href: "#" },
-      { label: "AI in the Dominican Republic", href: "#" },
+      { label: t("footer.links.programs.introAI"), href: "#" },
+      { label: t("footer.links.programs.learnEnglish"), href: "#" },
+      { label: t("footer.links.programs.aiDR"), href: "#" },
     ],
     company: [
-      { label: "About Us", href: "#" },
-      { label: "Careers", href: "#" },
-      { label: "Blog", href: "#" },
-      { label: "Partners", href: "#" },
+      { label: t("footer.links.company.about"), href: "#" },
+      { label: t("footer.links.company.careers"), href: "#" },
+      { label: t("footer.links.company.blog"), href: "#" },
+      { label: t("footer.links.company.partners"), href: "#" },
     ],
     support: [
-      { label: "Help Center", href: "#" },
-      { label: "Contact Us", href: "#" },
-      { label: "Privacy Policy", href: "#" },
-      { label: "Terms of Service", href: "#" },
+      { label: t("footer.links.support.help"), href: "#" },
+      { label: t("footer.links.support.contact"), href: "#" },
+      { label: t("footer.links.support.privacyPolicy"), href: "#" },
+      { label: t("footer.links.support.termsService"), href: "#" },
     ],
   };
 
   const socialLinks = [
-    { icon: Facebook, href: "https://facebook.com/daia_official", label: "Facebook" },
+    {
+      icon: Facebook,
+      href: "https://facebook.com/daia_official",
+      label: "Facebook",
+    },
     { icon: Twitter, href: "https://x.com/daia_official", label: "Twitter" },
-    { icon: Linkedin, href: "https://linkedin.com/company/daia_official", label: "LinkedIn" },
-    { icon: Instagram, href: "https:/instagram.com/daia.do/", label: "Instagram" },
-    { icon: Youtube, href: "https://www.youtube.com/channel/UCQzLflrAQSQoen02x1yonvg", label: "YouTube" },
+    {
+      icon: Linkedin,
+      href: "https://linkedin.com/company/daia_official",
+      label: "LinkedIn",
+    },
+    {
+      icon: Instagram,
+      href: "https:/instagram.com/daia.do/",
+      label: "Instagram",
+    },
+    {
+      icon: Youtube,
+      href: "https://www.youtube.com/channel/UCQzLflrAQSQoen02x1yonvg",
+      label: "YouTube",
+    },
   ];
 
   return (
@@ -46,23 +72,23 @@ const Footer = () => {
                 <div className="text-center md:text-left">
                   <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-semibold mb-4">
                     <Mail className="w-3 h-3" />
-                    Newsletter
+                    {t("footer.newsletter.badge")}
                   </div>
                   <h3 className="font-display text-2xl md:text-3xl text-foreground mb-2">
-                    Stay Updated with AI Trends
+                    {t("footer.newsletter.title")}
                   </h3>
                   <p className="text-muted-foreground">
-                    Get the latest courses, events, and AI insights delivered to your inbox.
+                    {t("footer.newsletter.description")}
                   </p>
                 </div>
                 <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
                   <Input
                     type="email"
-                    placeholder="Enter your email"
+                    placeholder={t("footer.newsletter.placeholder")}
                     className="rounded-full px-6 h-12 min-w-[280px] border-border bg-background"
                   />
                   <Button className="bg-foreground text-background hover:bg-foreground/90 rounded-full h-12 px-6 gap-2">
-                    Subscribe
+                    {t("footer.newsletter.button")}
                     <ArrowRight className="w-4 h-4" />
                   </Button>
                 </div>
@@ -79,12 +105,14 @@ const Footer = () => {
             {/* Brand Column */}
             <ScrollAnimation animation="fade-up" className="lg:col-span-2">
               <a href="#" className="flex items-center gap-3 mb-6">
-                <img src={'/assets/logo.png'} alt="Dominican AI Association" className="h-12 w-auto" />
-
+                <img
+                  src={"/assets/logo.png"}
+                  alt="Dominican AI Association"
+                  className="h-12 w-auto"
+                />
               </a>
               <p className="text-muted-foreground mb-6 max-w-sm leading-relaxed">
-                Empowering the Dominican Republic with world-class AI education and fostering innovation across the
-                Caribbean.
+                {t("footer.brandDescription")}
               </p>
 
               {/* Social Links */}
@@ -105,11 +133,16 @@ const Footer = () => {
 
             {/* Programs Column */}
             <ScrollAnimation animation="fade-up" delay={100}>
-              <h4 className="font-display font-semibold text-foreground mb-6">Programs</h4>
+              <h4 className="font-display font-semibold text-foreground mb-6">
+                {t("footer.columns.programs")}
+              </h4>
               <ul className="space-y-4">
                 {footerLinks.programs.map((link) => (
                   <li key={link.label}>
-                    <a href={link.href} className="text-muted-foreground hover:text-foreground transition-colors">
+                    <a
+                      href={link.href}
+                      className="text-muted-foreground hover:text-foreground transition-colors"
+                    >
                       {link.label}
                     </a>
                   </li>
@@ -119,11 +152,16 @@ const Footer = () => {
 
             {/* Company Column */}
             <ScrollAnimation animation="fade-up" delay={200}>
-              <h4 className="font-display font-semibold text-foreground mb-6">Company</h4>
+              <h4 className="font-display font-semibold text-foreground mb-6">
+                {t("footer.columns.company")}
+              </h4>
               <ul className="space-y-4">
                 {footerLinks.company.map((link) => (
                   <li key={link.label}>
-                    <a href={link.href} className="text-muted-foreground hover:text-foreground transition-colors">
+                    <a
+                      href={link.href}
+                      className="text-muted-foreground hover:text-foreground transition-colors"
+                    >
                       {link.label}
                     </a>
                   </li>
@@ -133,11 +171,16 @@ const Footer = () => {
 
             {/* Support Column */}
             <ScrollAnimation animation="fade-up" delay={300}>
-              <h4 className="font-display font-semibold text-foreground mb-6">Support</h4>
+              <h4 className="font-display font-semibold text-foreground mb-6">
+                {t("footer.columns.support")}
+              </h4>
               <ul className="space-y-4">
                 {footerLinks.support.map((link) => (
                   <li key={link.label}>
-                    <a href={link.href} className="text-muted-foreground hover:text-foreground transition-colors">
+                    <a
+                      href={link.href}
+                      className="text-muted-foreground hover:text-foreground transition-colors"
+                    >
                       {link.label}
                     </a>
                   </li>
@@ -151,17 +194,27 @@ const Footer = () => {
             <div className="pt-8 border-t border-border">
               <div className="flex flex-col md:flex-row items-center justify-between gap-4">
                 <p className="text-muted-foreground text-sm text-center md:text-left">
-                  © {currentYear} Dominican AI Association. All rights reserved.
+                  © {currentYear} Dominican AI Association.{" "}
+                  {t("footer.bottom.rights")}
                 </p>
                 <div className="flex items-center gap-6 text-sm">
-                  <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
-                    Privacy
+                  <a
+                    href="#"
+                    className="text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    {t("footer.bottom.privacy")}
                   </a>
-                  <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
-                    Terms
+                  <a
+                    href="#"
+                    className="text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    {t("footer.bottom.terms")}
                   </a>
-                  <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
-                    Cookies
+                  <a
+                    href="#"
+                    className="text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    {t("footer.bottom.cookies")}
                   </a>
                 </div>
               </div>

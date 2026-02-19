@@ -1,0 +1,20 @@
+{
+    "partner": {
+        "badge": "Socio",
+        "title": "Nuestros Socios",
+        "subtitle": "La luz avanza más rápido cuando avanzamos juntos.",
+        "searchPlaceholder": "Buscar...",
+        "filters": {
+            "all": "Todos",
+            "school": "Escuela",
+            "university": "Universidad",
+            "company": "Empresa"
+        },
+        "roles": {
+            "school": "Escuela",
+            "university": "Universidad",
+            "company": "Empresa"
+        },
+        "backHome": "← Volver al Inicio"
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "team": {
+        "badge": "Our Team",
+        "title": "Meet Our Amazing Team",
+        "description": "The passionate individuals behind the Dominican AI Association, dedicated to advancing AI education and innovation in the Caribbean.",
+        "backHome": "← Back to Home",
+        "roles": {
+            "legalCounsel": "Legal Counsel",
+            "vicePresident": "Vice President",
+            "controller": "Controller",
+            "chiefSteward": "Chief Steward",
+            "coordinator": "Coordinator",
+            "softwareDeveloper": "Software Developer"
+        }
+    }
+}

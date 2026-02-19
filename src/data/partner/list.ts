@@ -16,7 +16,7 @@ export interface Partner {
 export const partners: Partner[] = Object.values(partnerDetail).map((partner) => ({
   slug: partner.slug,
   name: partner.name,
-  role: partner.role,
+  role: partner.roleKey,
   location: partner.location,
   image: partner.image,
 }));

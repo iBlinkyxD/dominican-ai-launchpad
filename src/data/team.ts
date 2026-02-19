@@ -8,7 +8,7 @@ import kevinJoa from "@/assets/team/kevin-joa.jpeg";
 export interface TeamMember {
   id: number;
   name: string;
-  role: string;
+  roleKey: string;
   image: string;
 }
 
@@ -16,37 +16,37 @@ export const teamMembers: TeamMember[] = [
   {
     id: 1,
     name: "Elba Abreu",
-    role: "Legal Counsel",
+    roleKey: "legalCounsel",
     image: elbaAbreu,
   },
   {
     id: 2,
     name: "Luis Dorismon",
-    role: "Vice President",
+    roleKey: "vicePresident",
     image: luisDorismon,
   },
   {
     id: 3,
     name: "Emelys Rivera",
-    role: "Controller",
+    roleKey: "controller",
     image: emelysRivera,
   },
   {
     id: 4,
     name: "Salomón / Solomon",
-    role: "Chief Steward",
+    roleKey: "chiefSteward",
     image: solomon,
   },
   {
     id: 5,
     name: "Rosa Azcona",
-    role: "Coordinator",
+    roleKey: "coordinator",
     image: rosaAzcona,
   },
   {
     id: 6,
     name: "Kevin Joa",
-    role: "Software Developer",
+    roleKey: "softwareDeveloper",
     image: kevinJoa,
   },
 ];

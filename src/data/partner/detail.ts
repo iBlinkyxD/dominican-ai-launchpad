@@ -6,7 +6,7 @@ import intec from "@/assets/partner/intec.jpeg";
 export interface PartnerDetail {
   slug: string;
   name: string;
-  role: string;
+  roleKey: string;
   location: string;
   image: string;
   thumbnail: string;
@@ -17,7 +17,7 @@ export const partnerDetail: PartnerDetail[] = [
   {
     slug: "escuela-primera-jesus-maestro",
     name: "Escuela Primera Jesus Maestro",
-    role: "School",
+    roleKey: "school",
     location: "Santo Domingo, Dominican Republic",
     image: escuelaPrimeraJesusMaestro,
     thumbnail: escuelaPrimeraJesusMaestro,
@@ -26,7 +26,7 @@ export const partnerDetail: PartnerDetail[] = [
   {
     slug: "apollo-e",
     name: "Apollo-E Inc.",
-    role: "Company",
+    roleKey: "company",
     location: "Miami, Florida",
     image: apolloE,
     thumbnail: apolloE,
@@ -35,7 +35,7 @@ export const partnerDetail: PartnerDetail[] = [
   {
     slug: "intec",
     name: "Instituto Tecnológico de Santo Domingo",
-    role: "University",
+    roleKey: "university",
     location: "Santo Domingo, Dominican Republic",
     image: intec,
     thumbnail: intec,

@@ -1,0 +1,53 @@
+{
+  "comingSoon": {
+    "badge": "Coming Soon",
+    "problem": "Problem",
+    "solution": "Solution",
+    "notifyText": "Be the first to know when we launch",
+    "emailPlaceholder": "Enter your email",
+    "notifyButton": "Notify Me",
+    "backHome": "← Back to Home"
+  },
+  "pages": {
+    "educa-one": {
+      "title": "Educa One",
+      "problem": "Public school systems often operate with limited resources, manual processes, and fragmented communication—making it difficult for teachers to manage workloads and for parents to stay actively involved in their child’s education.",
+      "solution": "Educa One is a comprehensive, Ministry of Education aligned platform that digitizes grading, reporting, and communication—giving teachers, parents, coordinators, and directors secure, role-based access to collaborate seamlessly and support student success."
+    },
+    "scholar-one": {
+      "title": "Scholar One",
+      "problem": "Today’s students are highly fluent in technology, yet much of their screen time is unproductive—and they often lack real-time visibility into their academic performance and areas for improvement.",
+      "solution": "Scholar One transforms the student mobile experience into an intelligent learning system, where grades are gamified, progress is visible, and AI-powered tutors and virtual teachers adapt in real time to help students master subjects and build language skills."
+    },
+    "quisqueya-ai": {
+      "title": "Quisqueya AI",
+      "problem": "While global AI assistants provide general answers, they often lack the cultural nuance, national context, and local understanding needed to truly serve the individuals, businesses, and institutions of the Dominican Republic.",
+      "solution": "Quisqueya AI is a culturally intelligent national assistant—trained on the language, history, institutions, and spirit of the Dominican Republic to deliver guidance that is locally relevant, context-aware, and rooted in national identity."
+    },
+    "isla-intelligence": {
+      "title": "Isla Intelligence",
+      "problem": "Smart Property Solutions",
+      "solution": "Find your perfect property with AI-powered real estate services. Intelligent matching, virtual tours, and data-driven insights for buyers and sellers."
+    },
+    "culturaconnect": {
+      "title": "CulturaConnect",
+      "problem": "Language learning often lacks authentic immersion, making it difficult for learners to gain real fluency and cultural confidence.",
+      "solution": "CulturaConnect connects learners with local hosts for real-world Spanish immersion through meaningful conversations and genuine human connection."
+    },
+    "terravision-ai": {
+      "title": "TerraVision AI",
+      "problem": "Smart Property Solutions",
+      "solution": "Find your perfect property with AI-powered real estate services. Intelligent matching, virtual tours, and data-driven insights for buyers and sellers."
+    },
+    "titletrust-dr": {
+      "title": "TitleTrust DR",
+      "problem": "AI-Powered Travel Experiences",
+      "solution": "Discover the Dominican Republic like never before with AI-enhanced tourism solutions. Smart recommendations, seamless planning, and unforgettable experiences."
+    },
+    "scholarship": {
+      "title": "Scholarship",
+      "problem": "Smart Property Solutions",
+      "solution": "Find your perfect property with AI-powered real estate services. Intelligent matching, virtual tours, and data-driven insights for buyers and sellers."
+    }
+  }
+}

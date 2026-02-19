@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   Menu,
   X,
@@ -17,20 +17,26 @@ import {
   Earth,
   ShieldCheck,
   GraduationCap,
+  Globe,
 } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { useTranslation } from "react-i18next";
 
 import banner from "../../assets/banner.jpeg";
 import ComingSoon from "@/pages/ComingSoon";
 
 const Header = () => {
+  const { t, i18n } = useTranslation("home");
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSolutionsOpen, setIsSolutionsOpen] = useState(false);
   const [isCompanyOpen, setIsCompanyOpen] = useState(false);
   const location = useLocation();
   const isHomePage = location.pathname === "/";
+  const [isLangOpen, setIsLangOpen] = useState(false);
+
+  const currentLang = i18n.language?.startsWith("es") ? "es" : "en";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -50,59 +56,59 @@ const Header = () => {
 
   const solutionsSections = [
     {
-      title: "DAIA Education",
+      title: t("header.solutions.education"),
       items: [
         {
-          label: "Educa One",
+          label: t("header.solutionsItems.educaOne.label"),
           href: "/educa-one",
-          description: "National Academic Operating System",
-          icon: Monitor
+          description: t("header.solutionsItems.educaOne.description"),
+          icon: Monitor,
         },
         {
-          label: "Scholar One",
+          label: t("header.solutionsItems.scholarOne.label"),
           href: "/scholar-one",
-          description: "AI-Powered Student Performance Platform",
-          icon: Smartphone
+          description: t("header.solutionsItems.scholarOne.description"),
+          icon: Smartphone,
         },
         {
-          label: "Quisqueya AI",
+          label: t("header.solutionsItems.quisqueyaAI.label"),
           href: "/quisqueya-ai",
-          description: "Your National AI Assistant",
-          icon: Brain
+          description: t("header.solutionsItems.quisqueyaAI.description"),
+          icon: Brain,
         },
       ],
     },
     {
-      title: "DAIA Tourism",
+      title: t("header.solutions.tourism"),
       items: [
         {
-          label: "Isla Intelligence",
+          label: t("header.solutionsItems.islaIntelligence.label"),
           href: "/isla-intelligence",
-          description: "Smart Destination Insights",
-          icon: TreePalm
+          description: t("header.solutionsItems.islaIntelligence.description"),
+          icon: TreePalm,
         },
         {
-          label: "CulturaConnect",
+          label: t("header.solutionsItems.culturaConnect.label"),
           href: "/culturaconnect",
-          description: "Language Through Real Life",
-          icon: Earth
+          description: t("header.solutionsItems.culturaConnect.description"),
+          icon: Earth,
         },
       ],
     },
     {
-      title: "DAIA Real Estate",
+      title: t("header.solutions.realEstate"),
       items: [
         {
-          label: "TerraVision AI",
+          label: t("header.solutionsItems.terraVisionAI.label"),
           href: "/terravision-ai",
-          description: "Data-Driven Property Insights",
-          icon: Home
+          description: t("header.solutionsItems.terraVisionAI.description"),
+          icon: Home,
         },
         {
-          label: "TitleTrust DR",
+          label: t("header.solutionsItems.titleTrustDR.label"),
           href: "/titletrust-dr",
-          description: "Secure Digital Ownership Verification",
-          icon: ShieldCheck
+          description: t("header.solutionsItems.titleTrustDR.description"),
+          icon: ShieldCheck,
         },
       ],
     },
@@ -110,28 +116,28 @@ const Header = () => {
 
   const companyLinks = [
     {
-      label: "Partners",
+      label: t("header.company.partners.title"),
       href: "/partners",
       icon: Home,
-      description: "Building the Future Together"
+      description: t("header.company.partners.description"),
     },
     {
-      label: "Scholarship",
+      label: t("header.company.scholarship.title"),
       href: "/scholarship",
       icon: GraduationCap,
-      description: "Empowering Tomorrow’s Leaders"
+      description: t("header.company.scholarship.description"),
     },
     {
-      label: "News",
+      label: t("header.company.news.title"),
       href: "#",
       icon: Newspaper,
-      description: "Updates from DAIA"
+      description: t("header.company.news.description"),
     },
     {
-      label: "Blog",
+      label: t("header.company.blog.title"),
       href: "#",
       icon: NotebookPen,
-      description: "Insights on AI and Innovation"
+      description: t("header.company.scholarship.description"),
     },
   ];
 
@@ -152,7 +158,7 @@ const Header = () => {
       }`}
     >
       <div className="container mx-auto section-padding">
-        <div className="flex items-center justify-between h-16 lg:h-20">
+        <div className="relative flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3">
             <img
@@ -163,13 +169,13 @@ const Header = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-10">
+          <nav className="hidden lg:flex items-center gap-10 absolute left-1/2 -translate-x-1/2">
             {/* Courses Link - First */}
             <Link
               to="/courses"
               className="text-sm font-medium text-foreground hover:text-primary transition-colors"
             >
-              Courses
+              {t("header.nav.courses")}
             </Link>
 
             {/* Solutions Dropdown - Second */}
@@ -179,7 +185,7 @@ const Header = () => {
               onMouseLeave={() => setIsSolutionsOpen(false)}
             >
               <button className="flex items-center gap-1 text-sm font-medium text-foreground hover:text-primary transition-colors">
-                Solutions
+                {t("header.nav.solutions")}
                 <ChevronDown
                   className={`w-4 h-4 transition-transform ${isSolutionsOpen ? "rotate-180" : ""}`}
                 />
@@ -202,10 +208,10 @@ const Header = () => {
                         <div className="absolute inset-0 bg-black/30 flex items-end p-4">
                           <div>
                             <p className="text-white font-semibold text-sm">
-                              Explore AI Solutions
+                              {t("header.solutions.exploreTitle")}
                             </p>
                             <p className="text-white/80 text-xs">
-                              Discover how we empower schools and companies
+                              {t("header.solutions.exploreDesc")}
                             </p>
                           </div>
                         </div>
@@ -230,9 +236,9 @@ const Header = () => {
                                 </div>
 
                                 <div>
-                                    <span className="text-sm font-medium text-foreground">
-                                      {item.label}
-                                    </span>
+                                  <span className="text-sm font-medium text-foreground">
+                                    {item.label}
+                                  </span>
                                   <div className="text-xs text-muted-foreground">
                                     {item.description}
                                   </div>
@@ -253,7 +259,7 @@ const Header = () => {
               to="/teams"
               className="text-sm font-medium text-foreground hover:text-primary transition-colors"
             >
-              Team
+              {t("header.nav.team")}
             </Link>
 
             {/* Companies Dropdown - Fourth */}
@@ -263,7 +269,7 @@ const Header = () => {
               onMouseLeave={() => setIsCompanyOpen(false)}
             >
               <button className="flex items-center gap-1 text-sm font-medium text-foreground hover:text-primary transition-colors">
-                Company
+                {t("header.nav.company")}
                 <ChevronDown
                   className={`w-4 h-4 transition-transform ${isCompanyOpen ? "rotate-180" : ""}`}
                 />
@@ -277,16 +283,16 @@ const Header = () => {
                       <Link
                         key={item.label}
                         to={item.href}
-                        onClick={() => setIsSolutionsOpen(false)}
+                        onClick={() => setIsCompanyOpen(false)}
                         className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-muted transition-colors group"
                       >
                         <div className="w-10 h-10 shrink-0 rounded-lg bg-blue-500/10 flex items-center justify-center group-hover:bg-blue-200 transition-colors">
                           <item.icon className="w-5 h-5 text-blue-950" />
                         </div>
                         <div>
-                            <span className="text-sm font-medium text-foreground">
-                              {item.label}
-                            </span>
+                          <span className="text-sm font-medium text-foreground">
+                            {item.label}
+                          </span>
                           <div className="text-xs text-muted-foreground">
                             {item.description}
                           </div>
@@ -302,21 +308,68 @@ const Header = () => {
               to="/contact"
               className="text-sm font-medium text-foreground hover:text-primary transition-colors"
             >
-              Contact
+              {t("header.nav.contact")}
             </Link>
           </nav>
 
           {/* Desktop CTA */}
           <div className="hidden lg:flex items-center gap-6">
+            {/* Language Dropdown */}
+            <div
+              className="relative border rounded-full px-2 py-2"
+              onMouseEnter={() => setIsLangOpen(true)}
+              onMouseLeave={() => setIsLangOpen(false)}
+            >
+              <button className="flex items-center gap-1 text-sm font-medium text-foreground hover:text-primary transition-colors">
+                {currentLang === "en" ? "🇺🇸" : "🇩🇴"}
+                <ChevronDown
+                  className={`w-4 h-4 transition-transform ${isLangOpen ? "rotate-180" : ""}`}
+                />
+              </button>
+
+              {/* Dropdown Menu */}
+              {isLangOpen && (
+                <div className="absolute top-full -right-20 pt-2 w-40">
+                  <div className="bg-background/95 backdrop-blur-xl border border-border rounded-xl shadow-xl p-2">
+                    <button
+                      onClick={() => {
+                        i18n.changeLanguage("en");
+                        setIsLangOpen(false);
+                      }}
+                      className="flex items-center gap-3 w-full px-4 py-3 hover:bg-muted transition-colors"
+                    >
+                      <span className="text-lg">🇺🇸</span>
+                      <span className="text-sm font-medium">English</span>
+                    </button>
+
+                    <button
+                      onClick={() => {
+                        i18n.changeLanguage("es");
+                        setIsLangOpen(false);
+                      }}
+                      className="flex items-center gap-3 w-full px-4 py-3 hover:bg-muted transition-colors"
+                    >
+                      <span className="text-lg">🇩🇴</span>
+                      <span className="text-sm font-medium">Español</span>
+                    </button>
+                  </div>
+                </div>
+              )}
+              {/* {isLangOpen && (
+                <div className="absolute right-0 mt-2 w-40 bg-background border border-border rounded-xl shadow-lg overflow-hidden z-50">
+
+                </div>
+              )} */}
+            </div>
             <a
               href="#"
               className="text-sm font-medium text-foreground hover:text-primary transition-colors"
             >
-              Login
+              {t("header.nav.login")}
             </a>
             <Button className="bg-foreground text-background hover:bg-foreground/90 rounded-full px-6 gap-2">
               <Crown className="w-4 h-4" />
-              Sign Up
+              {t("header.nav.signup")}
             </Button>
           </div>
 
@@ -334,13 +387,44 @@ const Header = () => {
         {isMobileMenuOpen && (
           <div className="lg:hidden fixed inset-0 top-16 bg-background/95 backdrop-blur-xl border-b border-border shadow-lg z-40">
             <nav className="h-[calc(100vh-4rem)] overflow-y-auto p-4 flex flex-col gap-2">
+              {/* Mobile Language Selector */}
+              <div className="mb-4">
+                <div className="text-xs font-semibold text-muted-foreground uppercase mb-2">
+                  {t("header.nav.language")}
+                </div>
+
+                <div className="flex gap-2">
+                  <button
+                    onClick={() => i18n.changeLanguage("en")}
+                    className={`flex-1 py-2 rounded-lg text-sm font-medium ${
+                      currentLang === "en"
+                        ? "bg-foreground text-background"
+                        : "bg-muted text-foreground"
+                    }`}
+                  >
+                    🇺🇸 English
+                  </button>
+
+                  <button
+                    onClick={() => i18n.changeLanguage("es")}
+                    className={`flex-1 py-2 rounded-lg text-sm font-medium ${
+                      currentLang === "es"
+                        ? "bg-foreground text-background"
+                        : "bg-muted text-foreground"
+                    }`}
+                  >
+                    🇩🇴 Español
+                  </button>
+                </div>
+              </div>
+
               {/* Courses Link - First */}
               <Link
                 to="/courses"
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="py-3 px-4 text-foreground hover:bg-muted rounded-lg transition-colors font-medium"
               >
-                Courses
+                {t("header.nav.courses")}
               </Link>
 
               <hr className="my-2 border-border" />
@@ -348,7 +432,7 @@ const Header = () => {
               {/* Solutions Section - Second */}
               <div className="py-2">
                 <div className="px-4 text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">
-                  Solutions
+                  {t("header.nav.solutions")}
                 </div>
                 {solutionsSections.map((section) => (
                   <div key={section.title} className="mb-4">
@@ -388,7 +472,7 @@ const Header = () => {
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="py-3 px-4 text-foreground hover:bg-muted rounded-lg transition-colors"
               >
-                Team
+                {t("header.nav.team")}
               </Link>
 
               <hr className="my-2 border-border" />
@@ -396,7 +480,7 @@ const Header = () => {
               {/* Companies Dropdown - Fourth */}
               <div className="py-2">
                 <div className="px-4 text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">
-                  Company
+                  {t("header.nav.company")}
                 </div>
                 {companyLinks.map((item) => (
                   <Link
@@ -424,7 +508,7 @@ const Header = () => {
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="py-3 px-4 text-foreground hover:bg-muted rounded-lg transition-colors"
               >
-                Contact
+                {t("header.nav.contact")}
               </Link>
 
               <hr className="my-2 border-border" />
@@ -432,12 +516,12 @@ const Header = () => {
                 href="#"
                 className="py-3 px-4 text-muted-foreground hover:bg-muted rounded-lg transition-colors"
               >
-                Login
+                {t("header.nav.login")}
               </a>
 
               <Button className="bg-foreground text-background hover:bg-foreground/90 mt-2 gap-2 p-6">
                 <Crown className="w-4 h-4" />
-                Sign Up
+                {t("header.nav.signup")}
               </Button>
             </nav>
           </div>

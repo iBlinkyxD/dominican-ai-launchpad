@@ -1,8 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useTransition } from "react";
 import { Sparkles, Video, GraduationCap, BadgeCheck, LayoutGrid, Crown } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useTranslation } from "react-i18next";
 
 const Hero = () => {
+  const { t } = useTranslation("home");
   const [scrollY, setScrollY] = useState(0);
 
   useEffect(() => {
@@ -43,7 +45,7 @@ const Hero = () => {
           {/* Trust Badge */}
           <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/30 backdrop-blur-md border border-white/20 shadow-[0_0_15px_rgba(255,255,255,0.15)] text-foreground text-sm font-medium mb-10 animate-fade-in hover:bg-white/20 transition-all duration-300">
             <Sparkles className="w-4 h-4 text-yellow-300 fill-yellow-300/20" />
-            <span className="drop-shadow-sm">Trusted by 3,000+ Happy Learners</span>
+            <span className="drop-shadow-sm">{t("hero.badge")}</span>
           </div>
 
           {/* Headline */}
@@ -51,7 +53,7 @@ const Hero = () => {
             className="font-display text-4xl sm:text-4xl md:text-5xl lg:text-6xl  text-foreground mb-8 leading-[1.1] tracking-tight animate-slide-up"
             style={{ animationDelay: "0.1s" }}
           >
-            Laying the digital foundation for a smarter, stronger Dominican Republic.
+            {t("hero.title")}
           </h1>
 
           {/* Subheadline */}
@@ -59,8 +61,7 @@ const Hero = () => {
             className="text-lg md:text-xl text-foreground max-w-3xl mx-auto mb-10 animate-slide-up"
             style={{ animationDelay: "0.2s" }}
           >
-            Our mission is to foster responsible innovation, education, and collaboration in the field of artificial
-            intelligence across the Dominican Republic.
+            {t("hero.subtitle")}
           </p>
 
           {/* CTA Buttons */}
@@ -73,13 +74,13 @@ const Hero = () => {
               variant="outline"
               className="rounded-full px-8 py-6 text-base font-semibold border-foreground/20 bg-card hover:bg-muted hover:text-black"
             >
-              View All Courses
+              {t("hero.ctaPrimary")}
             </Button>
             <Button
               size="lg"
               className="rounded-full px-8 py-6 text-base font-semibold bg-foreground text-background hover:bg-foreground/90"
             >
-              Start Learning Now
+              {t("hero.ctaSecondary")}
             </Button>
           </div>
         </div>

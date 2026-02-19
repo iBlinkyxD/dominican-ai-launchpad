@@ -7,8 +7,10 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
+import { useTranslation } from "react-i18next";
 
 const Contact = () => {
+  const { t } = useTranslation("contact");
   const { toast } = useToast();
   const [formData, setFormData] = useState({
     name: "",
@@ -26,8 +28,8 @@ const Contact = () => {
     await new Promise((resolve) => setTimeout(resolve, 1000));
 
     toast({
-      title: "Message sent!",
-      description: "We'll get back to you as soon as possible.",
+      title: t(`contact.toast.successTitle`),
+      description: t(`contact.toast.successDescription`),
     });
 
     setFormData({ name: "", email: "", subject: "", message: "" });
@@ -46,19 +48,19 @@ const Contact = () => {
   const contactInfo = [
     {
       icon: Mail,
-      title: "Email",
+      title: t(`contact.contactInfo.email`),
       value: "hello@daia.do",
       href: "mailto:hello@daia.do",
     },
     {
       icon: Phone,
-      title: "Phone",
+      title: t(`contact.contactInfo.phone`),
       value: "+1 (849) 472-5777",
       href: "tel:+18095550123",
     },
     {
       icon: MapPin,
-      title: "Location",
+      title: t(`contact.contactInfo.location`),
       value: "Santo Domingo, Dominican Republic",
       href: "#",
     },
@@ -81,17 +83,16 @@ const Contact = () => {
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border bg-card shadow-sm mb-6">
                 <Mail className="w-4 h-4 text-primary" />
                 <span className="text-sm font-medium text-foreground">
-                  Get in Touch
+                  {t(`contact.badge`)}
                 </span>
               </div>
 
               <h1 className="font-display text-4xl md:text-5xl lg:text-6xl text-foreground mb-6">
-                Contact Us
+                {t(`contact.title`)}
               </h1>
 
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                Have questions about AI in the Dominican Republic? Want to
-                collaborate or join our mission? We'd love to hear from you.
+                {t(`contact.description`)}
               </p>
             </ScrollAnimation>
           </div>
@@ -131,14 +132,14 @@ const Contact = () => {
                         htmlFor="name"
                         className="block text-sm font-medium text-foreground mb-2"
                       >
-                        Name
+                        {t(`contact.form.name`)}
                       </label>
                       <Input
                         id="name"
                         name="name"
                         value={formData.name}
                         onChange={handleChange}
-                        placeholder="Your name"
+                        placeholder={t(`contact.form.namePlaceholder`)}
                         required
                         className="bg-background/50 border-border/50 focus:border-primary"
                       />
@@ -148,7 +149,7 @@ const Contact = () => {
                         htmlFor="email"
                         className="block text-sm font-medium text-foreground mb-2"
                       >
-                        Email
+                        {t(`contact.form.email`)}
                       </label>
                       <Input
                         id="email"
@@ -156,7 +157,7 @@ const Contact = () => {
                         type="email"
                         value={formData.email}
                         onChange={handleChange}
-                        placeholder="your@email.com"
+                        placeholder={t(`contact.form.emailPlaceholder`)}
                         required
                         className="bg-background/50 border-border/50 focus:border-primary"
                       />
@@ -168,14 +169,14 @@ const Contact = () => {
                       htmlFor="subject"
                       className="block text-sm font-medium text-foreground mb-2"
                     >
-                      Subject
+                      {t(`contact.form.subject`)}
                     </label>
                     <Input
                       id="subject"
                       name="subject"
                       value={formData.subject}
                       onChange={handleChange}
-                      placeholder="What's this about?"
+                      placeholder={t(`contact.form.subjectPlaceholder`)}
                       required
                       className="bg-background/50 border-border/50 focus:border-primary"
                     />
@@ -186,14 +187,14 @@ const Contact = () => {
                       htmlFor="message"
                       className="block text-sm font-medium text-foreground mb-2"
                     >
-                      Message
+                      {t(`contact.form.message`)}
                     </label>
                     <Textarea
                       id="message"
                       name="message"
                       value={formData.message}
                       onChange={handleChange}
-                      placeholder="Tell us more..."
+                      placeholder={t(`contact.form.messagePlaceholder`)}
                       rows={5}
                       required
                       className="bg-background/50 border-border/50 focus:border-primary resize-none"
@@ -205,7 +206,7 @@ const Contact = () => {
                     disabled={isSubmitting}
                     className="w-full gap-2"
                   >
-                    {isSubmitting ? "Sending..." : "Send Message"}
+                    {isSubmitting ? t(`contact.form.sending`) : t(`contact.form.send`)}
                     <Send className="w-4 h-4" />
                   </Button>
                 </form>
@@ -268,7 +269,7 @@ const Contact = () => {
                     <div className="text-center">
                       <MapPin className="w-8 h-8 text-primary mx-auto mb-2" />
                       <p className="text-sm text-muted-foreground">
-                        Santo Domingo, DR
+                        {t(`contact.contactInfo.mapLabel`)}
                       </p>
                     </div>
                   </div>
