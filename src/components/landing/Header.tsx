@@ -18,6 +18,8 @@ import {
   ShieldCheck,
   GraduationCap,
   Globe,
+  Users,
+  Rocket,
 } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -118,18 +120,18 @@ const Header = () => {
     {
       label: t("header.company.partners.title"),
       href: "/partners",
-      icon: Home,
-      description: t("header.company.partners.description"),
+      icon: Users,
+      description: t("header.company.partners.description"),  
     },
     {
-      label: t("header.company.scholarship.title"),
-      href: "/scholarship",
-      icon: GraduationCap,
-      description: t("header.company.scholarship.description"),
+      label: t("header.company.initiative.title"),
+      href: "/initiatives",
+      icon: Rocket,
+      description: t("header.company.initiative.description"),
     },
     {
       label: t("header.company.news.title"),
-      href: "#",
+      href: "/news",
       icon: Newspaper,
       description: t("header.company.news.description"),
     },
@@ -137,14 +139,8 @@ const Header = () => {
       label: t("header.company.blog.title"),
       href: "#",
       icon: NotebookPen,
-      description: t("header.company.scholarship.description"),
+      description: t("header.company.blog.description"),
     },
-  ];
-
-  const navLinks = [
-    { label: "Courses", href: "/courses", isAnchor: false, icon: BookOpen },
-    { label: "Teams", href: "/teams", isAnchor: false },
-    { label: "Partner", href: "/contact", isAnchor: false, icon: Handshake },
   ];
 
   return (

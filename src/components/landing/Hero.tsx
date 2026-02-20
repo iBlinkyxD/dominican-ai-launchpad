@@ -1,5 +1,12 @@
 import { useState, useEffect, useTransition } from "react";
-import { Sparkles, Video, GraduationCap, BadgeCheck, LayoutGrid, Crown } from "lucide-react";
+import {
+  Sparkles,
+  Video,
+  GraduationCap,
+  BadgeCheck,
+  LayoutGrid,
+  Crown,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTranslation } from "react-i18next";
 
@@ -24,7 +31,10 @@ const Hero = () => {
   return (
     <section
       className="relative min-h-screen flex flex-col overflow-hidden"
-      style={{ background: "radial-gradient(circle at 50% 50%, #1A4F8B, transparent 70%)" }}
+      style={{
+        background:
+          "radial-gradient(circle at 50% 50%, #1A4F8B, transparent 70%)",
+      }}
     >
       {/* Gradient Background */}
       <div className="absolute inset-0 z-0">

@@ -127,15 +127,15 @@
         "description": "Smart Destination Insights"
       },
       "culturaConnect": {
-        "label": "CulturaConnect",
+        "label": "Cultura Connect",
         "description": "Language Through Real Life"
       },
       "terraVisionAI": {
-        "label": "TerraVision AI",
+        "label": "Terra Vision AI",
         "description": "Data-Driven Property Insights"
       },
       "titleTrustDR": {
-        "label": "TitleTrust DR",
+        "label": "Title Trust DR",
         "description": "Secure Digital Ownership Verification"
       }
     },
@@ -144,8 +144,8 @@
         "title": "Partners",
         "description": "Building the Future Together"
       },
-      "scholarship": {
-        "title": "Scholarship",
+      "initiative": {
+        "title": "Iniatiatives",
         "description": "Empowering Tomorrow’s Leaders"
       },
       "news": {

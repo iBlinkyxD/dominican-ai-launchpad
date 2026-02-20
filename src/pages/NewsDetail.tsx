@@ -8,9 +8,9 @@ import { newsPost } from "@/data/news/post";
 
 const NewsDetail = () => {
   const { newsId } = useParams();
-  const news = newsPost[newsId as keyof typeof newsPost];
+  const news = newsPost[newsId as string];
 
-  if (!newsId) {
+  if (!news) {
     return (
       <div className="min-h-screen bg-background">
         <Header />
@@ -30,6 +30,8 @@ const NewsDetail = () => {
     );
   }
 
+  const { Content } = news;
+
   return (
     <div className="min-h-screen bg-background">
       <Header />
@@ -48,7 +50,7 @@ const NewsDetail = () => {
               </Link>
               <ChevronRight className="w-4 h-4" />
               <span className="text-foreground font-medium truncate">
-                {news.title}
+                {news.shortTitle}
               </span>
             </nav>
           </div>
@@ -57,83 +59,26 @@ const NewsDetail = () => {
 
       {/* Content Section */}
       <section aria-labelledby="news-content" className="bg-muted/30">
-        <div className="container mx-auto section-padding">
+        <div className="container mx-auto section-padding pt-16">
           <ScrollAnimation animation="fade-up">
             {/* TITLE (Full Width) */}
-            <h1 className="text-4xl lg:text-5xl font-medium text-foreground leading-tight mb-6">
+            <h1 className="lg:text-[42px] font-medium text-foreground leading-tight mb-6 w-3/4 text-center mx-auto">
               {news.title}
             </h1>
 
-            {/* CONTENT GRID */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 items-start">
-              {/* LEFT COLUMN — DATE */}
-              <div className="lg:col-span-1 mb-6">
-                <p className="text-muted-foreground text-sm tracking-wide">
-                  {new Date(
-                    news.publishedDate + "T00:00:00",
-                  ).toLocaleDateString("en-US", {
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric",
-                  })}
-                </p>
+            {/* RIGHT COLUMN — IMAGE + TEXT */}
+            <div className="w-full space-y-8 py-16 mx-auto">
+              {/* Image */}
+              <div className="w-9/12 mx-auto relative aspect-video rounded-2xl overflow-hidden">
+                <img
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  src={news.thumbnail}
+                />
               </div>
 
-              {/* RIGHT COLUMN — IMAGE + TEXT */}
-              <div className="lg:col-span-2 space-y-8">
-                {/* Image */}
-                <div className="w-full aspect-video rounded-2xl overflow-hidden">
-                  <iframe
-                    className="w-full h-full"
-                    src={news.thumbnail}
-                    allow="autoplay; encrypted-media"
-                    allowFullScreen
-                  />
-                </div>
-
-                {/* Body Text */}
-                <div className="space-y-6">
-                  {news.content
-                    .filter((_, index) => index !== 0)
-                    .map((block, index) => {
-                      switch (block.type) {
-                        case "heading":
-                          return (
-                            <h2
-                              key={index}
-                              className="text-3xl font-semibold text-foreground"
-                            >
-                              {block.text}
-                            </h2>
-                          );
-
-                        case "paragraph":
-                          return (
-                            <p
-                              key={index}
-                              className="text-lg text-muted-foreground leading-relaxed text-justify"
-                            >
-                              {block.text}
-                            </p>
-                          );
-
-                        case "list":
-                          return (
-                            <ul
-                              key={index}
-                              className="list-disc list-inside space-y-2 text-lg text-muted-foreground"
-                            >
-                              {block.items.map((item, i) => (
-                                <li key={i}>{item}</li>
-                              ))}
-                            </ul>
-                          );
-
-                        default:
-                          return null;
-                      }
-                    })}
-                </div>
+              {/* Body Text */}
+              <div className="text-foreground space-y-6 w-4/6 py-16 text-justify mx-auto [&_blockquote]:bg-muted [&_blockquote]:border-l-4 [&_blockquote]:border-primary [&_blockquote]:px-6 [&_blockquote]:py-4 [&_blockquote]:italic [&_blockquote]:rounded-lg">
+                <Content />
               </div>
             </div>
           </ScrollAnimation>

@@ -22,7 +22,7 @@ export const teamMembers: TeamMember[] = [
   {
     id: 2,
     name: "Luis Dorismon",
-    roleKey: "vicePresident",
+    roleKey: "chiefLearningOfficer",
     image: luisDorismon,
   },
   {

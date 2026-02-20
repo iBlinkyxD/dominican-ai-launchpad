@@ -27,7 +27,7 @@ export const partnerDetail: PartnerDetail[] = [
     slug: "apollo-e",
     name: "Apollo-E Inc.",
     roleKey: "company",
-    location: "Miami, Florida",
+    location: "Miami, Florida USA",
     image: apolloE,
     thumbnail: apolloE,
     icon: Building2,
@@ -42,3 +42,4 @@ export const partnerDetail: PartnerDetail[] = [
     icon: GraduationCap,
   },
 ];
+

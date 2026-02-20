@@ -32,7 +32,7 @@ const News = () => {
               </h1>
 
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                Catch up on our latest news!
+                Official updates, announcements, and milestones from DAIA.
               </p>
             </ScrollAnimation>
 
@@ -66,7 +66,7 @@ const News = () => {
                             {news.category}
                           </h2>
 
-                          <h1 className="md:text-2xl text-xl font-bold text-black leading-snug pl-4">
+                          <h1 className="md:text-2xl text-xl font-medium text-black leading-snug pl-4">
                             {news.title}
                           </h1>
                         </div>
@@ -75,7 +75,10 @@ const News = () => {
                         <div className="order-4 md:order-3 md:col-span-3 md:border-l md:border-gray-400 md:border-dashed pl-4">
                           <div className="bg-gray-100 rounded-2xl h-80 md:h-40 flex items-center justify-center transition-all duration-300 group-hover:shadow-md ">
                             <span className="text-gray-700 font-medium">
-                              {news.partner}
+                              <img
+                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 rounded-xl"
+                                src={news.thumbnail}
+                              />
                             </span>
                           </div>
                         </div>
