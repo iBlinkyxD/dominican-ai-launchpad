@@ -165,7 +165,7 @@ const Header = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-10 absolute left-1/2 -translate-x-1/2">
+          <nav className="hidden xl:flex items-center gap-10 absolute left-1/2 -translate-x-1/2">
             {/* Courses Link - First */}
             <Link
               to="/courses"
@@ -309,7 +309,7 @@ const Header = () => {
           </nav>
 
           {/* Desktop CTA */}
-          <div className="hidden lg:flex items-center gap-6">
+          <div className="hidden xl:flex items-center gap-6">
             {/* Language Dropdown */}
             <div
               className="relative border rounded-full px-2 py-2"
@@ -372,7 +372,7 @@ const Header = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden p-2 text-foreground"
+            className="xl:hidden p-2 text-foreground"
             aria-label="Toggle menu"
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -381,7 +381,7 @@ const Header = () => {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden fixed inset-0 top-16 bg-background/95 backdrop-blur-xl border-b border-border shadow-lg z-40">
+          <div className="xl:hidden fixed inset-0 top-16 bg-background/95 backdrop-blur-xl border-b border-border shadow-lg z-40">
             <nav className="h-[calc(100vh-4rem)] overflow-y-auto p-4 flex flex-col gap-2">
               {/* Mobile Language Selector */}
               <div className="mb-4">

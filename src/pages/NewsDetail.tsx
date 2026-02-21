@@ -43,7 +43,7 @@ const news = newsId ? posts[newsId] : undefined;
       {/* Breadcrumb */}
       <section aria-labelledby="news-breadcrumb">
         <div className="pt-24 pb-4 bg-muted/30">
-          <div className="container mx-auto section-padding">
+          <div className="container mx-auto relative z-10">
             <nav className="flex items-center gap-2 text-sm text-muted-foreground">
               <Link to="/" className="hover:text-primary transition-colors">
                 {t(`newsDetail.home`)}
@@ -63,17 +63,17 @@ const news = newsId ? posts[newsId] : undefined;
 
       {/* Content Section */}
       <section aria-labelledby="news-content" className="bg-muted/30">
-        <div className="container mx-auto section-padding pt-16">
+        <div className="container mx-auto relative z-10 pt-16">
           <ScrollAnimation animation="fade-up">
             {/* TITLE (Full Width) */}
-            <h1 className="text-4xl lg:text-[42px] font-medium text-foreground leading-tight mb-6 w-3/4 text-center mx-auto">
+            <h1 className="text-3xl lg:text-[42px] font-medium text-foreground leading-tight mb-6 lg:w-3/4 text-center mx-auto">
               {news.title}
             </h1>
 
             {/* RIGHT COLUMN — IMAGE + TEXT */}
-            <div className="w-full space-y-8 py-16 mx-auto">
+            <div className="space-y-8 py-16 mx-auto">
               {/* Image */}
-              <div className="w-9/12 mx-auto relative aspect-video rounded-2xl overflow-hidden">
+              <div className="lg:w-9/12 mx-auto relative aspect-video rounded-2xl overflow-hidden">
                 <img
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   src={news.thumbnail}
@@ -82,7 +82,7 @@ const news = newsId ? posts[newsId] : undefined;
               </div>
 
               {/* Body Text */}
-              <div className="text-foreground space-y-6 w-4/6 py-16 text-justify mx-auto [&_strong]:font-semibold [&_blockquote]:bg-muted [&_blockquote]:border-l-4 [&_blockquote]:border-primary [&_blockquote]:px-6 [&_blockquote]:py-4 [&_blockquote]:italic [&_blockquote]:rounded-lg">
+              <div className="text-foreground space-y-6 lg:w-3/4 py-16 text-justify mx-auto [&_strong]:font-semibold [&_blockquote]:bg-muted [&_blockquote]:border-l-4 [&_blockquote]:border-primary [&_blockquote]:px-6 [&_blockquote]:py-4 [&_blockquote]:italic [&_blockquote]:rounded-lg">
                 <Content />
               </div>
             </div>

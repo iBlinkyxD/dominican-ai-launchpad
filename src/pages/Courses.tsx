@@ -17,7 +17,7 @@ const Courses = () => {
 
       {/* Hero Section */}
       <section className="pt-32 pb-16 bg-gradient-to-b from-primary/5 to-background">
-        <div className="container mx-auto section-padding">
+        <div className="container mx-auto">
           <ScrollAnimation animation="fade-up" className="text-center">
             <div className="text-center max-w-3xl mx-auto">
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
@@ -42,7 +42,7 @@ const Courses = () => {
 
       {/* Courses Grid */}
       <section className="pb-16">
-        <div className="container mx-auto section-padding">
+        <div className="container mx-auto">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {coursesList.map((course, index) => (
               <ScrollAnimation
@@ -98,7 +98,9 @@ const Courses = () => {
                       <div className="flex items-center gap-4 text-sm text-muted-foreground mb-4">
                         <div className="flex items-center gap-1">
                           <Clock className="w-4 h-4" />
-                          <span>{t(`coursesDetails.${course.i18nKey}.duration`)}</span>
+                          <span>
+                            {t(`coursesDetails.${course.i18nKey}.duration`)}
+                          </span>
                         </div>
                         <div className="flex items-center gap-1">
                           <BookOpen className="w-4 h-4" />
@@ -146,9 +148,9 @@ const Courses = () => {
 
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-r from-primary/10 via-primary/5 to-primary/10">
-        <div className="container mx-auto section-padding text-center">
+        <div className="container mx-auto text-center">
           <ScrollAnimation animation="fade-up">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+            <h2 className="text-3xl md:text-4xl font-semibold text-foreground mb-4">
               {t("courses.ctaTitle")}
             </h2>
             <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">

@@ -11,12 +11,13 @@ import { partners } from "@/data/partner/list";
 import { useTranslation } from "react-i18next";
 
 const Partner = () => {
-  const { t } = useTranslation("partner")
-  const [selected, setSelected] = useState("All");
+  const { t } = useTranslation("partner");
+  const [selected, setSelected] = useState("all");
+  const roles = ["all", "school", "university", "company"];
   const [query, setQuery] = useState("");
 
   const filteredPartners = partners.filter((partner) => {
-    const matchesRole = selected === "All" || partner.role === selected;
+    const matchesRole = selected === "all" || partner.role === selected;
 
     const matchesSearch = partner.name
       .toLowerCase()
@@ -30,10 +31,9 @@ const Partner = () => {
       <Header />
 
       <main className="pt-24 pb-16">
-
         {/* Hero Section */}
         <section aria-labelledby="partner-hero">
-          <div className="container mx-auto section-padding relative z-10">
+          <div className="container mx-auto relative z-10">
             <ScrollAnimation animation="fade-up" className="text-center mb-8">
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border bg-card shadow-sm mb-6">
                 <Users className="w-4 h-4 text-primary" />
@@ -57,10 +57,9 @@ const Partner = () => {
         <section aria-labelledby="partner-serach">
           <ScrollAnimation animation="fade-up" className="text-center mb-16">
             <div className="max-w-6xl mx-auto flex flex-col items-center gap-6">
-              
               {/* Search */}
-              <div className="relative w-full max-w-md">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground h-4 w-4" />
+              <div className="relative w-full max-w-md px-4">
+                <Search className="absolute left-6 top-1/2 -translate-y-1/2 text-muted-foreground h-4 w-4" />
                 <Input
                   type="text"
                   placeholder={t(`partner.searchPlaceholder`)}
@@ -72,53 +71,20 @@ const Partner = () => {
 
               {/* Filter Buttons */}
               <div className="flex flex-wrap justify-center gap-4">
-                <Button
-                  size="sm"
-                  onClick={() => setSelected("All")}
-                  className={`rounded-full px-8 ${
-                    selected === "All"
-                      ? "bg-foreground text-background"
-                      : "bg-background text-foreground hover:bg-background/90"
-                  }`}
-                >
-                  {t(`partner.filters.all`)}
-                </Button>
-
-                <Button
-                  size="sm"
-                  onClick={() => setSelected("School")}
-                  className={`rounded-full px-8 ${
-                    selected === "School"
-                      ? "bg-foreground text-background"
-                      : "bg-background text-foreground hover:bg-background/90"
-                  }`}
-                >
-                  {t(`partner.filters.school`)}
-                </Button>
-
-                <Button
-                  size="sm"
-                  onClick={() => setSelected("University")}
-                  className={`rounded-full px-8 ${
-                    selected === "University"
-                      ? "bg-foreground text-background"
-                      : "bg-background text-foreground hover:bg-background/90"
-                  }`}
-                >
-                  {t(`partner.filters.university`)}
-                </Button>
-
-                <Button
-                  size="sm"
-                  onClick={() => setSelected("Company")}
-                  className={`rounded-full px-8 ${
-                    selected === "Company"
-                      ? "bg-foreground text-background"
-                      : "bg-background text-foreground hover:bg-background/90"
-                  }`}
-                >
-                  {t(`partner.filters.company`)}
-                </Button>
+                {roles.map((role) => (
+                  <Button
+                    key={role}
+                    size="sm"
+                    onClick={() => setSelected(role)}
+                    className={`rounded-full px-8 ${
+                      selected === role
+                        ? "bg-foreground text-background"
+                        : "bg-background text-foreground"
+                    }`}
+                  >
+                    {t(`partner.filters.${role}`)}
+                  </Button>
+                ))}
               </div>
             </div>
           </ScrollAnimation>
@@ -186,7 +152,6 @@ const Partner = () => {
             </Link>
           </ScrollAnimation>
         </section>
-
       </main>
 
       <Footer />

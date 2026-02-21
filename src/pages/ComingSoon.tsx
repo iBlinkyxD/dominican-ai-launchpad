@@ -39,7 +39,7 @@ const ComingSoon = () => {
             <div className="absolute bottom-1/4 right-1/4 w-72 h-72 bg-accent/10 rounded-full blur-3xl animate-pulse delay-1000" />
           </div>
 
-          <div className="container mx-auto section-padding relative z-10">
+          <div className="container mx-auto relative z-10">
             <ScrollAnimation animation="fade-up" className="text-center mb-16">
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
                 <Sparkles className="w-4 h-4 text-primary" />
@@ -70,42 +70,44 @@ const ComingSoon = () => {
             </ScrollAnimation>
           </div>
 
-          {/* Notify Form */}
-          <ScrollAnimation
-            animation="fade-up"
-            delay={200}
-            className="text-center mt-16"
-          >
-            <div className="max-w-md mx-auto mb-12 text-center">
-              <p className="text-sm text-muted-foreground mb-4">
-                {t(`comingSoon.notifyText`)}
-              </p>
-              <div className="flex gap-3">
-                <Input
-                  type="email"
-                  placeholder={t(`comingSoon.emailPlaceholder`)}
-                  className="rounded-full bg-muted/50 border-border"
-                />
-                <Button className="rounded-full bg-primary hover:bg-primary/90 px-6 gap-2">
-                  <Bell className="w-4 h-4" />
-                  {t(`comingSoon.notifyButton`)}
-                </Button>
-              </div>
-            </div>
-          </ScrollAnimation>
-
-          <ScrollAnimation
-            animation="fade-up"
-            delay={400}
-            className="text-center mt-16"
-          >
-            <Link
-              to="/"
-              className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
+          <div className="container mx-auto relative z-10">
+            {/* Notify Form */}
+            <ScrollAnimation
+              animation="fade-up"
+              delay={200}
+              className="text-center mt-16"
             >
-              {t(`comingSoon.backHome`)}
-            </Link>
-          </ScrollAnimation>
+              <div className="max-w-md mx-auto mb-12 text-center">
+                <p className="text-sm text-muted-foreground mb-4">
+                  {t(`comingSoon.notifyText`)}
+                </p>
+                <div className="flex gap-3">
+                  <Input
+                    type="email"
+                    placeholder={t(`comingSoon.emailPlaceholder`)}
+                    className="rounded-full bg-muted/50 border-border"
+                  />
+                  <Button className="rounded-full bg-primary hover:bg-primary/90 px-6 gap-2">
+                    <Bell className="w-4 h-4" />
+                    {t(`comingSoon.notifyButton`)}
+                  </Button>
+                </div>
+              </div>
+            </ScrollAnimation>
+
+            <ScrollAnimation
+              animation="fade-up"
+              delay={400}
+              className="text-center mt-16"
+            >
+              <Link
+                to="/"
+                className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
+              >
+                {t(`comingSoon.backHome`)}
+              </Link>
+            </ScrollAnimation>
+          </div>
         </section>
       </main>
 
