@@ -82,7 +82,16 @@ const News = () => {
 
                       {/* IMAGE */}
                       <div className="order-4 lg:order-3 lg:col-span-3 lg:border-l lg:border-gray-400 lg:border-dashed px-4">
-                        <div className="bg-gray-100 rounded-2xl flex items-center justify-center transition-all duration-300 group-hover:shadow-md ">
+                        <div
+                          className="bg-gray-100 rounded-2xl flex items-center justify-center transition-all duration-300 group-hover:shadow-md"
+                          style={{
+                            boxShadow:
+                              "0 20px 60px -15px hsl(var(--foreground) / 0.5), 0 8px 20px -8px hsl(var(--foreground) / 0.05), inset 0 1px 0 hsl(0 0% 100% / 0.3)",
+                            background:
+                              "linear-gradient(145deg, hsl(var(--card)) 0%, hsl(var(--card) / 0.85) 100%)",
+                            transformStyle: "preserve-3d",
+                          }}
+                        >
                           <img
                             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 rounded-xl"
                             src={news.thumbnail}

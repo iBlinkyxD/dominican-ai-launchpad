@@ -61,7 +61,7 @@ const Contact = () => {
     {
       icon: MapPin,
       title: t(`contact.contactInfo.location`),
-      value: "Santo Domingo, Dominican Republic",
+      value: "C. Emma Balaguer 5, Los Girasoles",
       href: "#",
     },
   ];
@@ -78,7 +78,7 @@ const Contact = () => {
         >
           {/* <div className="absolute inset-0 bg-gradient-to-br from-pink-50/50 via-background to-blue-50/50" /> */}
 
-          <div className="container mx-auto section-padding relative z-10">
+          <div className="container mx-auto relative z-10">
             <ScrollAnimation animation="fade-up" className="text-center mb-16">
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border bg-card shadow-sm mb-6">
                 <Mail className="w-4 h-4 text-primary" />
@@ -100,7 +100,7 @@ const Contact = () => {
 
         {/* Content Section */}
         <section aria-labelledby="contact-content">
-          <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+          <div className="container grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
             {/* Contact Form */}
             <ScrollAnimation animation="fade-up" delay={100}>
               <div
@@ -206,7 +206,9 @@ const Contact = () => {
                     disabled={isSubmitting}
                     className="w-full gap-2"
                   >
-                    {isSubmitting ? t(`contact.form.sending`) : t(`contact.form.send`)}
+                    {isSubmitting
+                      ? t(`contact.form.sending`)
+                      : t(`contact.form.send`)}
                     <Send className="w-4 h-4" />
                   </Button>
                 </form>
@@ -267,10 +269,17 @@ const Contact = () => {
                 >
                   <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-primary/10 flex items-center justify-center">
                     <div className="text-center">
-                      <MapPin className="w-8 h-8 text-primary mx-auto mb-2" />
+                      <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3783.2204720929626!2d-69.98740015!3d18.5189365!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8eaf8bb3b6814b8b%3A0xca34cc7e55ac8b16!2sEscuela%20Primaria%20Jes%C3%BAs%20Maestro%2C%20C.%20Emma%20Balaguer%205%2C%20Los%20Girasoles!5e0!3m2!1sen!2sdo!4v1771644110292!5m2!1sen!2sdo"
+                        width="600"
+                        height="450"
+                        className="border:0;"
+                        loading="lazy"
+                      />
+                      {/* <MapPin className="w-8 h-8 text-primary mx-auto mb-2" />
                       <p className="text-sm text-muted-foreground">
                         {t(`contact.contactInfo.mapLabel`)}
-                      </p>
+                      </p> */}
                     </div>
                   </div>
                 </div>

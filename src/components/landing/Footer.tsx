@@ -65,7 +65,7 @@ const Footer = () => {
     <footer id="footer" className="relative overflow-hidden">
       {/* Newsletter Section */}
       <div className="bg-gradient-to-r from-pink-50/90 via-background to-purple-50/80 py-16">
-        <div className="container mx-auto section-padding">
+        <div className="container mx-auto">
           <ScrollAnimation animation="fade-up">
             <div className="bg-white/30 backdrop-blur-xl border border-white/20 rounded-3xl p-8 md:p-12 shadow-[0_4px_40px_-12px_rgba(0,0,0,0.08)]">
               <div className="flex flex-col md:flex-row items-center justify-between gap-8">
