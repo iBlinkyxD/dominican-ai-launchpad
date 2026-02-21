@@ -17,10 +17,9 @@ const ComingSoon = () => {
     "/scholar-one": { key: slug },
     "/quisqueya-ai": { key: slug },
     "/isla-intelligence": { key: slug },
-    "/culturaconnect": { key: slug },
-    "/terravision-ai": { key: slug },
-    "/titletrust-dr": { key: slug },
-    "/scholarship": { key: slug },
+    "/cultura-connect": { key: slug },
+    "/terra-vision-ai": { key: slug },
+    "/title-trust-dr": { key: slug },
   };
 
   const currentPage = pageInfo[location.pathname] || {

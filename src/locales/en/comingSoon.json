@@ -29,17 +29,17 @@
       "problem": "Tourism in the Dominican Republic is fragmented and inefficient, with travelers lacking reliable real-time information and local businesses lacking visibility within a unified digital infrastructure.",
       "solution": "Isla Intelligence is an AI-powered tourism intelligence layer that centralizes real-time data, personalizes traveler experiences, and connects visitors directly to verified local businesses across the island."
     },
-    "culturaconnect": {
+    "cultura-connect": {
       "title": "Cultura Connect",
       "problem": "Language learning often lacks authentic immersion, making it difficult for learners to gain real fluency and cultural confidence.",
       "solution": "Cultura Connect connects learners with local hosts for real-world Spanish immersion through meaningful conversations and genuine human connection."
     },
-    "terravision-ai": {
+    "terra-vision-ai": {
       "title": "Terra Vision AI",
       "problem": "Real estate development and land investment in the Dominican Republic lack transparent, data-driven insight, leaving investors, developers, and municipalities operating with incomplete information about land value, zoning risk, infrastructure growth, and future demand.",
       "solution": "Terra Vision AI is a geospatial intelligence platform that uses AI, satellite data, and predictive analytics to map land potential, forecast growth corridors, and provide real-time development insights for smarter, lower-risk real estate and infrastructure decisions."
     },
-    "titletrust-dr": {
+    "title-trust-dr": {
       "title": "Title Trust DR",
       "problem": "Property transactions in the Dominican Republic are slowed and complicated by opaque title histories, fragmented records, and limited verification infrastructure, creating risk and uncertainty for buyers and investors.",
       "solution": "Title Trust DR is a digital title intelligence platform that verifies ownership history, flags legal risks, and streamlines due diligence through centralized, AI-powered property record analysis."

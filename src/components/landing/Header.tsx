@@ -91,7 +91,7 @@ const Header = () => {
         },
         {
           label: t("header.solutionsItems.culturaConnect.label"),
-          href: "/culturaconnect",
+          href: "/cultura-connect",
           description: t("header.solutionsItems.culturaConnect.description"),
           icon: Earth,
         },
@@ -102,13 +102,13 @@ const Header = () => {
       items: [
         {
           label: t("header.solutionsItems.terraVisionAI.label"),
-          href: "/terravision-ai",
+          href: "/terra-vision-ai",
           description: t("header.solutionsItems.terraVisionAI.description"),
           icon: Home,
         },
         {
           label: t("header.solutionsItems.titleTrustDR.label"),
-          href: "/titletrust-dr",
+          href: "/title-trust-dr",
           description: t("header.solutionsItems.titleTrustDR.description"),
           icon: ShieldCheck,
         },
@@ -252,7 +252,7 @@ const Header = () => {
 
             {/* Teams Link - Third */}
             <Link
-              to="/teams"
+              to="/team"
               className="text-sm font-medium text-foreground hover:text-primary transition-colors"
             >
               {t("header.nav.team")}
@@ -464,7 +464,7 @@ const Header = () => {
 
               {/* Teams Link - Third */}
               <Link
-                to="/teams"
+                to="/team"
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="py-3 px-4 text-foreground hover:bg-muted rounded-lg transition-colors"
               >

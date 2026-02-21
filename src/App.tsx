@@ -4,7 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
-import Teams from "./pages/Teams";
+import Team from "./pages/Team";
 import Partners from "./pages/Partners";
 import Contact from "./pages/Contact";
 import Education from "./pages/Education";
@@ -42,12 +42,12 @@ const App = () => (
           <Route path="/quisqueya-ai" element={<ComingSoon />} />
 
           <Route path="/isla-intelligence" element={<ComingSoon />} />
-          <Route path="/culturaconnect" element={<ComingSoon />} />
+          <Route path="/cultura-connect" element={<ComingSoon />} />
 
-          <Route path="/terravision-ai" element={<ComingSoon />} />
-          <Route path="/titletrust-dr" element={<ComingSoon />} />
+          <Route path="/terra-vision-ai" element={<ComingSoon />} />
+          <Route path="/title-trust-dr" element={<ComingSoon />} />
 
-          <Route path="/teams" element={<Teams />} />
+          <Route path="/team" element={<Team />} />
 
           <Route path="/partners" element={<Partners />} />
           <Route path="/partners/:partnerId" element={<PartnerDetail />} />
