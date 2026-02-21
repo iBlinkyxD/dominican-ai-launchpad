@@ -8,11 +8,11 @@ import { getNewsPosts } from "@/data/news/post";
 import { useTranslation } from "react-i18next";
 
 const NewsDetail = () => {
-  const {t} = useTranslation("news");
-const { newsId } = useParams();
+  const { t } = useTranslation("news");
+  const { newsId } = useParams();
 
-const posts = getNewsPosts();
-const news = newsId ? posts[newsId] : undefined;
+  const posts = getNewsPosts();
+  const news = newsId ? posts[newsId] : undefined;
 
   if (!news) {
     return (
@@ -73,7 +73,16 @@ const news = newsId ? posts[newsId] : undefined;
             {/* RIGHT COLUMN — IMAGE + TEXT */}
             <div className="space-y-8 py-16 mx-auto">
               {/* Image */}
-              <div className="lg:w-9/12 mx-auto relative aspect-video rounded-2xl overflow-hidden">
+              <div
+                className="lg:w-9/12 mx-auto relative aspect-video rounded-2xl overflow-hidden"
+                style={{
+                  boxShadow:
+                    "0 20px 60px -15px hsl(var(--foreground) / 0.5), 0 8px 20px -8px hsl(var(--foreground) / 0.05), inset 0 1px 0 hsl(0 0% 100% / 0.3)",
+                  background:
+                    "linear-gradient(145deg, hsl(var(--card)) 0%, hsl(var(--card) / 0.85) 100%)",
+                  transformStyle: "preserve-3d",
+                }}
+              >
                 <img
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   src={news.thumbnail}
