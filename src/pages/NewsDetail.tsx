@@ -4,11 +4,15 @@ import Header from "@/components/landing/Header";
 import Footer from "@/components/landing/Footer";
 import { ScrollAnimation } from "@/hooks/useScrollAnimation";
 
-import { newsPost } from "@/data/news/post";
+import { getNewsPosts } from "@/data/news/post";
+import { useTranslation } from "react-i18next";
 
 const NewsDetail = () => {
-  const { newsId } = useParams();
-  const news = newsPost[newsId as string];
+  const {t} = useTranslation("news");
+const { newsId } = useParams();
+
+const posts = getNewsPosts();
+const news = newsId ? posts[newsId] : undefined;
 
   if (!news) {
     return (
@@ -16,13 +20,13 @@ const NewsDetail = () => {
         <Header />
         <div className="pt-32 pb-20 text-center">
           <h1 className="text-2xl font-medium text-foreground">
-            News not found
+            {t(`newsDetail.notFound`)}
           </h1>
           <Link
             to="/news"
             className="text-primary hover:underline mt-4 inline-block"
           >
-            Back to news
+            {t(`newsDetail.backToNews`)}
           </Link>
         </div>
         <Footer />
@@ -42,11 +46,11 @@ const NewsDetail = () => {
           <div className="container mx-auto section-padding">
             <nav className="flex items-center gap-2 text-sm text-muted-foreground">
               <Link to="/" className="hover:text-primary transition-colors">
-                Home
+                {t(`newsDetail.home`)}
               </Link>
               <ChevronRight className="w-4 h-4" />
               <Link to="/news" className="hover:text-primary transition-colors">
-                News
+                {t(`newsDetail.news`)}
               </Link>
               <ChevronRight className="w-4 h-4" />
               <span className="text-foreground font-medium truncate">
@@ -62,7 +66,7 @@ const NewsDetail = () => {
         <div className="container mx-auto section-padding pt-16">
           <ScrollAnimation animation="fade-up">
             {/* TITLE (Full Width) */}
-            <h1 className="lg:text-[42px] font-medium text-foreground leading-tight mb-6 w-3/4 text-center mx-auto">
+            <h1 className="text-4xl lg:text-[42px] font-medium text-foreground leading-tight mb-6 w-3/4 text-center mx-auto">
               {news.title}
             </h1>
 
@@ -73,11 +77,12 @@ const NewsDetail = () => {
                 <img
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   src={news.thumbnail}
+                  alt={news.partner}
                 />
               </div>
 
               {/* Body Text */}
-              <div className="text-foreground space-y-6 w-4/6 py-16 text-justify mx-auto [&_blockquote]:bg-muted [&_blockquote]:border-l-4 [&_blockquote]:border-primary [&_blockquote]:px-6 [&_blockquote]:py-4 [&_blockquote]:italic [&_blockquote]:rounded-lg">
+              <div className="text-foreground space-y-6 w-4/6 py-16 text-justify mx-auto [&_strong]:font-semibold [&_blockquote]:bg-muted [&_blockquote]:border-l-4 [&_blockquote]:border-primary [&_blockquote]:px-6 [&_blockquote]:py-4 [&_blockquote]:italic [&_blockquote]:rounded-lg">
                 <Content />
               </div>
             </div>

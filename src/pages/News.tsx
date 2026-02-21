@@ -1,13 +1,16 @@
 import { Users, Search, Linkedin, Twitter, Newspaper } from "lucide-react";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { ScrollAnimation } from "@/hooks/useScrollAnimation";
 import Header from "@/components/landing/Header";
 import Footer from "@/components/landing/Footer";
 
-import { newsList } from "@/data/news/list";
+import { getNewsList } from "@/data/news/post";
+import { useTranslation } from "react-i18next";
 
 const News = () => {
+  const { t, i18n } = useTranslation("news");
+  const newsList = useMemo(() => getNewsList(), [i18n.language]);
   return (
     <div className="min-h-screen bg-background">
       <Header />
@@ -23,16 +26,16 @@ const News = () => {
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border bg-card shadow-sm mb-6">
                 <Newspaper className="w-4 h-4 text-primary" />
                 <span className="text-sm font-medium text-foreground">
-                  News
+                  {t(`news.badge`)}
                 </span>
               </div>
 
               <h1 className="font-display font-medium text-4xl md:text-5xl lg:text-6xl text-foreground mb-6">
-                Latest News
+                {t(`news.title`)}
               </h1>
 
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                Official updates, announcements, and milestones from DAIA.
+                {t(`news.subtitle`)}
               </p>
             </ScrollAnimation>
 
@@ -49,14 +52,16 @@ const News = () => {
                         {/* DATE */}
                         <div className="order-3 md:order-1 md:col-span-3 md:border-l md:border-l-gray-500 md:border-r md:border-r-blue-950 pl-4">
                           <p className="text-base text-gray-500">
-                            {" "}
                             {new Date(
                               news.publishedDate + "T00:00:00",
-                            ).toLocaleDateString("en-US", {
-                              year: "numeric",
-                              month: "long",
-                              day: "numeric",
-                            })}
+                            ).toLocaleDateString(
+                              i18n.language === "es" ? "es-DO" : "en-US",
+                              {
+                                year: "numeric",
+                                month: "long",
+                                day: "numeric",
+                              },
+                            )}
                           </p>
                         </div>
 
@@ -99,7 +104,7 @@ const News = () => {
                 to="/"
                 className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
               >
-                ← Back to Home
+                {t(`news.backHome`)}
               </Link>
             </ScrollAnimation>
           </div>

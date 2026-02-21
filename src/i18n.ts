@@ -8,7 +8,8 @@ import enComingSoon from "@/locales/en/comingSoon.json";
 import enTeam from "@/locales/en/team.json";
 import enPartner from "@/locales/en/partner.json";
 import enContact from "@/locales/en/contact.json";
-import enInitiative from "@/locales/en/initiative.json";
+import enInitiatives from "@/locales/en/initiatives.json";
+import enNews from "@/locales/en/news.json";
 
 import esHome from "@/locales/es/home.json";
 import esCourses from "@/locales/es/courses.json";
@@ -16,7 +17,8 @@ import esComingSoon from "@/locales/es/comingSoon.json";
 import esTeam from "@/locales/es/team.json";
 import esPartner from "@/locales/es/partner.json";
 import esContact from "@/locales/es/contact.json";
-import esInitiative from "@/locales/es/initiative.json";
+import esInitiatives from "@/locales/es/initiatives.json";
+import esNews from "@/locales/es/news.json";
 
 i18n
   .use(LanguageDetector)
@@ -30,7 +32,8 @@ i18n
         team: enTeam,
         partner: enPartner,
         contact: enContact,
-        initiative: enInitiative,
+        initiatives: enInitiatives,
+        news: enNews,
       },
       es: {
         home: esHome,
@@ -39,13 +42,14 @@ i18n
         team: esTeam,
         partner: esPartner,
         contact: esContact,
-        initiative: esInitiative
+        initiatives: esInitiatives,
+        news: esNews,
       },
     },
     fallbackLng: "en",
     debug: true,
 
-    ns: ["home", "courses", "comingSoon", "team", "partner", "contact", "initiative"],
+    ns: ["home", "courses", "comingSoon", "team", "partner", "contact", "initiatives", "news"],
     defaultNS: "home",
 
     interpolation: {

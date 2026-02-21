@@ -1,4 +1,4 @@
-import { newsPost } from "./post";
+import { getNewsPosts } from "./post";
 
 export interface NewsList {
     slug: string;
@@ -9,7 +9,7 @@ export interface NewsList {
     partner: string;
 }
 
-export const newsList: NewsList[] = Object.values(newsPost).map((post) => ({
+export const newsList: NewsList[] = Object.values(getNewsPosts).map((post) => ({
     slug: post.slug,
     title: post.title,
     publishedDate: post.publishedDate,

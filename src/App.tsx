@@ -19,7 +19,7 @@ import NewsDetail from "./pages/NewsDetail";
 import Blog from "./pages/Blog";
 import BlogDetail from "./pages/BlogDetail";
 import ScrollToTop from "./components/ScrollToTop";
-import Initiative from "./pages/Initiative";
+import Initiatives from "./pages/Initiatives";
 
 const queryClient = new QueryClient();
 
@@ -51,7 +51,7 @@ const App = () => (
 
           <Route path="/partners" element={<Partners />} />
           <Route path="/partners/:partnerId" element={<PartnerDetail />} />
-          <Route path="/initiatives" element={<Initiative />} />
+          <Route path="/initiatives" element={<Initiatives />} />
           <Route path="/news" element={<News />} />
           <Route path="/news/:newsId" element={<NewsDetail />} />
           <Route path="/blog" element={<Blog />} />

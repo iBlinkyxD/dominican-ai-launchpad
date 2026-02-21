@@ -7,11 +7,11 @@ import Footer from "@/components/landing/Footer";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
-import { initiatives } from "@/data/initiative/list";
+import { initiatives } from "@/data/initiatives/list";
 import { useTranslation } from "react-i18next";
 
 const Initiative = () => {
-  const { t } = useTranslation("initiative")
+  const { t } = useTranslation("initiatives")
 
   return (
     <div className="min-h-screen bg-background">
@@ -26,16 +26,16 @@ const Initiative = () => {
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border bg-card shadow-sm mb-6">
                 <Rocket className="w-4 h-4 text-primary" />
                 <span className="text-sm font-medium text-foreground">
-                  {t(`initiative.badge`)}
+                  {t(`initiatives.badge`)}
                 </span>
               </div>
 
               <h1 className="font-display font-medium text-4xl md:text-5xl lg:text-6xl text-foreground mb-6">
-                {t(`initiative.title`)}
+                {t(`initiatives.title`)}
               </h1>
 
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                {t(`initiative.subtitle`)}
+                {t(`initiatives.subtitle`)}
               </p>
             </ScrollAnimation>
           </div>
@@ -61,15 +61,15 @@ const Initiative = () => {
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                         />
                       </div>
-                      <div className="p-6">
+                      <div className="p-6 lg:h-[200px]">
                         {/* Title */}
                         <h3 className="text-xl font-medium text-foreground mb-2 group-hover:transition-colors line-clamp-2">
                           {initiative.name}
                         </h3>
 
                         {/* Description */}
-                        <p className="text-muted-foreground text-sm mb-4  ">
-                          {initiative.subtext}
+                        <p className="text-muted-foreground text-sm mb-4 text-justify ">
+                          {t(`initiatives.${initiative.subtext}`)}
                         </p>
                       </div>
                     </div>
@@ -89,7 +89,7 @@ const Initiative = () => {
               to="/"
               className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
             >
-              {t(`initiative.backHome`)}
+              {t(`initiatives.backHome`)}
             </Link>
           </ScrollAnimation>
         </section>

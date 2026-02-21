@@ -1,0 +1,14 @@
+{
+    "news": {
+        "badge": "News",
+        "title": "Latest News",
+        "subtitle": "Official updates, announcements, and milestones from DAIA.",
+        "backHome": "← Back to Home"
+    },
+    "newsDetail": {
+        "home": "Home",
+        "news": "News",
+        "notFound": "News not found",
+        "backToNews": "Back to news"
+    }
+}
