@@ -1,5 +1,7 @@
 import pursuitWisdomScholarship from "@/assets/initiative/pursuit-of-wisdom-scholarship.jpeg";
 import lightlinkproject from "@/assets/initiative/light-link-project.jpeg";
+import communityProblemSolvers from "@/assets/initiative/community-problem-solvers.jpeg";
+
 export interface InitiativeDetail {
   slug: string;
   name: string;
@@ -19,5 +21,11 @@ export const initiativeDetail: InitiativeDetail[] = [
     name: "Pursuit of Wisdom Scholarship",
     subtext: "pursuitWisdomScholarship",
     image: pursuitWisdomScholarship,
+  },
+    {
+    slug: "community-problem-solvers",
+    name: "Community Problem Solvers",
+    subtext: "communityProblemSolvers",
+    image: communityProblemSolvers,
   },
 ];
