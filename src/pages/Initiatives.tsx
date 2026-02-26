@@ -52,8 +52,8 @@ const Initiative = () => {
                   delay={index * 100}
                 >
                   <Link to={`#`} className="group block">
-                    <div className="bg-card border border-border rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col ">
-                      {/* School/Company Image */}
+                    <div className="bg-card border border-border rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col h-[475px]">
+                      {/* Initiative Image */}
                       <div className="relative aspect-video overflow-hidden">
                         <img
                           src={initiative.image}
