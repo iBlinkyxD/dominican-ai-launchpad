@@ -24,7 +24,7 @@ export const initiativeDetail: InitiativeDetail[] = [
   },
     {
     slug: "community-problem-solvers",
-    name: "DAIA CPS (Community Problem Solvers)",
+    name: "DAIA Community Problem Solvers (CPS)",
     subtext: "communityProblemSolvers",
     image: communityProblemSolvers,
   },
