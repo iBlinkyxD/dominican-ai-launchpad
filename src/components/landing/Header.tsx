@@ -121,7 +121,7 @@ const Header = () => {
       label: t("header.company.partners.title"),
       href: "/partners",
       icon: Users,
-      description: t("header.company.partners.description"),  
+      description: t("header.company.partners.description"),
     },
     {
       label: t("header.company.initiative.title"),
@@ -357,16 +357,18 @@ const Header = () => {
                 </div>
               )} */}
             </div>
-            <a
-              href="#"
+            <Link
+              to="/login"
               className="text-sm font-medium text-foreground hover:text-primary transition-colors"
             >
               {t("header.nav.login")}
-            </a>
-            <Button className="bg-foreground text-background hover:bg-foreground/90 rounded-full px-6 gap-2">
-              <Crown className="w-4 h-4" />
-              {t("header.nav.signup")}
-            </Button>
+            </Link>
+            <Link to="/signup">
+              <Button className="bg-foreground text-background hover:bg-foreground/90 rounded-full px-6 gap-2">
+                <Crown className="w-4 h-4" />
+                {t("header.nav.signup")}
+              </Button>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
