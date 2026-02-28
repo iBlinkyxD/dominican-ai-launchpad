@@ -510,17 +510,18 @@ const Header = () => {
               </Link>
 
               <hr className="my-2 border-border" />
-              <a
-                href="#"
+              <Link
+                to="/login"
                 className="py-3 px-4 text-muted-foreground hover:bg-muted rounded-lg transition-colors"
               >
                 {t("header.nav.login")}
-              </a>
-
-              <Button className="bg-foreground text-background hover:bg-foreground/90 mt-2 gap-2 p-6">
-                <Crown className="w-4 h-4" />
-                {t("header.nav.signup")}
-              </Button>
+              </Link>
+              <Link to="/signUp">
+                <Button className="bg-foreground text-background hover:bg-foreground/90 mt-2 gap-2 p-6 w-[100%]">
+                  <Crown className="w-4 h-4" />
+                  {t("header.nav.signup")}
+                </Button>
+              </Link>
             </nav>
           </div>
         )}

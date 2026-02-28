@@ -11,6 +11,7 @@ export default defineConfig(({ mode }) => ({
   server: {
     host: "::",
     port: 8080,
+    allowedHosts: ["umbellately-duplicative-elodia.ngrok-free.dev"],
   },
   plugins: [
     mdx({
