@@ -25,6 +25,7 @@ import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
 import Verify from "./pages/Verify";
 import Hub from "./pages/Hub";
+import Services from "./pages/Services";
 
 const queryClient = new QueryClient();
 
@@ -59,6 +60,7 @@ const App = () => (
 
           <Route path="/team" element={<Team />} />
 
+          <Route path="/services" element={<Services />} />
           <Route path="/partners" element={<Partners />} />
           <Route path="/partners/:partnerId" element={<PartnerDetail />} />
           <Route path="/initiatives" element={<Initiatives />} />

@@ -140,6 +140,10 @@
       }
     },
     "company": {
+      "services": {
+        "title": "Servicios",
+        "description": "Mira nuestros servicios que ofrecemos"
+      },
       "partners": {
         "title": "Socios",
         "description": "Construyendo el Futuro Juntos"

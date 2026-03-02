@@ -20,6 +20,7 @@ import {
   Globe,
   Users,
   Rocket,
+  CreditCard,
 } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -117,6 +118,12 @@ const Header = () => {
   ];
 
   const companyLinks = [
+    {
+      label: t("header.company.services.title"),
+      href: "/services",
+      icon: CreditCard,
+      description: t("header.company.services.description"),
+    },
     {
       label: t("header.company.partners.title"),
       href: "/partners",
