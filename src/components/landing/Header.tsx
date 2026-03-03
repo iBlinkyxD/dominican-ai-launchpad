@@ -20,6 +20,7 @@ import {
   Globe,
   Users,
   Rocket,
+  CreditCard,
 } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -118,10 +119,16 @@ const Header = () => {
 
   const companyLinks = [
     {
+      label: t("header.company.services.title"),
+      href: "/services",
+      icon: CreditCard,
+      description: t("header.company.services.description"),
+    },
+    {
       label: t("header.company.partners.title"),
       href: "/partners",
       icon: Users,
-      description: t("header.company.partners.description"),  
+      description: t("header.company.partners.description"),
     },
     {
       label: t("header.company.initiative.title"),
@@ -357,16 +364,18 @@ const Header = () => {
                 </div>
               )} */}
             </div>
-            <a
-              href="#"
+            <Link
+              to="/#"
               className="text-sm font-medium text-foreground hover:text-primary transition-colors"
             >
               {t("header.nav.login")}
-            </a>
-            <Button className="bg-foreground text-background hover:bg-foreground/90 rounded-full px-6 gap-2">
-              <Crown className="w-4 h-4" />
-              {t("header.nav.signup")}
-            </Button>
+            </Link>
+            <Link to="/#">
+              <Button className="bg-foreground text-background hover:bg-foreground/90 rounded-full px-6 gap-2">
+                <Crown className="w-4 h-4" />
+                {t("header.nav.signup")}
+              </Button>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -508,17 +517,18 @@ const Header = () => {
               </Link>
 
               <hr className="my-2 border-border" />
-              <a
-                href="#"
+              <Link
+                to="/#"
                 className="py-3 px-4 text-muted-foreground hover:bg-muted rounded-lg transition-colors"
               >
                 {t("header.nav.login")}
-              </a>
-
-              <Button className="bg-foreground text-background hover:bg-foreground/90 mt-2 gap-2 p-6">
-                <Crown className="w-4 h-4" />
-                {t("header.nav.signup")}
-              </Button>
+              </Link>
+              <Link to="/#">
+                <Button className="bg-foreground text-background hover:bg-foreground/90 mt-2 gap-2 p-6 w-[100%]">
+                  <Crown className="w-4 h-4" />
+                  {t("header.nav.signup")}
+                </Button>
+              </Link>
             </nav>
           </div>
         )}

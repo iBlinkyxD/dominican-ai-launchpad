@@ -19,7 +19,7 @@ const News = () => {
         {/* Hero Section */}
         <section
           aria-labelledby="news-hero"
-          className="py-16 relative overflow-hidden"
+          className="pt-8 relative overflow-hidden"
         >
           <div className="container mx-auto relative z-10">
             <ScrollAnimation animation="fade-up" className="text-center mb-16">

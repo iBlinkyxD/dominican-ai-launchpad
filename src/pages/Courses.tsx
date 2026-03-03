@@ -17,8 +17,8 @@ const Courses = () => {
 
       {/* Hero Section */}
       <section className="pt-32 pb-16 bg-gradient-to-b from-primary/5 to-background">
-        <div className="container mx-auto">
-          <ScrollAnimation animation="fade-up" className="text-center">
+        <div className="container mx-autoe relative z-10">
+          <ScrollAnimation animation="fade-up" className="text-center mb-16">
             <div className="text-center max-w-3xl mx-auto">
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
                 <GraduationCap className="w-4 h-4 text-primary" />
@@ -26,7 +26,7 @@ const Courses = () => {
                   {t("courses.badge")}
                 </span>
               </div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-medium text-foreground mb-6">
+              <h1 className="font-display text-4xl md:text-5xl lg:text-6xl text-foreground mb-6">
                 {t("courses.heroTitleStart")}
                 <span className="text-primary">
                   {t("courses.heroTitleHighlight")}

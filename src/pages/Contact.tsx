@@ -74,7 +74,7 @@ const Contact = () => {
         {/* Hero Section */}
         <section
           aria-labelledby="contact-hero"
-          className="py-16 relative overflow-hidden"
+          className="pt-8 relative overflow-hidden"
         >
           {/* <div className="absolute inset-0 bg-gradient-to-br from-pink-50/50 via-background to-blue-50/50" /> */}
 

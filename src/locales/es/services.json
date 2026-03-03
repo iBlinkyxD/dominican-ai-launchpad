@@ -1,0 +1,125 @@
+{
+  "services": {
+    "badge": "Soluciones Empresariales de IA",
+    "title": "Diseña Tu Ventaja Competitiva",
+    "subtitle": "Integración de IA escalable: desde la transformación del talento hasta una infraestructura empresarial privada y segura.",
+    "included": "¿Qué incluye?",
+    "backHome": "← Volver al Inicio",
+    "corporateTraining": {
+      "name": "Capacitación Corporativa en IA",
+      "headline": "Solicite su capacitación en IA de 5 días",
+      "subheadline": "Complete el formulario a continuación para iniciar su capacitación intensiva estructurada en IA de 5 días. Nuestro equipo confirmará la disponibilidad, coordinará los objetivos y le indicará los siguientes pasos en un día hábil.",
+      "description": "Desarrolla capacidades internas y preparación en inteligencia artificial",
+      "price": "$4,500 USD",
+      "priceNote": "(Hasta 30 empleados)",
+      "buttonText": "Comenzar",
+      "features": [
+        "Programa intensivo de capacitación en IA de 5 días por rol",
+        "Ejercicios prácticos de automatización de procesos",
+        "Fundamentos de riesgos y cumplimiento en IA",
+        "Sesión de identificación de casos de uso por departamento",
+        "Informe de evaluación de preparación en IA",
+        "Certificación digital para los participantes"
+      ]
+    },
+    "agentInstallation": {
+      "name": "Implementación de Agente de IA",
+      "headline": "Implemente su agente de IA personalizado",
+      "subheadline": "Envíe sus datos para comenzar el proceso de instalación. Nuestro equipo revisará sus requisitos de flujo de trabajo y programará una consulta para definir el alcance de la implementación.",
+      "description": "Despliega un sistema autónomo de IA de alto impacto",
+      "price": "$5,000 USD",
+      "priceNote": "(Pago único)",
+      "buttonText": "Comenzar",
+      "features": [
+        "Descubrimiento de procesos y análisis de ROI",
+        "Diseño e implementación de 1 agente de IA personalizado",
+        "Integración con CRM, correo electrónico o WhatsApp",
+        "Automatización de un proceso de ingresos o ahorro de costos",
+        "Configuración de gobernanza con supervisión humana",
+        "Panel de monitoreo de rendimiento",
+        "Optimización y soporte durante 30 días posteriores al despliegue"
+      ]
+    },
+    "growthEngine": {
+      "name": "Motor de Crecimiento con IA",
+      "headline": "Inicie su arquitectura de crecimiento de IA",
+      "subheadline": "Complete el formulario a continuación para comenzar su auditoría integral de IA y su plan de transformación de 12 meses. Nuestro equipo de estrategia se pondrá en contacto con usted para coordinar el alcance, los objetivos y la secuencia de implementación.",
+      "description": "Implementa un sistema estructurado de crecimiento con IA en toda la organización",
+      "price": "$9,500 USD",
+      "priceNote": "(+$75 USD por empleado)",
+      "buttonText": "Comenzar",
+      "features": [
+        "Paquete de Capacitación Corporativa en IA (Hasta 30 empleados)",
+        "Auditoría integral de IA",
+        "Matriz de priorización de oportunidades de automatización",
+        "Hoja de ruta de crecimiento en IA a 12 meses",
+        "Implementación de 1 agente estratégico de IA",
+        "Plan de rediseño de procesos interdepartamentales",
+        "Marco de gobernanza y seguridad en IA",
+        "Presentación estratégica ejecutiva e informe para la junta directiva"
+      ]
+    },
+    "enterpriseUpgrade": {
+      "name": "Actualización Empresarial con IA",
+      "headline": "Comience la modernización de la IA empresarial",
+      "subheadline": "Proporcione los datos de su organización para iniciar la actualización de su infraestructura de IA empresarial. Nuestro equipo coordinará una consulta estratégica para definir las integraciones de sistemas, la implementación multiagente y la alineación ejecutiva.",
+      "description": "Transforma la infraestructura en una arquitectura empresarial habilitada con IA",
+      "price": "$15,000 USD",
+      "priceNote": "(+$100 USD por empleado)",
+      "buttonText": "Comenzar",
+      "features": [
+        "Paquete de Capacitación Corporativa en IA (Hasta 30 empleados)",
+        "Diseño de arquitectura empresarial de sistemas de IA",
+        "Despliegue multiagente (mínimo 3–5 agentes)",
+        "Integraciones de sistemas multiplataforma",
+        "Configuración de entorno de datos seguro",
+        "Análisis avanzado y panel ejecutivo",
+        "Modelo operativo organizacional con IA",
+        "Taller de modernización para liderazgo ejecutivo",
+        "Optimización y revisión de rendimiento durante 60 días"
+      ]
+    }
+  },
+  "servicesForm": {
+    "fields": {
+      "fullName": "Nombre Completo",
+      "workEmail": "Correo Corporativo",
+      "companyName": "Nombre de la Empresa",
+      "jobTitle": "Cargo",
+      "companySize": "Tamaño de la Empresa",
+      "whenBegin": "¿Cuándo desean comenzar?",
+      "decisionProcess": "¿Estás involucrado en el proceso de decisión?",
+      "challenge": "¿Qué desafío están buscando resolver con esta solución?"
+    },
+    "placeholders": {
+      "fullName": "Nombre Completo",
+      "workEmail": "Correo Corporativo",
+      "companyName": "Nombre de la Empresa",
+      "jobTitle": "Cargo",
+      "companySize": "Selecciona el tamaño de la empresa",
+      "challenge": "Describe brevemente el principal desafío que desean resolver"
+    },
+    "options": {
+      "readiness": {
+        "immediately": "Inmediatamente",
+        "30days": "Dentro de 30 días",
+        "1-3months": "1–3 meses",
+        "exploring": "Solo explorando"
+      },
+      "authority": {
+        "final": "Responsable final de la decisión",
+        "team": "Parte del equipo de decisión",
+        "research": "Investigando para liderazgo"
+      }
+    },
+    "button": {
+      "send": "Enviar",
+      "sending": "Enviando..."
+    },
+    "toast": {
+      "successTitle": "Solicitud enviada con éxito",
+      "successDescription": "Nuestro equipo se pondrá en contacto contigo pronto."
+    },
+    "backService": "← Volver a Servicios"
+  }
+}

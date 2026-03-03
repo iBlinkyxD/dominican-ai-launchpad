@@ -21,7 +21,7 @@ const Blog = () => {
 
       <main className="pt-24 pb-16">
         {/* Hero Section */}
-        <section className="py-8 relative overflow-hidden">
+        <section className="pt-8 relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-pink-50/50 via-background to-blue-50/50" />
 
           <div className="container mx-auto section-padding relative z-10">

@@ -7,9 +7,9 @@ export interface Initiative {
   image: string;
 }
 
-export const initiatives: Initiative[] = Object.values(initiativeDetail).map((initiative) => ({
+export const initiatives: Initiative[] = initiativeDetail.map((initiative) => ({
   slug: initiative.slug,
   name: initiative.name,
   subtext: initiative.subtext,
-  image: initiative.image,
+  image: initiative.image[0].src, // ✅ now it's a string
 }));

@@ -1,0 +1,126 @@
+{
+  "services": {
+    "badge": "Enterprise AI Solutions",
+    "title": "Engineer Your Competitive Edge",
+    "subtitle": "Scalable AI integration—from workforce transformation to secure, private enterprise infrastructure.",
+    "included": "What's included:",
+    "backHome": "← Back to Home",
+    "backService": "← Back to Services",
+    "corporateTraining": {
+      "name": "Corporate AI Training",
+      "description": "Build internal AI capability and readiness",
+      "headline": "Request Your 5-Day AI Training Engagement",
+      "subheadline": "Complete the form below to initiate your structured 5-day AI training intensive. Our team will confirm availability, align on objectives, and provide next steps within one business day.",
+      "price": "$4,500 USD",
+      "priceNote": "(Up to 30 Staff)",
+      "buttonText": "Get started",
+      "features": [
+        "5-day role-specific AI training intensive",
+        "Hands-on workflow automation exercises",
+        "AI risk & compliance fundamentals",
+        "Department use-case identification session",
+        "AI readiness assessment report",
+        "Digital certification for participants"
+      ]
+    },
+    "agentInstallation": {
+      "name": "AI Agent Installation",
+      "headline": "Deploy Your Custom AI Agent",
+      "subheadline": "Submit your details to begin the installation process. Our team will review your workflow requirements and schedule a consultation to scope deployment and implementation.",
+      "description": "Deploy one high-impact autonomous AI system",
+      "price": "$5,000 USD",
+      "priceNote": "(One-Time)",
+      "buttonText": "Get started",
+      "features": [
+        "Workflow discovery & ROI analysis",
+        "Design and deployment of 1 custom AI agent",
+        "Integration with CRM, email, or WhatsApp",
+        "Automation of one revenue or cost-saving process",
+        "Human-in-the-loop governance setup",
+        "Performance monitoring dashboard",
+        "30-day post-deployment optimization support"
+      ]
+    },
+    "growthEngine": {
+      "name": "AI Growth Engine",
+      "headline": "Initiate Your AI Growth Architecture",
+      "subheadline": "Complete the form below to begin your comprehensive AI audit and 12-month transformation roadmap. Our strategy team will contact you to align on scope, objectives, and deployment sequencing.",
+      "description": "Install a structured AI growth system across the organization",
+      "price": "$9,500 USD",
+      "priceNote": "(+$75 USD per employee)",
+      "buttonText": "Get started",
+      "features": [
+        "Corporate AI Training Package (Up to 30 staff)",
+        "Comprehensive AI audit",
+        "Automation opportunity scoring matrix",
+        "12-month AI growth roadmap",
+        "Deployment of 1 strategic AI agent",
+        "Cross-department workflow redesign plan",
+        "AI governance & security framework",
+        "Executive strategy presentation & board report"
+      ]
+    },
+    "enterpriseUpgrade": {
+      "name": "Enterprise AI Upgrade",
+      "headline": "Begin Your Enterprise AI Modernization",
+      "subheadline": "Provide your organization details to initiate your enterprise AI infrastructure upgrade. Our team will coordinate a strategic consultation to define system integrations, multi-agent deployment, and executive alignment.",
+      "description": "Transform infrastructure into AI-enabled enterprise architecture",
+      "price": "$15,000 USD",
+      "priceNote": "(+$100 USD per employee)",
+      "buttonText": "Get started",
+      "features": [
+        "Corporate AI Training Package (Up to 30 staff)",
+        "Enterprise AI systems architecture design",
+        "Multi-agent deployment (3–5 agents minimum)",
+        "Cross-platform system integrations",
+        "Secure data environment configuration",
+        "Advanced analytics & executive dashboard",
+        "Organization-wide AI operating model",
+        "Executive leadership modernization workshop",
+        "60-day optimization & performance review"
+      ]
+    }
+  },
+  "servicesForm": {
+    "fields": {
+      "fullName": "Full Name",
+      "workEmail": "Work Email",
+      "companyName": "Company Name",
+      "jobTitle": "Job Title",
+      "companySize": "Company Size",
+      "whenBegin": "When are you looking to begin?",
+      "decisionProcess": "Are you involved in the decision-making process?",
+      "challenge": "What challenge are you looking to solve with this solution?"
+    },
+    "placeholders": {
+      "fullName": "Full Name",
+      "workEmail": "Work Email",
+      "companyName": "Company Name",
+      "jobTitle": "Job Title",
+      "companySize": "Select company size",
+      "challenge": "Briefly describe the main challenge you want to solve"
+    },
+    "options": {
+      "readiness": {
+        "immediately": "Immediately",
+        "30days": "Within 30 days",
+        "1-3months": "1–3 months",
+        "exploring": "Just exploring"
+      },
+      "authority": {
+        "final": "Final decision maker",
+        "team": "Part of decision team",
+        "research": "Researching for leadership"
+      }
+    },
+    "button": {
+      "send": "Send",
+      "sending": "Sending..."
+    },
+    "toast": {
+      "successTitle": "Request Sent Successfully",
+      "successDescription": "Our team will contact you shortly."
+    },
+    "backService": "← Back to Services"
+  }
+}

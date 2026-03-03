@@ -140,6 +140,10 @@
       }
     },
     "company": {
+      "services": {
+        "title": "Services",
+        "description": "Check out our services"
+      },
       "partners": {
         "title": "Partners",
         "description": "Building the Future Together"

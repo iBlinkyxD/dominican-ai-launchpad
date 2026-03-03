@@ -32,7 +32,7 @@ const Partner = () => {
 
       <main className="pt-24 pb-16">
         {/* Hero Section */}
-        <section aria-labelledby="partner-hero">
+        <section className="pt-8 relative overflow-hidden" aria-labelledby="partner-hero">
           <div className="container mx-auto relative z-10">
             <ScrollAnimation animation="fade-up" className="text-center mb-8">
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border bg-card shadow-sm mb-6">
