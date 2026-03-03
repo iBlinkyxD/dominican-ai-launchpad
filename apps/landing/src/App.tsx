@@ -24,7 +24,6 @@ import InitiativeDetail from "./pages/InitiativeDetail";
 import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
 import Verify from "./pages/Verify";
-import Hub from "./pages/Hub";
 import Services from "./pages/Services";
 import ServiceRequest from "./pages/ServiceRequest";
 
@@ -41,10 +40,9 @@ const App = () => (
           {/* <Route path="/" element={<Soon />} /> */}
           <Route path="/" element={<Index />} />
 
-          {/* <Route path="/signUp" element={<SignUp/>} />
+          <Route path="/signUp" element={<SignUp/>} />
           <Route path="/verify" element={<Verify/>} />
           <Route path="/login" element={<Login/>} />
-          <Route path="/hub" element={<Hub/>} /> */}
 
           <Route path="/courses" element={<Courses />} />
           {/* <Route path="/courses/:courseId" element={<CourseDetail />} /> */}

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import { Eye, EyeOff, Mail, Lock, User, ArrowRight, Phone } from "lucide-react";
-import daiaLogo from '@/assets/DAIA-logo.png';
+import daiaLogo from "@/assets/DAIA-logo.png";
 import { Link } from "react-router-dom";
 const Login = () => {
   const navigate = useNavigate();
@@ -13,9 +13,14 @@ const Login = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Simulate login
+    localStorage.setItem("daia_user", formData.email);
+
     console.log("Login Successful!");
-    // Navigate to verification page
-    navigate("/hub");
+
+    // Redirect to hub app (different port)
+    window.location.href = "http://localhost:8081";
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -160,7 +165,10 @@ const Login = () => {
         {/* Sign In Link */}
         <p className="mt-8 text-center text-sm text-gray-600">
           Already have an account?{" "}
-          <Link to="/signUp" className="font-medium text-blue-600 hover:text-blue-700">
+          <Link
+            to="/signUp"
+            className="font-medium text-blue-600 hover:text-blue-700"
+          >
             Sign Up
           </Link>
         </p>

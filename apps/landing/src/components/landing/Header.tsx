@@ -365,12 +365,12 @@ const Header = () => {
               )} */}
             </div>
             <Link
-              to="/#"
+              to="/login"
               className="text-sm font-medium text-foreground hover:text-primary transition-colors"
             >
               {t("header.nav.login")}
             </Link>
-            <Link to="/#">
+            <Link to="/signUp">
               <Button className="bg-foreground text-background hover:bg-foreground/90 rounded-full px-6 gap-2">
                 <Crown className="w-4 h-4" />
                 {t("header.nav.signup")}
