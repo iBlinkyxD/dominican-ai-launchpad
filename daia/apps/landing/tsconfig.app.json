@@ -23,8 +23,8 @@
 
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["daia/apps/landing/src/*"]
     }
   },
-  "include": ["src"]
+  "include": ["daia/apps/landing/src"]
 }
