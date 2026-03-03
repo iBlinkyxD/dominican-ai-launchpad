@@ -31,7 +31,7 @@ const ComingSoon = () => {
       <Header />
 
       <main className="pt-24 pb-16">
-        <section className="py-8 relative overflow-hidden">
+        <section className="pt-8 relative overflow-hidden">
           {/* Background Elements */}
           <div className="absolute inset-0 overflow-hidden">
             <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-pulse" />

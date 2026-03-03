@@ -26,6 +26,7 @@ import Login from "./pages/Login";
 import Verify from "./pages/Verify";
 import Hub from "./pages/Hub";
 import Services from "./pages/Services";
+import ServiceRequest from "./pages/ServiceRequest";
 
 const queryClient = new QueryClient();
 
@@ -40,10 +41,10 @@ const App = () => (
           {/* <Route path="/" element={<Soon />} /> */}
           <Route path="/" element={<Index />} />
 
-          <Route path="/signUp" element={<SignUp/>} />
+          {/* <Route path="/signUp" element={<SignUp/>} />
           <Route path="/verify" element={<Verify/>} />
           <Route path="/login" element={<Login/>} />
-          <Route path="/hub" element={<Hub/>} />
+          <Route path="/hub" element={<Hub/>} /> */}
 
           <Route path="/courses" element={<Courses />} />
           {/* <Route path="/courses/:courseId" element={<CourseDetail />} /> */}
@@ -61,14 +62,15 @@ const App = () => (
           <Route path="/team" element={<Team />} />
 
           <Route path="/services" element={<Services />} />
+          <Route path="/services/:serviceId" element={<ServiceRequest />} />
           <Route path="/partners" element={<Partners />} />
-          <Route path="/partners/:partnerId" element={<PartnerDetail />} />
+          {/* <Route path="/partners/:partnerId" element={<PartnerDetail />} /> */}
           <Route path="/initiatives" element={<Initiatives />} />
-          <Route path="/initiatives/:initiativeId" element={<InitiativeDetail />} />
+          {/* <Route path="/initiatives/:initiativeId" element={<InitiativeDetail />} /> */}
           <Route path="/news" element={<News />} />
           <Route path="/news/:newsId" element={<NewsDetail />} />
           <Route path="/blog" element={<Blog />} />
-          <Route path="/blog/:blogId" element={<BlogDetail />} />
+          {/* <Route path="/blog/:blogId" element={<BlogDetail />} /> */}
 
           <Route path="/contact" element={<Contact />} />
 {/* 
