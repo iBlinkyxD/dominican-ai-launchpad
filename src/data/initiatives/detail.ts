@@ -43,16 +43,10 @@ export const initiativeDetail: InitiativeDetail[] = [
       },
     ],
   },
-<<<<<<< HEAD
-    {
-    slug: "community-problem-solvers",
-    name: "DAIA Community Problem Solvers (CPS)",
-=======
   {
     slug: "daia-community-problem-solvers",
     name: "DAIA Community Problem Solvers (CPS)",
     shortName: "DAIA CPS",
->>>>>>> dev
     subtext: "communityProblemSolvers",
     image: [
       {
