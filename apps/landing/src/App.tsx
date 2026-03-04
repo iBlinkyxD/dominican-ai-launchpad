@@ -40,9 +40,9 @@ const App = () => (
           {/* <Route path="/" element={<Soon />} /> */}
           <Route path="/" element={<Index />} />
 
-          <Route path="/signUp" element={<SignUp/>} />
+          {/* <Route path="/signUp" element={<SignUp/>} />
           <Route path="/verify" element={<Verify/>} />
-          <Route path="/login" element={<Login/>} />
+          <Route path="/login" element={<Login/>} /> */}
 
           <Route path="/courses" element={<Courses />} />
           {/* <Route path="/courses/:courseId" element={<CourseDetail />} /> */}
