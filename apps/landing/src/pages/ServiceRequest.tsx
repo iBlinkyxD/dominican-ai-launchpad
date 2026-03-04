@@ -109,10 +109,31 @@ const ServiceRequest = () => {
                 <form
                   name="service-request"
                   method="POST"
-                  action="/thank-you"
                   data-netlify="true"
                   data-netlify-honeypot="bot-field"
                   className="relative z-20 space-y-6"
+                  onSubmit={(e) => {
+                    e.preventDefault(); // Prevent redirect
+                    // Show toast
+                    toast({
+                      title: t("servicesForm.toast.successTitle"),
+                      description: t("servicesForm.toast.successMessage"),
+                      variant: "default", // or "success" if your toast supports variants
+                    });
+
+                    // Optionally reset form
+                    setFormData({
+                      name: "",
+                      email: "",
+                      company: "",
+                      job: "",
+                      companySize: "",
+                      readiness: "",
+                      authority: "",
+                      subject: "",
+                      message: "",
+                    });
+                  }}
                 >
                   {/* Required for Netlify */}
                   <input

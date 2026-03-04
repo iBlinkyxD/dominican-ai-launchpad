@@ -100,7 +100,8 @@
       "contact": "Contact",
       "login": "Login",
       "signup": "Sign Up",
-      "language": "Language"
+      "language": "Language",
+      "back": "Back"
     },
     "solutions": {
       "education": "DAIA Education",

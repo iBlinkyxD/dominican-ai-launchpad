@@ -35,6 +35,9 @@ const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSolutionsOpen, setIsSolutionsOpen] = useState(false);
   const [isCompanyOpen, setIsCompanyOpen] = useState(false);
+  const [mobileSubMenu, setMobileSubMenu] = useState<
+    "none" | "solutions" | "company"
+  >("none");
   const location = useLocation();
   const isHomePage = location.pathname === "/";
   const [isLangOpen, setIsLangOpen] = useState(false);
@@ -390,146 +393,194 @@ const Header = () => {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="xl:hidden fixed inset-0 top-16 bg-background/95 backdrop-blur-xl border-b border-border shadow-lg z-40">
-            <nav className="h-[calc(100vh-4rem)] overflow-y-auto p-4 flex flex-col gap-2">
-              {/* Mobile Language Selector */}
-              <div className="mb-4">
-                <div className="text-xs font-semibold text-muted-foreground uppercase mb-2">
-                  {t("header.nav.language")}
-                </div>
-
-                <div className="flex gap-2">
-                  <button
-                    onClick={() => i18n.changeLanguage("en")}
-                    className={`flex-1 py-2 rounded-lg text-sm font-medium ${
-                      currentLang === "en"
-                        ? "bg-foreground text-background"
-                        : "bg-muted text-foreground"
-                    }`}
-                  >
-                    🇺🇸 English
-                  </button>
-
-                  <button
-                    onClick={() => i18n.changeLanguage("es")}
-                    className={`flex-1 py-2 rounded-lg text-sm font-medium ${
-                      currentLang === "es"
-                        ? "bg-foreground text-background"
-                        : "bg-muted text-foreground"
-                    }`}
-                  >
-                    🇩🇴 Español
-                  </button>
-                </div>
-              </div>
-
-              {/* Courses Link - First */}
-              <Link
-                to="/courses"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="py-3 px-4 text-foreground hover:bg-muted rounded-lg transition-colors font-medium"
+          <div className="xl:hidden fixed inset-0 top-16 bg-background/95 backdrop-blur-xl border-b border-border shadow-lg z-40 overflow-hidden">
+            <div className="relative w-full h-full">
+              {/* Main Menu */}
+              <div
+                className={`absolute inset-0 transition-transform duration-300 ${
+                  mobileSubMenu === "none"
+                    ? "translate-x-0"
+                    : "-translate-x-full"
+                }`}
               >
-                {t("header.nav.courses")}
-              </Link>
-
-              <hr className="my-2 border-border" />
-
-              {/* Solutions Section - Second */}
-              <div className="py-2">
-                <div className="px-4 text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">
-                  {t("header.nav.solutions")}
-                </div>
-                {solutionsSections.map((section) => (
-                  <div key={section.title} className="mb-4">
-                    {/* Section Title */}
-                    <div className="px-4 py-2 text-xs font-semibold uppercase text-muted-foreground">
-                      {section.title}
+                <nav className="h-full overflow-y-auto p-4 flex flex-col gap-2">
+                  {/* Language Selector */}
+                  <div className="mb-4">
+                    <div className="text-xs font-semibold text-muted-foreground uppercase mb-2">
+                      {t("header.nav.language")}
                     </div>
-
-                    {/* Section Items */}
-                    {section.items.map((item) => (
-                      <Link
-                        key={item.label}
-                        to={item.href}
-                        onClick={() => setIsMobileMenuOpen(false)}
-                        className="flex items-center gap-3 py-3 px-4 text-foreground hover:bg-muted rounded-lg transition-colors"
+                    <div className="flex gap-2">
+                      <button
+                        onClick={() => i18n.changeLanguage("en")}
+                        className={`flex-1 py-2 rounded-lg text-sm font-medium ${
+                          currentLang === "en"
+                            ? "bg-foreground text-background"
+                            : "bg-muted text-foreground"
+                        }`}
                       >
-                        <item.icon className="w-5 h-5 text-primary" />
-                        <div>
-                          <div className="text-sm font-medium">
-                            {item.label}
-                          </div>
-                          <div className="text-xs text-muted-foreground">
-                            {item.description}
-                          </div>
-                        </div>
-                      </Link>
-                    ))}
-                  </div>
-                ))}
-              </div>
-
-              <hr className="my-2 border-border" />
-
-              {/* Teams Link - Third */}
-              <Link
-                to="/team"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="py-3 px-4 text-foreground hover:bg-muted rounded-lg transition-colors"
-              >
-                {t("header.nav.team")}
-              </Link>
-
-              <hr className="my-2 border-border" />
-
-              {/* Companies Dropdown - Fourth */}
-              <div className="py-2">
-                <div className="px-4 text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">
-                  {t("header.nav.company")}
-                </div>
-                {companyLinks.map((item) => (
-                  <Link
-                    key={item.label}
-                    to={item.href}
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className="flex items-center gap-3 py-3 px-4 text-foreground hover:bg-muted rounded-lg transition-colors"
-                  >
-                    <item.icon className="w-5 h-5 text-primary" />
-                    <div>
-                      <div className="text-sm font-medium">{item.label}</div>
-                      <div className="text-xs text-muted-foreground">
-                        {item.description}
-                      </div>
+                        🇺🇸 English
+                      </button>
+                      <button
+                        onClick={() => i18n.changeLanguage("es")}
+                        className={`flex-1 py-2 rounded-lg text-sm font-medium ${
+                          currentLang === "es"
+                            ? "bg-foreground text-background"
+                            : "bg-muted text-foreground"
+                        }`}
+                      >
+                        🇩🇴 Español
+                      </button>
                     </div>
+                  </div>
+
+                  {/* Courses */}
+                  <Link
+                    to="/courses"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="py-3 px-4 text-foreground hover:bg-muted rounded-lg transition-colors font-medium"
+                  >
+                    {t("header.nav.courses")}
                   </Link>
-                ))}
+
+                  <hr className="my-2 border-border" />
+
+                  {/* Solutions Button */}
+                  <button
+                    onClick={() => setMobileSubMenu("solutions")}
+                    className="py-3 px-4 flex justify-between items-center text-foreground hover:bg-muted rounded-lg transition-colors font-medium"
+                  >
+                    {t("header.nav.solutions")}
+                    <ChevronDown className="w-4 h-4 -rotate-90" />
+                  </button>
+
+                  <hr className="my-2 border-border" />
+
+                  {/* Teams */}
+                  <Link
+                    to="/team"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="py-3 px-4 text-foreground hover:bg-muted rounded-lg transition-colors font-medium"
+                  >
+                    {t("header.nav.team")}
+                  </Link>
+
+                  <hr className="my-2 border-border" />
+
+                  {/* Company Button */}
+                  <button
+                    onClick={() => setMobileSubMenu("company")}
+                    className="py-3 px-4 flex justify-between items-center text-foreground hover:bg-muted rounded-lg transition-colors font-medium"
+                  >
+                    {t("header.nav.company")}
+                    <ChevronDown className="w-4 h-4 -rotate-90" />
+                  </button>
+
+                  <hr className="my-2 border-border" />
+
+                  {/* Contact */}
+                  <Link
+                    to="/contact"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="py-3 px-4 text-foreground hover:bg-muted rounded-lg transition-colors font-medium"
+                  >
+                    {t("header.nav.contact")}
+                  </Link>
+
+                  <hr className="my-2 border-border" />
+                  <Link
+                    to="/#"
+                    className="py-3 px-4 text-foreground hover:bg-muted rounded-lg transition-colors font-medium"
+                  >
+                    {t("header.nav.login")}
+                  </Link>
+                  <Link to="/#">
+                    <Button className="bg-foreground text-background hover:bg-foreground/90 mt-2 gap-2 p-6 w-[100%]">
+                      <Crown className="w-4 h-4" />
+                      {t("header.nav.signup")}
+                    </Button>
+                  </Link>
+                </nav>
               </div>
 
-              <hr className="my-2 border-border" />
-
-              {/* Contact Link - Fifth */}
-              <Link
-                to="/contact"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="py-3 px-4 text-foreground hover:bg-muted rounded-lg transition-colors"
+              {/* Solutions Submenu */}
+              <div
+                className={`absolute inset-0 transition-transform duration-300 ${
+                  mobileSubMenu === "solutions"
+                    ? "translate-x-0"
+                    : "translate-x-full"
+                }`}
               >
-                {t("header.nav.contact")}
-              </Link>
+                <div className="h-full overflow-y-auto p-4 flex flex-col gap-2">
+                  <button
+                    onClick={() => setMobileSubMenu("none")}
+                    className="flex items-center gap-2 text-sm font-medium mb-4 text-primary"
+                  >
+                    ← {t("header.nav.back")}
+                  </button>
 
-              <hr className="my-2 border-border" />
-              <Link
-                to="/#"
-                className="py-3 px-4 text-muted-foreground hover:bg-muted rounded-lg transition-colors"
+                  {solutionsSections.map((section) => (
+                    <div key={section.title} className="mb-4">
+                      <div className="text-xs font-semibold uppercase text-muted-foreground mb-2">
+                        {section.title}
+                      </div>
+                      {section.items.map((item) => (
+                        <Link
+                          key={item.label}
+                          to={item.href}
+                          onClick={() => setIsMobileMenuOpen(false)}
+                          className="flex items-center gap-3 py-3 px-4 text-foreground hover:bg-muted rounded-lg transition-colors"
+                        >
+                          <item.icon className="w-5 h-5 text-primary" />
+                          <div>
+                            <div className="text-sm font-medium">
+                              {item.label}
+                            </div>
+                            <div className="text-xs text-muted-foreground">
+                              {item.description}
+                            </div>
+                          </div>
+                        </Link>
+                      ))}
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Company Submenu */}
+              <div
+                className={`absolute inset-0 transition-transform duration-300 ${
+                  mobileSubMenu === "company"
+                    ? "translate-x-0"
+                    : "translate-x-full"
+                }`}
               >
-                {t("header.nav.login")}
-              </Link>
-              <Link to="/#">
-                <Button className="bg-foreground text-background hover:bg-foreground/90 mt-2 gap-2 p-6 w-[100%]">
-                  <Crown className="w-4 h-4" />
-                  {t("header.nav.signup")}
-                </Button>
-              </Link>
-            </nav>
+                <div className="h-full overflow-y-auto p-4 flex flex-col gap-2">
+                  <button
+                    onClick={() => setMobileSubMenu("none")}
+                    className="flex items-center gap-2 text-sm font-medium mb-4 text-primary"
+                  >
+                    ← {t("header.nav.back")}
+                  </button>
+
+                  {companyLinks.map((item) => (
+                    <Link
+                      key={item.label}
+                      to={item.href}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="flex items-center gap-3 py-3 px-4 text-foreground hover:bg-muted rounded-lg transition-colors"
+                    >
+                      <item.icon className="w-5 h-5 text-primary" />
+                      <div>
+                        <div className="text-sm font-medium">{item.label}</div>
+                        <div className="text-xs text-muted-foreground">
+                          {item.description}
+                        </div>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
         )}
       </div>
