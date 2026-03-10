@@ -14,6 +14,23 @@ const Login = () => {
     password: "",
   });
 
+  // CHECK COOKIE ON MOUNT
+  useEffect(() => {
+    const checkUser = async () => {
+      try {
+        const userData = await getMe(); // tries fetching user via cookie
+        if (userData) {
+          authLogin(userData); // set user in context
+          navigate("http://localhost:8081/"); // redirect to login page
+        }
+      } catch (err) {
+        // no valid session, stay on login
+        console.log("No valid session, please login");
+      }
+    };
+    checkUser();
+  }, [authLogin, navigate]);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -24,7 +41,6 @@ const Login = () => {
       const userData = await getMe();
       authLogin(userData); // sets user in context
       navigate("http://localhost:8081/"); // redirect to login page
-
     } catch (error: any) {
       console.error(error.response?.data?.detail || "Login failed");
     }
