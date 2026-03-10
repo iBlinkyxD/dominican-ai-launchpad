@@ -4,6 +4,8 @@ import emelysRivera from "@/assets/team/emelys-rivera.jpeg";
 import solomon from "@/assets/team/solomon.jpeg";
 import rosaAzcona from "@/assets/team/rosa-azcona.jpeg";
 import kevinJoa from "@/assets/team/kevin-joa.jpeg";
+import jonahStevens from "@/assets/team/jonah-stevens.jpeg";
+import joseMiguel from "@/assets/team/jose-miguel.jpeg";
 
 export interface TeamMember {
   id: number;
@@ -37,16 +39,28 @@ export const teamMembers: TeamMember[] = [
     roleKey: "chiefSteward",
     image: solomon,
   },
+  // {
+  //   id: 5,
+  //   name: "Jonah Stevens ",
+  //   roleKey: "directorEducationalInnovation",
+  //   image: jonahStevens,
+  // },
   {
-    id: 5,
+    id: 6,
     name: "Rosa Azcona",
     roleKey: "coordinator",
     image: rosaAzcona,
   },
   {
-    id: 6,
+    id: 7,
     name: "Kevin Joa",
     roleKey: "softwareDeveloper",
     image: kevinJoa,
   },
+  //   {
+  //   id: 8,
+  //   name: "Jose Miguel",
+  //   roleKey: "softwareDeveloper",
+  //   image: joseMiguel,
+  // },
 ];

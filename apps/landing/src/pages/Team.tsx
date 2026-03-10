@@ -41,7 +41,7 @@ const Teams = () => {
         {/* Team Cards - 3D Perspective Container */}
         <section aria-labelledby="team-members">
           <div
-            className="container relative z-10relative max-w-6xl mx-auto"
+            className="container relative z-10 max-w-7xl mx-auto"
             style={{ perspective: "1000px" }}
           >
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 items-center">

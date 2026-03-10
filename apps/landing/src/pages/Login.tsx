@@ -36,15 +36,21 @@ const Login = () => {
       <div className="w-full max-w-xl bg-white rounded-2xl shadow-lg p-8 md:p-12">
         {/* Logo */}
         <div className="flex justify-center mb-8">
-          <img src={daiaLogo} alt="DAIA Logo" className="h-16 w-auto" />
+          <Link to="/">
+            <img
+              src={daiaLogo}
+              alt="DAIA Logo"
+              className="h-16 w-auto cursor-pointer"
+            />
+          </Link>
         </div>
 
         {/* Header */}
         <div className="mb-8 text-center">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">
-            Create Account
+            Welcome Back
           </h1>
-          <p className="text-gray-600">Join us today and get started</p>
+          <p className="text-gray-600">Please enter your credentials</p>
         </div>
 
         {/* Form */}
@@ -115,7 +121,7 @@ const Login = () => {
             type="submit"
             className="w-full bg-blue-600 text-white py-3 px-4 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition font-medium flex items-center justify-center gap-2 group"
           >
-            Create Account
+            Login
             <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
           </button>
         </form>

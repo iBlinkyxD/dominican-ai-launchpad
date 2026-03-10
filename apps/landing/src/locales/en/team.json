@@ -10,7 +10,8 @@
             "controller": "Controller",
             "chiefSteward": "Chief Steward",
             "coordinator": "Coordinator",
-            "softwareDeveloper": "Software Developer"
+            "softwareDeveloper": "Software Developer",
+            "directorEducationalInnovation": "Director of Educational Innovation"
         }
     }
 }

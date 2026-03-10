@@ -1,27 +1,27 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router';
-import { Eye, EyeOff, Mail, Lock, User, ArrowRight, Phone } from 'lucide-react';
-import daiaLogo from '@/assets/DAIA-logo.png';
-import { Link } from 'react-router-dom';
+import { useState } from "react";
+import { useNavigate } from "react-router";
+import { Eye, EyeOff, Mail, Lock, User, ArrowRight, Phone } from "lucide-react";
+import daiaLogo from "@/assets/DAIA-logo.png";
+import { Link } from "react-router-dom";
 
 const SignUp = () => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
-    password: '',
-    confirmPassword: '',
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    password: "",
+    confirmPassword: "",
   });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Sign up submitted:', formData);
+    console.log("Sign up submitted:", formData);
     // Navigate to verification page
-    navigate('/verify');
+    navigate("/verify");
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -37,12 +37,20 @@ const SignUp = () => {
       <div className="w-full max-w-xl bg-white rounded-2xl shadow-lg p-8 md:p-12">
         {/* Logo */}
         <div className="flex justify-center mb-8">
-          <img src={daiaLogo} alt="DAIA Logo" className="h-16 w-auto" />
+          <Link to="/">
+            <img
+              src={daiaLogo}
+              alt="DAIA Logo"
+              className="h-16 w-auto cursor-pointer"
+            />
+          </Link>
         </div>
 
         {/* Header */}
         <div className="mb-8 text-center">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Create Account</h1>
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">
+            Create Account
+          </h1>
           <p className="text-gray-600">Join us today and get started</p>
         </div>
 
@@ -51,7 +59,10 @@ const SignUp = () => {
           {/* First Name and Last Name - Side by Side */}
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 mb-2">
+              <label
+                htmlFor="firstName"
+                className="block text-sm font-medium text-gray-700 mb-2"
+              >
                 First Name
               </label>
               <div className="relative">
@@ -72,7 +83,10 @@ const SignUp = () => {
             </div>
 
             <div>
-              <label htmlFor="lastName" className="block text-sm font-medium text-gray-700 mb-2">
+              <label
+                htmlFor="lastName"
+                className="block text-sm font-medium text-gray-700 mb-2"
+              >
                 Last Name
               </label>
               <div className="relative">
@@ -95,7 +109,10 @@ const SignUp = () => {
 
           {/* Email Input */}
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+            <label
+              htmlFor="email"
+              className="block text-sm font-medium text-gray-700 mb-2"
+            >
               Email Address
             </label>
             <div className="relative">
@@ -117,7 +134,10 @@ const SignUp = () => {
 
           {/* Phone Number Input */}
           <div>
-            <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
+            <label
+              htmlFor="phone"
+              className="block text-sm font-medium text-gray-700 mb-2"
+            >
               Phone Number
             </label>
             <div className="relative">
@@ -139,7 +159,10 @@ const SignUp = () => {
 
           {/* Password Input */}
           <div>
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
+            <label
+              htmlFor="password"
+              className="block text-sm font-medium text-gray-700 mb-2"
+            >
               Password
             </label>
             <div className="relative">
@@ -149,7 +172,7 @@ const SignUp = () => {
               <input
                 id="password"
                 name="password"
-                type={showPassword ? 'text' : 'password'}
+                type={showPassword ? "text" : "password"}
                 value={formData.password}
                 onChange={handleChange}
                 className="block w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
@@ -172,7 +195,10 @@ const SignUp = () => {
 
           {/* Confirm Password Input */}
           <div>
-            <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 mb-2">
+            <label
+              htmlFor="confirmPassword"
+              className="block text-sm font-medium text-gray-700 mb-2"
+            >
               Confirm Password
             </label>
             <div className="relative">
@@ -182,7 +208,7 @@ const SignUp = () => {
               <input
                 id="confirmPassword"
                 name="confirmPassword"
-                type={showConfirmPassword ? 'text' : 'password'}
+                type={showConfirmPassword ? "text" : "password"}
                 value={formData.confirmPassword}
                 onChange={handleChange}
                 className="block w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
@@ -213,12 +239,18 @@ const SignUp = () => {
               required
             />
             <label htmlFor="terms" className="ml-2 block text-sm text-gray-700">
-              I agree to the{' '}
-              <a href="#" className="text-blue-600 hover:text-blue-700 underline">
+              I agree to the{" "}
+              <a
+                href="#"
+                className="text-blue-600 hover:text-blue-700 underline"
+              >
                 Terms of Service
-              </a>{' '}
-              and{' '}
-              <a href="#" className="text-blue-600 hover:text-blue-700 underline">
+              </a>{" "}
+              and{" "}
+              <a
+                href="#"
+                className="text-blue-600 hover:text-blue-700 underline"
+              >
                 Privacy Policy
               </a>
             </label>
@@ -240,7 +272,9 @@ const SignUp = () => {
             <div className="w-full border-t border-gray-300"></div>
           </div>
           <div className="relative flex justify-center text-sm">
-            <span className="px-2 bg-white text-gray-500">Or continue with</span>
+            <span className="px-2 bg-white text-gray-500">
+              Or continue with
+            </span>
           </div>
         </div>
 
@@ -268,20 +302,25 @@ const SignUp = () => {
                 d="M5.27698177,14.2678769 C5.03832634,13.556323 4.90909091,12.7937589 4.90909091,12 C4.90909091,11.2182781 5.03443647,10.4668121 5.26620003,9.76452941 L1.23999023,6.65002441 C0.43658717,8.26043162 0,10.0753848 0,12 C0,13.9195484 0.444780743,15.7301709 1.23746264,17.3349879 L5.27698177,14.2678769 Z"
               />
             </svg>
-            <span className="ml-2 text-sm font-medium text-gray-700">Google</span>
+            <span className="ml-2 text-sm font-medium text-gray-700">
+              Google
+            </span>
           </button>
         </div>
 
         {/* Login Link */}
         <p className="mt-8 text-center text-sm text-gray-600">
-          Already have an account?{' '}
-          <Link to="/login" className="font-medium text-blue-600 hover:text-blue-700">
+          Already have an account?{" "}
+          <Link
+            to="/login"
+            className="font-medium text-blue-600 hover:text-blue-700"
+          >
             Login
           </Link>
         </p>
       </div>
     </div>
   );
-}
+};
 
 export default SignUp;
