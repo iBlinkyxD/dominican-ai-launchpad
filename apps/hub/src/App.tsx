@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { AuthProvider, ProtectedRoute } from "../../../packages/auth/src";
+import { AuthProvider, ProtectedRoute } from "../../../packages/"; 
 import HubLayout from "./layouts/HubLayout";
 import Overview from "./pages/Overview";
 import AllApps from "./pages/AllApps";
@@ -9,9 +9,17 @@ import Settings from "./pages/Settings";
 import Access from "./pages/Access";
 
 const App = () => (
-    <BrowserRouter>
+  <BrowserRouter>
+    <AuthProvider>
       <Routes>
-        <Route path="/" element={<HubLayout />}>
+        <Route
+          path="/"
+          element={
+            <ProtectedRoute>
+              <HubLayout />
+            </ProtectedRoute>
+          }
+        >
           <Route index element={<Overview />} />
           <Route path="apps" element={<AllApps />} />
           <Route path="security" element={<Security />} />
@@ -20,7 +28,9 @@ const App = () => (
           <Route path="access" element={<Access />} />
         </Route>
       </Routes>
-    </BrowserRouter>
+    </AuthProvider>
+  </BrowserRouter>
 );
+
 
 export default App;

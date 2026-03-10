@@ -1,13 +1,47 @@
-import { useState, useRef, KeyboardEvent } from "react";
+import { useState, useRef, KeyboardEvent, useEffect } from "react";
 import { useNavigate } from "react-router";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import daiaLogo from "@/assets/DAIA-logo.png";
 import { Link } from "react-router-dom";
+import { useLocation, useSearchParams } from "react-router-dom";
+import { verifyAccount, resendVerification } from "@/api/auth";
+import toast, { Toaster } from "react-hot-toast";
 
 const Verify = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [code, setCode] = useState(["", "", "", "", "", ""]);
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
+
+  const [searchParams] = useSearchParams();
+  const emailFromUrl = searchParams.get("email");
+  const codeFromUrl = searchParams.get("code");
+
+  const email = location.state?.email || emailFromUrl;
+
+  const verifiedRef = useRef(false);
+
+  useEffect(() => {
+    if (verifiedRef.current) return;
+
+    if (emailFromUrl && codeFromUrl) {
+      verifiedRef.current = true;
+
+      verifyAccount(emailFromUrl, codeFromUrl)
+        .then((res) => {
+          if (res.message === "Account already verified") {
+            toast("Account already verified.");
+            setTimeout(() => navigate("/login"), 1500);
+          } else {
+            toast.success("Account verified!");
+            setTimeout(() => navigate("/admin"), 1500);
+          }
+        })
+        .catch(() => {
+          toast.error("Verification failed.");
+        });
+    }
+  }, []);
 
   const handleChange = (index: number, value: string) => {
     // Only allow digits
@@ -51,23 +85,41 @@ const Verify = () => {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
     const verificationCode = code.join("");
-    console.log("Verification code submitted:", verificationCode);
-    // Navigate to hub page after verification
-    navigate("/hub");
+
+    try {
+      await verifyAccount(email, verificationCode);
+
+      // Show success notification
+      toast.success("Verification successful! Redirecting...");
+
+      // Redirect after a short delay (1.5s)
+      setTimeout(() => {
+        navigate("/hub");
+      }, 1500);
+    } catch (error) {
+      console.error("Verification error:", error);
+      toast.error("Verification failed. Please try again.");
+    }
   };
 
-  const handleResend = () => {
-    console.log("Resending verification code...");
-    // Add resend logic here
+  const handleResend = async () => {
+    try {
+      await resendVerification(email);
+      toast.success("Verification email sent!");
+    } catch {
+      toast.error("Failed to resend email.");
+    }
   };
 
   const isCodeComplete = code.every((digit) => digit !== "");
 
   return (
     <div className="min-h-screen w-full flex items-center justify-center p-8 bg-gray-50">
+      <Toaster position="top-center" reverseOrder={false} />
       <div className="w-full max-w-md bg-white rounded-2xl shadow-lg p-8 md:p-12">
         {/* Logo */}
         <div className="flex justify-center mb-8">

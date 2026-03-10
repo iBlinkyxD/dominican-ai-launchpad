@@ -3,11 +3,18 @@ import { useNavigate } from "react-router";
 import { Eye, EyeOff, Mail, Lock, User, ArrowRight, Phone } from "lucide-react";
 import daiaLogo from "@/assets/DAIA-logo.png";
 import { Link } from "react-router-dom";
+import { register } from "@/api/auth";
+import * as Yup from "yup";
+import toast, { Toaster } from "react-hot-toast";
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
+import { parsePhoneNumberFromString } from "libphonenumber-js";
 
 const SignUp = () => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [errors, setErrors] = useState<Record<string, string>>({});
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -17,13 +24,75 @@ const SignUp = () => {
     confirmPassword: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log("Sign up submitted:", formData);
-    // Navigate to verification page
-    navigate("/verify");
-  };
+  const signupSchema = Yup.object({
+    firstName: Yup.string().required("First name is required"),
 
+    lastName: Yup.string().required("Last name is required"),
+
+    email: Yup.string()
+      .email("Invalid email format")
+      .required("Email is required"),
+
+    phone: Yup.string()
+      .required("Phone number is required")
+      .test("is-valid-phone", "Invalid phone number", (value) => {
+        if (!value) return false;
+
+        const phoneNumber = parsePhoneNumberFromString("+" + value);
+
+        return phoneNumber?.isValid() || false;
+      }),
+    password: Yup.string()
+      .min(8, "Must be at least 8 characters long")
+      .matches(/[a-z]/, "Must contain at least one lowercase letter")
+      .matches(/[A-Z]/, "Must contain at least one uppercase letter")
+      .matches(/\d/, "Must contain at least one number")
+      .matches(
+        /[!@#$%^&*(),.?":{}|<>]/,
+        "Must contain at least one special character",
+      )
+      .required("Password is required"),
+    confirmPassword: Yup.string()
+      .oneOf([Yup.ref("password"), null], "Passwords must match")
+      .required("Confirm password is required"),
+  });
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    try {
+      setErrors({});
+
+      await signupSchema.validate(formData, { abortEarly: false });
+
+      await register({
+        first_name: formData.firstName,
+        last_name: formData.lastName,
+        email: formData.email,
+        phone: formData.phone,
+        password: formData.password,
+      });
+
+      // Show success notification
+      toast.success("Account created! Redirecting...");
+
+      setTimeout(() => {
+        navigate("/verify", { state: { email: formData.email } });
+      }, 1500);
+    } catch (error: any) {
+      if (error.inner) {
+        const newErrors: Record<string, string> = {};
+
+        error.inner.forEach((err: any) => {
+          if (!newErrors[err.path]) {
+            newErrors[err.path] = err.message;
+          }
+        });
+
+        setErrors(newErrors);
+      }
+    }
+  };
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
       ...formData,
@@ -33,6 +102,7 @@ const SignUp = () => {
 
   return (
     <div className="min-h-screen w-full flex items-center justify-center p-8 bg-gray-50">
+      <Toaster position="top-center" reverseOrder={false} />
       {/* Centered Form */}
       <div className="w-full max-w-xl bg-white rounded-2xl shadow-lg p-8 md:p-12">
         {/* Logo */}
@@ -77,9 +147,11 @@ const SignUp = () => {
                   onChange={handleChange}
                   className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
                   placeholder="John"
-                  required
                 />
               </div>
+              {errors.firstName && (
+                <p className="text-red-500 text-sm mt-1">{errors.firstName}</p>
+              )}
             </div>
 
             <div>
@@ -101,9 +173,11 @@ const SignUp = () => {
                   onChange={handleChange}
                   className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
                   placeholder="Doe"
-                  required
                 />
               </div>
+              {errors.lastName && (
+                <p className="text-red-500 text-sm mt-1">{errors.lastName}</p>
+              )}
             </div>
           </div>
 
@@ -127,9 +201,11 @@ const SignUp = () => {
                 onChange={handleChange}
                 className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
                 placeholder="you@example.com"
-                required
               />
             </div>
+            {errors.email && (
+              <p className="text-red-500 text-sm mt-1">{errors.email}</p>
+            )}
           </div>
 
           {/* Phone Number Input */}
@@ -144,17 +220,23 @@ const SignUp = () => {
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                 <Phone className="h-5 w-5 text-gray-400" />
               </div>
-              <input
-                id="phone"
-                name="phone"
-                type="tel"
+              <PhoneInput
+                country={"us"}
                 value={formData.phone}
-                onChange={handleChange}
-                className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
-                placeholder="+1 (555) 000-0000"
-                required
+                countryCodeEditable={false}
+                masks={{
+                  do: "(...) ...-....",
+                }}
+                onChange={(phone) => setFormData({ ...formData, phone })}
+                containerClass="phone-container"
+                inputClass="phone-input"
+                buttonClass="phone-flag-button"
+                dropdownClass="phone-dropdown"
               />
             </div>
+            {errors.phone && (
+              <p className="text-red-500 text-sm mt-1">{errors.phone}</p>
+            )}
           </div>
 
           {/* Password Input */}
@@ -177,7 +259,6 @@ const SignUp = () => {
                 onChange={handleChange}
                 className="block w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
                 placeholder="••••••••"
-                required
               />
               <button
                 type="button"
@@ -191,6 +272,9 @@ const SignUp = () => {
                 )}
               </button>
             </div>
+            {errors.password && (
+              <p className="text-red-500 text-sm mt-1">{errors.password}</p>
+            )}
           </div>
 
           {/* Confirm Password Input */}
@@ -213,7 +297,6 @@ const SignUp = () => {
                 onChange={handleChange}
                 className="block w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
                 placeholder="••••••••"
-                required
               />
               <button
                 type="button"
@@ -227,6 +310,11 @@ const SignUp = () => {
                 )}
               </button>
             </div>
+            {errors.confirmPassword && (
+              <p className="text-red-500 text-sm mt-1">
+                {errors.confirmPassword}
+              </p>
+            )}
           </div>
 
           {/* Terms Checkbox */}

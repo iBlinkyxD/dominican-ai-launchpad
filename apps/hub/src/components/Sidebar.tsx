@@ -1,14 +1,31 @@
 import { useState } from "react";
 import { useNavigate, useLocation, Link } from "react-router-dom";
-import { User, ChevronDown, ChevronRight, Shield, Grid3x3, LogOut } from "lucide-react";
+import {
+  User,
+  ChevronDown,
+  ChevronRight,
+  Shield,
+  Grid3x3,
+  LogOut,
+} from "lucide-react";
+import { useAuth } from "../../../../packages";
 
 function Sidebar() {
   const navigate = useNavigate();
   const location = useLocation();
+  const { logout } = useAuth(); // ✅ get logout from auth
   const [isAccountExpanded, setIsAccountExpanded] = useState(true);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const isActive = (path: string) => location.pathname === path;
+
+const handleLogout = async () => {
+  try {
+    await logout();       // wait for backend to delete cookie
+  } finally {
+    window.location.href = "http://localhost:8080/login";
+  }
+};
 
   return (
     <aside
@@ -123,10 +140,13 @@ function Sidebar() {
       </nav>
       {/* Logout Button at Bottom */}
       <div className="p-4 border-t border-gray-200 mt-auto">
-        <Link to="http://localhost:8080" className="flex items-center gap-2 w-full px-3 py-2 text-sm font-medium rounded-lg transition text-red-600 hover:bg-red-50">
+        <button
+          onClick={handleLogout} // ✅ call handleLogout
+          className="flex items-center gap-2 w-full px-3 py-2 text-sm font-medium rounded-lg transition text-red-600 hover:bg-red-50"
+        >
           <LogOut className="h-4 w-4" />
           <span>Logout</span>
-        </Link>
+        </button>
       </div>
     </aside>
   );

@@ -26,6 +26,7 @@ import Login from "./pages/Login";
 import Verify from "./pages/Verify";
 import Services from "./pages/Services";
 import ServiceRequest from "./pages/ServiceRequest";
+import { AuthProvider } from "../../../packages";
 
 const queryClient = new QueryClient();
 
@@ -34,52 +35,54 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter>
-        <ScrollToTop />
-        <Routes>
-          {/* <Route path="/" element={<Soon />} /> */}
-          <Route path="/" element={<Index />} />
+      <AuthProvider>
+        <BrowserRouter>
+          <ScrollToTop />
+          <Routes>
+            {/* <Route path="/" element={<Soon />} /> */}
+            <Route path="/" element={<Index />} />
 
-          {/* <Route path="/signUp" element={<SignUp/>} />
-          <Route path="/verify" element={<Verify/>} />
-          <Route path="/login" element={<Login/>} /> */}
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="/verify" element={<Verify />} />
+            <Route path="/login" element={<Login />} />
 
-          <Route path="/courses" element={<Courses />} />
-          {/* <Route path="/courses/:courseId" element={<CourseDetail />} /> */}
+            <Route path="/courses" element={<Courses />} />
+            {/* <Route path="/courses/:courseId" element={<CourseDetail />} /> */}
 
-          <Route path="/educa-one" element={<ComingSoon />} />
-          <Route path="/scholar-one" element={<ComingSoon />} />
-          <Route path="/quisqueya-ai" element={<ComingSoon />} />
+            <Route path="/educa-one" element={<ComingSoon />} />
+            <Route path="/scholar-one" element={<ComingSoon />} />
+            <Route path="/quisqueya-ai" element={<ComingSoon />} />
 
-          <Route path="/isla-intelligence" element={<ComingSoon />} />
-          <Route path="/cultura-connect" element={<ComingSoon />} />
+            <Route path="/isla-intelligence" element={<ComingSoon />} />
+            <Route path="/cultura-connect" element={<ComingSoon />} />
 
-          <Route path="/terra-vision-ai" element={<ComingSoon />} />
-          <Route path="/title-trust-dr" element={<ComingSoon />} />
+            <Route path="/terra-vision-ai" element={<ComingSoon />} />
+            <Route path="/title-trust-dr" element={<ComingSoon />} />
 
-          <Route path="/team" element={<Team />} />
+            <Route path="/team" element={<Team />} />
 
-          <Route path="/services" element={<Services />} />
-          <Route path="/services/:serviceId" element={<ServiceRequest />} />
-          <Route path="/partners" element={<Partners />} />
-          {/* <Route path="/partners/:partnerId" element={<PartnerDetail />} /> */}
-          <Route path="/initiatives" element={<Initiatives />} />
-          {/* <Route path="/initiatives/:initiativeId" element={<InitiativeDetail />} /> */}
-          <Route path="/news" element={<News />} />
-          <Route path="/news/:newsId" element={<NewsDetail />} />
-          <Route path="/blog" element={<Blog />} />
-          {/* <Route path="/blog/:blogId" element={<BlogDetail />} /> */}
+            <Route path="/services" element={<Services />} />
+            <Route path="/services/:serviceId" element={<ServiceRequest />} />
+            <Route path="/partners" element={<Partners />} />
+            {/* <Route path="/partners/:partnerId" element={<PartnerDetail />} /> */}
+            <Route path="/initiatives" element={<Initiatives />} />
+            {/* <Route path="/initiatives/:initiativeId" element={<InitiativeDetail />} /> */}
+            <Route path="/news" element={<News />} />
+            <Route path="/news/:newsId" element={<NewsDetail />} />
+            <Route path="/blog" element={<Blog />} />
+            {/* <Route path="/blog/:blogId" element={<BlogDetail />} /> */}
 
-          <Route path="/contact" element={<Contact />} />
-{/* 
+            <Route path="/contact" element={<Contact />} />
+            {/* 
           <Route path="/education" element={<Education />} />
           <Route path="/tourism" element={<ComingSoon />} />
           <Route path="/real-estate" element={<ComingSoon />} /> */}
 
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </AuthProvider>
     </TooltipProvider>
   </QueryClientProvider>
 );

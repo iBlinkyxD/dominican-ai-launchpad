@@ -1,26 +1,33 @@
-import { useState } from "react";
-import { useNavigate } from "react-router";
+import { useState, useEffect } from "react";
 import { Eye, EyeOff, Mail, Lock, User, ArrowRight, Phone } from "lucide-react";
 import daiaLogo from "@/assets/DAIA-logo.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { login, getMe } from "../api/auth";
+import { useAuth } from "../../../../packages/";
+
 const Login = () => {
   const navigate = useNavigate();
+  const { login: authLogin } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Simulate login
-    localStorage.setItem("daia_user", formData.email);
+    try {
+      await login(formData.email, formData.password); // sets HTTP-only cookie
 
-    console.log("Login Successful!");
+      // Immediately fetch user
+      const userData = await getMe();
+      authLogin(userData); // sets user in context
+      navigate("http://localhost:8081/"); // redirect to login page
 
-    // Redirect to hub app (different port)
-    window.location.href = "http://localhost:8081";
+    } catch (error: any) {
+      console.error(error.response?.data?.detail || "Login failed");
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

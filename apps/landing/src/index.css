@@ -245,3 +245,81 @@
     }
   }
 }
+
+/* container */
+.phone-container {
+  width: 100%;
+}
+
+/* input field */
+.phone-input {
+  width: 100% !important;
+  height: 48px !important;
+  border: 1px solid #d1d5db !important;
+  border-radius: 0.5rem !important;
+  padding-left: 3.2rem !important;
+  font-size: 14px;
+}
+
+/* remove white hover box */
+.phone-flag-button {
+  background: transparent !important;
+  border: none !important;
+  padding-left: 4px;
+}
+
+/* remove grey hover */
+.phone-flag-button:hover {
+  background: transparent !important;
+}
+/* align flag properly */
+.react-tel-input .selected-flag {
+  padding-left: 16px !important;
+  width: 40px;
+}
+
+/* fix +1 spacing */
+.react-tel-input .form-control {
+  padding-left: 52px !important;
+}
+
+/* dropdown styling */
+.phone-dropdown {
+  border-radius: 0.5rem !important;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+}
+
+/* remove white hover box completely */
+.react-tel-input .flag-dropdown {
+  background: transparent !important;
+  border: none !important;
+}
+
+/* remove white background when dropdown opens */
+.react-tel-input .flag-dropdown.open .selected-flag {
+  background: transparent !important;
+}
+
+.react-tel-input .flag-dropdown:hover {
+  background: transparent !important;
+}
+
+.react-tel-input .selected-flag:hover,
+.react-tel-input .selected-flag:focus {
+  background: transparent !important;
+}
+
+/* remove focus highlight */
+.react-tel-input .selected-flag:focus {
+  outline: none !important;
+}
+
+/* fix flag padding */
+.react-tel-input .selected-flag {
+  padding-left: 10px;
+}
+
+/* fix input padding */
+.react-tel-input .form-control {
+  padding-left: 52px !important;
+}
