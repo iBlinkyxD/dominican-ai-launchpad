@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import { User } from "./authService";
-import { getMe } from "../apps/landing/src/api/auth"; // your getMe function
+import { getMe } from "../apps/landing/src/api/auth";
 import { logout as apiLogout } from "../apps/hub/src/api/auth";
 
 interface AuthContextType {

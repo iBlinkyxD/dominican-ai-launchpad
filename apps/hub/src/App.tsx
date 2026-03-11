@@ -7,6 +7,7 @@ import Security from "./pages/Security";
 import Devices from "./pages/Devices";
 import Settings from "./pages/Settings";
 import Access from "./pages/Access";
+import Academy from "./pages/Academy";
 
 const App = () => (
   <BrowserRouter>
@@ -26,6 +27,7 @@ const App = () => (
           <Route path="devices" element={<Devices />} />
           <Route path="settings" element={<Settings />} />
           <Route path="access" element={<Access />} />
+          <Route path="academy" element={<Academy />} />
         </Route>
       </Routes>
     </AuthProvider>
