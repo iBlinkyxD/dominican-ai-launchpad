@@ -1,13 +1,6 @@
 import { useState } from "react";
 import { useNavigate, useLocation, Link } from "react-router-dom";
-import {
-  User,
-  ChevronDown,
-  ChevronRight,
-  Shield,
-  Grid3x3,
-  LogOut,
-} from "lucide-react";
+import { Settings, GraduationCap, Shield, Grid3x3, LogOut } from "lucide-react";
 import { useAuth } from "../../../../packages";
 
 function Sidebar() {
@@ -19,13 +12,13 @@ function Sidebar() {
 
   const isActive = (path: string) => location.pathname === path;
 
-const handleLogout = async () => {
-  try {
-    await logout();       // wait for backend to delete cookie
-  } finally {
-    window.location.href = "http://localhost:8080/login";
-  }
-};
+  const handleLogout = async () => {
+    try {
+      await logout(); // wait for backend to delete cookie
+    } finally {
+      window.location.href = `${import.meta.env.VITE_LANDING_URL}/login`;
+    }
+  };
 
   return (
     <aside
@@ -50,67 +43,26 @@ const handleLogout = async () => {
     >
       <nav className="p-4 space-y-1">
         {/* My Account Section */}
-        <div>
-          <button
-            onClick={() => setIsAccountExpanded(!isAccountExpanded)}
-            className="flex items-center justify-between w-full px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 rounded-lg transition"
-          >
-            <div className="flex items-center gap-2">
-              <User className="h-4 w-4" />
-              <span>My Account</span>
-            </div>
-            {isAccountExpanded ? (
-              <ChevronDown className="h-4 w-4" />
-            ) : (
-              <ChevronRight className="h-4 w-4" />
-            )}
-          </button>
+        <button
+          onClick={() => navigate("/")}
+          className="flex items-center justify-between w-full px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 rounded-lg transition"
+        >
+          <div className="flex items-center gap-2">
+            <Grid3x3 className="h-4 w-4" />
+            <span>My Apps</span>
+          </div>
+        </button>
 
-          {isAccountExpanded && (
-            <div className="ml-6 mt-1 space-y-1">
-              <button
-                onClick={() => navigate("/overview")}
-                className={`block w-full text-left px-3 py-2 text-sm rounded-lg transition ${
-                  isActive("/overview")
-                    ? "bg-gray-100 text-gray-900 font-medium"
-                    : "text-gray-600 hover:bg-gray-50"
-                }`}
-              >
-                Overview
-              </button>
-              <button
-                onClick={() => navigate("/security")}
-                className={`block w-full text-left px-3 py-2 text-sm rounded-lg transition ${
-                  isActive("/security")
-                    ? "bg-gray-100 text-gray-900 font-medium"
-                    : "text-gray-600 hover:bg-gray-50"
-                }`}
-              >
-                Security info
-              </button>
-              <button
-                onClick={() => navigate("/devices")}
-                className={`block w-full text-left px-3 py-2 text-sm rounded-lg transition ${
-                  isActive("/devices")
-                    ? "bg-gray-100 text-gray-900 font-medium"
-                    : "text-gray-600 hover:bg-gray-50"
-                }`}
-              >
-                Devices
-              </button>
-              <button
-                onClick={() => navigate("/settings")}
-                className={`block w-full text-left px-3 py-2 text-sm rounded-lg transition ${
-                  isActive("/settings")
-                    ? "bg-gray-100 text-gray-900 font-medium"
-                    : "text-gray-600 hover:bg-gray-50"
-                }`}
-              >
-                Settings & Privacy
-              </button>
-            </div>
-          )}
-        </div>
+        {/* My Account Section */}
+        <button
+          onClick={() => navigate("/academy")}
+          className="flex items-center justify-between w-full px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 rounded-lg transition"
+        >
+          <div className="flex items-center gap-2">
+            <GraduationCap className="h-4 w-4" />
+            <span>Academy</span>
+          </div>
+        </button>
 
         {/* All Apps */}
         <button
@@ -134,8 +86,8 @@ const handleLogout = async () => {
               : "text-gray-700 hover:bg-gray-100"
           }`}
         >
-          <Shield className="h-4 w-4" />
-          <span>My Access</span>
+          <Settings className="h-4 w-4" />
+          <span>Settings</span>
         </button>
       </nav>
       {/* Logout Button at Bottom */}

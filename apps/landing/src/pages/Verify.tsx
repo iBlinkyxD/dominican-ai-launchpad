@@ -34,7 +34,7 @@ const Verify = () => {
             setTimeout(() => navigate("/login"), 1500);
           } else {
             toast.success("Account verified!");
-            setTimeout(() => navigate("/admin"), 1500);
+            setTimeout(() => navigate("/login"), 1500);
           }
         })
         .catch(() => {
@@ -98,7 +98,7 @@ const Verify = () => {
 
       // Redirect after a short delay (1.5s)
       setTimeout(() => {
-        navigate("/hub");
+        navigate("/login");
       }, 1500);
     } catch (error) {
       console.error("Verification error:", error);

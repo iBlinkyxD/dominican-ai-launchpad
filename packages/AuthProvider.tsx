@@ -40,7 +40,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       console.error("Logout API failed:", err);
     } finally {
       setUser(null); // clear local user state
-      window.location.href = "http://localhost:8080/login"; // redirect to login
+      window.location.href = `${import.meta.env.VITE_LANDING_URL}/login`; // redirect to login
     }
   };
   

@@ -13,12 +13,6 @@ const Overview = () => {
 
   return (
     <>
-      {/* Profile Card */}
-      <div className="bg-white rounded-lg shadow-sm border p-6 mb-8">
-        <h2 className="text-xl font-bold">User Account</h2>
-        <p className="text-sm text-gray-600">{user}</p>
-      </div>
-
       {/* Apps */}
       <h3 className="text-2xl font-bold mb-6">Your Applications</h3>
 

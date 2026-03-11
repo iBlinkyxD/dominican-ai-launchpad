@@ -24,7 +24,7 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   if (loading) return <div>Loading...</div>;
 
   if (!isAuthenticated) {
-    window.location.href = "http://localhost:8080/login"; // redirect to Landing login
+    window.location.href = `${import.meta.env.VITE_LANDING_URL}/login`; // redirect to Landing login
     return null;
   }
 

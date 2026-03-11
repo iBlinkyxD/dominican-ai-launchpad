@@ -4,6 +4,7 @@ import daiaLogo from "@/assets/DAIA-logo.png";
 import { Link, useNavigate } from "react-router-dom";
 import { login, getMe } from "../api/auth";
 import { useAuth } from "../../../../packages/";
+import toast, { Toaster } from "react-hot-toast";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -20,8 +21,8 @@ const Login = () => {
       try {
         const userData = await getMe(); // tries fetching user via cookie
         if (userData) {
-          authLogin(userData); // set user in context
-          navigate("http://localhost:8081/"); // redirect to login page
+          authLogin(userData);
+          navigate(`${import.meta.env.VITE_HUB_URL}`);
         }
       } catch (err) {
         // no valid session, stay on login
@@ -39,8 +40,13 @@ const Login = () => {
 
       // Immediately fetch user
       const userData = await getMe();
-      authLogin(userData); // sets user in context
-      navigate("http://localhost:8081/"); // redirect to login page
+      authLogin(userData);
+
+      toast.success("Verification successful! Redirecting...");
+
+      setTimeout(() => {
+        navigate(`${import.meta.env.VITE_HUB_URL}`);
+      }, 1500);
     } catch (error: any) {
       console.error(error.response?.data?.detail || "Login failed");
     }
