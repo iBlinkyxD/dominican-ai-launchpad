@@ -10,7 +10,7 @@ import {
 } from "lucide-react";
 import { Post, Comment } from "../../types";
 import { Avatar, Button, Card, Badge } from "./UI";
-import { useAuth } from "../../../../packages";
+import { useAuth } from "../../../../packages/src/auth";
 
 // --- Create Post Widget ---
 export const CreatePost = () => {

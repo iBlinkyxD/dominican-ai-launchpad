@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useAuth } from "../../../../packages";
+import { useAuth } from "../../../../packages/src/auth";
 import { api } from "../../mockData";
 import { Chat } from "../../types";
 import { Avatar, Card, Button } from "../components/UI";

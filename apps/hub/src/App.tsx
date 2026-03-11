@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { AuthProvider, ProtectedRoute } from "../../../packages/"; 
+import { AuthProvider, ProtectedRoute } from "../../../packages/src/auth"; 
 import HubLayout from "./layouts/HubLayout";
 import Overview from "./pages/Overview";
 import AllApps from "./pages/AllApps";

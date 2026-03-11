@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
-import {getMe} from "../apps/landing/src/api/auth"; // your getMe function
+import {getMe} from "../api/auth"; // your getMe function
 
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   const [loading, setLoading] = useState(true);

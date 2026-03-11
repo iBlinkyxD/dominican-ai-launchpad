@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Settings, Menu } from "lucide-react";
 import daiaLogo from "../assets/DAIA-logo.png";
-import { useAuth } from "../../../../packages";
+import { useAuth } from "../../../../packages/src/auth";
 
 function Header() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);

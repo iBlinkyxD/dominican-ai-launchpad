@@ -26,7 +26,7 @@ import {
   Clock,
 } from "lucide-react";
 import { Avatar } from "./UI";
-import { useAuth } from "../../../../packages";
+import { useAuth } from "../../../../packages/src/auth";
 
 // --- DAIA Logo Component ---
 const DAIALogo = () => (
@@ -132,7 +132,7 @@ const NavDropdown = ({
 
 // --- Top Navigation ---
 const TopNavigation = () => {
-  const { user, loading, logout } = useAuth();
+  const { user, loading } = useAuth();
   const navigate = useNavigate();
   const [activeDropdown, setActiveDropdown] = useState<
     "users" | "messages" | "notifications" | "profile" | null
@@ -154,11 +154,7 @@ const TopNavigation = () => {
   const firstInitial = user.first_name?.charAt(0).toUpperCase() || "";
 
   const handleLogout = async () => {
-    try {
-      await logout(); // wait for backend to delete cookie
-    } finally {
-      window.location.href = `${import.meta.env.VITE_LANDING_URL}/login`;
-    }
+      window.location.href = `${import.meta.env.VITE_HUB_URL}/`;
   };
 
   return (
@@ -465,7 +461,7 @@ const TopNavigation = () => {
                 }}
                 className="w-full flex items-center gap-3 px-3 py-2 text-sm text-red-600 hover:bg-red-50 rounded-lg transition-colors"
               >
-                <LogOut className="w-4 h-4" /> Logout
+                <LogOut className="w-4 h-4" /> Exit
               </button>
             </div>
           </NavDropdown>

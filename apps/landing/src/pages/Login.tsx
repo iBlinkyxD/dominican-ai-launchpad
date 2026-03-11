@@ -3,7 +3,7 @@ import { Eye, EyeOff, Mail, Lock, User, ArrowRight, Phone } from "lucide-react";
 import daiaLogo from "@/assets/DAIA-logo.png";
 import { Link, useNavigate } from "react-router-dom";
 import { login, getMe } from "../api/auth";
-import { useAuth } from "../../../../packages/";
+import { useAuth } from "../../../../packages/src/auth";
 import toast, { Toaster } from "react-hot-toast";
 
 const Login = () => {

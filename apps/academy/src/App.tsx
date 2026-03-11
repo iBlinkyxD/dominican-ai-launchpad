@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { User } from "../types";
 import { api } from "../mockData";
-import { AuthProvider, ProtectedRoute } from "../../../packages";
+import { AuthProvider, ProtectedRoute } from "../../../packages/src/auth";
 import { AppLayout } from "./components/Layout";
 import { Home, AdminDashboard } from "./pages/Dashboard";
 import { SpacesList, SpaceDetail } from "./pages/Spaces";

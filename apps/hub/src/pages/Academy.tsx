@@ -32,6 +32,10 @@ const Academy = () => {
     userType: "in-progress" as "new" | "in-progress" | "completed",
   };
 
+  const handleAcademy = async () => {
+      window.location.href = `${import.meta.env.VITE_ACADEMY_URL}/`;
+  };
+
   const getButtonText = () => {
     switch (userData.userType) {
       case "new":
@@ -82,7 +86,7 @@ const Academy = () => {
               </p>
             </div>
 
-            <button className="px-8 py-5 bg-gradient-to-r from-[#002D62] via-[#BD2D2F] to-[#002D62] rounded-2xl hover:opacity-90 transition shadow-lg hover:shadow-xl font-bold text-xl text-white flex items-center justify-center gap-3 group mx-auto">
+            <button onClick={() => handleAcademy()} className="px-8 py-5 bg-gradient-to-r from-[#002D62] via-[#BD2D2F] to-[#002D62] rounded-2xl hover:opacity-90 transition shadow-lg hover:shadow-xl font-bold text-xl text-white flex items-center justify-center gap-3 group mx-auto">
               Start Your Free Mini Course
               <ChevronRight className="h-6 w-6 group-hover:translate-x-1 transition-transform" />
             </button>

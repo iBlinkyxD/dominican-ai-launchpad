@@ -1,7 +1,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { Send, Sparkles, User as UserIcon, Loader2, Plus, MessageSquare, Trash2, Menu, X, Bot, History } from 'lucide-react';
-import { useAuth } from "../../../../packages";
+import { useAuth } from "../../../../packages/src/auth";
 import { Avatar, Button } from '../components/UI';
 
 interface Message {

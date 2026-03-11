@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import { Settings, GraduationCap, Shield, Grid3x3, LogOut } from "lucide-react";
-import { useAuth } from "../../../../packages";
+import { useAuth } from "../../../../packages/src/auth";
 
 function Sidebar() {
   const navigate = useNavigate();

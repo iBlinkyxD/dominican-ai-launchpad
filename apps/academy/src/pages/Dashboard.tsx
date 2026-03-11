@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { api } from '../../mockData';
 import { Post, Course, Event } from '../../types';
 import { CreatePost, PostCard } from '../components/Feed';
-import { useAuth } from "../../../../packages";
+import { useAuth } from "../../../../packages/src/auth";
 import { Card, Button } from '../components/UI';
 import { 
   BarChart3, Users, MessageSquare, AlertTriangle, 
