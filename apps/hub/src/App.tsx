@@ -8,6 +8,7 @@ import Devices from "./pages/Devices";
 import Settings from "./pages/Settings";
 import Access from "./pages/Access";
 import Academy from "./pages/Academy";
+import AppLayout from "./layouts/Layout";
 
 const App = () => (
   <BrowserRouter>
@@ -17,7 +18,7 @@ const App = () => (
           path="/"
           element={
             <ProtectedRoute>
-              <HubLayout />
+              <AppLayout />
             </ProtectedRoute>
           }
         >

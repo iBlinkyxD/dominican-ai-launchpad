@@ -6,7 +6,7 @@ const restrictedApps = ["Scholar One", "Isla Intelligence", "Terra Vision AI"];
 const AllApps = () => {
   return (
     <>
-      <h2 className="text-3xl font-bold mb-2">All Apps</h2>
+      <h2 className="text-3xl font-semibold mb-2">All Apps</h2>
       <p className="text-gray-600 mb-8">
         Access all your DAIA applications in one place
       </p>
@@ -20,15 +20,20 @@ const AllApps = () => {
               key={index}
               className="bg-white rounded-lg shadow-sm border p-6"
             >
+            <div className="flex items-start gap-4 mb-4">
               <div
                 className={`w-12 h-12 rounded-lg bg-gradient-to-r ${getCategoryColor(
-                  product.category,
-                )} flex items-center justify-center text-white mb-4`}
+                  product.category
+                )} flex items-center justify-center text-white shrink-0`}
               >
-                {getCategoryIcon(product.category)}
+                <product.icon className="w-6 h-6" />
               </div>
 
-              <h4 className="text-lg font-bold mb-2">{product.name}</h4>
+              <div>
+                <h4 className="text-lg font-semibold">{product.name}</h4>
+                <p className="text-xs text-gray-500">{product.category}</p>
+              </div>
+            </div>
               <p className="text-sm text-gray-600 mb-4">
                 {product.description}
               </p>

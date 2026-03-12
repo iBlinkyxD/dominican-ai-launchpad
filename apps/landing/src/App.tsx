@@ -26,7 +26,7 @@ import Login from "./pages/Login";
 import Verify from "./pages/Verify";
 import Services from "./pages/Services";
 import ServiceRequest from "./pages/ServiceRequest";
-import { AuthProvider } from "../../../packages";
+import { AuthProvider } from "../../../packages/src/auth";
 
 const queryClient = new QueryClient();
 

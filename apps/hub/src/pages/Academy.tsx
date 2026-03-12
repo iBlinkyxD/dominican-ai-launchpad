@@ -55,7 +55,7 @@ const Academy = () => {
   return (
     <>
       <div className="text-center mb-12">
-        <h1 className="text-5xl font-bold mb-4 bg-gradient-to-r text-blue-950 bg-clip-text text-transparent">
+        <h1 className="text-5xl font-semibold mb-4 bg-gradient-to-r text-blue-950 bg-clip-text">
           DAIA Academy
         </h1>
         <div className="flex items-center justify-center gap-3 text-gray-600 text-sm flex-wrap">
@@ -65,7 +65,7 @@ const Academy = () => {
           <span>•</span>
           <span>Dominican Artificial Intelligence Association</span>
           <span>•</span>
-          <span className="text-blue-600 font-medium">
+          <span className="text-blue-600 font-semibold">
             Level 2 - Intermediate
           </span>
         </div>
@@ -77,7 +77,7 @@ const Academy = () => {
           <div className="text-center">
             <div className="mb-6">
               <GraduationCap className="h-20 w-20 mx-auto text-blue-950 mb-4" />
-              <h2 className="text-4xl font-bold mb-4 text-gray-900">
+              <h2 className="text-4xl font-semibold mb-4 text-gray-900">
                 Ready to Begin Your Journey?
               </h2>
               <p className="text-lg text-gray-600 max-w-2xl mx-auto">
@@ -86,7 +86,7 @@ const Academy = () => {
               </p>
             </div>
 
-            <button onClick={() => handleAcademy()} className="px-8 py-5 bg-gradient-to-r from-[#002D62] via-[#BD2D2F] to-[#002D62] rounded-2xl hover:opacity-90 transition shadow-lg hover:shadow-xl font-bold text-xl text-white flex items-center justify-center gap-3 group mx-auto">
+            <button onClick={() => handleAcademy()} className="px-8 py-5 bg-gradient-to-r from-[#002D62] via-[#BD2D2F] to-[#002D62] rounded-2xl hover:opacity-90 transition shadow-lg hover:shadow-xl font-semibold text-xl text-white flex items-center justify-center gap-3 group mx-auto">
               Start Your Free Mini Course
               <ChevronRight className="h-6 w-6 group-hover:translate-x-1 transition-transform" />
             </button>

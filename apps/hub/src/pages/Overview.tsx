@@ -1,9 +1,7 @@
-import { Shield, Settings, Smartphone, Building2, Clock } from "lucide-react";
 import { allProducts } from "../data/product";
-import { getCategoryColor, getCategoryIcon } from "../lib/productUtils";
+import { getCategoryColor } from "../lib/productUtils";
 
 const Overview = () => {
-  const user = localStorage.getItem("daia_user");
   const userApps = allProducts.filter(
     (product) =>
       product.name !== "Scholar One" &&
@@ -13,8 +11,7 @@ const Overview = () => {
 
   return (
     <>
-      {/* Apps */}
-      <h3 className="text-2xl font-bold mb-6">Your Applications</h3>
+      <h3 className="text-2xl font-semibold mb-6">Your Applications</h3>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {userApps.map((product, index) => (
@@ -22,20 +19,29 @@ const Overview = () => {
             key={index}
             className="bg-white rounded-lg shadow-sm border p-6"
           >
-            <div
-              className={`w-12 h-12 rounded-lg bg-gradient-to-r ${getCategoryColor(
-                product.category
-              )} flex items-center justify-center text-white mb-4`}
-            >
-              {getCategoryIcon(product.category)}
+            {/* Icon + Title + Category */}
+            <div className="flex items-start gap-4 mb-4">
+              <div
+                className={`w-12 h-12 rounded-lg bg-gradient-to-r ${getCategoryColor(
+                  product.category
+                )} flex items-center justify-center text-white shrink-0`}
+              >
+                <product.icon className="w-6 h-6" />
+              </div>
+
+              <div>
+                <h4 className="text-lg font-semibold">{product.name}</h4>
+                <p className="text-xs text-gray-500">{product.category}</p>
+              </div>
             </div>
 
-            <h4 className="text-lg font-bold mb-2">{product.name}</h4>
+            {/* Description */}
             <p className="text-sm text-gray-600 mb-4">
               {product.description}
             </p>
 
-            <button className="w-full px-4 py-2 bg-blue-600 text-white rounded-lg">
+            {/* Button */}
+            <button className="w-full px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
               Launch App
             </button>
           </div>

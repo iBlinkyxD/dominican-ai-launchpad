@@ -27,67 +27,7 @@ import {
 } from "lucide-react";
 import { Avatar } from "./UI";
 import { useAuth } from "../../../../packages/src/auth";
-
-// --- DAIA Logo Component ---
-const DAIALogo = () => (
-  <div className="flex items-center gap-3">
-    <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center p-0.5 overflow-hidden">
-      {/* Recreated DAIA Logo based on description: Hexagon, Red/Blue/Grey, DR Map */}
-      <svg viewBox="0 0 100 100" className="w-full h-full">
-        <defs>
-          <clipPath id="hexClip">
-            <path d="M50 0 L93.3 25 V75 L50 100 L6.7 75 V25 Z" />
-          </clipPath>
-        </defs>
-        <g clipPath="url(#hexClip)">
-          <rect width="100" height="100" fill="white" />
-          <path
-            d="M50 0 L93.3 25 L85 30 L50 10 L15 30 L6.7 25 Z"
-            fill="#E63946"
-          />{" "}
-          {/* Top Red */}
-          <path d="M93.3 25 V75 L88 72 V28 L93.3 25 Z" fill="#1D3557" />{" "}
-          {/* Right Blue Side */}
-          <path
-            d="M93.3 75 L50 100 L50 90 L85 70 L93.3 75 Z"
-            fill="#E63946"
-          />{" "}
-          {/* Bottom Red */}
-          <path d="M50 100 L6.7 75 L15 70 L50 90 Z" fill="#E63946" />{" "}
-          {/* Bottom Red Left */}
-          <path d="M6.7 75 V25 L12 28 V72 Z" fill="#1D3557" />{" "}
-          {/* Left Blue Side */}
-          <path
-            d="M50 20 L75 35 L75 45 L50 30 L25 45 L25 35 Z"
-            fill="#A8DADC"
-          />
-          <path
-            d="M50 80 L75 65 L75 55 L50 70 L25 55 L25 65 Z"
-            fill="#A8DADC"
-          />
-          <path
-            d="M35 50 C 35 45, 45 40, 50 42 C 55 40, 65 45, 65 50 C 65 55, 55 60, 50 58 C 45 60, 35 55, 35 50 Z"
-            fill="#0B1E40"
-          />
-          <text
-            x="50"
-            y="70"
-            textAnchor="middle"
-            fontSize="10"
-            fill="#0B1E40"
-            fontWeight="bold"
-          >
-            IA
-          </text>
-        </g>
-      </svg>
-    </div>
-    <div className="hidden md:block leading-tight text-white">
-      <div className="font-bold text-sm">Dominican AI Association</div>
-      <div className="font-bold text-sm">(DAIA)</div>
-    </div>
-  </div>
-);
+import daiaLogo from "../assets/DAIA-icon.png";
 
 // --- Dropdown Wrapper ---
 // Added optional modifier to children to fix TS "missing children" errors in JSX usage at lines 149, 184, 219, and 258
@@ -154,16 +94,20 @@ const TopNavigation = () => {
   const firstInitial = user.first_name?.charAt(0).toUpperCase() || "";
 
   const handleLogout = async () => {
-      window.location.href = `${import.meta.env.VITE_HUB_URL}/`;
+    window.location.href = `${import.meta.env.VITE_HUB_URL}/`;
   };
 
   return (
     <div className="h-16 flex items-center justify-between px-6 shrink-0 relative z-50">
-      <div className="flex items-center">
-        <NavLink to="/">
-          <DAIALogo />
-        </NavLink>
-      </div>
+      <NavLink to="/">
+        <div className="flex items-center gap-3">
+          <img src={daiaLogo} className="w-12 h-12" />
+          <div className="hidden md:block leading-tight text-white">
+            <div className="font-bold text-sm">Dominican AI Association</div>
+            <div className="font-bold text-sm">(DAIA)</div>
+          </div>
+        </div>
+      </NavLink>
 
       <div className="flex-1 max-w-xl mx-8 hidden md:block">
         <div className="relative">
@@ -547,7 +491,7 @@ export const Sidebar = () => {
           >
             <div className="flex items-center gap-3">
               <Sparkles className="w-4 h-4 text-indigo-500" />
-              <span>Chat with DAIA</span>
+              <span>Chat with Quisqueya</span>
             </div>
             <span className="bg-indigo-100 text-indigo-700 text-xs px-1.5 py-0.5 rounded">
               AI
@@ -588,9 +532,9 @@ export const Sidebar = () => {
         <SidebarLink to="/" label="Home" hasSubmenu />
       </SidebarSection>
 
-      <SidebarSection>
+      {/* <SidebarSection>
         <SidebarLink to="/spaces" label="Computer Program" hasSubmenu />
-      </SidebarSection>
+      </SidebarSection> */}
 
       <SidebarSection>
         <SidebarLink to="/learn" label="Courses" hasSubmenu />
@@ -600,10 +544,10 @@ export const Sidebar = () => {
         <SidebarLink to="/events" label="Learners Community" hasSubmenu />
       </SidebarSection>
 
-      <SidebarSection>
+      {/* <SidebarSection>
         <SidebarLink to="/school1" label="DAIA School 001" hasSubmenu />
         <SidebarLink to="/school2" label="DAIA School 002" hasSubmenu />
-      </SidebarSection>
+      </SidebarSection> */}
 
       <div className="flex-1"></div>
     </div>
