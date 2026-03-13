@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import { User } from "./authService";
-import { getMe, logout as apiLogout} from "../api/auth";
+import { getMe, logout as apiLogout } from "../api/auth";
 
 interface AuthContextType {
   user: User | null;
@@ -29,9 +29,9 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
     fetchUser();
   }, []);
-
+  console.log(user);
   const login = (user: User) => setUser(user);
-
+  console.log(user);
   const logout = async () => {
     try {
       await apiLogout(); // call backend to clear cookie
@@ -42,7 +42,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       window.location.href = `${import.meta.env.VITE_LANDING_URL}/login`; // redirect to login
     }
   };
-  
+
   return (
     <AuthContext.Provider value={{ user, login, logout, loading }}>
       {children}

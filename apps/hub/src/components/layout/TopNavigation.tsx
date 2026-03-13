@@ -12,7 +12,7 @@ import {
 } from "lucide-react";
 import { useAuth } from "../../../../../packages/src/auth";
 import { NavDropdown } from "./NavDropdown";
-import daiaLogo from "../../assets/DAIA-icon.png";
+import daiaLogo from "../../assets/DAIA-icon-bg.png";
 
 export const TopNavigation = () => {
   const { user, loading, logout } = useAuth();
@@ -44,10 +44,15 @@ export const TopNavigation = () => {
       {/* Logo */}
       <NavLink to="/">
         <div className="flex items-center gap-3">
-          <img src={daiaLogo} className="w-12 h-12" />
+          <img src={daiaLogo} className="w-12 h-12 border rounded-sm" />
+          {/* <div className="hidden md:block leading-tight text-white">
+            <div className="font-bold text-sm">Dominican AI Association (DAIA Hub)</div>
+            <div className="font-bold text-sm">(DAIA Hub)</div>
+          </div> */}
           <div className="hidden md:block leading-tight text-white">
-            <div className="font-bold text-sm">Dominican AI Association</div>
-            <div className="font-bold text-sm">(DAIA)</div>
+            <div className="font-semibold text-[20px]">
+              DAIA <span className="text-gray-400">Hub</span>
+            </div>
           </div>
         </div>
       </NavLink>
@@ -76,8 +81,18 @@ export const TopNavigation = () => {
             onClick={() => toggleDropdown("profile")}
             className="flex items-center gap-2 p-1 pr-2 rounded-full hover:bg-white/10"
           >
-            <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white text-sm font-bold">
-              {firstInitial}
+            <div className="w-8 h-8 rounded-full overflow-hidden shadow-lg">
+              {user.profile_picture_url ? (
+                <img
+                  src={user.profile_picture_url}
+                  alt="avatar"
+                  className="w-8 h-8 object-cover"
+                />
+              ) : (
+                <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white text-4xl font-bold">
+                  {firstInitial}
+                </div>
+              )}
             </div>
 
             <ChevronDown className="w-4 h-4 text-white" />
@@ -101,7 +116,10 @@ export const TopNavigation = () => {
               >
                 <UserCircle className="w-4 h-4 text-gray-400" /> My Profile
               </button>
-              <button className="w-full flex items-center gap-3 px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-lg transition-colors">
+              <button
+                onClick={() => navigate("/settings")}
+                className="w-full flex items-center gap-3 px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-lg transition-colors"
+              >
                 <Settings2 className="w-4 h-4 text-gray-400" /> Settings
               </button>
               <div className="p-2 border-t border-gray-100">

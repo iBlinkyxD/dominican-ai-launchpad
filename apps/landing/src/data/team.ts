@@ -39,12 +39,12 @@ export const teamMembers: TeamMember[] = [
     roleKey: "chiefSteward",
     image: solomon,
   },
-  // {
-  //   id: 5,
-  //   name: "Jonah Stevens ",
-  //   roleKey: "directorEducationalInnovation",
-  //   image: jonahStevens,
-  // },
+  {
+    id: 5,
+    name: "Jonah Stevens ",
+    roleKey: "directorEducationalInnovation",
+    image: jonahStevens,
+  },
   {
     id: 6,
     name: "Rosa Azcona",
@@ -57,10 +57,10 @@ export const teamMembers: TeamMember[] = [
     roleKey: "softwareDeveloper",
     image: kevinJoa,
   },
-  //   {
-  //   id: 8,
-  //   name: "Jose Miguel",
-  //   roleKey: "softwareDeveloper",
-  //   image: joseMiguel,
-  // },
+    {
+    id: 8,
+    name: "José Miguel Gutiérrez",
+    roleKey: "communityLearningCoordinator",
+    image: joseMiguel,
+  },
 ];

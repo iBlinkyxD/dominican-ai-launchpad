@@ -27,7 +27,7 @@ import {
 } from "lucide-react";
 import { Avatar } from "./UI";
 import { useAuth } from "../../../../packages/src/auth";
-import daiaLogo from "../assets/DAIA-icon.png";
+import daiaLogo from "../assets/DAIA-icon-bg.png";
 
 // --- Dropdown Wrapper ---
 // Added optional modifier to children to fix TS "missing children" errors in JSX usage at lines 149, 184, 219, and 258
@@ -101,10 +101,11 @@ const TopNavigation = () => {
     <div className="h-16 flex items-center justify-between px-6 shrink-0 relative z-50">
       <NavLink to="/">
         <div className="flex items-center gap-3">
-          <img src={daiaLogo} className="w-12 h-12" />
+          <img src={daiaLogo} className="w-12 h-12 border rounded-sm" />
           <div className="hidden md:block leading-tight text-white">
-            <div className="font-bold text-sm">Dominican AI Association</div>
-            <div className="font-bold text-sm">(DAIA)</div>
+            <div className="font-semibold text-[20px]">
+              DAIA <span className="text-gray-400">Academy</span>
+            </div>
           </div>
         </div>
       </NavLink>

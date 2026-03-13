@@ -1,8 +1,14 @@
 export interface User {
   id: number;
-  email: string;
   first_name: string;
   last_name: string;
+  email: string;
+  phone: string;
+  profile_picture_url: string | null;
+
+  is_active: boolean;
+  is_admin: boolean;
+  is_verified: boolean;
 }
 
 const TOKEN_KEY = "token";

@@ -25,8 +25,11 @@ export const login = async (email: string, password: string) => {
 
 export const getMe = async () => {
   try {
-    const res = await api.get("/users/me"); // cookie sent automatically
-    return res.data.user; // returns the user object
+    const res = await api.get("/users/me", {
+      withCredentials: true,
+    });
+
+    return res.data; // ✅ user object directly
   } catch (err: any) {
     throw new Error(err.response?.data?.detail || "Failed to get user");
   }
