@@ -224,7 +224,11 @@ const Contact = () => {
                   delay={200 + index * 100}
                 >
                   <a
-                    href={info.href}
+                    href="#"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      window.location.href = info.href;
+                    }}
                     className="group block relative bg-card/90 backdrop-blur-xl rounded-2xl p-6 border border-border/30 transition-all duration-500 hover:scale-[1.02] hover:-translate-y-1"
                     style={{
                       boxShadow:
@@ -273,7 +277,7 @@ const Contact = () => {
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3783.2204720929626!2d-69.98740015!3d18.5189365!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8eaf8bb3b6814b8b%3A0xca34cc7e55ac8b16!2sEscuela%20Primaria%20Jes%C3%BAs%20Maestro%2C%20C.%20Emma%20Balaguer%205%2C%20Los%20Girasoles!5e0!3m2!1sen!2sdo!4v1771644110292!5m2!1sen!2sdo"
                         width="600"
                         height="450"
-                        className="border:0;"
+                        className="border-0;"
                         loading="lazy"
                       />
                       {/* <MapPin className="w-8 h-8 text-primary mx-auto mb-2" />

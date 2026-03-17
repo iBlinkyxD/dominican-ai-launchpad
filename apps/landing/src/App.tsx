@@ -42,9 +42,9 @@ const App = () => (
             {/* <Route path="/" element={<Soon />} /> */}
             <Route path="/" element={<Index />} />
 
-            {/* <Route path="/signup" element={<SignUp />} />
+            <Route path="/signup" element={<SignUp />} />
             <Route path="/verify" element={<Verify />} />
-            <Route path="/login" element={<Login />} /> */}
+            <Route path="/login" element={<Login />} />
 
             <Route path="/courses" element={<Courses />} />
             {/* <Route path="/courses/:courseId" element={<CourseDetail />} /> */}

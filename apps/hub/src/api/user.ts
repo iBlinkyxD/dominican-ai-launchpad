@@ -22,3 +22,12 @@ export const updateProfile = async (data: {
 
   return res.data;
 };
+
+export const updatePassword = async (data: {
+  current_password: string;
+  new_password: string;
+}) => {
+  const res = await api.post("/users/change-password", data);
+
+  return res.data
+}

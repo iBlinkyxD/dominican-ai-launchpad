@@ -21,3 +21,12 @@ export const getMe = async () => {
     throw new Error(err.response?.data?.detail || "Failed to get user");
   }
 };
+
+export const requestEmailChange = async (data: {
+  new_email: string;
+  password: string;
+}) => {
+  const res = await api.post("/users/request-email-change", data);
+
+  return res.data;
+};

@@ -12,7 +12,7 @@ import {
 } from "lucide-react";
 import { useAuth } from "../../../../../packages/src/auth";
 import { NavDropdown } from "./NavDropdown";
-import daiaLogo from "../../assets/DAIA-icon-bg.png";
+import daiaLogo from "@/assets/DAIA-icon-bg.png";
 
 export const TopNavigation = () => {
   const { user, loading, logout } = useAuth();
@@ -43,15 +43,16 @@ export const TopNavigation = () => {
     <div className="h-16 flex items-center justify-between px-6 shrink-0 relative z-50">
       {/* Logo */}
       <NavLink to="/">
-        <div className="flex items-center gap-3">
-          <img src={daiaLogo} className="w-12 h-12 border rounded-sm" />
-          {/* <div className="hidden md:block leading-tight text-white">
-            <div className="font-bold text-sm">Dominican AI Association (DAIA Hub)</div>
-            <div className="font-bold text-sm">(DAIA Hub)</div>
-          </div> */}
-          <div className="hidden md:block leading-tight text-white">
-            <div className="font-semibold text-[20px]">
-              DAIA <span className="text-gray-400">Hub</span>
+        <div className="flex items-center gap-2 sm:gap-3 min-w-0">
+          <img
+            src={daiaLogo}
+            className="w-12 h-12 border rounded-sm object-contain shrink-0"
+            alt="DAIA Logo"
+          />
+
+          <div className="leading-tight text-white min-w-0">
+            <div className="font-semibold text-[20px] whitespace-nowrap truncate">
+              DAIA <span className="text-gray-400 hidden sm:inline">Hub</span>
             </div>
           </div>
         </div>

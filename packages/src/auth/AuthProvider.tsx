@@ -29,9 +29,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
     fetchUser();
   }, []);
-  console.log(user);
   const login = (user: User) => setUser(user);
-  console.log(user);
   const logout = async () => {
     try {
       await apiLogout(); // call backend to clear cookie

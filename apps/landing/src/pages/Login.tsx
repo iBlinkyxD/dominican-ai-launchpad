@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Eye, EyeOff, Mail, Lock, User, ArrowRight, Phone } from "lucide-react";
 import daiaLogo from "@/assets/DAIA-logo.png";
 import { Link, useNavigate } from "react-router-dom";
@@ -15,20 +15,26 @@ const Login = () => {
     password: "",
   });
 
+  const hasChecked = useRef(false);
+
   // CHECK COOKIE ON MOUNT
   useEffect(() => {
+    if (hasChecked.current) return;
+    hasChecked.current = true;
+
     const checkUser = async () => {
       try {
-        const userData = await getMe(); // tries fetching user via cookie
+        const userData = await getMe();
+
         if (userData) {
           authLogin(userData);
-          navigate(`${import.meta.env.VITE_HUB_URL}`);
+          navigate(import.meta.env.VITE_HUB_URL);
         }
-      } catch (err) {
-        // no valid session, stay on login
-        console.log("No valid session, please login");
+      } catch {
+        console.error("No valid session, please login");
       }
     };
+
     checkUser();
   }, [authLogin, navigate]);
 
@@ -42,13 +48,13 @@ const Login = () => {
       const userData = await getMe();
       authLogin(userData);
 
-      toast.success("Verification successful! Redirecting...");
+      toast.success("Login successful! Redirecting...");
 
       setTimeout(() => {
         navigate(`${import.meta.env.VITE_HUB_URL}`);
       }, 1500);
     } catch (error: any) {
-      console.error(error.response?.data?.detail || "Login failed");
+      toast.error(error.response?.data?.detail || "Login failed");
     }
   };
 
@@ -61,6 +67,7 @@ const Login = () => {
 
   return (
     <div className="min-h-screen w-full flex items-center justify-center p-8 bg-gray-50">
+      <Toaster position="top-center" reverseOrder={false} />
       {/* Centered Form */}
       <div className="w-full max-w-xl bg-white rounded-2xl shadow-lg p-8 md:p-12">
         {/* Logo */}
