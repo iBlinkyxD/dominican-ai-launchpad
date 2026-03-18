@@ -15,7 +15,7 @@ import { Announcements } from "./pages/Announcements";
 import { Login, Onboarding } from "./pages/Onboarding";
 import { AIChat } from "./pages/AIChat";
 import { SettingsMenuProvider } from "../../../packages/src/SettingsMenuContext";
-
+import { BadgesPage } from "./pages/Badges";
 const App = () => {
   return (
     <BrowserRouter>
@@ -38,6 +38,7 @@ const App = () => {
                 path="courses/:courseId/lesson/:lessonId"
                 element={<LessonPlayer />}
               />
+              <Route path="badges-certificates" element={<BadgesPage />} />
               <Route path="chat-daia" element={<AIChat />} />
               <Route path="announcements" element={<Announcements />} />
               <Route path="members" element={<MembersDirectory />} />
