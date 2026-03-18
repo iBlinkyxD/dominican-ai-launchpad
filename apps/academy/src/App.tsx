@@ -6,7 +6,7 @@ import { AuthProvider, ProtectedRoute } from "../../../packages/src/auth";
 import AppLayout from "./components/Layout";
 import { Home, AdminDashboard } from "./pages/Dashboard";
 import { SpacesList, SpaceDetail } from "./pages/Spaces";
-import { Learn } from "./pages/Learn";
+import { Courses } from "./pages/Courses";
 import { CourseDetail } from "./pages/CourseDetail";
 import { LessonPlayer } from "./pages/LessonPlayer";
 import { Messages, Profile } from "./pages/Social";
@@ -32,10 +32,10 @@ const App = () => {
               <Route index element={<Home />} />
               <Route path="spaces" element={<SpacesList />} />
               <Route path="spaces/:id" element={<SpaceDetail />} />
-              <Route path="learn" element={<Learn />} />
-              <Route path="learn/:courseId" element={<CourseDetail />} />
+              <Route path="courses" element={<Courses />} />
+              <Route path="courses/:courseId" element={<CourseDetail />} />
               <Route
-                path="learn/:courseId/lesson/:lessonId"
+                path="courses/:courseId/lesson/:lessonId"
                 element={<LessonPlayer />}
               />
               <Route path="chat-daia" element={<AIChat />} />

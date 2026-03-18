@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { CourseHeader } from "../components/course/CourseHeader";
-import { CourseTabs } from "../components/course/CourseTabs";
-import { CourseSidebar } from "../components/course/CourseSidebar";
-import { CourseOverview } from "../components/course/CourseOverview";
+import { CourseHeader } from "../components/courseDetail/CourseHeader";
+import { CourseTabs } from "../components/courseDetail/CourseTabs";
+import { CourseSidebar } from "../components/courseDetail/CourseSidebar";
+import { CourseOverview } from "../components/courseDetail/CourseOverview";
 import { Play } from "lucide-react";
 
 export function CourseDetail() {

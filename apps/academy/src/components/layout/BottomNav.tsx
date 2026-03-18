@@ -13,9 +13,9 @@ import { useSettingsMenu } from "../../../../../packages/src/SettingsMenuContext
 export const BottomNav = () => {
   const navItems = [
     { to: "/", icon: Home, label: "Home" },
-    { to: "/learn", icon: GraduationCap, label: "Courses" },
+    { to: "/courses", icon: GraduationCap, label: "Courses" },
     { to: "/chat-daia", icon: Sparkles, label: "DAIA AI" },
-    { to: "/announcments", icon: Megaphone, label: "Announcments" },
+    { to: "/announcements", icon: Megaphone, label: "Announcments" },
     { to: "/settings", icon: Settings, label: "Settings" },
   ];
 

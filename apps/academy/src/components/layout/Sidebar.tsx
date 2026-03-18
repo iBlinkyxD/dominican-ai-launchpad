@@ -7,7 +7,7 @@ export const Sidebar = () => {
   return (
     <div className="w-72 bg-[#F8FAFC] flex flex-col border-r border-gray-200 h-full overflow-y-auto rounded-l-3xl">
       <SidebarSection>
-        <div className="px-2 space-y-1">
+        <div className="px-2 pt-4 space-y-1">
           <NavLink
             to="/chat-daia"
             className={({ isActive }) =>
@@ -55,15 +55,19 @@ export const Sidebar = () => {
 
       <div className="p-4">
         <SidebarSection>
-          <SidebarLink to="/" label="Home" hasSubmenu />
+          <SidebarLink to="/" label="Home" hasSubmenu={false} />
         </SidebarSection>
 
         <SidebarSection>
-          <SidebarLink to="/learn" label="Courses" hasSubmenu />
+          <SidebarLink to="/courses" label="Courses" hasSubmenu={false} />
         </SidebarSection>
 
         <SidebarSection>
-          <SidebarLink to="/events" label="Learners Community" hasSubmenu />
+          <SidebarLink to="/badges-certificates" label="Badges & Certificates" hasSubmenu={false} />
+        </SidebarSection>
+
+        <SidebarSection>
+          <SidebarLink to="/events" label="Learners Community" hasSubmenu={false} />
         </SidebarSection>
       </div>
 

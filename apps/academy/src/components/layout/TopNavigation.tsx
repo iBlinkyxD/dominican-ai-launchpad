@@ -42,7 +42,7 @@ export const TopNavigation = () => {
 
           <div className="leading-tight text-white min-w-0">
             <div className="font-semibold text-[20px] whitespace-nowrap truncate">
-              DAIA <span className="text-gray-400 hidden sm:inline">Academy</span>
+              DAIA <span className="text-gray-400 sm:inline">Academy</span>
             </div>
           </div>
         </div>
