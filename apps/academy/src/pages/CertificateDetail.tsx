@@ -13,7 +13,7 @@ import { useLocation } from "react-router-dom";
 import daiaLogo from "../assets/DAIA-logo.png";
 import heroimage from "../assets/temp.png";
 
-export function CourseDetail() {
+export function CertificateDetailPage() {
   const navigate = useNavigate();
   const location = useLocation();
   const { title, skills2 } = location.state || {};

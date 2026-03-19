@@ -1,13 +1,17 @@
 // components/PackageCard.tsx
 import { Award, Star, Clock } from "lucide-react";
 import { CourseCarousel } from "./CourseCarousel";
+import { useNavigate } from "react-router-dom";
 
 export const PackageCard = ({
+  id,
   title,
   skills,
   courses,
   buttonText = "Continue",
 }) => {
+  const navigate = useNavigate();
+
   return (
     <div className="bg-white rounded-2xl shadow-lg border p-8 mb-10">
       <div className="flex flex-col lg:flex-row gap-8">
@@ -43,7 +47,17 @@ export const PackageCard = ({
             <button className="px-6 py-3 bg-blue-600 text-white rounded-lg">
               {buttonText}
             </button>
-            <button className="px-6 py-3 border-2 border-blue-600 text-blue-600 rounded-lg">
+            <button
+              onClick={() =>
+                navigate(`/courses/package/${id}`, {
+                  state: {
+                    title,
+                    skills,
+                  },
+                })
+              }
+              className="px-6 py-3 border-2 border-blue-600 text-blue-600 rounded-lg"
+            >
               View details
             </button>
           </div>

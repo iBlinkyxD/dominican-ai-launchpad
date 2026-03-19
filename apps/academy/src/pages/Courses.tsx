@@ -190,7 +190,7 @@ export const Courses = () => {
     "Gain expertise in data visualization, spreadsheet analysis, SQL databases, Python programming, statistical methods, and exploratory data analysis. Learn to collect.";
 
   return (
-    <div className="relative min-h-[80vh]">
+    <div className="relative min-h-[80vh] px-4 sm:px-6 lg:px-8">
       {/* Header */}
       <div className="mb-6 flex flex-col-reverse xl:flex-row xl:justify-between gap-4">
         {/* LEFT SIDE */}
@@ -215,11 +215,13 @@ export const Courses = () => {
 
       {/* Packages */}
       <PackageCard
+        id="daia-certified-ai-impact-practicioner"
         title="DAIA Certified AI Impact Practitioner"
         skills={skillsDescription}
         courses={packageCourses}
       />
       <PackageCard
+        id="daia-certified-english-communication-professional"
         title="DAIA Certified English Communication Professional"
         skills={skillsDescription}
         courses={packageCourses}

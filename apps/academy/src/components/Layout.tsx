@@ -2,14 +2,14 @@ import { Sidebar } from "../components/layout/Sidebar";
 import { TopNavigation } from "../components/layout/TopNavigation";
 import { BottomNav } from "../components/layout/BottomNav";
 import { MobileHeader } from "../components/layout/MobileHeader";
-import { useLocation } from "react-router-dom";
-import { Outlet } from "react-router-dom";
+import { useLocation, Outlet, useMatches } from "react-router-dom";
 import SettingsMenu from "../components/layout/SettingsMenu";
 
 const AppLayout = () => {
   const location = useLocation();
-  const isChat = location.pathname.includes("/chat-daia");
-
+  const noPadding =
+    location.pathname.includes("/chat-daia") ||
+    location.pathname.includes("/courses/package/");
   return (
     <div className="h-screen bg-[#0B1E40] flex flex-col overflow-hidden">
       <TopNavigation />
@@ -22,7 +22,7 @@ const AppLayout = () => {
         <main className="flex-1 bg-white overflow-y-auto relative">
           <div
             className={`
-              ${isChat ? "" : "p-4 md:p-8"}
+              ${noPadding ? "" : "p-4 md:p-8"}
               pb-20 lg:pb-8
             `}
           >

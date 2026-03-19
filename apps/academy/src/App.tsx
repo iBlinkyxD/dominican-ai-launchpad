@@ -7,7 +7,7 @@ import AppLayout from "./components/Layout";
 import { Home, AdminDashboard } from "./pages/Dashboard";
 import { SpacesList, SpaceDetail } from "./pages/Spaces";
 import { Courses } from "./pages/Courses";
-import { CourseDetail } from "./pages/CourseDetail";
+import { CourseContent } from "./pages/CourseContent";
 import { LessonPlayer } from "./pages/LessonPlayer";
 import { Messages, Profile } from "./pages/Social";
 import { MembersDirectory } from "./pages/Members";
@@ -16,6 +16,9 @@ import { Login, Onboarding } from "./pages/Onboarding";
 import { AIChat } from "./pages/AIChat";
 import { SettingsMenuProvider } from "../../../packages/src/SettingsMenuContext";
 import { BadgesPage } from "./pages/Badges";
+import { CertificateDetailPage } from "./pages/CertificateDetail";
+import { CourseDetail } from "./pages/CourseDetail";
+
 const App = () => {
   return (
     <BrowserRouter>
@@ -34,9 +37,10 @@ const App = () => {
               <Route path="spaces/:id" element={<SpaceDetail />} />
               <Route path="courses" element={<Courses />} />
               <Route path="courses/:courseId" element={<CourseDetail />} />
+              <Route path="courses/package/:packageId" element={<CertificateDetailPage />}/>
               <Route
                 path="courses/:courseId/lesson/:lessonId"
-                element={<LessonPlayer />}
+                element={<CourseContent />}
               />
               <Route path="badges-certificates" element={<BadgesPage />} />
               <Route path="chat-daia" element={<AIChat />} />
