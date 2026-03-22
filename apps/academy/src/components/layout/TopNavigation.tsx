@@ -1,28 +1,48 @@
 import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import { Search, Users, MessageSquare, Bell, ChevronDown, LogOut, Settings2, UserCircle } from "lucide-react";
+import {
+  Search,
+  Users,
+  MessageSquare,
+  Bell,
+  ChevronDown,
+  LogOut,
+  Settings2,
+  UserCircle,
+  Zap,
+} from "lucide-react";
 import { useAuth } from "../../../../../packages/src/auth";
+import { useAcademyUser } from "../../hooks/users";
 import { NavDropdown } from "./NavDropdown";
 import daiaLogo from "../../assets/DAIA-icon-bg.png";
 
 export const TopNavigation = () => {
-  const { user, loading } = useAuth();
+  const { user, loading: authLoading } = useAuth();
+  const { academyUser, loading: academyLoading } = useAcademyUser(); // Academy API: xp, level
   const navigate = useNavigate();
 
   const [activeDropdown, setActiveDropdown] = useState<
     "messages" | "notifications" | "profile" | null
   >(null);
 
-  const toggleDropdown = (
-    type: "messages" | "notifications" | "profile"
-  ) => {
+  const toggleDropdown = (type: "messages" | "notifications" | "profile") => {
     setActiveDropdown(activeDropdown === type ? null : type);
   };
 
-  if (loading) return <p>Loading user...</p>;
+  if (authLoading || academyLoading) return <p>Loading user...</p>;
   if (!user) return <p>Please login</p>;
 
   const firstInitial = user.first_name?.charAt(0).toUpperCase() || "";
+
+  // XP progress within current level
+  // Level N requires N² * 100 XP, next level requires (N+1)² * 100 XP
+  const level = academyUser?.level ?? 1;
+  const totalXp = academyUser?.total_xp ?? 0;
+  const currentLevelXp = Math.pow(level, 2) * 100;
+  const nextLevelXp = Math.pow(level + 1, 2) * 100;
+  const progress = Math.round(
+    ((totalXp - currentLevelXp) / (nextLevelXp - currentLevelXp)) * 100,
+  );
 
   const handleLogout = () => {
     window.location.href = `${import.meta.env.VITE_HUB_URL}/`;
@@ -30,7 +50,6 @@ export const TopNavigation = () => {
 
   return (
     <div className="h-16 flex items-center justify-between px-6 shrink-0 relative z-50">
-      
       {/* Logo */}
       <NavLink to="/">
         <div className="flex items-center gap-2 sm:gap-3 min-w-0">
@@ -50,6 +69,22 @@ export const TopNavigation = () => {
 
       {/* Icons */}
       <div className="flex items-center gap-2">
+        {/* Gamification Stats */}
+        {academyUser && (
+          <div className="hidden sm:flex flex-col items-end mr-4">
+            <div className="flex items-center gap-1.5 text-xs font-bold text-white mb-0.5">
+              <Zap className="w-3 h-3 text-yellow-400 fill-current" />
+              <span>Lvl {level}</span>
+              <span className="opacity-60 font-normal">| {totalXp} XP</span>
+            </div>
+            <div className="w-24 h-1.5 bg-[#1a3b6e] rounded-full overflow-hidden">
+              <div
+                className="h-full bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full transition-all duration-1000"
+                style={{ width: `${progress}%` }}
+              />
+            </div>
+          </div>
+        )}
 
         {/* Messages */}
         <button

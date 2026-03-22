@@ -11,10 +11,10 @@ export const CourseListItem = ({ course }) => {
       className="flex flex-col lg:flex-row bg-white rounded-xl shadow-md border overflow-hidden cursor-pointer group"
     >
       {/* Image */}
-      <div className="w-full lg:w-[340px] p-3">
+      <div className="w-full lg:w-[340px] p-3 my-auto">
         <img
           src={course.image}
-          className="w-full h-48 lg:h-full object-cover rounded-lg"
+          className="w-full h-52 object-cover rounded-lg"
         />
       </div>
 
