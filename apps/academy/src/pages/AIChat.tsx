@@ -30,7 +30,7 @@ export const AIChat = () => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
     const firstInitial = user.first_name?.charAt(0).toUpperCase() || "";
 
-  // Load sessions from local storage on mount
+  // Load sessions from local storage on mount.
   useEffect(() => {
     const saved = localStorage.getItem(STORAGE_KEY);
     if (saved) {

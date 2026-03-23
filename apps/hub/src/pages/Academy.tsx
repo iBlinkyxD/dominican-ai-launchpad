@@ -36,22 +36,6 @@ const Academy = () => {
       window.location.href = `${import.meta.env.VITE_ACADEMY_URL}/`;
   };
 
-  const getButtonText = () => {
-    switch (userData.userType) {
-      case "new":
-        return "Start Free Mini-Course";
-      case "in-progress":
-        return "Continue Learning";
-      case "completed":
-        return "View Certification Paths";
-      default:
-        return "Continue Learning";
-    }
-  };
-
-  const certificationPath = ["Intro", "101", "102", "103", "104", "105", "106"];
-  const currentPosition = 2; // User is at 102
-
   return (
     <>
       <div className="text-center mb-12">

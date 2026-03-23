@@ -43,6 +43,7 @@ const Verify = () => {
     }
   }, []);
 
+  //Temp comment
   const handleChange = (index: number, value: string) => {
     // Only allow digits
     if (value && !/^\d$/.test(value)) return;
