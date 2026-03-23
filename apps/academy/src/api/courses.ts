@@ -17,7 +17,7 @@ export interface AcademyCourse {
 }
 export const getCourses = async (): Promise<AcademyCourse[]> => {
   try {
-    const res = await api.get("/courses");
+    const res = await api.get("/courses/");
     return res.data;
   } catch (err: any) {
     throw new Error(err.response?.data?.detail || "Failed to fetch courses");

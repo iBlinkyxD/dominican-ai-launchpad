@@ -17,7 +17,7 @@ export interface AcademyPackage {
 
 export const getPackages = async (): Promise<AcademyPackage[]> => {
   try {
-    const res = await api.get("/packages");
+    const res = await api.get("/packages/");
     return res.data;
   } catch (err: any) {
     throw new Error(err.response?.data?.detail || "Failed to fetch packages");

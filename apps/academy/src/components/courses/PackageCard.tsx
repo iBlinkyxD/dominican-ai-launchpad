@@ -45,7 +45,7 @@ export const PackageCard = ({
 
           <div className="flex gap-3">
             <button className="px-6 py-3 bg-blue-600 text-white rounded-lg">
-              {buttonText}
+              Enroll
             </button>
             <button
               onClick={() =>
