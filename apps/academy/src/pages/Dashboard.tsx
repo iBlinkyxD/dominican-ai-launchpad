@@ -36,6 +36,11 @@ export const Home = () => {
 
   const activeCourse = enrolledCourses[0] ?? null;
   const { posts, submitPost } = usePosts();
+  const [activeTab, setActiveTab] = useState<"foryou" | "following" | "trending" | "announcements">("foryou");
+
+  const displayPosts = activeTab === "trending"
+    ? [...posts].sort((a, b) => b.likes_count - a.likes_count)
+    : posts;
 
   useEffect(() => {
     if (!activeCourse) return;
@@ -101,27 +106,47 @@ export const Home = () => {
           <CreatePost onPost={submitPost} />
 
           <div className="flex items-center gap-2 overflow-x-auto pb-2">
-            <button className="px-4 py-2 bg-gray-900 text-white rounded-full text-sm font-medium shadow-sm whitespace-nowrap">
-              For You
-            </button>
-            <button className="px-4 py-2 bg-white text-gray-600 border border-gray-200 hover:bg-gray-50 rounded-full text-sm font-medium whitespace-nowrap">
-              Following
-            </button>
-            <button className="px-4 py-2 bg-white text-gray-600 border border-gray-200 hover:bg-gray-50 rounded-full text-sm font-medium whitespace-nowrap flex items-center gap-1">
-              <TrendingUp className="w-4 h-4" /> Trending
-            </button>
-            <button className="px-4 py-2 bg-white text-gray-600 border border-gray-200 hover:bg-gray-50 rounded-full text-sm font-medium whitespace-nowrap">
-              Announcements
-            </button>
+            {(["foryou", "following", "trending", "announcements"] as const).map((tab) => {
+              const labels: Record<typeof tab, React.ReactNode> = {
+                foryou: "For You",
+                following: "Following",
+                trending: <span className="flex items-center gap-1"><TrendingUp className="w-4 h-4" /> Trending</span>,
+                announcements: "Announcements",
+              };
+              const active = activeTab === tab;
+              return (
+                <button
+                  key={tab}
+                  onClick={() => setActiveTab(tab)}
+                  className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-colors ${
+                    active
+                      ? "bg-gray-900 text-white shadow-sm"
+                      : "bg-white text-gray-600 border border-gray-200 hover:bg-gray-50"
+                  }`}
+                >
+                  {labels[tab]}
+                </button>
+              );
+            })}
           </div>
 
-          {posts.length === 0 ? (
+          {activeTab === "following" && (
+            <div className="py-10 text-center text-gray-400">
+              <p className="text-sm">Following feed coming soon.</p>
+            </div>
+          )}
+          {activeTab === "announcements" && (
+            <div className="py-10 text-center text-gray-400">
+              <p className="text-sm">No announcements yet.</p>
+            </div>
+          )}
+          {(activeTab === "foryou" || activeTab === "trending") && displayPosts.length === 0 ? (
             <div className="py-12 text-center text-gray-400">
               <CheckCircle2 className="w-8 h-8 mx-auto mb-2 opacity-30" />
               <p className="text-sm">No posts yet. Be the first to share something!</p>
             </div>
-          ) : (
-            posts.map((post) => (
+          ) : (activeTab === "foryou" || activeTab === "trending") && (
+            displayPosts.map((post) => (
               <FeedPostCard
                 key={post.id}
                 post={post}

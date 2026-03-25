@@ -23,8 +23,8 @@ export const usePosts = () => {
     fetchPosts();
   }, [fetchPosts]);
 
-  const submitPost = async (content: string) => {
-    const newPost = await createPost(content);
+  const submitPost = async (payload: { content: string; media_url?: string; title?: string }) => {
+    const newPost = await createPost(payload);
     setPosts((prev) => [newPost, ...prev]);
     return newPost;
   };

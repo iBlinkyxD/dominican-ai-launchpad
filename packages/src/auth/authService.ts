@@ -4,6 +4,7 @@ export interface User {
   last_name: string;
   email: string;
   phone: string;
+  username: string | null;
   profile_picture_url: string | null;
 
   is_active: boolean;

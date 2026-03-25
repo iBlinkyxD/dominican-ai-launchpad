@@ -4,7 +4,7 @@ import { AdditionalCourses } from "../components/courses/AdditionalCourses";
 import { HelpCircle, ChevronDown, ChevronUp } from "lucide-react";
 import { useGetCourses, useGetPackages, useGetEnrolled } from "../hooks/courses";
 import { AcademyCourse } from "../api/courses";
-type Tab = "all" | "enrolled" | "certifications" | "courses";
+type Tab = "enrolled" | "certifications" | "courses";
 
 const toListCourse = (course: AcademyCourse) => ({
   id: course.slug,
@@ -29,14 +29,13 @@ const toListCourse = (course: AcademyCourse) => ({
 const INITIAL_PACKAGES_SHOWN = 2;
 
 const TABS: { key: Tab; label: string }[] = [
-  { key: "all", label: "All" },
   { key: "enrolled", label: "Enrolled" },
   { key: "certifications", label: "Certifications" },
   { key: "courses", label: "Courses" },
 ];
 
 export const Courses = () => {
-  const [activeTab, setActiveTab] = useState<Tab>("all");
+  const [activeTab, setActiveTab] = useState<Tab>("enrolled");
   const [showAllPackages, setShowAllPackages] = useState(false);
 
   const { courses: allCourses, loading: coursesLoading, error: coursesError } = useGetCourses();
@@ -52,14 +51,14 @@ export const Courses = () => {
 
   // Pick data source based on tab
   const packages =
-    activeTab === "all" || activeTab === "certifications"
+    activeTab === "certifications"
       ? allPackages
       : activeTab === "enrolled"
       ? enrolledPackages
       : [];
 
   const courses =
-    activeTab === "all" || activeTab === "courses"
+    activeTab === "courses"
       ? allCourses
       : activeTab === "enrolled"
       ? enrolledCourses
@@ -74,8 +73,7 @@ export const Courses = () => {
   const headerTitle =
     activeTab === "enrolled" ? "My Enrolled Content" :
     activeTab === "certifications" ? "Official Certifications" :
-    activeTab === "courses" ? "Individual Courses" :
-    "Official Certifications";
+    "Individual Courses";
 
   const headerSub =
     activeTab === "enrolled" ? "Packages and courses you are enrolled in" :
@@ -170,7 +168,7 @@ export const Courses = () => {
 
           {/* Individual courses */}
           {listCourses.length > 0 && (
-            <AdditionalCourses courses={listCourses} showHeading={activeTab === "all"} enrolledIds={enrolledCourseIds} />
+            <AdditionalCourses courses={listCourses} showHeading={activeTab === "courses"} enrolledIds={enrolledCourseIds} />
           )}
 
           {/* Empty state */}

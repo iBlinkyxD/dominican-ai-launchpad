@@ -138,7 +138,7 @@ export const TopNavigation = () => {
 
             <div className="p-2">
               <button
-                onClick={() => navigate("/profile")}
+                onClick={() => navigate(`/profile/${user?.username}`)}
                 className="w-full flex items-center gap-3 px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-lg transition-colors"
               >
                 <UserCircle className="w-4 h-4 text-gray-400" /> My Profile

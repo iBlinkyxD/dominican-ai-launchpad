@@ -42,4 +42,16 @@ export const updatePassword = async (data: {
   const res = await daiaAPI.post("/users/change-password", data);
 
   return res.data
+};
+
+export interface PublicProfile {
+  first_name: string;
+  last_name: string;
+  username: string;
+  profile_picture_url: string | null;
 }
+
+export const getPublicProfile = async (username: string): Promise<PublicProfile> => {
+  const res = await daiaAPI.get(`/users/profile/${username}`);
+  return res.data;
+};
