@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { api } from '../../mockData';
 import { Space, Post } from '../../types';
 import { Card, Button, Avatar, Badge } from '../components/UI';
-import { PostCard, CreatePost } from '../components/Feed';
+import { CreatePost } from '../components/Feed';
 import { Users, Lock, Globe } from 'lucide-react';
 
 export const SpacesList = () => {
@@ -108,7 +108,7 @@ export const SpaceDetail = () => {
         <div className="space-y-6">
           <CreatePost />
           {posts.length > 0 ? (
-            posts.map(post => <PostCard key={post.id} post={post} />)
+            posts.map((_post, i) => <div key={i} />)
           ) : (
             <div className="text-center py-12 bg-white rounded-xl border border-dashed border-gray-300">
                <p className="text-gray-500">No posts yet. Be the first to say hello!</p>

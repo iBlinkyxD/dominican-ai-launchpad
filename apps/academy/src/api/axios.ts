@@ -1,9 +1,13 @@
 import axios from "axios";
-const API_URL = import.meta.env.VITE_DAIA_ACADEMY_API;
+const DAIA_ACADEMY_API = import.meta.env.VITE_DAIA_ACADEMY_API;
+const DAIA_API_URL = import.meta.env.VITE_DAIA_API;
 
-const api = axios.create({
-  baseURL: API_URL,
+export const academyAPI = axios.create({
+  baseURL: DAIA_ACADEMY_API,
   withCredentials: true, // ✅ send cookies with every request
 });
 
-export default api;
+export const daiaAPI = axios.create({
+  baseURL: DAIA_API_URL,
+  withCredentials: true, // ✅ send cookies with every request
+});

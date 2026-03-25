@@ -3,6 +3,17 @@ import { useState } from "react";
 import { BookOpen, Clock, Star, ChevronRight, Play, Loader2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { getCourseBySlug } from "../../api/courses";
+import ai101 from "../../assets/badges/ai101.jpeg";
+import com101 from "../../assets/badges/com101.jpeg";
+import dbs101 from "../../assets/badges/dbs101.jpeg";
+import dr101 from "../../assets/badges/dr101.jpeg";
+import eng101 from "../../assets/badges/eng101.jpeg";
+import esp101 from "../../assets/badges/esp101.jpeg";
+import sci101 from "../../assets/badges/sci101.jpeg";
+
+const badgeImages: Record<string, string> = {
+  ai101, com101, dbs101, dr101, eng101, esp101, sci101,
+};
 
 export const CourseListItem = ({ course, isEnrolled = false }) => {
   const navigate = useNavigate();
@@ -42,7 +53,9 @@ export const CourseListItem = ({ course, isEnrolled = false }) => {
 
       {/* Content */}
       <div className="p-5 flex-1 relative">
-        <img src={course.badge} className="absolute top-4 right-4 w-12" />
+        {course.badge_url && badgeImages[course.badge_url] && (
+          <img src={badgeImages[course.badge_url]} className="absolute top-4 right-4 w-12" />
+        )}
 
         <span className="text-xs text-purple-600">{course.category}</span>
 

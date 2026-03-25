@@ -1,22 +1,19 @@
-import React, { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { User } from "../types";
-import { api } from "../mockData";
 import { AuthProvider, ProtectedRoute } from "../../../packages/src/auth";
 import AppLayout from "./components/Layout";
 import { Home, AdminDashboard } from "./pages/Dashboard";
 import { SpacesList, SpaceDetail } from "./pages/Spaces";
 import { Courses } from "./pages/Courses";
 import { CourseContent } from "./pages/CourseContent";
-import { LessonPlayer } from "./pages/LessonPlayer";
-import { Messages, Profile } from "./pages/Social";
+import { Messages } from "./pages/Messages";
+import { Profile } from "./pages/Profile";
 import { MembersDirectory } from "./pages/Members";
 import { Announcements } from "./pages/Announcements";
-import { Login, Onboarding } from "./pages/Onboarding";
 import { AIChat } from "./pages/AIChat";
 import { SettingsMenuProvider } from "../../../packages/src/SettingsMenuContext";
 import { BadgesPage } from "./pages/Badges";
 import { CourseDetail } from "./pages/CourseDetail";
+import Settings from "./pages/Settings";
 
 const App = () => {
   return (
@@ -32,8 +29,6 @@ const App = () => {
               }
             >
               <Route index element={<Home />} />
-              <Route path="spaces" element={<SpacesList />} />
-              <Route path="spaces/:id" element={<SpaceDetail />} />
               <Route path="courses" element={<Courses />} />
               <Route
                 path="courses/package/:slug"
@@ -54,6 +49,7 @@ const App = () => {
               <Route path="messages" element={<Messages />} />
               <Route path="profile" element={<Profile />} />
               <Route path="admin" element={<AdminDashboard />} />
+              <Route path="settings" element={<Settings />} />
             </Route>
 
             {/* fallback */}

@@ -1,4 +1,4 @@
-import api from "./axios";
+import { academyAPI } from "./axios";
 
 export interface AcademyCourse {
   id: string;
@@ -7,6 +7,7 @@ export interface AcademyCourse {
   code: string | null;
   description: string | null;
   thumbnail_url: string | null;
+  badge_url: string | null;
   level: "beginner" | "intermediate" | "advanced";
   instructor_id: string | null;
   instructor_name: string | null;
@@ -42,7 +43,7 @@ export interface AcademyCourseDetail extends AcademyCourse {
 
 export const getCourses = async (): Promise<AcademyCourse[]> => {
   try {
-    const res = await api.get("/courses/");
+    const res = await academyAPI.get("/courses/");
     return res.data;
   } catch (err: any) {
     throw new Error(err.response?.data?.detail || "Failed to fetch courses");
@@ -51,7 +52,7 @@ export const getCourses = async (): Promise<AcademyCourse[]> => {
 
 export const getCourseBySlug = async (slug: string): Promise<AcademyCourseDetail> => {
   try {
-    const res = await api.get(`/courses/${slug}`);
+    const res = await academyAPI.get(`/courses/${slug}`);
     return res.data;
   } catch (err: any) {
     throw new Error(err.response?.data?.detail || "Course not found");
@@ -60,7 +61,7 @@ export const getCourseBySlug = async (slug: string): Promise<AcademyCourseDetail
 
 export const submitRating = async (slug: string, score: number): Promise<void> => {
   try {
-    await api.post(`/courses/${slug}/rate`, { score });
+    await academyAPI.post(`/courses/${slug}/rate`, { score });
   } catch (err: any) {
     throw new Error(err.response?.data?.detail || "Failed to submit rating");
   }
@@ -68,7 +69,7 @@ export const submitRating = async (slug: string, score: number): Promise<void> =
 
 export const getEnrolledCourses = async (): Promise<AcademyCourse[]> => {
   try {
-    const res = await api.get("/courses/enrolled");
+    const res = await academyAPI.get("/courses/enrolled");
     return res.data;
   } catch (err: any) {
     throw new Error(err.response?.data?.detail || "Failed to fetch enrolled courses");
@@ -77,7 +78,7 @@ export const getEnrolledCourses = async (): Promise<AcademyCourse[]> => {
 
 export const enrollCourse = async (courseId: string): Promise<void> => {
   try {
-    await api.post(`/courses/${courseId}/enroll`);
+    await academyAPI.post(`/courses/${courseId}/enroll`);
   } catch (err: any) {
     throw new Error(err.response?.data?.detail || "Failed to enroll");
   }

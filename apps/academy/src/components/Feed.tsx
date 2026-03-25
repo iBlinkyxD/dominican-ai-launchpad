@@ -7,29 +7,57 @@ import {
   Image as ImageIcon,
   Smile,
   Paperclip,
+  Loader2,
 } from "lucide-react";
-import { Post, Comment } from "../../types";
-import { Avatar, Button, Card, Badge } from "./UI";
+import { PostRead } from "../api/posts";
+import { Card, Button } from "./UI";
 import { useAuth } from "../../../../packages/src/auth";
 
 // --- Create Post Widget ---
-export const CreatePost = () => {
+interface CreatePostProps {
+  onPost?: (content: string) => Promise<unknown>;
+}
+
+export const CreatePost: React.FC<CreatePostProps> = ({ onPost }) => {
   const { user, loading } = useAuth();
   const [isFocused, setIsFocused] = useState(false);
-  if (loading) return <p>Loading user info...</p>;
+  const [content, setContent] = useState("");
+  const [submitting, setSubmitting] = useState(false);
 
+  if (loading) return <p>Loading user info...</p>;
   if (!user) return <p>Please log in to see your info.</p>;
-  // Get the first letter of the first name, fallback to empty string
+
   const firstInitial = user.first_name?.charAt(0).toUpperCase() || "";
+
+  const handlePost = async () => {
+    if (!content.trim() || !onPost) return;
+    setSubmitting(true);
+    try {
+      await onPost(content.trim());
+      setContent("");
+      setIsFocused(false);
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
   return (
     <Card className="mb-6">
       <div className="flex gap-4">
-        <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white text-sm font-bold">
-          {firstInitial}
+        <div className="w-10 h-10 rounded-full overflow-hidden shrink-0">
+          {user.profile_picture_url ? (
+            <img src={user.profile_picture_url} alt={user.first_name} className="w-full h-full object-cover" />
+          ) : (
+            <div className="w-full h-full bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center text-white text-sm font-bold">
+              {firstInitial}
+            </div>
+          )}
         </div>
         <div className="flex-1">
           <textarea
             placeholder={`What's on your mind, ${user?.first_name}?`}
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
             className="w-full bg-gray-50 rounded-lg p-3 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-100 min-h-[50px] resize-none transition-all"
             onFocus={() => setIsFocused(true)}
           />
@@ -46,7 +74,13 @@ export const CreatePost = () => {
                   <Smile className="w-5 h-5" />
                 </button>
               </div>
-              <Button size="sm">Post</Button>
+              <Button
+                size="sm"
+                onClick={handlePost}
+                disabled={submitting || !content.trim()}
+              >
+                {submitting ? <Loader2 className="w-4 h-4 animate-spin" /> : "Post"}
+              </Button>
             </div>
           )}
         </div>
@@ -55,14 +89,35 @@ export const CreatePost = () => {
   );
 };
 
-// --- Post Card ---
-export const PostCard: React.FC<{ post: Post }> = ({ post }) => {
-  const [liked, setLiked] = useState(post.isLiked);
-  const [count, setCount] = useState(post.likes);
+// --- Feed Post Card ---
+interface FeedPostCardProps {
+  post: PostRead;
+  currentUserDaiaId?: string;
+  currentUserName?: string;
+  currentUserAvatar?: string;
+}
 
-  const handleLike = () => {
-    setLiked(!liked);
-    setCount(liked ? count - 1 : count + 1);
+export const FeedPostCard: React.FC<FeedPostCardProps> = ({
+  post,
+  currentUserDaiaId,
+  currentUserName,
+  currentUserAvatar,
+}) => {
+  const [liked, setLiked] = useState(false);
+
+  const isOwn = post.author_daia_user_id === currentUserDaiaId;
+  const authorName = isOwn ? currentUserName ?? "You" : "Member";
+  const authorAvatar = isOwn ? currentUserAvatar : undefined;
+  const firstInitial = authorName.charAt(0).toUpperCase();
+
+  const timeAgo = (iso: string) => {
+    const diff = Date.now() - new Date(iso).getTime();
+    const mins = Math.floor(diff / 60000);
+    if (mins < 1) return "just now";
+    if (mins < 60) return `${mins}m ago`;
+    const hrs = Math.floor(mins / 60);
+    if (hrs < 24) return `${hrs}h ago`;
+    return `${Math.floor(hrs / 24)}d ago`;
   };
 
   return (
@@ -70,18 +125,18 @@ export const PostCard: React.FC<{ post: Post }> = ({ post }) => {
       {/* Header */}
       <div className="flex justify-between items-start mb-4">
         <div className="flex gap-3">
-          <Avatar src={post.authorAvatar} alt={post.authorName} />
+          <div className="w-10 h-10 rounded-full overflow-hidden shrink-0">
+            {authorAvatar ? (
+              <img src={authorAvatar} alt={authorName} className="w-full h-full object-cover" />
+            ) : (
+              <div className="w-full h-full bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center text-white text-sm font-bold">
+                {firstInitial}
+              </div>
+            )}
+          </div>
           <div>
-            <h4 className="font-semibold text-sm text-gray-900">
-              {post.authorName}
-            </h4>
-            <div className="flex items-center text-xs text-gray-500 gap-2">
-              <span className="font-medium text-indigo-600 hover:underline cursor-pointer">
-                {post.spaceName}
-              </span>
-              <span>•</span>
-              <span>{post.createdAt}</span>
-            </div>
+            <h4 className="font-semibold text-sm text-gray-900">{authorName}</h4>
+            <span className="text-xs text-gray-400">{timeAgo(post.created_at)}</span>
           </div>
         </div>
         <button className="text-gray-400 hover:bg-gray-100 p-1 rounded-full">
@@ -91,60 +146,13 @@ export const PostCard: React.FC<{ post: Post }> = ({ post }) => {
 
       {/* Content */}
       <div className="mb-4">
-        <p className="text-gray-800 text-sm leading-relaxed whitespace-pre-wrap">
-          {post.body}
-        </p>
-
-        {/* Media */}
-        {post.mediaUrl && (
+        {post.title && (
+          <h3 className="font-semibold text-gray-900 mb-1">{post.title}</h3>
+        )}
+        <p className="text-gray-800 text-sm leading-relaxed whitespace-pre-wrap">{post.content}</p>
+        {post.media_url && (
           <div className="mt-3 rounded-lg overflow-hidden border border-gray-100">
-            <img
-              src={post.mediaUrl}
-              alt="Post media"
-              className="w-full h-auto object-cover max-h-96"
-            />
-          </div>
-        )}
-
-        {/* Poll */}
-        {post.type === "poll" && post.pollOptions && (
-          <div className="mt-3 space-y-2">
-            {post.pollOptions.map((opt, i) => (
-              <div
-                key={i}
-                className="relative h-10 bg-gray-50 rounded-lg overflow-hidden cursor-pointer group hover:bg-gray-100 border border-gray-200"
-              >
-                <div
-                  className="absolute top-0 left-0 h-full bg-indigo-100 transition-all duration-500"
-                  style={{ width: `${opt.votes}%` }}
-                />
-                <div className="absolute inset-0 flex items-center justify-between px-4">
-                  <span className="text-sm font-medium z-10 text-gray-700">
-                    {opt.label}
-                  </span>
-                  <span className="text-xs text-gray-500 z-10">
-                    {opt.votes}%
-                  </span>
-                </div>
-              </div>
-            ))}
-            <p className="text-xs text-gray-400 text-right">
-              100 votes • Ends in 2 days
-            </p>
-          </div>
-        )}
-
-        {/* Tags */}
-        {post.tags && (
-          <div className="flex gap-2 mt-3">
-            {post.tags.map((tag) => (
-              <span
-                key={tag}
-                className="text-xs text-indigo-600 hover:underline"
-              >
-                #{tag}
-              </span>
-            ))}
+            <img src={post.media_url} alt="Post media" className="w-full h-auto object-cover max-h-96" />
           </div>
         )}
       </div>
@@ -153,19 +161,15 @@ export const PostCard: React.FC<{ post: Post }> = ({ post }) => {
       <div className="flex items-center justify-between pt-3 border-t border-gray-100">
         <div className="flex gap-4">
           <button
-            onClick={handleLike}
+            onClick={() => setLiked(!liked)}
             className={`flex items-center gap-1.5 text-sm transition-colors ${liked ? "text-red-500" : "text-gray-500 hover:text-red-500"}`}
           >
             <Heart className={`w-5 h-5 ${liked ? "fill-current" : ""}`} />
-            <span>{count}</span>
           </button>
-
           <button className="flex items-center gap-1.5 text-sm text-gray-500 hover:text-indigo-600 transition-colors">
             <MessageCircle className="w-5 h-5" />
-            <span>{post.comments}</span>
           </button>
         </div>
-
         <button className="text-gray-400 hover:text-gray-600">
           <Share2 className="w-5 h-5" />
         </button>

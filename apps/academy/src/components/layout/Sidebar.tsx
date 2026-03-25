@@ -65,10 +65,6 @@ export const Sidebar = () => {
         <SidebarSection>
           <SidebarLink to="/badges-certificates" label="Badges & Certificates" hasSubmenu={false} />
         </SidebarSection>
-
-        <SidebarSection>
-          <SidebarLink to="/events" label="Learners Community" hasSubmenu={false} />
-        </SidebarSection>
       </div>
 
       <div className="flex-1"></div>

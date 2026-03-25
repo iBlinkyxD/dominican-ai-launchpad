@@ -4,8 +4,6 @@ import { AdditionalCourses } from "../components/courses/AdditionalCourses";
 import { HelpCircle, ChevronDown, ChevronUp } from "lucide-react";
 import { useGetCourses, useGetPackages, useGetEnrolled } from "../hooks/courses";
 import { AcademyCourse } from "../api/courses";
-import eng101 from "../assets/badges/eng101.jpeg";
-
 type Tab = "all" | "enrolled" | "certifications" | "courses";
 
 const toListCourse = (course: AcademyCourse) => ({
@@ -17,14 +15,14 @@ const toListCourse = (course: AcademyCourse) => ({
     course.total_duration_seconds > 0
       ? `${Math.floor(course.total_duration_seconds / 3600)}h ${Math.floor((course.total_duration_seconds % 3600) / 60)}min`
       : "—",
-  rating: 0,
-  reviews: 0,
+  rating: course.avg_rating ?? 0,
+  reviews: course.review_count,
   level: course.level.charAt(0).toUpperCase() + course.level.slice(1),
   image:
     course.thumbnail_url ||
     "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=250&fit=crop",
-  instructor: "DAIA Academy",
-  badge: eng101,
+  instructor: course.instructor_name || "DAIA Academy",
+  badge_url: course.badge_url,
   description: course.description || "",
 });
 

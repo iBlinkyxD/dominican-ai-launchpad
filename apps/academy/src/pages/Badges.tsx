@@ -1,12 +1,12 @@
 import { Award } from "lucide-react";
 import certificate from "../assets/certificate/certificate.png";
-import ai101 from "../assets/badges/ai-101.jpeg";
+import ai101 from "../assets/badges/ai101.jpeg";
 import dr101 from "../assets/badges/dr101.jpeg";
 import eng101 from "../assets/badges/eng101.jpeg";
-import orange from "../assets/badges/orange.jpeg";
-import pink from "../assets/badges/pink.jpeg";
-import teal from "../assets/badges/teal.jpeg";
-import yellow from "../assets/badges/yellow.jpeg";
+import com101 from "../assets/badges/com101.jpeg";
+import dbs101 from "../assets/badges/dbs101.jpeg";
+import esp101 from "../assets/badges/esp101.jpeg";
+import sci101 from "../assets/badges/sci101.jpeg";
 
 export function BadgesPage() {
   const earnedCertificates = [
@@ -21,19 +21,19 @@ export function BadgesPage() {
     { id: 5, image: dr101, locked: true },
     { id: 6, image: eng101, locked: false },
     { id: 7, image: eng101, locked: true },
-    { id: 8, image: yellow, locked: false },
+    { id: 8, image: sci101, locked: false },
     { id: 9, image: dr101, locked: true },
-    { id: 10, image: pink, locked: false },
-    { id: 11, image: yellow, locked: true },
+    { id: 10, image: dbs101, locked: false },
+    { id: 11, image: sci101, locked: true },
     { id: 12, image: dr101, locked: false },
-    { id: 13, image: pink, locked: true },
-    { id: 14, image: orange, locked: false },
-    { id: 15, image: pink, locked: true },
+    { id: 13, image: dbs101, locked: true },
+    { id: 14, image: com101, locked: false },
+    { id: 15, image: dbs101, locked: true },
     { id: 16, image: eng101, locked: false },
-    { id: 17, image: teal, locked: true },
+    { id: 17, image: esp101, locked: true },
     { id: 18, image: eng101, locked: false },
-    { id: 19, image: teal, locked: true },
-    { id: 20, image: teal, locked: false },
+    { id: 19, image: esp101, locked: true },
+    { id: 20, image: esp101, locked: false },
   ];
 
   return (

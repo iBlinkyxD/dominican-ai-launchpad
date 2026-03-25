@@ -1,4 +1,4 @@
-import api from "./axios";
+import { academyAPI } from "./axios";
 
 export interface PackageItem {
   id: string;
@@ -38,7 +38,7 @@ export interface AcademyPackageDetail {
 
 export const getPackages = async (): Promise<AcademyPackage[]> => {
   try {
-    const res = await api.get("/packages/");
+    const res = await academyAPI.get("/packages/");
     return res.data;
   } catch (err: any) {
     throw new Error(err.response?.data?.detail || "Failed to fetch packages");
@@ -47,7 +47,7 @@ export const getPackages = async (): Promise<AcademyPackage[]> => {
 
 export const enrollPackage = async (slug: string): Promise<void> => {
   try {
-    await api.post(`/packages/${slug}/enroll`);
+    await academyAPI.post(`/packages/${slug}/enroll`);
   } catch (err: any) {
     throw new Error(err.response?.data?.detail || "Failed to enroll in package");
   }
@@ -55,7 +55,7 @@ export const enrollPackage = async (slug: string): Promise<void> => {
 
 export const getEnrolledPackages = async (): Promise<AcademyPackage[]> => {
   try {
-    const res = await api.get("/packages/enrolled");
+    const res = await academyAPI.get("/packages/enrolled");
     return res.data;
   } catch (err: any) {
     throw new Error(err.response?.data?.detail || "Failed to fetch enrolled packages");
@@ -64,7 +64,7 @@ export const getEnrolledPackages = async (): Promise<AcademyPackage[]> => {
 
 export const getPackageBySlug = async (slug: string): Promise<AcademyPackageDetail> => {
   try {
-    const res = await api.get(`/packages/${slug}`);
+    const res = await academyAPI.get(`/packages/${slug}`);
     return res.data;
   } catch (err: any) {
     throw new Error(err.response?.data?.detail || "Package not found");
