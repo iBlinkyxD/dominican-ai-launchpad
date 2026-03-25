@@ -1,4 +1,5 @@
 import api from "./axios";
+import { authService } from "../auth/authService";
 
 export interface RegisterPayload {
   first_name: string;
@@ -17,8 +18,12 @@ export const login = async (email: string, password: string) => {
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
     },
-    withCredentials: true, // ✅ this is the key change
+    withCredentials: true,
   });
+
+  if (response.data.access_token) {
+    authService.setToken(response.data.access_token);
+  }
 
   return response.data;
 };
@@ -42,5 +47,7 @@ export const logout = async () => {
     });
   } catch (err: any) {
     console.error("Logout failed", err.response?.data || err);
+  } finally {
+    authService.removeToken();
   }
 };
