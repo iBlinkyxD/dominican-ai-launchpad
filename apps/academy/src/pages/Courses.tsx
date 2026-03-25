@@ -2,9 +2,11 @@ import { useState } from "react";
 import { PackageCard } from "../components/courses/PackageCard";
 import { AdditionalCourses } from "../components/courses/AdditionalCourses";
 import { HelpCircle, ChevronDown, ChevronUp } from "lucide-react";
-import { useGetCourses, useGetPackages } from "../hooks/courses";
+import { useGetCourses, useGetPackages, useGetEnrolled } from "../hooks/courses";
 import { AcademyCourse } from "../api/courses";
 import eng101 from "../assets/badges/eng101.jpeg";
+
+type Tab = "all" | "enrolled" | "certifications" | "courses";
 
 const toListCourse = (course: AcademyCourse) => ({
   id: course.slug,
@@ -28,39 +30,84 @@ const toListCourse = (course: AcademyCourse) => ({
 
 const INITIAL_PACKAGES_SHOWN = 2;
 
+const TABS: { key: Tab; label: string }[] = [
+  { key: "all", label: "All" },
+  { key: "enrolled", label: "Enrolled" },
+  { key: "certifications", label: "Certifications" },
+  { key: "courses", label: "Courses" },
+];
+
 export const Courses = () => {
-  const { courses, loading: coursesLoading, error } = useGetCourses();
-  const { packages, loading: packagesLoading } = useGetPackages();
+  const [activeTab, setActiveTab] = useState<Tab>("all");
   const [showAllPackages, setShowAllPackages] = useState(false);
 
-  const loading = coursesLoading || packagesLoading;
+  const { courses: allCourses, loading: coursesLoading, error: coursesError } = useGetCourses();
+  const { packages: allPackages, loading: packagesLoading } = useGetPackages();
+  const { courses: enrolledCourses, packages: enrolledPackages, loading: enrolledLoading, error: enrolledError } = useGetEnrolled();
 
-  // All courses go to the individual list
+  const enrolledPackageIds = new Set(enrolledPackages.map((p) => p.id));
+  const enrolledCourseIds = new Set(enrolledCourses.map((c) => c.slug));
+
+  const isEnrolledTab = activeTab === "enrolled";
+  const loading = isEnrolledTab ? enrolledLoading : (coursesLoading || packagesLoading);
+  const error = isEnrolledTab ? enrolledError : coursesError;
+
+  // Pick data source based on tab
+  const packages =
+    activeTab === "all" || activeTab === "certifications"
+      ? allPackages
+      : activeTab === "enrolled"
+      ? enrolledPackages
+      : [];
+
+  const courses =
+    activeTab === "all" || activeTab === "courses"
+      ? allCourses
+      : activeTab === "enrolled"
+      ? enrolledCourses
+      : [];
+
   const listCourses = courses.map(toListCourse);
 
-  // Show only 2 packages initially
   const visiblePackages = showAllPackages
     ? packages
     : packages.slice(0, INITIAL_PACKAGES_SHOWN);
+
+  const headerTitle =
+    activeTab === "enrolled" ? "My Enrolled Content" :
+    activeTab === "certifications" ? "Official Certifications" :
+    activeTab === "courses" ? "Individual Courses" :
+    "Official Certifications";
+
+  const headerSub =
+    activeTab === "enrolled" ? "Packages and courses you are enrolled in" :
+    "Explore other popular courses to expand your skills";
+
+  const isEmpty = !loading && !error && packages.length === 0 && courses.length === 0;
 
   return (
     <div className="relative min-h-[80vh] px-4 sm:px-6 lg:px-8">
       {/* Header */}
       <div className="mb-6 flex flex-col-reverse xl:flex-row xl:justify-between gap-4">
         <div>
-          <h2 className="text-2xl font-bold text-gray-900">
-            Official Certifications
-          </h2>
-          <p className="text-gray-600">
-            Explore other popular courses to expand your skills
-          </p>
+          <h2 className="text-2xl font-bold text-gray-900">{headerTitle}</h2>
+          <p className="text-gray-600">{headerSub}</p>
         </div>
 
         <div className="flex gap-2 overflow-x-auto my-auto">
-          <button className="px-5 py-2 bg-[#0B1E40] text-white rounded-lg">All</button>
-          <button className="px-5 py-2 text-gray-600">Enrolled</button>
-          <button className="px-5 py-2 text-gray-600">Certifications</button>
-          <button className="px-5 py-2 text-gray-600">Courses</button>
+          {TABS.map((tab) => (
+            <button
+              key={tab.key}
+              onClick={() => { setActiveTab(tab.key); setShowAllPackages(false); }}
+              className={`px-5 py-2 rounded-lg whitespace-nowrap transition-colors ${
+                activeTab === tab.key
+                  ? "bg-[#0B1E40] text-white"
+                  : "text-gray-600 hover:bg-gray-100"
+              }`}
+            >
+              {tab.label}
+            </button>
+          ))}
         </div>
       </div>
 
@@ -94,7 +141,12 @@ export const Courses = () => {
               id={pkg.id}
               title={pkg.title}
               skills={pkg.short_description || ""}
+              level={pkg.level}
+              totalDurationSeconds={pkg.total_duration_seconds}
+              avgRating={pkg.avg_rating}
+              reviewCount={pkg.review_count}
               courses={pkg.courses}
+              isEnrolled={enrolledPackageIds.has(pkg.id)}
             />
           ))}
 
@@ -106,9 +158,7 @@ export const Courses = () => {
                 className="flex items-center gap-2 px-6 py-2.5 border border-gray-300 rounded-full text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors"
               >
                 {showAllPackages ? (
-                  <>
-                    Show less <ChevronUp className="w-4 h-4" />
-                  </>
+                  <>Show less <ChevronUp className="w-4 h-4" /></>
                 ) : (
                   <>
                     View {packages.length - INITIAL_PACKAGES_SHOWN} more{" "}
@@ -122,12 +172,15 @@ export const Courses = () => {
 
           {/* Individual courses */}
           {listCourses.length > 0 && (
-            <AdditionalCourses courses={listCourses} />
+            <AdditionalCourses courses={listCourses} showHeading={activeTab === "all"} enrolledIds={enrolledCourseIds} />
           )}
 
-          {courses.length === 0 && (
+          {/* Empty state */}
+          {isEmpty && (
             <p className="text-gray-400 text-sm text-center py-20">
-              No courses available yet.
+              {activeTab === "enrolled"
+                ? "You are not enrolled in any courses yet."
+                : "No courses available yet."}
             </p>
           )}
         </>

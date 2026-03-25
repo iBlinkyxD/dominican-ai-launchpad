@@ -1,9 +1,31 @@
 // components/CourseListItem.tsx
-import { BookOpen, Clock, Star, ChevronRight } from "lucide-react";
+import { useState } from "react";
+import { BookOpen, Clock, Star, ChevronRight, Play, Loader2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { getCourseBySlug } from "../../api/courses";
 
-export const CourseListItem = ({ course }) => {
+export const CourseListItem = ({ course, isEnrolled = false }) => {
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+
+  const handleContinue = async (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setLoading(true);
+    try {
+      const detail = await getCourseBySlug(course.id);
+      const firstLesson = detail.modules[0]?.lessons[0];
+      if (firstLesson) {
+        navigate(`/courses/${course.id}/lesson/${firstLesson.id}`);
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleView = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    navigate(`/courses/${course.id}`);
+  };
 
   return (
     <div
@@ -31,8 +53,8 @@ export const CourseListItem = ({ course }) => {
         <p className="text-sm text-gray-600 mb-3">by {course.instructor}</p>
 
         <div className="flex gap-4 text-xs text-gray-500">
-          <BookOpen /> {course.lessons}
-          <Clock /> {course.duration}
+          <span className="flex items-center gap-2"><BookOpen className="w-4 h-4" /> {course.lessons}</span>
+          <span className="flex items-center gap-2"><Clock className="w-4 h-4" /> {course.duration}</span>
         </div>
 
         <div className="flex justify-between mt-4">
@@ -41,9 +63,26 @@ export const CourseListItem = ({ course }) => {
             {course.rating}
           </div>
 
-          <div className="flex items-center text-purple-600">
-            View <ChevronRight />
-          </div>
+          {isEnrolled ? (
+            <button
+              onClick={handleContinue}
+              disabled={loading}
+              className="flex items-center gap-1.5 px-4 py-1.5 bg-[#0B1E40] text-white rounded-lg text-sm font-medium hover:bg-[#162d5e] transition disabled:opacity-60"
+            >
+              {loading ? (
+                <Loader2 className="w-4 h-4 animate-spin" />
+              ) : (
+                <><Play className="w-3.5 h-3.5" fill="currentColor" /> Continue</>
+              )}
+            </button>
+          ) : (
+            <button
+              onClick={handleView}
+              className="flex items-center text-purple-600 hover:text-purple-800 transition"
+            >
+              View <ChevronRight />
+            </button>
+          )}
         </div>
       </div>
     </div>

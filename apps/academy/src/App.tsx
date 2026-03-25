@@ -16,7 +16,6 @@ import { Login, Onboarding } from "./pages/Onboarding";
 import { AIChat } from "./pages/AIChat";
 import { SettingsMenuProvider } from "../../../packages/src/SettingsMenuContext";
 import { BadgesPage } from "./pages/Badges";
-import { CertificateDetailPage } from "./pages/CertificateDetail";
 import { CourseDetail } from "./pages/CourseDetail";
 
 const App = () => {
@@ -36,8 +35,14 @@ const App = () => {
               <Route path="spaces" element={<SpacesList />} />
               <Route path="spaces/:id" element={<SpaceDetail />} />
               <Route path="courses" element={<Courses />} />
-              <Route path="courses/:courseId" element={<CourseDetail />} />
-              <Route path="courses/package/:packageId" element={<CertificateDetailPage />}/>
+              <Route
+                path="courses/package/:slug"
+                element={<CourseDetail type="package" />}
+              />
+              <Route
+                path="courses/:slug"
+                element={<CourseDetail type="course" />}
+              />
               <Route
                 path="courses/:courseId/lesson/:lessonId"
                 element={<CourseContent />}

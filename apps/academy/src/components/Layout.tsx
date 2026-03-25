@@ -9,7 +9,8 @@ const AppLayout = () => {
   const location = useLocation();
   const noPadding =
     location.pathname.includes("/chat-daia") ||
-    location.pathname.includes("/courses/package/");
+    location.pathname.includes("/courses/package/") ||
+    /^\/courses\/[^/]+$/.test(location.pathname);
   return (
     <div className="h-screen bg-[#0B1E40] flex flex-col overflow-hidden">
       <TopNavigation />

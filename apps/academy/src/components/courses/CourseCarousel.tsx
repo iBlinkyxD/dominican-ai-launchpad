@@ -42,11 +42,11 @@ export const CourseCarousel = ({ courses }) => {
           <div
             key={course.id}
             className="flex-shrink-0 w-44 bg-white rounded-lg border border-gray-200 shadow-md hover:shadow-xl transition cursor-pointer group overflow-hidden"
-            onClick={() => navigate(`/course/${course.id}`)}
+            onClick={() => navigate(`/courses/${course.id}`)}
           >
             <div className="relative overflow-hidden">
               <img
-                src={course.image}
+                src={course.image ?? "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=250&fit=crop"}
                 alt={course.title}
                 className="w-full h-28 object-cover group-hover:scale-105 transition-transform duration-300"
               />

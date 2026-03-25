@@ -1,46 +1,59 @@
-import { ChevronLeft, Clock, BookOpen, Star } from "lucide-react";
+import { ChevronLeft, Clock, BookOpen } from "lucide-react";
 import { useNavigate } from "react-router";
 
-export const CourseHeader = () => {
+interface CourseHeaderProps {
+  title: string | undefined;
+  slug: string | undefined;
+  totalLessons: number;
+  totalDurationSeconds: number;
+}
+
+export const CourseHeader = ({
+  title,
+  slug,
+  totalLessons,
+  totalDurationSeconds,
+}: CourseHeaderProps) => {
   const navigate = useNavigate();
+
+  const hours = Math.floor(totalDurationSeconds / 3600);
+  const minutes = Math.floor((totalDurationSeconds % 3600) / 60);
+  const durationLabel = hours > 0 ? `${hours}h ${minutes}min` : `${minutes}min`;
 
   return (
     <div className="bg-white border-b border-gray-200">
       <div className="px-4 sm:px-6 lg:px-8 py-4">
         <div className="flex items-center gap-2 text-sm text-gray-600 mb-2">
           <button
-            onClick={() => navigate("/hub")}
+            onClick={() => navigate("/courses")}
             className="hover:text-gray-900 flex items-center gap-1"
           >
             <ChevronLeft className="h-4 w-4" />
             Courses
           </button>
           <span>/</span>
-          <span className="text-gray-400">UI UX Design</span>
-          <span>/</span>
-          <span className="text-gray-900 font-medium">The AI Mindset: Human + Machine Intelligence</span>
+          <span
+            onClick={() => slug && navigate(`/courses/${slug}`)}
+            className="text-gray-400 hover:text-gray-900 cursor-pointer"
+          >
+            {title}
+          </span>
         </div>
 
-        {/* Title */}
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
           <div>
-            <h1 className="text-3xl font-semibold text-gray-900 mb-2">
-              The AI Mindset: Human + Machine Intelligence
-            </h1>
+            <h1 className="text-3xl font-semibold text-gray-900 mb-2">{title}</h1>
             <div className="flex flex-wrap items-center gap-4 text-sm text-gray-600">
               <div className="flex items-center gap-1">
                 <BookOpen className="h-4 w-4 text-purple-600" />
-                <span>38 lessons</span>
+                <span>{totalLessons} lessons</span>
               </div>
-              <div className="flex items-center gap-1">
-                <Clock className="h-4 w-4 text-purple-600" />
-                <span>4h 30min</span>
-              </div>
-              <div className="flex items-center gap-1">
-                <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-                <span className="font-medium text-gray-900">4.5</span>
-                <span>(126 reviews)</span>
-              </div>
+              {totalDurationSeconds > 0 && (
+                <div className="flex items-center gap-1">
+                  <Clock className="h-4 w-4 text-purple-600" />
+                  <span>{durationLabel}</span>
+                </div>
+              )}
             </div>
           </div>
 

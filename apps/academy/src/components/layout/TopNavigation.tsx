@@ -40,9 +40,9 @@ export const TopNavigation = () => {
   const totalXp = academyUser?.total_xp ?? 0;
   const currentLevelXp = Math.pow(level, 2) * 100;
   const nextLevelXp = Math.pow(level + 1, 2) * 100;
-  const progress = Math.round(
-    ((totalXp - currentLevelXp) / (nextLevelXp - currentLevelXp)) * 100,
-  );
+  const rawProgress =
+    ((totalXp - currentLevelXp) / (nextLevelXp - currentLevelXp)) * 100;
+  const progress = Math.min(100, Math.max(0, Math.round(rawProgress)));
 
   const handleLogout = () => {
     window.location.href = `${import.meta.env.VITE_HUB_URL}/`;

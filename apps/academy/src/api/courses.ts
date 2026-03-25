@@ -9,12 +9,37 @@ export interface AcademyCourse {
   thumbnail_url: string | null;
   level: "beginner" | "intermediate" | "advanced";
   instructor_id: string | null;
+  instructor_name: string | null;
   is_published: boolean;
   total_lessons: number;
   total_duration_seconds: number;
+  enrollment_count: number;
+  avg_rating: number | null;
+  review_count: number;
   created_at: string;
   updated_at: string;
 }
+
+export interface LessonRead {
+  id: string;
+  title: string;
+  duration_seconds: number | null;
+  position: number;
+}
+
+export interface ModuleRead {
+  id: string;
+  title: string;
+  description: string | null;
+  position: number;
+  lessons: LessonRead[];
+}
+
+export interface AcademyCourseDetail extends AcademyCourse {
+  short_description: string | null;
+  modules: ModuleRead[];
+}
+
 export const getCourses = async (): Promise<AcademyCourse[]> => {
   try {
     const res = await api.get("/courses/");
@@ -24,12 +49,29 @@ export const getCourses = async (): Promise<AcademyCourse[]> => {
   }
 };
 
-export const getCourseBySlug = async (slug: string): Promise<AcademyCourse> => {
+export const getCourseBySlug = async (slug: string): Promise<AcademyCourseDetail> => {
   try {
     const res = await api.get(`/courses/${slug}`);
     return res.data;
   } catch (err: any) {
     throw new Error(err.response?.data?.detail || "Course not found");
+  }
+};
+
+export const submitRating = async (slug: string, score: number): Promise<void> => {
+  try {
+    await api.post(`/courses/${slug}/rate`, { score });
+  } catch (err: any) {
+    throw new Error(err.response?.data?.detail || "Failed to submit rating");
+  }
+};
+
+export const getEnrolledCourses = async (): Promise<AcademyCourse[]> => {
+  try {
+    const res = await api.get("/courses/enrolled");
+    return res.data;
+  } catch (err: any) {
+    throw new Error(err.response?.data?.detail || "Failed to fetch enrolled courses");
   }
 };
 

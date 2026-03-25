@@ -1,16 +1,65 @@
 // components/PackageCard.tsx
-import { Award, Star, Clock } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Award, Star, Clock, CheckCircle, Loader2 } from "lucide-react";
 import { CourseCarousel } from "./CourseCarousel";
 import { useNavigate } from "react-router-dom";
+import { enrollPackage } from "../../api/packages";
+import { getCourseBySlug } from "../../api/courses";
+
+const levelStyles: Record<string, string> = {
+  beginner: "bg-green-100 text-green-700",
+  intermediate: "bg-yellow-100 text-yellow-700",
+  advanced: "bg-red-100 text-red-700",
+};
 
 export const PackageCard = ({
   id,
   title,
   skills,
+  level,
+  totalDurationSeconds = 0,
+  avgRating,
+  reviewCount = 0,
   courses,
-  buttonText = "Continue",
+  isEnrolled = false,
 }) => {
   const navigate = useNavigate();
+  const [enrolled, setEnrolled] = useState(isEnrolled);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setEnrolled(isEnrolled);
+  }, [isEnrolled]);
+
+  const hours = Math.floor(totalDurationSeconds / 3600);
+  const minutes = Math.floor((totalDurationSeconds % 3600) / 60);
+  const durationLabel = hours > 0 ? `${hours}h ${minutes}min` : minutes > 0 ? `${minutes}min` : null;
+
+  const handleEnroll = async () => {
+    if (enrolled || loading) return;
+    setLoading(true);
+    try {
+      await enrollPackage(id);
+      setEnrolled(true);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleContinue = async () => {
+    const firstCourseSlug = courses[0]?.id;
+    if (!firstCourseSlug) return;
+    setLoading(true);
+    try {
+      const detail = await getCourseBySlug(firstCourseSlug);
+      const firstLesson = detail.modules[0]?.lessons[0];
+      if (firstLesson) {
+        navigate(`/courses/${firstCourseSlug}/lesson/${firstLesson.id}`);
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="bg-white rounded-2xl shadow-lg border p-8 mb-10">
@@ -28,35 +77,50 @@ export const PackageCard = ({
 
           <p className="text-sm text-gray-600 mb-4">{skills}</p>
 
-          <div className="flex gap-4 mb-6">
-            <div className="flex items-center gap-1">
-              <Star className="fill-yellow-400 text-yellow-400" />
-              <span>4.7</span>
-            </div>
-
-            <span className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full">
-              Beginner
-            </span>
-
-            <span className="flex items-center gap-1 text-sm text-gray-600">
-              <Clock className="h-4 w-4" />5 months
-            </span>
+          <div className="flex flex-wrap items-center gap-3 mb-6">
+            {level && (
+              <span
+                className={`px-3 py-1 rounded-full text-sm font-semibold capitalize ${levelStyles[level.toLowerCase()] ?? "bg-gray-100 text-gray-700"}`}
+              >
+                {level}
+              </span>
+            )}
+            {avgRating != null && (
+              <span className="flex items-center gap-1 text-sm text-gray-700">
+                <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                <span className="font-semibold">{avgRating}</span>
+                <span className="text-gray-400">({reviewCount.toLocaleString()})</span>
+              </span>
+            )}
+            {durationLabel && (
+              <span className="flex items-center gap-1 text-sm text-gray-600">
+                <Clock className="w-4 h-4" />
+                {durationLabel}
+              </span>
+            )}
           </div>
 
           <div className="flex gap-3">
-            <button className="px-6 py-3 bg-blue-600 text-white rounded-lg">
-              Enroll
-            </button>
+            {enrolled ? (
+              <button
+                onClick={handleContinue}
+                disabled={loading}
+                className="px-6 py-3 rounded-lg bg-[#0B1E40] text-white hover:bg-[#162d5e] transition-colors flex items-center gap-2 disabled:opacity-60"
+              >
+                {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <><CheckCircle className="w-4 h-4" /> Continue</>}
+              </button>
+            ) : (
+              <button
+                onClick={handleEnroll}
+                disabled={loading}
+                className="px-6 py-3 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition-colors flex items-center gap-2 disabled:opacity-60"
+              >
+                {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : "Enroll"}
+              </button>
+            )}
             <button
-              onClick={() =>
-                navigate(`/courses/package/${id}`, {
-                  state: {
-                    title,
-                    skills,
-                  },
-                })
-              }
-              className="px-6 py-3 border-2 border-blue-600 text-blue-600 rounded-lg"
+              onClick={() => navigate(`/courses/package/${id}`)}
+              className="px-6 py-3 border-2 border-blue-600 text-blue-600 rounded-lg hover:bg-blue-50 transition-colors"
             >
               View details
             </button>

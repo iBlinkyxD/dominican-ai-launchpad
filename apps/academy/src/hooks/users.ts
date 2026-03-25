@@ -18,7 +18,10 @@ export const useAcademyUser = () => {
     const fetch = async () => {
       try {
         const data = await getMe();
-        setAcademyUser(data);
+        setAcademyUser({
+          ...data,
+          level: Math.max(1, Math.floor(Math.sqrt(data.total_xp / 100))), // ← compute here
+        });
       } catch (err: any) {
         setError(err.message);
       } finally {
