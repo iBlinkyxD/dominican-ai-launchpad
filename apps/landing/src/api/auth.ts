@@ -1,4 +1,5 @@
 import api from "./axios";
+import { authService } from "../../../../packages/src/auth/authService";
 
 export interface RegisterPayload {
   first_name: string;
@@ -22,8 +23,12 @@ export const login = async (email: string, password: string) => {
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
     },
-    withCredentials: true, // ✅ this is the key change
+    withCredentials: true,
   });
+
+  if (response.data.access_token) {
+    authService.setToken(response.data.access_token);
+  }
 
   return response.data;
 };
@@ -56,8 +61,8 @@ export const resendVerification = async (email: string) => {
 
 export const getMe = async () => {
   try {
-    const res = await api.get("/users/me"); // cookie sent automatically
-    return res.data.user; // returns the user object
+    const res = await api.get("/users/me");
+    return res.data.user;
   } catch (err: any) {
     throw new Error(err.response?.data?.detail || "Failed to get user");
   }
