@@ -1,5 +1,4 @@
 import api from "./axios";
-import { authService } from "../../../../packages/src/auth/authService";
 
 export interface RegisterPayload {
   first_name: string;
@@ -25,10 +24,6 @@ export const login = async (email: string, password: string) => {
     },
     withCredentials: true,
   });
-
-  if (response.data.access_token) {
-    authService.setToken(response.data.access_token);
-  }
 
   return response.data;
 };
