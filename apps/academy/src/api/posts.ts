@@ -4,6 +4,8 @@ export interface PostRead {
   id: string;
   author_id: string;
   author_daia_user_id: string | null;
+  author_name: string | null;
+  author_avatar: string | null;
   space_id: string | null;
   title: string | null;
   content: string;

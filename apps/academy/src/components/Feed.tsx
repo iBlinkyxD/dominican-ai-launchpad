@@ -251,8 +251,8 @@ export const FeedPostCard: React.FC<FeedPostCardProps> = ({
   const [submittingComment, setSubmittingComment] = useState(false);
 
   const isOwn = post.author_daia_user_id === currentUserDaiaId;
-  const authorName = isOwn ? (currentUserName ?? "You") : "Member";
-  const authorAvatar = isOwn ? currentUserAvatar : undefined;
+  const authorName = post.author_name ?? (isOwn ? (currentUserName ?? "You") : "Member");
+  const authorAvatar = post.author_avatar ?? (isOwn ? currentUserAvatar : undefined);
   const firstInitial = authorName.charAt(0).toUpperCase();
 
   const handleLike = async () => {
@@ -416,8 +416,8 @@ export const FeedPostCard: React.FC<FeedPostCardProps> = ({
 
           {!commentsLoading && comments.map((comment) => {
             const isMine = comment.author_daia_user_id === currentUserDaiaId;
-            const name = isMine ? (currentUserName ?? "You") : "Member";
-            const avatar = isMine ? currentUserAvatar : undefined;
+            const name = comment.author_name ?? (isMine ? (currentUserName ?? "You") : "Member");
+            const avatar = comment.author_avatar ?? (isMine ? currentUserAvatar : undefined);
             return (
               <div key={comment.id} className="flex gap-3 group">
                 <div className="w-8 h-8 rounded-full overflow-hidden shrink-0">

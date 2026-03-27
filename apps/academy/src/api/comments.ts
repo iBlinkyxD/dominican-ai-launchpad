@@ -5,6 +5,8 @@ export interface CommentRead {
   post_id: string;
   author_id: string;
   author_daia_user_id: string | null;
+  author_name: string | null;
+  author_avatar: string | null;
   parent_id: string | null;
   content: string;
   created_at: string;
