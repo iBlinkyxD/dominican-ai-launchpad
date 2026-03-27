@@ -3,6 +3,7 @@ import { useState } from "react";
 import { BookOpen, Clock, Star, ChevronRight, Play, Loader2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { getCourseBySlug } from "../../api/courses";
+import toast from "react-hot-toast";
 import ai101 from "../../assets/badges/ai101.jpeg";
 import com101 from "../../assets/badges/com101.jpeg";
 import dbs101 from "../../assets/badges/dbs101.jpeg";
@@ -19,18 +20,26 @@ export const CourseListItem = ({ course, isEnrolled = false }) => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
 
-  const handleContinue = async (e: React.MouseEvent) => {
-    e.stopPropagation();
+  const navigateToFirstLesson = async () => {
     setLoading(true);
     try {
       const detail = await getCourseBySlug(course.id);
       const firstLesson = detail.modules[0]?.lessons[0];
       if (firstLesson) {
         navigate(`/courses/${course.id}/lesson/${firstLesson.id}`);
+      } else {
+        toast.error("No lessons found for this course.");
       }
+    } catch {
+      toast.error("Failed to load course. Please try again.");
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleContinue = async (e: React.MouseEvent) => {
+    e.stopPropagation();
+    await navigateToFirstLesson();
   };
 
   const handleView = (e: React.MouseEvent) => {
@@ -40,7 +49,7 @@ export const CourseListItem = ({ course, isEnrolled = false }) => {
 
   return (
     <div
-      onClick={() => navigate(`/courses/${course.id}`)}
+      onClick={() => isEnrolled ? navigateToFirstLesson() : navigate(`/courses/${course.id}`)}
       className="flex flex-col lg:flex-row bg-white rounded-xl shadow-md border overflow-hidden cursor-pointer group"
     >
       {/* Image */}

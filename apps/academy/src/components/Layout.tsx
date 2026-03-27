@@ -4,9 +4,15 @@ import { BottomNav } from "../components/layout/BottomNav";
 import { MobileHeader } from "../components/layout/MobileHeader";
 import { useLocation, Outlet, useMatches } from "react-router-dom";
 import SettingsMenu from "../components/layout/SettingsMenu";
+import { useRef, useEffect } from "react";
 
 const AppLayout = () => {
   const location = useLocation();
+  const mainRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    mainRef.current?.scrollTo(0, 0);
+  }, [location.pathname]);
   const noPadding =
     location.pathname.includes("/chat-daia") ||
     location.pathname.includes("/courses/package/") ||
@@ -20,7 +26,7 @@ const AppLayout = () => {
           <Sidebar />
         </div>
 
-        <main className="flex-1 bg-white overflow-y-auto relative">
+        <main ref={mainRef} className="flex-1 bg-white overflow-y-auto relative">
           <div
             className={`
               ${noPadding ? "" : "p-4 md:p-8"}

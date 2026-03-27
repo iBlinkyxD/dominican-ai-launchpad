@@ -8,6 +8,10 @@ interface CourseHeroContentProps {
   type: "course" | "package";
   enrollmentCount?: number;
   instructorName?: string;
+  isEnrolled: boolean;
+  isEnrolling: boolean;
+  onEnroll: () => void;
+  onContinue: () => void;
 }
 
 export function CourseHeroContent({
@@ -17,6 +21,10 @@ export function CourseHeroContent({
   type,
   enrollmentCount,
   instructorName,
+  isEnrolled,
+  isEnrolling,
+  onEnroll,
+  onContinue,
 }: CourseHeroContentProps) {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -44,9 +52,22 @@ export function CourseHeroContent({
         )}
 
         <div className="mb-6">
-          <button className="px-8 py-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition font-semibold text-lg shadow-lg">
-            Enroll for free
-          </button>
+          {isEnrolled ? (
+            <button
+              onClick={onContinue}
+              className="px-8 py-4 bg-green-600 text-white rounded-lg hover:bg-green-700 transition font-semibold text-lg shadow-lg"
+            >
+              Start Learning
+            </button>
+          ) : (
+            <button
+              onClick={onEnroll}
+              disabled={isEnrolling}
+              className="px-8 py-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition font-semibold text-lg shadow-lg disabled:opacity-60 disabled:cursor-not-allowed"
+            >
+              {isEnrolling ? "Enrolling..." : "Enroll for free"}
+            </button>
+          )}
         </div>
 
         {/* Enrollment Info */}

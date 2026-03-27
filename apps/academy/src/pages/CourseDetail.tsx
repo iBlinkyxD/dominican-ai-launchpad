@@ -1,13 +1,20 @@
-import { useParams } from "react-router-dom";
+import { useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import { useGetCourseBySlug, useGetPackageBySlug } from "../hooks/courses";
 import { CourseBreadcrumb } from "../components/courseDetail/CourseBreadcrumb";
 import { CourseHeroContent } from "../components/courseDetail/CourseHeroContent";
 import { CourseStatsBar } from "../components/courseDetail/CourseStatsBar";
 import { PackageCourseList } from "../components/courseDetail/PackageCourseList";
 import { CourseModuleList } from "../components/courseDetail/CourseModuleList";
+import { enrollCourse } from "../api/courses";
+import { enrollPackage } from "../api/packages";
+import toast, { Toaster } from "react-hot-toast";
 
 export function CourseDetail({ type }: { type: "course" | "package" }) {
   const { slug } = useParams<{ slug: string }>();
+  const navigate = useNavigate();
+  const [isEnrolled, setIsEnrolled] = useState(false);
+  const [isEnrolling, setIsEnrolling] = useState(false);
 
   const { course, loading: courseLoading } = useGetCourseBySlug(
     type === "course" ? slug! : "",
@@ -27,6 +34,35 @@ export function CourseDetail({ type }: { type: "course" | "package" }) {
   const avgRating = type === "package" ? undefined : course?.avg_rating ?? undefined;
   const reviewCount = type === "package" ? undefined : course?.review_count;
 
+  const handleEnroll = async () => {
+    if (isEnrolled || isEnrolling) return;
+    setIsEnrolling(true);
+    try {
+      if (type === "course" && course) {
+        await enrollCourse(course.id);
+      } else if (type === "package" && pkg) {
+        await enrollPackage(pkg.id);
+      }
+      setIsEnrolled(true);
+      toast.success("Successfully enrolled!");
+    } catch (err: any) {
+      toast.error(err.message || "Failed to enroll. Please try again.");
+    } finally {
+      setIsEnrolling(false);
+    }
+  };
+
+  const handleContinue = () => {
+    if (type === "course" && course) {
+      const firstLesson = course.modules[0]?.lessons[0];
+      if (firstLesson) navigate(`/courses/${slug}/lesson/${firstLesson.id}`);
+    } else if (type === "package" && pkg) {
+      // navigate to the first course's first lesson
+      const firstCourseSlug = pkg.courses[0]?.id;
+      if (firstCourseSlug) navigate(`/courses/${firstCourseSlug}`);
+    }
+  };
+
   if (loading)
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -36,6 +72,7 @@ export function CourseDetail({ type }: { type: "course" | "package" }) {
 
   return (
     <div className="min-h-screen">
+      <Toaster position="top-center" />
       {/* Hero Section */}
       <div className="bg-gradient-to-br from-blue-50 via-white to-purple-50 relative overflow-hidden">
         <div className="mx-auto px-8 sm:px-6 lg:px-16 py-12">
@@ -47,6 +84,10 @@ export function CourseDetail({ type }: { type: "course" | "package" }) {
             type={type}
             enrollmentCount={enrollmentCount}
             instructorName={instructorName}
+            isEnrolled={isEnrolled}
+            isEnrolling={isEnrolling}
+            onEnroll={handleEnroll}
+            onContinue={handleContinue}
           />
           <CourseStatsBar
             totalCourses={totalCourses}

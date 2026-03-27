@@ -168,7 +168,7 @@ export const Courses = () => {
 
           {/* Individual courses */}
           {listCourses.length > 0 && (
-            <AdditionalCourses courses={listCourses} showHeading={activeTab === "courses"} enrolledIds={enrolledCourseIds} />
+            <AdditionalCourses courses={listCourses} enrolledIds={enrolledCourseIds} />
           )}
 
           {/* Empty state */}
