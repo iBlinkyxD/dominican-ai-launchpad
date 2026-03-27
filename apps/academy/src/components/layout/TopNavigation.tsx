@@ -14,11 +14,14 @@ import {
 import { useAuth } from "../../../../../packages/src/auth";
 import { useAcademyUser } from "../../hooks/users";
 import { NavDropdown } from "./NavDropdown";
+import { NotificationDropdown } from "./NotificationDropdown";
+import { useNotificationCount } from "../../hooks/notifications";
 import daiaLogo from "../../assets/DAIA-icon-bg.png";
 
 export const TopNavigation = () => {
   const { user, loading: authLoading } = useAuth();
   const { academyUser, loading: academyLoading } = useAcademyUser(); // Academy API: xp, level
+  const { unreadCount, clearCount } = useNotificationCount();
   const navigate = useNavigate();
 
   const [activeDropdown, setActiveDropdown] = useState<
@@ -95,12 +98,21 @@ export const TopNavigation = () => {
         </button>
 
         {/* Notifications */}
-        <button
-          onClick={() => toggleDropdown("notifications")}
-          className="p-2 text-white hover:bg-white/10 rounded-full"
-        >
-          <Bell className="w-5 h-5" />
-        </button>
+        <div className="relative">
+          <button
+            onClick={() => { toggleDropdown("notifications"); clearCount(); }}
+            className="p-2 text-white hover:bg-white/10 rounded-full"
+          >
+            <Bell className="w-5 h-5" />
+            {unreadCount > 0 && (
+              <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full" />
+            )}
+          </button>
+          <NotificationDropdown
+            isOpen={activeDropdown === "notifications"}
+            onClose={() => setActiveDropdown(null)}
+          />
+        </div>
 
         {/* Profile */}
         <div className="relative ml-2">
