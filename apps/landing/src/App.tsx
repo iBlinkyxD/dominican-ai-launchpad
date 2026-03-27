@@ -24,6 +24,8 @@ import InitiativeDetail from "./pages/InitiativeDetail";
 import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
 import Verify from "./pages/Verify";
+import ForgotPassword from "./pages/ForgotPassword";
+import ResetPassword from "./pages/ResetPassword";
 import Services from "./pages/Services";
 import ServiceRequest from "./pages/ServiceRequest";
 import { AuthProvider } from "../../../packages/src/auth";
@@ -45,6 +47,8 @@ const App = () => (
             <Route path="/signup" element={<SignUp />} />
             <Route path="/verify" element={<Verify />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
+            <Route path="/reset-password" element={<ResetPassword />} />
 
             <Route path="/courses" element={<Courses />} />
             {/* <Route path="/courses/:courseId" element={<CourseDetail />} /> */}

@@ -54,6 +54,18 @@ export const resendVerification = async (email: string) => {
   }
 };
 
+export const forgotPassword = async (email: string) => {
+  const res = await api.post(`/forgot-password?email=${encodeURIComponent(email)}`);
+  return res.data;
+};
+
+export const resetPassword = async (token: string, newPassword: string) => {
+  const res = await api.post(
+    `/reset-password?token=${encodeURIComponent(token)}&new_password=${encodeURIComponent(newPassword)}`
+  );
+  return res.data;
+};
+
 export const getMe = async () => {
   try {
     const res = await api.get("/users/me");
