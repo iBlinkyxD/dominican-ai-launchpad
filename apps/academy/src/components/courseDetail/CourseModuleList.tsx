@@ -1,5 +1,5 @@
 import { BookOpen } from "lucide-react";
-import { ModuleRead } from "../../api/courses";
+import { ModuleRead } from "@/api/courses";
 
 interface CourseModuleListProps {
   modules: ModuleRead[];

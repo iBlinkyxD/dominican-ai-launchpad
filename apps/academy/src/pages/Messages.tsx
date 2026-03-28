@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { api } from "../../mockData";
 import { Chat } from "../../types";
-import { Avatar, Button } from "../components/UI";
+import { Avatar, Button } from "@/components/UI";
 import { Search, MoreVertical, Send, MessageSquare } from "lucide-react";
 
 export const Messages = () => {

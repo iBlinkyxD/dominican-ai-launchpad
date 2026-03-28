@@ -8,7 +8,7 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],
-      "@daia/auth": ["../../packages/auth/src"] 
+      "@packages/*": ["../../packages/src/*"]
     },
     "noImplicitAny": false,
     "noUnusedParameters": false,

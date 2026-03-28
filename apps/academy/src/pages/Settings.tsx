@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { Camera, Edit, Mail, Phone, Save } from "lucide-react";
-import { uploadAvatar } from "../api/users";
-import { useAuth } from "../../../../packages/src/auth";
-import { updateProfile } from "../api/users";
+import { uploadAvatar } from "@/api/users";
+import { useAuth } from "@packages/auth";
+import { updateProfile } from "@/api/users";
 import toast, { Toaster } from "react-hot-toast";
-import PasswordModal from "../components/PasswordModal";
-import EmailModal from "../components/EmailModal";
+import PasswordModal from "@/components/PasswordModal";
+import EmailModal from "@/components/EmailModal";
 
 const Settings = () => {
   const { user, loading, login } = useAuth();

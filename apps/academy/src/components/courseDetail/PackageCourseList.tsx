@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Clock, ChevronDown, BookOpen, Loader2 } from "lucide-react";
-import { AcademyPackageCourse } from "../../api/packages";
-import { getCourseBySlug, AcademyCourseDetail } from "../../api/courses";
+import { AcademyPackageCourse } from "@/api/packages";
+import { getCourseBySlug, AcademyCourseDetail } from "@/api/courses";
 
 function formatDuration(seconds: number): string {
   const hours = Math.floor(seconds / 3600);

@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import { getCourses, getEnrolledCourses, AcademyCourse } from "../api/courses";
-import { getPackages, getEnrolledPackages, AcademyPackage } from "../api/packages";
-import { getCourseBySlug, AcademyCourseDetail } from "../api/courses";
-import { getPackageBySlug, AcademyPackageDetail } from "../api/packages";
+import { getCourses, getEnrolledCourses, AcademyCourse } from "@/api/courses";
+import { getPackages, getEnrolledPackages, AcademyPackage } from "@/api/packages";
+import { getCourseBySlug, AcademyCourseDetail } from "@/api/courses";
+import { getPackageBySlug, AcademyPackageDetail } from "@/api/packages";
 
 
 export const useGetPackages = () => {

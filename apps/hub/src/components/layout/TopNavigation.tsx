@@ -10,7 +10,7 @@ import {
   Settings2,
   LogOut,
 } from "lucide-react";
-import { useAuth } from "../../../../../packages/src/auth";
+import { useAuth } from "@packages/auth";
 import { NavDropdown } from "./NavDropdown";
 import daiaLogo from "@/assets/DAIA-icon-bg.png";
 

@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { getPosts, createPost, PostRead } from "../api/posts";
+import { getPosts, createPost, PostRead } from "@/api/posts";
 
 export const usePosts = () => {
   const [posts, setPosts] = useState<PostRead[]>([]);

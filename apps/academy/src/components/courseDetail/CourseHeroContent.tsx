@@ -1,5 +1,5 @@
-import daiaLogo from "../../assets/DAIA-logo.png";
-import heroimage from "../../assets/temp.png";
+import daiaLogo from "@/assets/DAIA-logo.png";
+import heroimage from "@/assets/temp.png";
 
 interface CourseHeroContentProps {
   title: string | undefined;

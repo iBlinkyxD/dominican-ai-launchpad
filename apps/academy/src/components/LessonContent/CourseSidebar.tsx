@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { ChevronDown, ChevronUp, Play, Check, Star } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { ModuleRead } from "../../api/courses";
+import { ModuleRead } from "@/api/courses";
 
 interface CourseSidebarProps {
   modules: ModuleRead[];

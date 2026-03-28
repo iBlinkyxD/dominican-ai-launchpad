@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { CreatePost, FeedPostCard } from "../components/Feed";
-import { useAuth } from "../../../../packages/src/auth";
-import { useAcademyUser } from "../hooks/users";
-import { useGetEnrolled } from "../hooks/courses";
-import { getCourseBySlug } from "../api/courses";
-import { usePosts } from "../hooks/posts";
-import { Card } from "../components/UI";
+import { CreatePost, FeedPostCard } from "@/components/Feed";
+import { useAuth } from "@packages/auth";
+import { useAcademyUser } from "@/hooks/users";
+import { useGetEnrolled } from "@/hooks/courses";
+import { getCourseBySlug } from "@/api/courses";
+import { usePosts } from "@/hooks/posts";
+import { Card } from "@/components/UI";
 import {
   Users,
   MessageSquare,

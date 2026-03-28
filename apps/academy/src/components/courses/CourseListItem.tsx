@@ -2,15 +2,15 @@
 import { useState } from "react";
 import { BookOpen, Clock, Star, ChevronRight, Play, Loader2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { getCourseBySlug } from "../../api/courses";
+import { getCourseBySlug } from "@/api/courses";
 import toast from "react-hot-toast";
-import ai101 from "../../assets/badges/ai101.jpeg";
-import com101 from "../../assets/badges/com101.jpeg";
-import dbs101 from "../../assets/badges/dbs101.jpeg";
-import dr101 from "../../assets/badges/dr101.jpeg";
-import eng101 from "../../assets/badges/eng101.jpeg";
-import esp101 from "../../assets/badges/esp101.jpeg";
-import sci101 from "../../assets/badges/sci101.jpeg";
+import ai101 from "@/assets/badges/ai101.jpeg";
+import com101 from "@/assets/badges/com101.jpeg";
+import dbs101 from "@/assets/badges/dbs101.jpeg";
+import dr101 from "@/assets/badges/dr101.jpeg";
+import eng101 from "@/assets/badges/eng101.jpeg";
+import esp101 from "@/assets/badges/esp101.jpeg";
+import sci101 from "@/assets/badges/sci101.jpeg";
 
 const badgeImages: Record<string, string> = {
   ai101, com101, dbs101, dr101, eng101, esp101, sci101,

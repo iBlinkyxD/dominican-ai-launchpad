@@ -13,10 +13,10 @@ import {
   Trash2,
 } from "lucide-react";
 import toast from "react-hot-toast";
-import { PostRead, likePost, unlikePost, uploadPostImage, uploadPostFile } from "../api/posts";
-import { CommentRead, getPostComments, createComment, deleteComment } from "../api/comments";
+import { PostRead, likePost, unlikePost, uploadPostImage, uploadPostFile } from "@/api/posts";
+import { CommentRead, getPostComments, createComment, deleteComment } from "@/api/comments";
 import { Card, Button } from "./UI";
-import { useAuth } from "../../../../packages/src/auth";
+import { useAuth } from "@packages/auth";
 
 // ── Emoji Picker ─────────────────────────────────────────────────────────────
 

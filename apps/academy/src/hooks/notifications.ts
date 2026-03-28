@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { getNotifications } from "../api/notifications";
+import { getNotifications } from "@/api/notifications";
 
 const POLL_INTERVAL_MS = 60_000;
 

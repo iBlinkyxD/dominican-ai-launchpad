@@ -2,7 +2,7 @@ import { useState } from "react";
 import { X, Eye, EyeOff } from "lucide-react";
 import { updatePassword } from "@/api/user";
 import toast, { Toaster } from "react-hot-toast";
-import { useAuth } from "../../../../packages/src/auth";
+import { useAuth } from "@packages/auth";
 import * as Yup from "yup";
 
 interface PasswordModalProps {

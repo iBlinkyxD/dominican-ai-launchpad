@@ -1,9 +1,9 @@
-import { Sidebar } from "../components/layout/Sidebar";
-import { TopNavigation } from "../components/layout/TopNavigation";
-import { BottomNav } from "../components/layout/BottomNav";
-import { MobileHeader } from "../components/layout/MobileHeader";
+import { Sidebar } from "@/components/layout/Sidebar";
+import { TopNavigation } from "@/components/layout/TopNavigation";
+import { BottomNav } from "@/components/layout/BottomNav";
+import { MobileHeader } from "@/components/layout/MobileHeader";
 import { useLocation, Outlet, useMatches } from "react-router-dom";
-import SettingsMenu from "../components/layout/SettingsMenu";
+import SettingsMenu from "@/components/layout/SettingsMenu";
 import { useRef, useEffect } from "react";
 
 const AppLayout = () => {

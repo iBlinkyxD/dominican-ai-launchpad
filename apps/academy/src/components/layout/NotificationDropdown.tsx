@@ -5,7 +5,7 @@ import {
   getNotifications,
   markAllNotificationsRead,
   Notification,
-} from "../../api/notifications";
+} from "@/api/notifications";
 
 const TYPE_ICONS: Record<string, string> = {
   post_like: "❤️",

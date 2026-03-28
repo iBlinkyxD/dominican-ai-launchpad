@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getMe } from "../api/users";
+import { getMe } from "@/api/users";
 
 interface AcademyUser {
   id: string;

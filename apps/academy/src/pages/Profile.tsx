@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
-import { useAuth } from "../../../../packages/src/auth";
-import { useAcademyUser } from "../hooks/users";
-import { Card } from "../components/UI";
+import { useAuth } from "@packages/auth";
+import { useAcademyUser } from "@/hooks/users";
+import { Card } from "@/components/UI";
 import {
   Trophy,
   Award,
@@ -19,16 +19,16 @@ import {
   UserPlus,
   FileText,
 } from "lucide-react";
-import { getMyBadges } from "../api/badges";
-import { getPublicProfile, PublicProfile } from "../api/users";
-import { getMyActivities, getUserActivities, Activity, ActivityType } from "../api/activities";
-import ai101 from "../assets/badges/ai101.jpeg";
-import com101 from "../assets/badges/com101.jpeg";
-import dbs101 from "../assets/badges/dbs101.jpeg";
-import dr101 from "../assets/badges/dr101.jpeg";
-import eng101 from "../assets/badges/eng101.jpeg";
-import esp101 from "../assets/badges/esp101.jpeg";
-import sci101 from "../assets/badges/sci101.jpeg";
+import { getMyBadges } from "@/api/badges";
+import { getPublicProfile, PublicProfile } from "@/api/users";
+import { getMyActivities, getUserActivities, Activity, ActivityType } from "@/api/activities";
+import ai101 from "@/assets/badges/ai101.jpeg";
+import com101 from "@/assets/badges/com101.jpeg";
+import dbs101 from "@/assets/badges/dbs101.jpeg";
+import dr101 from "@/assets/badges/dr101.jpeg";
+import eng101 from "@/assets/badges/eng101.jpeg";
+import esp101 from "@/assets/badges/esp101.jpeg";
+import sci101 from "@/assets/badges/sci101.jpeg";
 
 function relativeTime(dateStr: string): string {
   const diff = Date.now() - new Date(dateStr).getTime();

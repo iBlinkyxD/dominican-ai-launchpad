@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { Home, GraduationCap, Settings } from "lucide-react";
-import { useSettingsMenu } from "../../../../../packages/src/SettingsMenuContext";
+import { useSettingsMenu } from "@packages/SettingsMenuContext";
 
 export const BottomNav = () => {
 

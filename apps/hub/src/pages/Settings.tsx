@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { Camera, Edit, Mail, Phone, Save } from "lucide-react";
 import { uploadAvatar } from "@/api/user";
-import { useAuth } from "../../../../packages/src/auth";
+import { useAuth } from "@packages/auth";
 import { updateProfile } from "@/api/user";
 import toast, { Toaster } from "react-hot-toast";
 import PasswordModal from "@/components/PasswordModal";

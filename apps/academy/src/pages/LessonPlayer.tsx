@@ -1,5 +1,5 @@
 import { useParams, useNavigate } from "react-router-dom";
-import { Button } from "../components/UI";
+import { Button } from "@/components/UI";
 import { ChevronLeft, PlayCircle, MessageSquare, CheckCircle } from "lucide-react";
 
 export const LessonPlayer = () => {

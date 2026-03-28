@@ -8,7 +8,7 @@ import {
   Megaphone,
   Settings,
 } from "lucide-react";
-import { useSettingsMenu } from "../../../../../packages/src/SettingsMenuContext";
+import { useSettingsMenu } from "@packages/SettingsMenuContext";
 
 export const BottomNav = () => {
   const navItems = [

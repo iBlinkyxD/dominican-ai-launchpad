@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { AuthProvider, ProtectedRoute } from "../../../packages/src/auth";
-import { SettingsMenuProvider } from "../../../packages/src/SettingsMenuContext";
+import { AuthProvider, ProtectedRoute } from "@packages/auth";
+import { SettingsMenuProvider } from "@packages/SettingsMenuContext";
 import HubLayout from "./layouts/HubLayout";
 import Overview from "./pages/Overview";
 import AllApps from "./pages/AllApps";

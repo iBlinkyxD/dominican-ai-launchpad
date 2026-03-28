@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { useGetCourseBySlug, useGetPackageBySlug } from "../hooks/courses";
-import { CourseBreadcrumb } from "../components/courseDetail/CourseBreadcrumb";
-import { CourseHeroContent } from "../components/courseDetail/CourseHeroContent";
-import { CourseStatsBar } from "../components/courseDetail/CourseStatsBar";
-import { PackageCourseList } from "../components/courseDetail/PackageCourseList";
-import { CourseModuleList } from "../components/courseDetail/CourseModuleList";
-import { enrollCourse } from "../api/courses";
-import { enrollPackage } from "../api/packages";
+import { useGetCourseBySlug, useGetPackageBySlug } from "@/hooks/courses";
+import { CourseBreadcrumb } from "@/components/courseDetail/CourseBreadcrumb";
+import { CourseHeroContent } from "@/components/courseDetail/CourseHeroContent";
+import { CourseStatsBar } from "@/components/courseDetail/CourseStatsBar";
+import { PackageCourseList } from "@/components/courseDetail/PackageCourseList";
+import { CourseModuleList } from "@/components/courseDetail/CourseModuleList";
+import { enrollCourse } from "@/api/courses";
+import { enrollPackage } from "@/api/packages";
 import toast, { Toaster } from "react-hot-toast";
 
 export function CourseDetail({ type }: { type: "course" | "package" }) {

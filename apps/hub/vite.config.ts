@@ -25,7 +25,7 @@ export default defineConfig(({ mode }) => ({
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
-      "@daia/auth": path.resolve(__dirname, "../../packages/auth/src"),
+      "@packages": path.resolve(__dirname, "../../packages/src"),
     },
   },
 }));

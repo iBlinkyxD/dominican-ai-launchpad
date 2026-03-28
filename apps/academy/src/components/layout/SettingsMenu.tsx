@@ -1,5 +1,5 @@
 import { ChevronRight } from "lucide-react";
-import { useSettingsMenu } from "../../../../../packages/src/SettingsMenuContext";
+import { useSettingsMenu } from "@packages/SettingsMenuContext";
 import { useNavigate } from "react-router-dom";
 
 const SettingsMenu = () => {

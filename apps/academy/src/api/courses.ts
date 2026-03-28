@@ -21,11 +21,24 @@ export interface AcademyCourse {
   updated_at: string;
 }
 
+export type LessonType = "video" | "article" | "quiz" | "assignment";
+
+export interface VocabularyEntry {
+  term: string;
+  definition: string;
+  term_es?: string;
+}
+
 export interface LessonRead {
   id: string;
   title: string;
   duration_seconds: number | null;
   position: number;
+  content?: string | null;
+  video_url?: string | null;
+  lesson_type?: LessonType | null;
+  objectives?: string[] | null;
+  vocabulary?: VocabularyEntry[] | null;
 }
 
 export interface ModuleRead {

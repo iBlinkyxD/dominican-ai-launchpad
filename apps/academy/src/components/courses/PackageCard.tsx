@@ -3,8 +3,8 @@ import { useState, useEffect } from "react";
 import { Award, Star, Clock, CheckCircle, Loader2 } from "lucide-react";
 import { CourseCarousel } from "./CourseCarousel";
 import { useNavigate } from "react-router-dom";
-import { enrollPackage } from "../../api/packages";
-import { getCourseBySlug } from "../../api/courses";
+import { enrollPackage } from "@/api/packages";
+import { getCourseBySlug } from "@/api/courses";
 
 const levelStyles: Record<string, string> = {
   beginner: "bg-green-100 text-green-700",

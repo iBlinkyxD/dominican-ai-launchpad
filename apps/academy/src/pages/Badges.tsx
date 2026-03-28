@@ -1,12 +1,12 @@
 import { Award } from "lucide-react";
-import certificate from "../assets/certificate/certificate.png";
-import ai101 from "../assets/badges/ai101.jpeg";
-import dr101 from "../assets/badges/dr101.jpeg";
-import eng101 from "../assets/badges/eng101.jpeg";
-import com101 from "../assets/badges/com101.jpeg";
-import dbs101 from "../assets/badges/dbs101.jpeg";
-import esp101 from "../assets/badges/esp101.jpeg";
-import sci101 from "../assets/badges/sci101.jpeg";
+import certificate from "@/assets/certificate/certificate.png";
+import ai101 from "@/assets/badges/ai101.jpeg";
+import dr101 from "@/assets/badges/dr101.jpeg";
+import eng101 from "@/assets/badges/eng101.jpeg";
+import com101 from "@/assets/badges/com101.jpeg";
+import dbs101 from "@/assets/badges/dbs101.jpeg";
+import esp101 from "@/assets/badges/esp101.jpeg";
+import sci101 from "@/assets/badges/sci101.jpeg";
 
 export function BadgesPage() {
   const earnedCertificates = [

@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { PackageCard } from "../components/courses/PackageCard";
-import { AdditionalCourses } from "../components/courses/AdditionalCourses";
+import { PackageCard } from "@/components/courses/PackageCard";
+import { AdditionalCourses } from "@/components/courses/AdditionalCourses";
 import { HelpCircle, ChevronDown, ChevronUp } from "lucide-react";
-import { useGetCourses, useGetPackages, useGetEnrolled } from "../hooks/courses";
-import { AcademyCourse } from "../api/courses";
+import { useGetCourses, useGetPackages, useGetEnrolled } from "@/hooks/courses";
+import { AcademyCourse } from "@/api/courses";
 type Tab = "enrolled" | "certifications" | "courses";
 
 const toListCourse = (course: AcademyCourse) => ({

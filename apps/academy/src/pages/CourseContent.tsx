@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-import { CourseHeader } from "../components/LessonContent/CourseHeader";
-import { CourseTabs } from "../components/LessonContent/CourseTabs";
-import { CourseSidebar } from "../components/LessonContent/CourseSidebar";
-import { CourseOverview } from "../components/LessonContent/CourseOverview";
-import { useGetCourseBySlug } from "../hooks/courses";
+import { CourseHeader } from "@/components/LessonContent/CourseHeader";
+import { CourseTabs } from "@/components/LessonContent/CourseTabs";
+import { CourseSidebar } from "@/components/LessonContent/CourseSidebar";
+import { CourseOverview } from "@/components/LessonContent/CourseOverview";
+import { useGetCourseBySlug } from "@/hooks/courses";
 import { Play } from "lucide-react";
 
 export function CourseContent() {
@@ -71,6 +71,7 @@ export function CourseContent() {
                 <CourseOverview
                   description={course?.description ?? null}
                   shortDescription={course?.short_description ?? null}
+                  lesson={activeLesson ?? null}
                 />
               )}
               {activeTab === "author" && (

@@ -11,12 +11,12 @@ import {
   UserCircle,
   Zap,
 } from "lucide-react";
-import { useAuth } from "../../../../../packages/src/auth";
-import { useAcademyUser } from "../../hooks/users";
+import { useAuth } from "@packages/auth";
+import { useAcademyUser } from "@/hooks/users";
 import { NavDropdown } from "./NavDropdown";
 import { NotificationDropdown } from "./NotificationDropdown";
-import { useNotificationCount } from "../../hooks/notifications";
-import daiaLogo from "../../assets/DAIA-icon-bg.png";
+import { useNotificationCount } from "@/hooks/notifications";
+import daiaLogo from "@/assets/DAIA-icon-bg.png";
 
 export const TopNavigation = () => {
   const { user, loading: authLoading } = useAuth();
