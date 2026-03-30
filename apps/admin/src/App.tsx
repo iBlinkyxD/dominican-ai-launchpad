@@ -4,6 +4,7 @@ import AdminRoute from "./components/AdminRoute";
 import AppLayout from "./components/Layout";
 import { Dashboard } from "./pages/Dashboard";
 import { Courses } from "./pages/Courses";
+import { NewCourse } from "./pages/NewCourse";
 import { Packages } from "./pages/Packages";
 
 const App = () => {
@@ -20,6 +21,7 @@ const App = () => {
           >
             <Route index element={<Dashboard />} />
             <Route path="academy/courses" element={<Courses />} />
+            <Route path="academy/courses/new" element={<NewCourse />} />
             <Route path="academy/packages" element={<Packages />} />
           </Route>
 
