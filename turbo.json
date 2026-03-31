@@ -3,10 +3,19 @@
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
-      "outputs": ["dist/**"]
+      "outputs": ["dist/**"],
+      "env": [
+        "VITE_DAIA_API",
+        "VITE_DAIA_ACADEMY_API",
+        "VITE_LANDING_URL",
+        "VITE_HUB_URL",
+        "VITE_ACADEMY_URL",
+        "VITE_ADMIN_URL"
+      ]
     },
     "dev": {
-      "cache": false
+      "cache": false,
+      "persistent": true
     },
     "lint": {}
   }

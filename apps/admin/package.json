@@ -1,5 +1,5 @@
 {
-  "name": "vite_admin_page",
+  "name": "@daia/admin",
   "private": true,
   "version": "0.0.0",
   "type": "module",

@@ -1,3 +1,7 @@
 {
+  "framework": "vite",
+  "buildCommand": "cd ../.. && npx turbo run build --filter=@daia/admin",
+  "outputDirectory": "dist",
+  "installCommand": "cd ../.. && npm install",
   "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
 }
