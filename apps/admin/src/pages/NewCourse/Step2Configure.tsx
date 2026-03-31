@@ -1,7 +1,8 @@
 import { useRef, useState } from "react";
-import { ChevronLeft, Check, Sparkles, Settings, ImagePlus } from "lucide-react";
+import { ChevronLeft, Check, Sparkles, Settings, ImagePlus, AlertCircle } from "lucide-react";
 import type { CourseForm } from "./types";
 import { LEVEL_COLORS, DURATIONS } from "./constants";
+import { generateCourseOutline } from "@/api/courses";
 
 interface StepperProps {
   value: number;
@@ -28,6 +29,15 @@ function Stepper({ value, min, max, onChange }: StepperProps) {
   );
 }
 
+const GENERATION_STEPS = [
+  "Analyzing your course description…",
+  "Designing module structure…",
+  "Writing lesson outlines…",
+  "Generating lesson overviews…",
+  "Creating FAQ section…",
+  "Finalizing course content…",
+];
+
 interface Props {
   form: CourseForm;
   setForm: (f: CourseForm) => void;
@@ -37,17 +47,135 @@ interface Props {
 
 export function Step2Configure({ form, setForm, onNext, onBack }: Props) {
   const totalLessons = form.moduleCount * form.avgLessonsPerModule;
-  const totalHours = Math.round((totalLessons * form.avgLessonLength) / 60);
+  const totalHours   = Math.round((totalLessons * form.avgLessonLength) / 60);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [badgePreview, setBadgePreview] = useState<string | null>(null);
+
+  const [isGenerating, setIsGenerating] = useState(false);
+  const [genStep,      setGenStep]      = useState(0);
+  const [genError,     setGenError]     = useState<string | null>(null);
 
   function handleBadgeUpload(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
     if (file) setBadgePreview(URL.createObjectURL(file));
   }
 
+  async function handleGenerate() {
+    setIsGenerating(true);
+    setGenError(null);
+    setGenStep(0);
+
+    // Animate through steps while waiting for the API
+    const stepInterval = setInterval(() => {
+      setGenStep((s) => Math.min(s + 1, GENERATION_STEPS.length - 1));
+    }, 1800);
+
+    try {
+      const result = await generateCourseOutline({
+        description:             form.description,
+        level:                   form.level,
+        language:                form.language,
+        duration:                form.duration,
+        module_count:            form.moduleCount,
+        avg_lessons_per_module:  form.avgLessonsPerModule,
+        avg_lesson_length:       form.avgLessonLength,
+        include_assessments:     form.includeAssessments,
+        include_projects:        form.includeProjects,
+        course_code:             form.courseCode || undefined,
+        badge_name:              form.badgeName  || undefined,
+      });
+
+      // Map AI response into form state
+      const newModules = result.modules.map((m) => ({
+        title:   m.title,
+        lessons: m.lessons.map((l) => l.name),
+      }));
+
+      const newOverviews: Record<string, string> = {};
+      result.modules.forEach((m, mi) => {
+        m.lessons.forEach((l, li) => {
+          newOverviews[`${mi}-${li}`] = l.overview;
+        });
+      });
+
+      setForm({
+        ...form,
+        title:           result.title,
+        shortDescription: result.short_description,
+        modules:         newModules,
+        lessonOverviews: newOverviews,
+        faq:             result.faq,
+      });
+
+      clearInterval(stepInterval);
+      setGenStep(GENERATION_STEPS.length - 1);
+      // Brief pause so user sees "done" before advancing
+      setTimeout(() => {
+        setIsGenerating(false);
+        onNext();
+      }, 600);
+    } catch (err: unknown) {
+      clearInterval(stepInterval);
+      const msg = err instanceof Error ? err.message : "Something went wrong. Please try again.";
+      setGenError(msg);
+      setIsGenerating(false);
+    }
+  }
+
+  // ── Generating overlay ────────────────────────────────────────────────────────
+  if (isGenerating) {
+    return (
+      <div className="flex flex-col items-center justify-center py-16 px-4 min-h-full">
+        <div className="w-full max-w-sm text-center space-y-6">
+          <div className="w-16 h-16 bg-red-50 rounded-2xl flex items-center justify-center mx-auto">
+            <Sparkles className="w-8 h-8 text-red-500 animate-pulse" />
+          </div>
+          <div>
+            <h2 className="text-xl font-bold text-gray-900 mb-1">Claude is generating your course</h2>
+            <p className="text-sm text-gray-400">This usually takes 10–20 seconds</p>
+          </div>
+
+          {/* Step indicators */}
+          <div className="text-left space-y-2.5">
+            {GENERATION_STEPS.map((label, i) => {
+              const done    = i < genStep;
+              const active  = i === genStep;
+              return (
+                <div key={i} className="flex items-center gap-3">
+                  <div className={`w-5 h-5 rounded-full flex items-center justify-center shrink-0 transition-all ${
+                    done   ? "bg-green-500" :
+                    active ? "bg-red-100"   : "bg-gray-100"
+                  }`}>
+                    {done
+                      ? <Check className="w-3 h-3 text-white" />
+                      : active
+                      ? <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
+                      : <div className="w-2 h-2 rounded-full bg-gray-300" />}
+                  </div>
+                  <span className={`text-sm transition-colors ${
+                    done   ? "text-gray-500 line-through" :
+                    active ? "text-gray-900 font-medium"  : "text-gray-300"
+                  }`}>{label}</span>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Progress bar */}
+          <div className="h-1.5 bg-gray-100 rounded-full overflow-hidden">
+            <div
+              className="h-full bg-gradient-to-r from-red-400 to-red-600 rounded-full transition-all duration-700"
+              style={{ width: `${((genStep + 1) / GENERATION_STEPS.length) * 100}%` }}
+            />
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // ── Normal form ───────────────────────────────────────────────────────────────
   return (
-    <div className="flex flex-col items-center py-8 px-4">
+    <div className="flex flex-col items-center py-8 px-4 min-h-full">
       <div className="w-14 h-14 bg-gray-100 rounded-2xl flex items-center justify-center mb-5">
         <Settings className="w-7 h-7 text-gray-500" />
       </div>
@@ -99,6 +227,23 @@ export function Step2Configure({ form, setForm, onNext, onBack }: Props) {
           </div>
         </div>
 
+        {/* Language */}
+        <div>
+          <label className="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">Language</label>
+          <div className="relative">
+            <select
+              value={form.language}
+              onChange={(e) => setForm({ ...form, language: e.target.value as CourseForm["language"] })}
+              className="w-full appearance-none border border-gray-200 rounded-xl px-4 py-2.5 text-sm text-gray-700 bg-white outline-none focus:border-gray-400 pr-8 transition-colors"
+            >
+              <option value="english">English</option>
+              <option value="spanish">Spanish</option>
+              <option value="bilingual">Bilingual (EN + ES)</option>
+            </select>
+            <span className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400">▾</span>
+          </div>
+        </div>
+
         {/* Modules + Avg Lessons */}
         <div className="grid grid-cols-2 gap-4">
           <div>
@@ -109,7 +254,7 @@ export function Step2Configure({ form, setForm, onNext, onBack }: Props) {
           <div>
             <label className="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">Avg Lessons / Module</label>
             <Stepper value={form.avgLessonsPerModule} min={1} max={10} onChange={(v) => setForm({ ...form, avgLessonsPerModule: v })} />
-            <p className="text-[10px] text-gray-400 mt-1 text-center">Organic ≤1–2 per module</p>
+            <p className="text-[10px] text-gray-400 mt-1 text-center">1–10 per module</p>
           </div>
         </div>
 
@@ -134,7 +279,7 @@ export function Step2Configure({ form, setForm, onNext, onBack }: Props) {
         <div className="grid grid-cols-2 gap-3">
           {[
             { key: "includeAssessments" as const, label: "Include Assessments", sub: "Quizzes after each module" },
-            { key: "includeProjects" as const,    label: "Include Projects",    sub: "Hands-on capstone work" },
+            { key: "includeProjects"    as const, label: "Include Projects",    sub: "Hands-on capstone work" },
           ].map(({ key, label, sub }) => (
             <button
               key={key}
@@ -216,11 +361,11 @@ export function Step2Configure({ form, setForm, onNext, onBack }: Props) {
       {/* Summary bar */}
       <div className="w-full max-w-xl mt-4 bg-white rounded-xl border border-gray-200 px-5 py-3 flex items-center gap-6 text-xs">
         {[
-          ["MODULES", form.moduleCount],
+          ["MODULES",      form.moduleCount],
           ["TOTAL LESSONS", `~${totalLessons}`],
-          ["LESSON AVG", `${form.avgLessonLength}m`],
-          ["TOTAL TIME", `~${totalHours}h`],
-          ["BADGE", form.courseCode || form.badgeName ? "🏅 Badge" : "—"],
+          ["LESSON AVG",   `${form.avgLessonLength}m`],
+          ["TOTAL TIME",   `~${totalHours}h`],
+          ["BADGE",        form.courseCode || form.badgeName ? "🏅 Badge" : "—"],
         ].map(([label, val]) => (
           <div key={label as string}>
             <p className="text-[9px] font-bold text-gray-400 uppercase tracking-widest">{label}</p>
@@ -229,13 +374,24 @@ export function Step2Configure({ form, setForm, onNext, onBack }: Props) {
         ))}
       </div>
 
+      {/* Error */}
+      {genError && (
+        <div className="w-full max-w-xl mt-3 flex items-start gap-2 bg-red-50 border border-red-200 rounded-xl px-4 py-3 text-sm text-red-600">
+          <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
+          <span>{genError}</span>
+        </div>
+      )}
+
       {/* Actions */}
       <div className="w-full max-w-xl mt-4 flex gap-3">
         <button onClick={onBack} className="flex items-center gap-1.5 border border-gray-200 text-gray-600 text-sm font-medium px-5 py-2.5 rounded-xl hover:bg-gray-50 transition-colors">
           <ChevronLeft className="w-4 h-4" /> Back
         </button>
-        <button onClick={onNext} className="flex items-center gap-2 flex-1 justify-center bg-red-500 hover:bg-red-600 text-white text-sm font-semibold px-4 py-2.5 rounded-xl transition-colors">
-          <Sparkles className="w-4 h-4" /> Generate Outline
+        <button
+          onClick={handleGenerate}
+          className="flex items-center gap-2 flex-1 justify-center bg-red-500 hover:bg-red-600 text-white text-sm font-semibold px-4 py-2.5 rounded-xl transition-colors"
+        >
+          <Sparkles className="w-4 h-4" /> Generate Outline with AI
         </button>
       </div>
     </div>

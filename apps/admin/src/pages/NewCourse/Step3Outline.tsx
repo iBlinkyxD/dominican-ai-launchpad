@@ -123,12 +123,15 @@ export function Step3Outline({ form, setForm, onNext, onBack }: Props) {
 
   // ── Render ──────────────────────────────────────────────────────
   return (
-    <div className="flex flex-col items-center py-8 px-4">
+    <div className="flex flex-col items-center py-8 px-4 min-h-full">
       <div className="w-full max-w-2xl space-y-4">
 
         {/* Header summary card */}
         <div className="bg-[#0B1E40] rounded-2xl p-6 text-white">
-          <h2 className="text-lg font-bold mb-1">{form.description.slice(0, 50) || "Untitled Course"}</h2>
+          <h2 className="text-lg font-bold mb-1">{form.title || form.description.slice(0, 60) || "Untitled Course"}</h2>
+          {form.shortDescription && (
+            <p className="text-sm text-blue-100 mb-3 leading-relaxed">{form.shortDescription}</p>
+          )}
           <p className="text-sm text-blue-200 mb-5">
             A {form.level}-level course spanning {form.duration} with {form.modules.length} modules and {totalLessons} lessons (~{form.avgLessonLength} min each).
           </p>

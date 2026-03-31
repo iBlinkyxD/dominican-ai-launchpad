@@ -20,12 +20,12 @@ export const NewCourse = () => {
       <StepBar current={step} />
 
       {/* Step content */}
-      <div className="flex-1 overflow-y-auto">
+      <div className="flex-1 overflow-y-auto h-full">
         {step === 1 && <Step1Describe form={form} setForm={setForm} onNext={next} />}
         {step === 2 && <Step2Configure form={form} setForm={setForm} onNext={next} onBack={back} />}
         {step === 3 && <Step3Outline form={form} setForm={setForm} onNext={next} onBack={back} />}
-        {step === 4 && <Step4Media form={form} onNext={next} onBack={back} />}
-        {step === 5 && <Step5Deploy onBack={back} />}
+        {step === 4 && <Step4Media form={form} setForm={setForm} onNext={next} onBack={back} />}
+        {step === 5 && <Step5Deploy form={form} onBack={back} />}
       </div>
     </div>
   );

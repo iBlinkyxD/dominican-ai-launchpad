@@ -17,25 +17,26 @@ const TABS = [
 
 interface Props {
   form: CourseForm;
+  setForm: (f: CourseForm) => void;
   onNext: () => void;
   onBack: () => void;
 }
 
-export function Step4Media({ form, onNext, onBack }: Props) {
-  const [mediaAction, setMediaAction]   = useState<MediaAction>(null);
+export function Step4Media({ form, setForm, onNext, onBack }: Props) {
+  const [mediaAction, setMediaAction]   = useState<MediaAction>("skip");
   const [activeTab, setActiveTab]       = useState("overview");
   const [expanded, setExpanded]         = useState<Record<number, boolean>>({ 0: true });
 
   // Active lesson key: "mi-li"
   const [activeLessonKey, setActiveLessonKey] = useState("0-0");
 
-  // Per-lesson overview content keyed by "mi-li"
-  const [lessonOverviews, setLessonOverviews] = useState<Record<string, string>>({});
+  // Per-lesson overviews and FAQ are persisted in the form so they survive step navigation
+  const [lessonOverviews, setLessonOverviews] = useState<Record<string, string>>(form.lessonOverviews);
 
   // Course-level editable fields
   const [authorName, setAuthorName] = useState("DAIA Academy");
   const [authorBio,  setAuthorBio]  = useState("");
-  const [faqContent, setFaqContent] = useState("");
+  const [faqContent, setFaqContent] = useState(form.faq);
 
   const toggle = (i: number) => setExpanded((prev) => ({ ...prev, [i]: !prev[i] }));
 
@@ -54,7 +55,7 @@ export function Step4Media({ form, onNext, onBack }: Props) {
   const hours         = Math.floor(totalMinutes / 60);
   const mins          = totalMinutes % 60;
   const durationLabel = hours > 0 ? `${hours}h ${mins}min` : `${mins}min`;
-  const courseTitle   = form.description.slice(0, 50) || "Untitled Course";
+  const courseTitle   = form.title || form.description.slice(0, 50) || "Untitled Course";
 
   return (
     <div className="bg-white min-h-full">
@@ -179,9 +180,11 @@ export function Step4Media({ form, onNext, onBack }: Props) {
                     <h3 className="text-base font-bold text-gray-900 mb-3">{activeLessonTitle()}</h3>
                     <textarea
                       value={lessonOverviews[activeLessonKey] ?? ""}
-                      onChange={(e) =>
-                        setLessonOverviews((prev) => ({ ...prev, [activeLessonKey]: e.target.value }))
-                      }
+                      onChange={(e) => {
+                        const updated = { ...lessonOverviews, [activeLessonKey]: e.target.value };
+                        setLessonOverviews(updated);
+                        setForm({ ...form, lessonOverviews: updated });
+                      }}
                       placeholder={`Describe what students will learn in "${activeLessonTitle()}"…`}
                       rows={5}
                       className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-700 outline-none focus:border-gray-400 resize-none transition-colors"
@@ -229,7 +232,10 @@ export function Step4Media({ form, onNext, onBack }: Props) {
                   </label>
                   <textarea
                     value={faqContent}
-                    onChange={(e) => setFaqContent(e.target.value)}
+                    onChange={(e) => {
+                      setFaqContent(e.target.value);
+                      setForm({ ...form, faq: e.target.value });
+                    }}
                     placeholder={"Q: Who is this course for?\nA: …\n\nQ: What do I need to get started?\nA: …"}
                     rows={7}
                     className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-700 outline-none focus:border-gray-400 resize-none transition-colors font-mono"

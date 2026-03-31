@@ -33,17 +33,16 @@ export const DURATIONS = ["2 weeks", "4 weeks", "6 weeks", "8 weeks", "10 weeks"
 export const LESSON_OBJECTIVES = ["Master core concepts", "Apply to real scenarios", "Demonstrate understanding"];
 
 export const PROCESSING_TASKS = [
-  { label: "Saving course structure",     delay: 0 },
-  { label: "Uploading lesson content",    delay: 1 },
-  { label: "Processing audio & video",    delay: 2 },
-  { label: "Building course index",       delay: 3 },
-  { label: "Publishing to academy",       delay: 4 },
-  { label: "Notifying enrolled students", delay: 5 },
+  { label: "Creating course" },
+  { label: "Building module structure" },
+  { label: "Adding lesson content" },
+  { label: "Publishing to academy" },
 ];
 
 export const DEFAULT_FORM = {
   description: "",
   title: "",
+  shortDescription: "",
   level: "beginner" as const,
   language: "english" as const,
   duration: "4 weeks",
@@ -56,5 +55,7 @@ export const DEFAULT_FORM = {
   badgeName: "",
   audience: "",
   modules: SAMPLE_MODULES,
+  lessonOverviews: {} as Record<string, string>,
+  faq: "",
   published: false,
 };

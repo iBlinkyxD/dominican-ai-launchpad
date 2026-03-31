@@ -10,7 +10,7 @@ interface Props {
 
 export function Step1Describe({ form, setForm, onNext }: Props) {
   return (
-    <div className="flex flex-col items-center justify-center py-10 px-4">
+    <div className="flex flex-col items-center justify-center py-10 px-4 min-h-full">
       <div className="w-14 h-14 bg-red-50 rounded-2xl flex items-center justify-center mb-6">
         <Sparkles className="w-7 h-7 text-red-500" />
       </div>

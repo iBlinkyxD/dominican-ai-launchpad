@@ -6,6 +6,7 @@ export interface Module {
 export interface CourseForm {
   description: string;
   title: string;
+  shortDescription: string;
   level: "beginner" | "intermediate" | "advanced";
   language: "english" | "spanish" | "bilingual";
   duration: string;
@@ -18,6 +19,8 @@ export interface CourseForm {
   badgeName: string;
   audience: string;
   modules: Module[];
+  lessonOverviews: Record<string, string>;
+  faq: string;
   published: boolean;
 }
 
