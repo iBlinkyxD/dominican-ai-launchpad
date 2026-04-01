@@ -251,6 +251,15 @@ export const updateLesson = async (lessonId: string, payload: UpdateLessonPayloa
   await academyApi.patch(`/lessons/${lessonId}`, payload);
 };
 
+export const uploadCourseThumbnail = async (slug: string, file: File): Promise<string> => {
+  const formData = new FormData();
+  formData.append("file", file);
+  const res = await academyApi.post(`/courses/${slug}/thumbnail`, formData, {
+    headers: { "Content-Type": "multipart/form-data" },
+  });
+  return res.data.thumbnail_url;
+};
+
 export const publishCourse = async (slug: string): Promise<void> => {
   await academyApi.patch(`/courses/${slug}/publish`);
 };

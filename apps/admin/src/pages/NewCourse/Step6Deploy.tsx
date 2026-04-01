@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { ChevronLeft, Check, Rocket, AlertCircle } from "lucide-react";
 import { PROCESSING_TASKS } from "./constants";
 import type { CourseForm } from "./types";
-import { createCourse, createModule, createLesson, updateLesson, publishCourse, getCourseDetail } from "@/api/courses";
+import { createCourse, createModule, createLesson, updateLesson, uploadCourseThumbnail, publishCourse, getCourseDetail } from "@/api/courses";
 
 function slugify(text: string): string {
   return text
@@ -16,11 +16,12 @@ function slugify(text: string): string {
 
 interface Props {
   form: CourseForm;
+  thumbnailFile?: File | null;
   onBack: () => void;
   onDeployed: () => void;
 }
 
-export function Step5Deploy({ form, onBack, onDeployed }: Props) {
+export function Step6Deploy({ form, thumbnailFile, onBack, onDeployed }: Props) {
   const navigate = useNavigate();
   const [done,    setDone]    = useState<Set<number>>(new Set());
   const [error,   setError]   = useState<string | null>(null);
@@ -60,6 +61,7 @@ export function Step5Deploy({ form, onBack, onDeployed }: Props) {
           }
         }
         setDone((prev) => new Set([...prev, 2]));
+        if (thumbnailFile) await uploadCourseThumbnail(form.courseSlug, thumbnailFile);
         await publishCourse(form.courseSlug);
         setDone((prev) => new Set([...prev, 3]));
       } else {
@@ -108,6 +110,7 @@ export function Step5Deploy({ form, onBack, onDeployed }: Props) {
           }
         }
         setDone((prev) => new Set([...prev, 2]));
+        if (thumbnailFile) await uploadCourseThumbnail(slug, thumbnailFile);
         setDone((prev) => new Set([...prev, 3]));
       }
     } catch (err: unknown) {

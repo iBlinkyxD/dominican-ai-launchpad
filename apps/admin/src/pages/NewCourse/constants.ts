@@ -1,11 +1,12 @@
 import type { Module } from "./types";
 
 export const STEPS = [
-  { number: 1, label: "Describe",  sub: "Your course idea" },
-  { number: 2, label: "Configure", sub: "Set parameters" },
-  { number: 3, label: "Outline",   sub: "Review structure" },
-  { number: 4, label: "Video",     sub: "Create media" },
-  { number: 5, label: "Deploy",    sub: "Go live" },
+  { number: 1, label: "Describe",   sub: "Your course idea" },
+  { number: 2, label: "Configure",  sub: "Set parameters" },
+  { number: 3, label: "Outline",    sub: "Review structure" },
+  { number: 4, label: "Content",    sub: "Media & lessons" },
+  { number: 5, label: "Thumbnail",  sub: "Course image" },
+  { number: 6, label: "Deploy",     sub: "Go live" },
 ];
 
 export const SUGGESTIONS = [
@@ -61,4 +62,5 @@ export const DEFAULT_FORM = {
   lessonVocabulary: {} as Record<string, { term: string; definition: string }[]>,
   faq: "",
   published: false,
+  thumbnailPreview: "",
 };

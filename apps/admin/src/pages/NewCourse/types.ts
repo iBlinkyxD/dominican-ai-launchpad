@@ -25,6 +25,7 @@ export interface CourseForm {
   lessonVocabulary: Record<string, { term: string; definition: string }[]>;
   faq: string;
   published: boolean;
+  thumbnailPreview: string;
   courseSlug?: string;
 }
 

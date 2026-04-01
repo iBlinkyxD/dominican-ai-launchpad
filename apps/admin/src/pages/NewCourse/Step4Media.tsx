@@ -101,7 +101,7 @@ export function Step4Media({ form, setForm, onNext, onBack }: Props) {
                 onClick={onNext}
                 className="flex items-center gap-2 px-5 py-2 bg-[#0B1E40] text-white rounded-lg hover:bg-[#0B1E40]/90 transition font-semibold text-sm shadow-md"
               >
-                <Rocket className="h-4 w-4" /> Approve &amp; Deploy Live
+                <Rocket className="h-4 w-4" /> Continue
               </button>
             </div>
           </div>

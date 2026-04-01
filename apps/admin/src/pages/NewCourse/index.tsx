@@ -5,7 +5,8 @@ import { Step1Describe } from "./Step1Describe";
 import { Step2Configure } from "./Step2Configure";
 import { Step3Outline } from "./Step3Outline";
 import { Step4Media } from "./Step4Media";
-import { Step5Deploy } from "./Step5Deploy";
+import { Step5Thumbnail } from "./Step5Thumbnail";
+import { Step6Deploy } from "./Step6Deploy";
 import { DEFAULT_FORM } from "./constants";
 import type { CourseForm } from "./types";
 import { getCourseDetail } from "@/api/courses";
@@ -16,6 +17,7 @@ export const NewCourse = () => {
 
   const [step, setStep] = useState(editSlug ? 3 : 1);
   const [form, setForm] = useState<CourseForm>(DEFAULT_FORM);
+  const [thumbnailFile, setThumbnailFile] = useState<File | null>(null);
   const [loadingEdit, setLoadingEdit] = useState(!!editSlug);
 
   useEffect(() => {
@@ -68,7 +70,7 @@ export const NewCourse = () => {
   }, [editSlug]);
 
   const minStep = editSlug ? 3 : 1;
-  const next = () => setStep((s) => Math.min(5, s + 1));
+  const next = () => setStep((s) => Math.min(6, s + 1));
   const back = () => setStep((s) => Math.max(minStep, s - 1));
 
   if (loadingEdit) {
@@ -89,7 +91,8 @@ export const NewCourse = () => {
         {step === 2 && <Step2Configure form={form} setForm={setForm} onNext={next} onBack={back} />}
         {step === 3 && <Step3Outline form={form} setForm={setForm} onNext={next} onBack={back} />}
         {step === 4 && <Step4Media form={form} setForm={setForm} onNext={next} onBack={back} />}
-        {step === 5 && <Step5Deploy form={form} onBack={back} />}
+        {step === 5 && <Step5Thumbnail form={form} setForm={setForm} onFileSelect={setThumbnailFile} onNext={next} onBack={back} />}
+        {step === 6 && <Step6Deploy form={form} thumbnailFile={thumbnailFile} onBack={back} onDeployed={() => { setForm(DEFAULT_FORM); setThumbnailFile(null); }} />}
       </div>
     </div>
   );
