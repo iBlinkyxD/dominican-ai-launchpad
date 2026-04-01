@@ -6,7 +6,7 @@ import { CourseTabs } from "@/components/LessonContent/CourseTabs";
 import { CourseSidebar } from "@/components/LessonContent/CourseSidebar";
 import { CourseOverview } from "@/components/LessonContent/CourseOverview";
 import { useGetCourseBySlug } from "@/hooks/courses";
-import { Play } from "lucide-react";
+
 
 export function CourseContent() {
   const { courseId, lessonId } = useParams<{ courseId: string; lessonId: string }>();
@@ -46,24 +46,19 @@ export function CourseContent() {
       <div className="grid lg:grid-cols-3 gap-8 p-6">
         {/* LEFT */}
         <div className="lg:col-span-2">
-          {/* Video / lesson placeholder */}
-          <div className="relative aspect-video bg-gray-900 rounded-2xl overflow-hidden">
-            <img
-              src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&h=450&fit=crop"
-              alt={activeLesson?.title ?? "Lesson"}
-              className="w-full h-full object-cover opacity-80"
-            />
-            <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
-              <button className="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition transform">
-                <Play className="h-8 w-8 text-purple-600 ml-1" fill="currentColor" />
-              </button>
-              {activeLesson && (
-                <p className="text-white text-sm font-medium bg-black/40 px-4 py-1.5 rounded-full">
-                  {activeLesson.title}
-                </p>
-              )}
+          {/* Video player — only shown when lesson has a video URL */}
+          {activeLesson?.video_url && (
+            <div className="relative aspect-video bg-black rounded-2xl overflow-hidden">
+              <video
+                key={activeLesson.video_url}
+                src={activeLesson.video_url}
+                controls
+                className="w-full h-full"
+              >
+                Your browser does not support the video element.
+              </video>
             </div>
-          </div>
+          )}
 
           <div className="border rounded-2xl mt-4">
             <CourseTabs activeTab={activeTab} setActiveTab={setActiveTab} />
