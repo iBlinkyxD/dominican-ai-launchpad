@@ -1,0 +1,59 @@
+# AI Course Generation — Word Count Accuracy Data
+
+Use this file to track estimated vs. actual word counts across multiple course generations.
+Goal: collect data across **varied settings** (level, lesson length, module count) to see if
+the multiplier should be fixed or vary by configuration. Update running averages after each entry.
+
+## Current Formula
+
+```ts
+estWrittenWords   = totalLessons * avgLessonLength * 150
+estNarrationWords = totalLessons * avgLessonLength * 130
+```
+
+---
+
+## All Data Points (flat table)
+
+| # | Date | Level | Lessons | Avg Length | Written Est | Written Act | Written W/L-Min | Narration Est | Narration Act | Narration W/L-Min |
+|---|---|---|---|---|---|---|---|---|---|---|
+| 001 | 2026-03-31 | Beginner | 6 | 15m | 13,500 | 8,421 | 93.6 | 11,700 | 10,457 | 116.2 |
+| 002 | 2026-04-01 | Beginner | 6 | 5m  | 4,500  | 4,138 | 137.9 | 3,900 | 4,281 | 142.7 |
+
+> **W/L-Min** = actual words ÷ (lessons × avg lesson length). This is the real multiplier the AI used.
+
+---
+
+## Running Averages by Level
+
+| Level | Written W/L-Min (avg) | Narration W/L-Min (avg) | Samples |
+|---|---|---|---|
+| Beginner | 115.8 | 129.4 | 2 |
+| Intermediate | — | — | 0 |
+| Advanced | — | — | 0 |
+
+## Running Averages by Lesson Length
+
+| Avg Length | Written W/L-Min (avg) | Narration W/L-Min (avg) | Samples |
+|---|---|---|---|
+| ≤10m (5m) | 137.9 | 142.7 | 1 |
+| 15m       | 93.6  | 116.2 | 1 |
+| ≥20m      | —     | —     | 0 |
+
+## Overall Running Average
+
+| | W/L-Min (avg) | Samples |
+|---|---|---|
+| Written   | 115.8 | 2 |
+| Narration | 129.4 | 2 |
+
+---
+
+## Notes
+
+- **Key finding (2 samples):** W/L-Min varies significantly by lesson length — shorter lessons are denser:
+  - 5m lessons: Written **137.9**, Narration **142.7** (formula slightly underestimates narration at 130)
+  - 15m lessons: Written **93.6**, Narration **116.2** (formula significantly overestimates written at 150)
+- The formula likely needs **separate multipliers by lesson length tier**, not a single fixed value.
+- Narration at 5m actually *exceeded* the 130 estimate (110% accuracy) — first time formula underestimated.
+- Collect ≥20m data and more Beginner samples before updating the formula constants.

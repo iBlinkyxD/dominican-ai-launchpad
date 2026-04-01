@@ -9,8 +9,19 @@ interface Props {
   onBack: () => void;
 }
 
+function countWords(text: string) {
+  return text.trim() ? text.trim().split(/\s+/).length : 0;
+}
+
 export function Step3Outline({ form, setForm, onNext, onBack }: Props) {
   const totalLessons = form.modules.reduce((s, m) => s + m.lessons.length, 0);
+
+  const estWrittenWords   = totalLessons * form.avgLessonLength * 150;
+  const estNarrationWords = totalLessons * form.avgLessonLength * 130;
+
+  const actualWrittenWords   = Object.values(form.lessonOverviews).reduce((s, t) => s + countWords(t), 0);
+  const actualNarrationWords = Object.values(form.lessonNarrations).reduce((s, t) => s + countWords(t), 0);
+  const hasActual = actualWrittenWords > 0 || actualNarrationWords > 0;
 
   // ── Drag state ──────────────────────────────────────────────────
   const dragModule     = useRef<number | null>(null);
@@ -128,10 +139,19 @@ export function Step3Outline({ form, setForm, onNext, onBack }: Props) {
 
         {/* Header summary card */}
         <div className="bg-[#0B1E40] rounded-2xl p-6 text-white">
-          <h2 className="text-lg font-bold mb-1">{form.title || form.description.slice(0, 60) || "Untitled Course"}</h2>
-          {form.shortDescription && (
-            <p className="text-sm text-blue-100 mb-3 leading-relaxed">{form.shortDescription}</p>
-          )}
+          <input
+            value={form.title}
+            onChange={(e) => setForm({ ...form, title: e.target.value })}
+            placeholder="Course title…"
+            className="w-full text-lg font-bold bg-transparent outline-none border-b border-transparent focus:border-white/40 transition-colors pb-0.5 mb-2 placeholder-white/30"
+          />
+          <textarea
+            value={form.shortDescription}
+            onChange={(e) => setForm({ ...form, shortDescription: e.target.value })}
+            placeholder="Short description…"
+            rows={2}
+            className="w-full text-sm text-blue-100 bg-transparent outline-none border-b border-transparent focus:border-white/40 transition-colors resize-none leading-relaxed mb-3 placeholder-white/30"
+          />
           <p className="text-sm text-blue-200 mb-5">
             A {form.level}-level course spanning {form.duration} with {form.modules.length} modules and {totalLessons} lessons (~{form.avgLessonLength} min each).
           </p>
@@ -148,6 +168,47 @@ export function Step3Outline({ form, setForm, onNext, onBack }: Props) {
                 <p className="text-sm font-bold mt-0.5">{val}</p>
               </div>
             ))}
+          </div>
+        </div>
+
+        {/* Word count cards */}
+        <div className="grid grid-cols-2 gap-3">
+          {/* Estimated */}
+          <div className="bg-white rounded-2xl border border-gray-200 shadow-sm px-4 py-3">
+            <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-3">Estimated</p>
+            <div className="space-y-2">
+              {[
+                { label: "Written",   value: estWrittenWords,                        color: "text-red-500"  },
+                { label: "Narration", value: estNarrationWords,                      color: "text-blue-500" },
+                { label: "Total",     value: estWrittenWords + estNarrationWords,     color: "text-gray-700" },
+              ].map(({ label, value, color }) => (
+                <div key={label} className="flex items-center justify-between">
+                  <p className="text-xs text-gray-400">{label}</p>
+                  <p className={`text-xs font-bold ${color}`}>~{value.toLocaleString()}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Generated */}
+          <div className="bg-white rounded-2xl border border-gray-200 shadow-sm px-4 py-3">
+            <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-3">Generated</p>
+            <div className="space-y-2">
+              {[
+                { label: "Written",   value: actualWrittenWords,                           color: "text-red-500"  },
+                { label: "Narration", value: actualNarrationWords,                         color: "text-blue-500" },
+                { label: "Total",     value: actualWrittenWords + actualNarrationWords,     color: "text-gray-700" },
+              ].map(({ label, value, color }) => (
+                <div key={label} className="flex items-center justify-between">
+                  <p className="text-xs text-gray-400">{label}</p>
+                  {hasActual ? (
+                    <p className={`text-xs font-bold ${color}`}>{value.toLocaleString()}</p>
+                  ) : (
+                    <p className="text-xs text-gray-300">—</p>
+                  )}
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 

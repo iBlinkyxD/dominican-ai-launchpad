@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
+import ReactMarkdown from "react-markdown";
 import { CourseHeader } from "@/components/LessonContent/CourseHeader";
 import { CourseTabs } from "@/components/LessonContent/CourseTabs";
 import { CourseSidebar } from "@/components/LessonContent/CourseSidebar";
@@ -83,7 +84,12 @@ export function CourseContent() {
                   )}
                 </div>
               )}
-              {(activeTab === "faq" || activeTab === "announcements" || activeTab === "reviews") && (
+              {activeTab === "faq" && (
+                course?.faq
+                  ? <div className="prose prose-sm prose-gray max-w-none text-gray-700"><ReactMarkdown>{course.faq}</ReactMarkdown></div>
+                  : <p className="text-gray-400 text-sm">No FAQ available for this course.</p>
+              )}
+              {(activeTab === "announcements" || activeTab === "reviews") && (
                 <p className="text-gray-400 text-sm">No {activeTab} yet.</p>
               )}
             </div>

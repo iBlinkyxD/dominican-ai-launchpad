@@ -56,6 +56,9 @@ export const DEFAULT_FORM = {
   audience: "",
   modules: SAMPLE_MODULES,
   lessonOverviews: {} as Record<string, string>,
+  lessonNarrations: {} as Record<string, string>,
+  lessonObjectives: {} as Record<string, string[]>,
+  lessonVocabulary: {} as Record<string, { term: string; definition: string }[]>,
   faq: "",
   published: false,
 };

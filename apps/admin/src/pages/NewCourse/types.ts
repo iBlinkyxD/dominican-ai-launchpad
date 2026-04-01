@@ -20,8 +20,12 @@ export interface CourseForm {
   audience: string;
   modules: Module[];
   lessonOverviews: Record<string, string>;
+  lessonNarrations: Record<string, string>;
+  lessonObjectives: Record<string, string[]>;
+  lessonVocabulary: Record<string, { term: string; definition: string }[]>;
   faq: string;
   published: boolean;
+  courseSlug?: string;
 }
 
 export type StepProps = {

@@ -51,6 +51,7 @@ export interface ModuleRead {
 
 export interface AcademyCourseDetail extends AcademyCourse {
   short_description: string | null;
+  faq: string | null;
   modules: ModuleRead[];
 }
 

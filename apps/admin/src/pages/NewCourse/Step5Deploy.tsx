@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { ChevronLeft, Check, Rocket, AlertCircle } from "lucide-react";
 import { PROCESSING_TASKS } from "./constants";
 import type { CourseForm } from "./types";
-import { createCourse, createModule, createLesson } from "@/api/courses";
+import { createCourse, createModule, createLesson, updateLesson, publishCourse, getCourseDetail } from "@/api/courses";
 
 function slugify(text: string): string {
   return text
@@ -17,9 +17,10 @@ function slugify(text: string): string {
 interface Props {
   form: CourseForm;
   onBack: () => void;
+  onDeployed: () => void;
 }
 
-export function Step5Deploy({ form, onBack }: Props) {
+export function Step5Deploy({ form, onBack, onDeployed }: Props) {
   const navigate = useNavigate();
   const [done,    setDone]    = useState<Set<number>>(new Set());
   const [error,   setError]   = useState<string | null>(null);
@@ -36,51 +37,79 @@ export function Step5Deploy({ form, onBack }: Props) {
 
   async function deploy() {
     try {
-      // ── Step 0: Create course ──────────────────────────────────────
-      const slug = slugify(form.title || form.description) || `course-${Date.now()}`;
-      const course = await createCourse({
-        title:             form.title || form.description.slice(0, 80),
-        slug,
-        description:       form.description || undefined,
-        short_description: form.shortDescription || undefined,
-        level:             form.level,
-        instructor_name:   "DAIA Academy",
-        code:              form.courseCode || undefined,
-        is_published:      true,
-      });
-      setDone((prev) => new Set([...prev, 0]));
+      if (form.courseSlug) {
+        // ── Draft already saved — update lesson content then publish ──
+        setDone((prev) => new Set([...prev, 0]));
+        const course = await getCourseDetail(form.courseSlug);
+        const sortedModules = course.modules
+          .slice()
+          .sort((a, b) => a.position - b.position)
+          .map((m) => ({ ...m, lessons: m.lessons.slice().sort((a, b) => a.position - b.position) }));
+        setDone((prev) => new Set([...prev, 1]));
 
-      // ── Step 1: Create modules ─────────────────────────────────────
-      const moduleIds: string[] = [];
-      for (let mi = 0; mi < form.modules.length; mi++) {
-        const mod = await createModule({
-          course_id: course.id,
-          title:     form.modules[mi].title,
-          position:  mi,
-        });
-        moduleIds.push(mod.id);
-      }
-      setDone((prev) => new Set([...prev, 1]));
-
-      // ── Step 2: Create lessons ─────────────────────────────────────
-      const durationSeconds = form.avgLessonLength * 60;
-      for (let mi = 0; mi < form.modules.length; mi++) {
-        const lessons = form.modules[mi].lessons;
-        for (let li = 0; li < lessons.length; li++) {
-          await createLesson({
-            module_id:        moduleIds[mi],
-            title:            lessons[li],
-            content:          form.lessonOverviews[`${mi}-${li}`] || undefined,
-            duration_seconds: durationSeconds,
-            lesson_type:      "article",
-            position:         li,
-          });
+        for (let mi = 0; mi < sortedModules.length; mi++) {
+          for (let li = 0; li < sortedModules[mi].lessons.length; li++) {
+            const lessonId = sortedModules[mi].lessons[li].id;
+            const key = `${mi}-${li}`;
+            await updateLesson(lessonId, {
+              content:          form.lessonOverviews[key]   || undefined,
+              narration_script: form.lessonNarrations[key]  || undefined,
+              objectives:       form.lessonObjectives[key]  || undefined,
+              vocabulary:       form.lessonVocabulary[key]  || undefined,
+            });
+          }
         }
-      }
-      setDone((prev) => new Set([...prev, 2]));
+        setDone((prev) => new Set([...prev, 2]));
+        await publishCourse(form.courseSlug);
+        setDone((prev) => new Set([...prev, 3]));
+      } else {
+        // ── Full creation flow (no prior draft) ───────────────────────
+        const slug = slugify(form.title || form.description) || `course-${Date.now()}`;
+        const course = await createCourse({
+          title:             form.title || form.description.slice(0, 80),
+          slug,
+          description:       form.description || undefined,
+          short_description: form.shortDescription || undefined,
+          faq:               form.faq || undefined,
+          level:             form.level,
+          instructor_name:   "DAIA Academy",
+          code:              form.courseCode || undefined,
+          is_published:      true,
+        });
+        setDone((prev) => new Set([...prev, 0]));
 
-      // ── Step 3: Done ───────────────────────────────────────────────
-      setDone((prev) => new Set([...prev, 3]));
+        const moduleIds: string[] = [];
+        for (let mi = 0; mi < form.modules.length; mi++) {
+          const mod = await createModule({
+            course_id: course.id,
+            title:     form.modules[mi].title,
+            position:  mi,
+          });
+          moduleIds.push(mod.id);
+        }
+        setDone((prev) => new Set([...prev, 1]));
+
+        const durationSeconds = form.avgLessonLength * 60;
+        for (let mi = 0; mi < form.modules.length; mi++) {
+          const lessons = form.modules[mi].lessons;
+          for (let li = 0; li < lessons.length; li++) {
+            const key = `${mi}-${li}`;
+            await createLesson({
+              module_id:        moduleIds[mi],
+              title:            lessons[li],
+              content:          form.lessonOverviews[key]   || undefined,
+              narration_script: form.lessonNarrations[key]  || undefined,
+              duration_seconds: durationSeconds,
+              lesson_type:      "article",
+              position:         li,
+              objectives:       form.lessonObjectives[key]  || undefined,
+              vocabulary:       form.lessonVocabulary[key]  || undefined,
+            });
+          }
+        }
+        setDone((prev) => new Set([...prev, 2]));
+        setDone((prev) => new Set([...prev, 3]));
+      }
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : "Deployment failed. Please try again.";
       setError(msg);
@@ -174,7 +203,7 @@ export function Step5Deploy({ form, onBack }: Props) {
           )}
           {allDone && (
             <button
-              onClick={() => navigate("/academy/courses")}
+              onClick={() => { onDeployed(); navigate("/academy/courses"); }}
               className="flex items-center gap-2 w-full justify-center bg-green-500 hover:bg-green-600 text-white text-sm font-semibold px-6 py-3 rounded-xl transition-colors"
             >
               <Check className="w-4 h-4" /> View in Academy

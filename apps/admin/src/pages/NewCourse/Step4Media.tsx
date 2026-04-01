@@ -1,7 +1,8 @@
 import { useState } from "react";
+import ReactMarkdown from "react-markdown";
 import {
   ChevronLeft, ChevronDown, ChevronUp,
-  BookOpen, Clock, Sparkles, Upload, SkipForward, Check, Play, Rocket,
+  BookOpen, Clock, Sparkles, Upload, SkipForward, Check, Play, Rocket, Eye, Pencil,
 } from "lucide-react";
 import type { CourseForm } from "./types";
 
@@ -9,6 +10,7 @@ type MediaAction = "generate" | "upload" | "skip" | null;
 
 const TABS = [
   { value: "overview",      label: "Overview" },
+  { value: "narration",     label: "Narration" },
   { value: "author",        label: "Author" },
   { value: "faq",           label: "FAQ" },
   { value: "announcements", label: "Announcements" },
@@ -30,8 +32,11 @@ export function Step4Media({ form, setForm, onNext, onBack }: Props) {
   // Active lesson key: "mi-li"
   const [activeLessonKey, setActiveLessonKey] = useState("0-0");
 
-  // Per-lesson overviews and FAQ are persisted in the form so they survive step navigation
-  const [lessonOverviews, setLessonOverviews] = useState<Record<string, string>>(form.lessonOverviews);
+  // Per-lesson overviews, narrations, and FAQ are persisted in form so they survive step navigation
+  const [lessonOverviews,   setLessonOverviews]   = useState<Record<string, string>>(form.lessonOverviews);
+  const [lessonNarrations,  setLessonNarrations]  = useState<Record<string, string>>(form.lessonNarrations);
+  const [overviewMode, setOverviewMode] = useState<"preview" | "edit">("preview");
+  const [faqMode,      setFaqMode]      = useState<"preview" | "edit">("preview");
 
   // Course-level editable fields
   const [authorName, setAuthorName] = useState("DAIA Academy");
@@ -170,27 +175,115 @@ export function Step4Media({ form, setForm, onNext, onBack }: Props) {
 
             <div className="p-6">
 
-              {/* Overview — per lesson, editable */}
+              {/* Overview — per lesson, preview/edit */}
               {activeTab === "overview" && (
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-0.5">Lesson overview</p>
+                      <h3 className="text-base font-bold text-gray-900">{activeLessonTitle()}</h3>
+                    </div>
+                    <button
+                      onClick={() => setOverviewMode(overviewMode === "preview" ? "edit" : "preview")}
+                      className="flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-lg border border-gray-200 text-gray-500 hover:bg-gray-50 transition-colors"
+                    >
+                      {overviewMode === "preview"
+                        ? <><Pencil className="w-3.5 h-3.5" /> Edit</>
+                        : <><Eye className="w-3.5 h-3.5" /> Preview</>}
+                    </button>
+                  </div>
+
+                  {overviewMode === "preview" ? (
+                    <div className="space-y-5">
+                      {/* Objectives */}
+                      {form.lessonObjectives[activeLessonKey]?.length > 0 && (
+                        <div>
+                          <p className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-2">Learning Objectives</p>
+                          <ul className="space-y-1.5">
+                            {form.lessonObjectives[activeLessonKey].map((obj, i) => (
+                              <li key={i} className="flex items-start gap-2 text-sm text-gray-700">
+                                <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-blue-500 shrink-0" />
+                                {obj}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+
+                      {/* Markdown content */}
+                      {lessonOverviews[activeLessonKey] ? (
+                        <div className="prose prose-sm prose-gray max-w-none text-gray-700">
+                          <ReactMarkdown>{lessonOverviews[activeLessonKey]}</ReactMarkdown>
+                        </div>
+                      ) : (
+                        <p className="text-sm text-gray-400 italic">No overview content yet.</p>
+                      )}
+
+                      {/* Vocabulary table */}
+                      {form.lessonVocabulary[activeLessonKey]?.length > 0 && (
+                        <div>
+                          <p className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-2">Key Vocabulary</p>
+                          <div className="overflow-x-auto rounded-lg border border-gray-200">
+                            <table className="w-full text-sm">
+                              <thead>
+                                <tr className="bg-gray-50 border-b border-gray-200">
+                                  <th className="text-left px-4 py-2.5 font-semibold text-gray-700 w-1/3">Term</th>
+                                  <th className="text-left px-4 py-2.5 font-semibold text-gray-700">Definition</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                {form.lessonVocabulary[activeLessonKey].map((entry, i) => (
+                                  <tr key={i} className="border-b border-gray-100 last:border-b-0">
+                                    <td className="px-4 py-2.5 font-medium text-gray-900">{entry.term}</td>
+                                    <td className="px-4 py-2.5 text-gray-600">{entry.definition}</td>
+                                  </tr>
+                                ))}
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  ) : (
+                    <div>
+                      <textarea
+                        value={lessonOverviews[activeLessonKey] ?? ""}
+                        onChange={(e) => {
+                          const updated = { ...lessonOverviews, [activeLessonKey]: e.target.value };
+                          setLessonOverviews(updated);
+                          setForm({ ...form, lessonOverviews: updated });
+                        }}
+                        placeholder={`Write markdown content for "${activeLessonTitle()}"…`}
+                        rows={15}
+                        className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-700 outline-none focus:border-gray-400 resize-none transition-colors font-mono"
+                      />
+                      <p className="text-[10px] text-gray-400 mt-1">Markdown supported — use ## headers, - lists, **bold**.</p>
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {/* Narration — per lesson, editable */}
+              {activeTab === "narration" && (
                 <div className="space-y-4">
                   <div>
                     <p className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-1">
-                      Lesson overview
+                      Narration script
                     </p>
                     <h3 className="text-base font-bold text-gray-900 mb-3">{activeLessonTitle()}</h3>
                     <textarea
-                      value={lessonOverviews[activeLessonKey] ?? ""}
+                      value={lessonNarrations[activeLessonKey] ?? ""}
                       onChange={(e) => {
-                        const updated = { ...lessonOverviews, [activeLessonKey]: e.target.value };
-                        setLessonOverviews(updated);
-                        setForm({ ...form, lessonOverviews: updated });
+                        const updated = { ...lessonNarrations, [activeLessonKey]: e.target.value };
+                        setLessonNarrations(updated);
+                        setForm({ ...form, lessonNarrations: updated });
                       }}
-                      placeholder={`Describe what students will learn in "${activeLessonTitle()}"…`}
-                      rows={5}
-                      className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-700 outline-none focus:border-gray-400 resize-none transition-colors"
+                      placeholder={`Spoken narration script for "${activeLessonTitle()}"…`}
+                      rows={15}
+                      className="w-full border text-justify border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-700 outline-none focus:border-gray-400 resize-none transition-colors"
                     />
                     <p className="text-[10px] text-gray-400 mt-1">
-                      Click a lesson in the sidebar to edit its overview individually.
+                      Narration is calibrated to {form.avgLessonLength} min at 130 words/min. Click a lesson in the sidebar to edit individually.
                     </p>
                   </div>
                 </div>
@@ -224,22 +317,36 @@ export function Step4Media({ form, setForm, onNext, onBack }: Props) {
                 </div>
               )}
 
-              {/* FAQ — editable */}
+              {/* FAQ */}
               {activeTab === "faq" && (
                 <div>
-                  <label className="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">
-                    Frequently asked questions
-                  </label>
-                  <textarea
-                    value={faqContent}
-                    onChange={(e) => {
-                      setFaqContent(e.target.value);
-                      setForm({ ...form, faq: e.target.value });
-                    }}
-                    placeholder={"Q: Who is this course for?\nA: …\n\nQ: What do I need to get started?\nA: …"}
-                    rows={7}
-                    className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-700 outline-none focus:border-gray-400 resize-none transition-colors font-mono"
-                  />
+                  <div className="flex items-center justify-between mb-3">
+                    <p className="text-xs font-semibold text-gray-400 uppercase tracking-widest">Frequently asked questions</p>
+                    <button
+                      onClick={() => setFaqMode(faqMode === "preview" ? "edit" : "preview")}
+                      className="flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-lg border border-gray-200 text-gray-500 hover:bg-gray-50 transition-colors"
+                    >
+                      {faqMode === "preview"
+                        ? <><Pencil className="w-3.5 h-3.5" /> Edit</>
+                        : <><Eye className="w-3.5 h-3.5" /> Preview</>}
+                    </button>
+                  </div>
+                  {faqMode === "preview" ? (
+                    <div className="prose prose-sm max-w-none text-gray-700">
+                      <ReactMarkdown>{faqContent || "_No FAQ yet._"}</ReactMarkdown>
+                    </div>
+                  ) : (
+                    <textarea
+                      value={faqContent}
+                      onChange={(e) => {
+                        setFaqContent(e.target.value);
+                        setForm({ ...form, faq: e.target.value });
+                      }}
+                      placeholder={"Q: Who is this course for?\nA: …\n\nQ: What do I need to get started?\nA: …"}
+                      rows={15}
+                      className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-700 outline-none focus:border-gray-400 resize-none transition-colors font-mono"
+                    />
+                  )}
                 </div>
               )}
 
@@ -278,9 +385,10 @@ export function Step4Media({ form, setForm, onNext, onBack }: Props) {
                   {expanded[mi] && (
                     <div className="bg-gray-50 px-6 py-2">
                       {mod.lessons.map((lesson, li) => {
-                        const key      = `${mi}-${li}`;
-                        const isActive = activeLessonKey === key;
-                        const hasNote  = !!lessonOverviews[key];
+                        const key         = `${mi}-${li}`;
+                        const isActive    = activeLessonKey === key;
+                        const hasNote     = !!lessonOverviews[key];
+                        const hasNarration = !!lessonNarrations[key];
                         return (
                           <button
                             key={li}
@@ -296,6 +404,9 @@ export function Step4Media({ form, setForm, onNext, onBack }: Props) {
                               </span>
                               {hasNote && (
                                 <span className="w-1.5 h-1.5 rounded-full bg-blue-400 shrink-0" title="Has overview" />
+                              )}
+                              {hasNarration && (
+                                <span className="w-1.5 h-1.5 rounded-full bg-purple-400 shrink-0" title="Has narration" />
                               )}
                             </div>
                             <span className="text-xs text-gray-500 flex-shrink-0 ml-2">

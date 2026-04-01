@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Sparkles, Plus, CheckCircle2 } from "lucide-react";
-import { getAdminCourses, AdminCourse } from "@/api/courses";
+import { Sparkles, Plus, CheckCircle2, Rocket, Pencil } from "lucide-react";
+import { getAdminCourses, publishCourse, AdminCourse } from "@/api/courses";
 
 const COURSE_COLORS = [
   "bg-purple-500", "bg-green-600", "bg-red-500", "bg-blue-600",
@@ -53,6 +53,7 @@ export const Courses = () => {
   const [courses, setCourses] = useState<AdminCourse[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [publishing, setPublishing] = useState<string | null>(null);
 
   useEffect(() => {
     getAdminCourses()
@@ -60,6 +61,18 @@ export const Courses = () => {
       .catch(() => setError("Failed to load courses."))
       .finally(() => setLoading(false));
   }, []);
+
+  async function handlePublish(slug: string) {
+    setPublishing(slug);
+    try {
+      await publishCourse(slug);
+      setCourses((prev) => prev.map((c) => c.slug === slug ? { ...c, is_published: true } : c));
+    } catch {
+      // silently fail — could add toast here later
+    } finally {
+      setPublishing(null);
+    }
+  }
 
   const liveCount = courses.filter((c) => c.is_published).length;
   const draftCount = courses.filter((c) => !c.is_published).length;
@@ -158,14 +171,32 @@ export const Courses = () => {
                     {new Date(course.created_at).toISOString().split("T")[0]}
                   </td>
                   <td className="px-4 py-4">
-                    <a
-                      href={`${import.meta.env.VITE_ACADEMY_URL}/courses/${course.slug}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-xs font-medium text-gray-500 border border-gray-200 px-3 py-1.5 rounded-lg hover:bg-gray-50 transition-colors"
-                    >
-                      View
-                    </a>
+                    <div className="flex items-center gap-2">
+                      {!course.is_published && (
+                        <button
+                          onClick={() => handlePublish(course.slug)}
+                          disabled={publishing === course.slug}
+                          className="flex items-center gap-1 text-xs font-semibold text-white bg-[#0B1E40] hover:bg-[#0B1E40]/80 px-3 py-1.5 rounded-lg transition-colors disabled:opacity-50"
+                        >
+                          <Rocket className="w-3 h-3" />
+                          {publishing === course.slug ? "Publishing…" : "Publish"}
+                        </button>
+                      )}
+                      <button
+                        onClick={() => navigate("/academy/courses/new", { state: { editSlug: course.slug } })}
+                        className="flex items-center gap-1 text-xs font-medium text-gray-500 border border-gray-200 px-3 py-1.5 rounded-lg hover:bg-gray-50 transition-colors"
+                      >
+                        <Pencil className="w-3 h-3" /> Edit
+                      </button>
+                      <a
+                        href={`${import.meta.env.VITE_ACADEMY_URL}/courses/${course.slug}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-xs font-medium text-gray-500 border border-gray-200 px-3 py-1.5 rounded-lg hover:bg-gray-50 transition-colors"
+                      >
+                        View
+                      </a>
+                    </div>
                   </td>
                 </tr>
               ))}
