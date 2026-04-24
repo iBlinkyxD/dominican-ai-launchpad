@@ -6,6 +6,24 @@
     "included": "What's included:",
     "backHome": "← Back to Home",
     "backService": "← Back to Services",
+    "aiBusinessAudit": {
+      "name": "AI Business Audit",
+      "description": "Design your AI-powered operations and unlock smarter growth",
+      "headline": "Request Your AI Business Audit",
+      "subheadline": "Complete the form below to begin your personalized AI audit. Our team will review your current operations and deliver a full strategy blueprint within one business week.",
+      "price": "$1,000 USD",
+      "priceNote": "(Per Business / Includes Full Audit & Strategy Blueprint)",
+      "buttonText": "Get started",
+      "features": [
+        "Full review of your current systems, tools, and workflows",
+        "Identification of cost-saving opportunities across marketing & operations",
+        "Lead generation and client acquisition optimization strategy",
+        "Custom AI digital assistant architecture tailored to your businesses",
+        "Workflow design to maximize productivity and reduce manual work",
+        "Clear roadmap for implementing AI without disrupting what's already working",
+        "AI readiness + optimization report (your foundation for future growth)"
+      ]
+    },
     "corporateTraining": {
       "name": "Corporate AI Training",
       "description": "Build internal AI capability and readiness",

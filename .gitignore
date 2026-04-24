@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+docs/generation-accuracy-data.mdx
+.claude/settings.local.json
+WORK_PLAN.md

@@ -5,6 +5,24 @@
     "subtitle": "Integración de IA escalable: desde la transformación del talento hasta una infraestructura empresarial privada y segura.",
     "included": "¿Qué incluye?",
     "backHome": "← Volver al Inicio",
+    "aiBusinessAudit": {
+      "name": "Auditoría de Negocio con IA",
+      "description": "Diseña tus operaciones impulsadas por IA y desbloquea un crecimiento más inteligente",
+      "headline": "Solicita tu Auditoría de Negocio con IA",
+      "subheadline": "Completa el formulario para iniciar tu auditoría personalizada. Nuestro equipo revisará tus operaciones y entregará un plan estratégico completo en una semana hábil.",
+      "price": "$1,000 USD",
+      "priceNote": "(Por Empresa / Incluye Auditoría Completa y Plan Estratégico)",
+      "buttonText": "Comenzar",
+      "features": [
+        "Revisión completa de tus sistemas, herramientas y flujos de trabajo actuales",
+        "Identificación de oportunidades de ahorro en marketing y operaciones",
+        "Estrategia de generación de leads y optimización de adquisición de clientes",
+        "Arquitectura personalizada de asistente digital con IA adaptada a tu negocio",
+        "Diseño de flujos de trabajo para maximizar la productividad",
+        "Hoja de ruta clara para implementar IA sin interrumpir lo que ya funciona",
+        "Informe de preparación y optimización en IA (tu base para el crecimiento futuro)"
+      ]
+    },
     "corporateTraining": {
       "name": "Capacitación Corporativa en IA",
       "headline": "Solicite su capacitación en IA de 5 días",

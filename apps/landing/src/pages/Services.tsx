@@ -85,13 +85,13 @@ const Services = () => {
                       {t(plan.description)}
                     </p>
 
-                    <div className="mt-6 flex items-end ">
+                    <div className="mt-6 flex items-end">
                       <span className="text-4xl font-medium text-gray-900">
                         {t(plan.price)}
                       </span>
                     </div>
 
-                    <div className="flex items-end">
+                    <div className="flex items-end min-h-[2.5rem]">
                       <span className="text-sm text-gray-500">
                         {t(plan.priceNote)}
                       </span>
