@@ -23,5 +23,7 @@ dist-ssr
 *.sln
 *.sw?
 docs/generation-accuracy-data.mdx
+apps/landing/.env.development
+apps/landing/.env.production
 .claude/settings.local.json
 WORK_PLAN.md

@@ -134,9 +134,10 @@ const Services = () => {
                       </ul>
                     </div>
 
-                    <Link
-                      to={`/services/${plan.slug}`}
-                      state={{ selectedService: plan.name }}
+                    <a
+                      href={plan.stripeUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="mt-auto"
                     >
                       <button
@@ -145,7 +146,7 @@ const Services = () => {
                       >
                         {t(plan.buttonText)}
                       </button>
-                    </Link>
+                    </a>
                   </div>
                 </div>
               </ScrollAnimation>

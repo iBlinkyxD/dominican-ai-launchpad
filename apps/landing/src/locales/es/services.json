@@ -5,6 +5,26 @@
     "subtitle": "Integración de IA escalable: desde la transformación del talento hasta una infraestructura empresarial privada y segura.",
     "included": "¿Qué incluye?",
     "backHome": "← Volver al Inicio",
+    "contentManagement": {
+      "name": "Gestión de Contenido Hecha Para Ti",
+      "description": "Construye tu marca, conecta con tu audiencia y genera resultados",
+      "headline": "Solicita tu Plan de Gestión de Contenido",
+      "subheadline": "Completa el formulario para comenzar con tu paquete mensual de contenido. Nuestro equipo se pondrá en contacto para alinear tu marca, objetivos y estrategia de contenido.",
+      "price": "$500 USD",
+      "priceNote": "/ mes",
+      "buttonText": "Comenzar",
+      "features": [
+        "20 publicaciones estáticas con tu marca (imágenes, gráficos, contenido promocional y educativo)",
+        "4 videos cortos profesionales (15–60 seg, optimizados para redes sociales)",
+        "Estrategia de contenido personalizada y calendario mensual",
+        "Redacción y creación de textos para publicaciones",
+        "Investigación de hashtags y optimización SEO",
+        "Hasta 2 rondas de revisiones",
+        "Contenido entregado listo para publicar",
+        "Informes mensuales de rendimiento y recomendaciones",
+        "Gerente de cuenta dedicado y soporte prioritario"
+      ]
+    },
     "aiBusinessAudit": {
       "name": "Auditoría de Negocio con IA",
       "description": "Diseña tus operaciones impulsadas por IA y desbloquea un crecimiento más inteligente",
