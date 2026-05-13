@@ -5,6 +5,44 @@
     "subtitle": "Integración de IA escalable: desde la transformación del talento hasta una infraestructura empresarial privada y segura.",
     "included": "¿Qué incluye?",
     "backHome": "← Volver al Inicio",
+    "contentManagement": {
+      "name": "Gestión de Contenido Hecha Para Ti",
+      "description": "Construye tu marca, conecta con tu audiencia y genera resultados",
+      "headline": "Solicita tu Plan de Gestión de Contenido",
+      "subheadline": "Completa el formulario para comenzar con tu paquete mensual de contenido. Nuestro equipo se pondrá en contacto para alinear tu marca, objetivos y estrategia de contenido.",
+      "price": "$500 USD",
+      "priceNote": "/ mes",
+      "buttonText": "Comenzar",
+      "features": [
+        "20 publicaciones estáticas con tu marca (imágenes, gráficos, contenido promocional y educativo)",
+        "4 videos cortos profesionales (15–60 seg, optimizados para redes sociales)",
+        "Estrategia de contenido personalizada y calendario mensual",
+        "Redacción y creación de textos para publicaciones",
+        "Investigación de hashtags y optimización SEO",
+        "Hasta 2 rondas de revisiones",
+        "Contenido entregado listo para publicar",
+        "Informes mensuales de rendimiento y recomendaciones",
+        "Gerente de cuenta dedicado y soporte prioritario"
+      ]
+    },
+    "aiBusinessAudit": {
+      "name": "Auditoría de Negocio con IA",
+      "description": "Diseña tus operaciones impulsadas por IA y desbloquea un crecimiento más inteligente",
+      "headline": "Solicita tu Auditoría de Negocio con IA",
+      "subheadline": "Completa el formulario para iniciar tu auditoría personalizada. Nuestro equipo revisará tus operaciones y entregará un plan estratégico completo en una semana hábil.",
+      "price": "$1,000 USD",
+      "priceNote": "(Por Empresa / Incluye Auditoría Completa y Plan Estratégico)",
+      "buttonText": "Comenzar",
+      "features": [
+        "Revisión completa de tus sistemas, herramientas y flujos de trabajo actuales",
+        "Identificación de oportunidades de ahorro en marketing y operaciones",
+        "Estrategia de generación de leads y optimización de adquisición de clientes",
+        "Arquitectura personalizada de asistente digital con IA adaptada a tu negocio",
+        "Diseño de flujos de trabajo para maximizar la productividad",
+        "Hoja de ruta clara para implementar IA sin interrumpir lo que ya funciona",
+        "Informe de preparación y optimización en IA (tu base para el crecimiento futuro)"
+      ]
+    },
     "corporateTraining": {
       "name": "Capacitación Corporativa en IA",
       "headline": "Solicite su capacitación en IA de 5 días",

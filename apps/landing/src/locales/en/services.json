@@ -6,6 +6,44 @@
     "included": "What's included:",
     "backHome": "← Back to Home",
     "backService": "← Back to Services",
+    "contentManagement": {
+      "name": "Done-For-You Content Management",
+      "description": " Builds your brand, engage your audience, and drive results",
+      "headline": "Request Your Content Management Plan",
+      "subheadline": "Complete the form below to get started with your monthly content package. Our team will reach out to align on your brand, goals, and content strategy.",
+      "price": "$500 USD",
+      "priceNote": "/ month",
+      "buttonText": "Get started",
+      "features": [
+        "20 branded static posts (images, graphics, promotional & educational content)",
+        "4 professional short-form videos (15–60 sec, optimized for social media)",
+        "Custom content strategy & monthly content calendar",
+        "Copywriting and caption creation",
+        "Hashtag research & SEO optimization",
+        "Up to 2 rounds of revisions",
+        "Content delivered ready to publish",
+        "Monthly performance insights & recommendations",
+        "Dedicated account manager & priority support"
+      ]
+    },
+    "aiBusinessAudit": {
+      "name": "AI Business Audit",
+      "description": "Design your AI-powered operations and unlock smarter growth",
+      "headline": "Request Your AI Business Audit",
+      "subheadline": "Complete the form below to begin your personalized AI audit. Our team will review your current operations and deliver a full strategy blueprint within one business week.",
+      "price": "$1,000 USD",
+      "priceNote": "(Per Business / Includes Full Audit & Strategy Blueprint)",
+      "buttonText": "Get started",
+      "features": [
+        "Full review of your current systems, tools, and workflows",
+        "Identification of cost-saving opportunities across marketing & operations",
+        "Lead generation and client acquisition optimization strategy",
+        "Custom AI digital assistant architecture tailored to your businesses",
+        "Workflow design to maximize productivity and reduce manual work",
+        "Clear roadmap for implementing AI without disrupting what's already working",
+        "AI readiness + optimization report (your foundation for future growth)"
+      ]
+    },
     "corporateTraining": {
       "name": "Corporate AI Training",
       "description": "Build internal AI capability and readiness",
@@ -58,26 +96,6 @@
         "Cross-department workflow redesign plan",
         "AI governance & security framework",
         "Executive strategy presentation & board report"
-      ]
-    },
-    "enterpriseUpgrade": {
-      "name": "Enterprise AI Upgrade",
-      "headline": "Begin Your Enterprise AI Modernization",
-      "subheadline": "Provide your organization details to initiate your enterprise AI infrastructure upgrade. Our team will coordinate a strategic consultation to define system integrations, multi-agent deployment, and executive alignment.",
-      "description": "Transform infrastructure into AI-enabled enterprise architecture",
-      "price": "$15,000 USD",
-      "priceNote": "(+$100 USD per employee)",
-      "buttonText": "Get started",
-      "features": [
-        "Corporate AI Training Package (Up to 30 staff)",
-        "Enterprise AI systems architecture design",
-        "Multi-agent deployment (3–5 agents minimum)",
-        "Cross-platform system integrations",
-        "Secure data environment configuration",
-        "Advanced analytics & executive dashboard",
-        "Organization-wide AI operating model",
-        "Executive leadership modernization workshop",
-        "60-day optimization & performance review"
       ]
     }
   },
