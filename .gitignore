@@ -26,3 +26,6 @@ dist-ssr
 .claude
 WORK_PLAN.md
 docs/
+docs/generation-accuracy-data.mdx
+apps/landing/.env.development
+apps/landing/.env.production
