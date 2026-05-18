@@ -7,6 +7,7 @@
     "featured": "Destacado",
     "lessons": "lecciones",
     "joinWatchlist": "Agregar a la Lista",
+    "viewDetails": "Ver Detalles",
     "ctaTitle": "¿Listo para comenzar a aprender?",
     "ctaDescription": "Únete a miles de estudiantes que ya están avanzando en sus carreras con nuestros cursos dirigidos por expertos.",
     "ctaButton": "Ver Todos los Cursos"
@@ -17,7 +18,11 @@
       "subtitle": "Domina los conceptos de IA desde lo básico hasta redes neuronales avanzadas con proyectos prácticos",
       "description": "Comprende los fundamentos, explora aplicaciones reales y desbloquea el poder de la inteligencia artificial para tu futuro.",
       "duration": "20 horas",
-      "tags": ["Fundamentos", "Inteligencia", "Futuro"],
+      "tags": [
+        "Fundamentos",
+        "Inteligencia",
+        "Futuro"
+      ],
       "benefits": [
         "Construye aplicaciones de IA desde cero",
         "Oportunidades de crecimiento profesional",
@@ -80,7 +85,11 @@
       "subtitle": "Mejora tu fluidez en inglés con lecciones guiadas por IA y práctica en situaciones reales",
       "description": "Practica, mejora y comunícate con confianza mediante lecciones guiadas por IA y conversaciones reales.",
       "duration": "28 horas",
-      "tags": ["Idioma", "Práctica", "Confianza"],
+      "tags": [
+        "Idioma",
+        "Práctica",
+        "Confianza"
+      ],
       "benefits": [
         "Conversaciones interactivas con IA",
         "Mejora de la pronunciación",
@@ -137,67 +146,246 @@
         }
       ]
     },
-    "aiDR": {
-      "title": "IA en la República Dominicana",
-      "subtitle": "Descubre cómo la IA está transformando industrias y oportunidades a nivel local",
-      "description": "Explora cómo la IA está resolviendo desafíos y creando innovación en la República Dominicana.",
-      "duration": "35 horas",
-      "tags": ["Innovación", "Impacto", "Soluciones"],
+    "1on1VirtualTutoring": {
+      "title": "Tutoría virtual 1 a 1",
+      "subtitle": "Tres sesiones en vivo por semana. Una hora cada una. Un profesor seleccionado, adaptado a tu nivel, tus metas y tu horario — entregado a través de la plataforma de aprendizaje segura de DAIA Academy.",
+      "description": "Recibe orientación en vivo 1-a-1 de un instructor experto, completamente adaptada a tus metas y ritmo de aprendizaje.",
+      "duration": "12 horas / mes",
+      "tags": ["Personalizada", "Sesiones en vivo", "Profesora dedicada"],
       "benefits": [
-        "Comprender el impacto local de la IA",
-        "Casos reales de la República Dominicana",
-        "Perspectivas de colaboración industrial",
-        "Estrategias de innovación",
-        "Tendencias del sector público y privado",
-        "Panorama de oportunidades profesionales",
-        "Networking comunitario",
-        "Acceso de por vida"
+        "Plan de estudios personalizado según tus metas",
+        "Horario flexible que se adapta a tu vida",
+        "Retroalimentación directa y preguntas en tiempo real",
+        "Proyectos del mundo real alineados a tu carrera",
+        "Grabaciones de sesiones para repasar cuando quieras",
+        "Soporte prioritario entre sesiones",
+        "Seguimiento de progreso mensual",
+        "Certificado de finalización"
       ],
       "requirements": [
-        "Conocimientos básicos de tecnología",
-        "Interés en innovación",
-        "Computadora con acceso a internet",
-        "No se requieren conocimientos avanzados de IA"
+        "Acceso a una computadora con internet",
+        "Compromiso con las sesiones programadas",
+        "Disposición para aprender y aplicar la retroalimentación",
+        "No se requiere experiencia previa"
       ],
-      "whatToExpect": "Aprende cómo la inteligencia artificial está transformando empresas, salud, educación y servicios públicos en la República Dominicana. Obtén información sobre implementaciones reales y oportunidades futuras.",
+      "whatToExpect": "Experimenta el camino más rápido hacia la maestría con atención personalizada 1-a-1. Tu instructor construirá un plan de estudios basado en tus objetivos específicos, te encontrará en tu nivel y acelerará tu crecimiento a través de retroalimentación enfocada, proyectos reales y responsabilidad constante cada mes.",
       "curriculum": [
         {
-          "title": "Módulo 1: Panorama de la IA en la RD",
+          "title": "Sesión 1: Descubrimiento y definición de metas",
           "lessons": [
-            "Visión general del ecosistema de IA",
-            "Ecosistema tecnológico local",
-            "Innovaciones en startups",
-            "Iniciativas gubernamentales"
+            "Define tus objetivos de aprendizaje",
+            "Evalúa tu nivel de conocimiento actual",
+            "Crea tu hoja de ruta personal",
+            "Establece metas para el primer mes"
           ]
         },
         {
-          "title": "Módulo 2: Aplicaciones en la Industria",
+          "title": "Sesiones 2–4: Fundamentos esenciales",
           "lessons": [
-            "IA en la salud",
-            "IA en las finanzas",
-            "IA en la educación",
-            "Desarrollo de ciudades inteligentes"
+            "Ejercicios de habilidades específicas",
+            "Proyectos guiados prácticos",
+            "Preguntas y revisión de conceptos",
+            "Ciclos de retroalimentación del instructor"
           ]
         },
         {
-          "title": "Módulo 3: Negocios e Innovación",
+          "title": "Sesiones 5–8: Práctica aplicada",
           "lessons": [
-            "Oportunidades de emprendimiento",
-            "Tendencias de inversión",
-            "Transformación digital",
-            "Estudios de caso"
+            "Trabajo en proyectos del mundo real",
+            "Sesiones de resolución de problemas",
+            "Construcción de portafolio",
+            "Herramientas y flujos de trabajo de la industria"
           ]
         },
         {
-          "title": "Módulo 4: Futuro de la IA en la RD",
+          "title": "Revisión mensual: Progreso y próximos pasos",
           "lessons": [
-            "Tecnologías emergentes",
-            "Transformación de la fuerza laboral",
-            "Ética y regulación",
-            "Proyecto final"
+            "Evaluación del progreso",
+            "Ajuste del plan de aprendizaje",
+            "Celebra logros e hitos",
+            "Planifica el enfoque del próximo mes"
           ]
         }
       ]
+    }
+  },
+  "courseDetail": {
+    "notFound": {
+      "title": "Curso no encontrado",
+      "back": "Volver a cursos"
+    },
+    "breadcrumb": {
+      "home": "Inicio",
+      "courses": "Cursos"
+    },
+    "hero": {
+      "reviews": "reseñas",
+      "students": "estudiantes",
+      "imageOverlay": "Sesiones en vivo 1 a 1 personalizadas"
+    },
+    "card": {
+      "monthlyPlan": "Plan mensual",
+      "oneTimePurchase": "Compra única",
+      "perMonth": "/ mes",
+      "billingNote": "Se cobra el día de tu primera sesión, no antes.",
+      "oneTimeNote": "Pago único · Acceso de por vida",
+      "tutoringFeatures": [
+        "12 sesiones en vivo uno a uno al mes",
+        "Un profesor adaptado a tu nivel y metas",
+        "Planes de lección y seguimiento de progreso personalizados",
+        "Ruta de certificación DAIA Academy",
+        "Asistente de IA DAIA para práctica entre sesiones"
+      ],
+      "joinWaitlist": "Unirme a la lista de espera →",
+      "enrollNow": "Inscribirme →",
+      "securedByStripe": "Seguro con Stripe",
+      "onDemandLessons": "lecciones bajo demanda",
+      "videoContent": "de contenido en video",
+      "ownPace": "Aprende a tu propio ritmo",
+      "certificate": "Certificado de finalización"
+    },
+    "promise": {
+      "eyebrow": "La Promesa",
+      "titleStart": "La Garantía de",
+      "titleMatch": "Coincidencia",
+      "titleGuarantee": "en 72 Horas.",
+      "p1Pre": "Cuando te registras hoy, guardamos tu método de pago de forma segura —",
+      "p1Bold": "pero no te cobramos.",
+      "p1Post": "En 72 horas, te emparejamos con tu profesor personal y programamos tu primera lección.",
+      "p2": "Si no podemos emparejarte a tiempo, tu tarjeta es liberada. Sin cargo. Sin preguntas. Sin trámites.",
+      "p3Pre": "Tu ciclo de facturación comienza el día de tu",
+      "p3Bold": "primera lección",
+      "p3Post": "— nunca el día en que te registras. Así, cada mes que pagas es un mes completo de lecciones, nunca parcial."
+    },
+    "howItWorks": {
+      "titleStart": "Cómo",
+      "titleEnd": "funciona.",
+      "subtitle": "Cuatro momentos entre tu registro y tu primera lección. Cada uno diseñado para proteger tu tiempo y tu dinero.",
+      "steps": [
+        {
+          "timing": "Hoy",
+          "title": "Te registras",
+          "desc": "Completas el proceso de pago. Tu tarjeta se guarda de forma segura a través de Stripe y queda autorizada.",
+          "badge": "Sin cargo aún"
+        },
+        {
+          "timing": "En 72 horas",
+          "title": "Te emparejamos",
+          "desc": "Te asignamos el profesor adecuado según tu nivel, metas y horario. Tu primera lección queda programada.",
+          "badge": "Sin cargo aún"
+        },
+        {
+          "timing": "Día de la primera lección",
+          "title": "El ciclo comienza",
+          "desc": "Asistes a tu primera lección. Se cobran US$200 y comienza tu ciclo de 30 días de sesiones a partir de hoy.",
+          "badge": "Se cobran $200"
+        },
+        {
+          "timing": "Día 30",
+          "title": "Renuevas o pausas",
+          "desc": "Tu próximo mes se renueva automáticamente con otro conjunto de sesiones. Cancela en cualquier momento antes de la renovación, sin penalidad.",
+          "badge": "Renovación automática (o cancelar)"
+        }
+      ]
+    },
+    "goodToKnow": {
+      "eyebrow": "Bueno saber",
+      "items": [
+        {
+          "title": "Política de cancelación",
+          "body": "Cancela una lección programada con al menos 24 horas de anticipación y no contará contra tu total mensual. Dentro de las 24 horas, la lección se consume."
+        },
+        {
+          "title": "Lecciones no utilizadas",
+          "body": "Las lecciones están diseñadas para usarse dentro de tu ciclo de 30 días y no se acumulan. Esto protege el tiempo de tu profesor y mantiene un ritmo de aprendizaje constante."
+        },
+        {
+          "title": "Si no cumplimos las 72 horas",
+          "body": "Si no te emparejamos dentro de las 72 horas desde el registro, tu autorización de pago se libera automáticamente y no debes nada. Puedes quedarte en la lista de espera o retirarte."
+        },
+        {
+          "title": "Reembolsos",
+          "body": "Como no cobramos hasta que se imparte tu primera lección, los reembolsos son poco frecuentes. Si algo sale mal después de comenzar tu ciclo, contacta a soporte y lo resolveremos."
+        },
+        {
+          "title": "Pagos",
+          "body": "Todos los pagos se procesan de forma segura a través de Stripe. Aceptamos Visa, Mastercard y American Express. Los precios están en dólares estadounidenses; tu banco puede convertirlos a RD$ a la tasa del día."
+        },
+        {
+          "title": "Quién te enseña",
+          "body": "Cada profesor de DAIA es evaluado por sus credenciales, fluidez y experiencia docente. La mayoría son bilingües y conocen el contexto educativo dominicano."
+        }
+      ]
+    },
+    "cta": {
+      "brand": "DAIA Academy",
+      "tutoringTitle": "¿Listo para conocer a tu profesor?",
+      "defaultTitle": "Comienza tu camino de aprendizaje",
+      "tutoringDesc": "Coincidencia en 72 horas. Primera lección programada antes de que se te cobre. Cancela en cualquier momento.",
+      "defaultDesc": "Únete a miles de estudiantes que están avanzando sus habilidades con DAIA.",
+      "tutoringButton": "Iniciar mi coincidencia en 72 horas",
+      "defaultButton": "Inscribirme"
+    }
+  },
+  "enrollment": {
+    "steps": ["Tu Información", "Tus Metas", "Pago"],
+    "header": "Tutoría 1 a 1",
+    "loadingPayment": "Configurando pago seguro…",
+    "step1": {
+      "title": "Crea tu cuenta",
+      "subtitle": "Tu cuenta de DAIA Academy — la usarás para acceder a tus sesiones.",
+      "firstName": "Nombre",
+      "lastName": "Apellido",
+      "email": "Correo electrónico",
+      "password": "Contraseña",
+      "passwordPlaceholder": "Mín. 8 caracteres",
+      "showPassword": "Mostrar",
+      "hidePassword": "Ocultar",
+      "continue": "Continuar",
+      "newUser": "Nuevo en DAIA",
+      "hasAccount": "Ya tengo cuenta",
+      "hasAccountNote": "Buscaremos tu cuenta por correo electrónico — no se creará una cuenta nueva."
+    },
+    "step2": {
+      "title": "Cuéntanos sobre tus metas",
+      "subtitle": "Esto nos ayuda a encontrarte el profesor ideal.",
+      "goalLabel": "¿Qué quieres aprender?",
+      "goalPlaceholder": "ej. Quiero mejorar mi inglés para entrevistas de trabajo y reuniones de negocios...",
+      "availabilityLabel": "¿Cuándo sueles estar disponible?",
+      "availabilityOptions": [
+        "Mañanas entre semana",
+        "Tardes entre semana",
+        "Noches entre semana",
+        "Mañanas de fin de semana",
+        "Tardes de fin de semana",
+        "Noches de fin de semana"
+      ],
+      "back": "Atrás",
+      "continue": "Continuar"
+    },
+    "payment": {
+      "title": "Asegura tu lugar",
+      "subtitlePre": "Tu tarjeta se guarda de forma segura.",
+      "subtitleBold": "Sin cargo hoy",
+      "subtitlePost": "— se te cobra solo cuando tu profesor acepta.",
+      "planLabel": "Tutoría 1 a 1 (mensual)",
+      "planPrice": "US$200",
+      "billingNote": "Se cobra el día de la primera sesión",
+      "noCharge": "Sin cargo hoy",
+      "back": "Atrás",
+      "submitting": "Procesando…",
+      "submit": "Asegurar mi lugar →",
+      "stripeNote": "Seguro con Stripe · Sin cargo hasta que tu profesor acepte"
+    },
+    "success": {
+      "title": "¡Estás en la lista, {{name}}!",
+      "subtitle": "Te emparejaremos con el profesor ideal en 72 horas.",
+      "note": "Revisa tu correo para la confirmación. No se ha realizado ningún cargo.",
+      "done": "Listo"
+    },
+    "errors": {
+      "paymentFailed": "Algo salió mal. Por favor intenta de nuevo.",
+      "enrollmentFailed": "El registro falló. Por favor intenta de nuevo."
     }
   }
 }

@@ -9,7 +9,7 @@ import Partners from "./pages/Partners";
 import Contact from "./pages/Contact";
 import Education from "./pages/Education";
 import Courses from "./pages/Courses";
-// import CourseDetail from "./pages/CourseDetail";
+import CourseDetail from "./pages/CourseDetail";
 import ComingSoon from "./pages/ComingSoon";
 import NotFound from "./pages/NotFound";
 import Soon from "./pages/Soon";
@@ -51,7 +51,7 @@ const App = () => (
             <Route path="/reset-password" element={<ResetPassword />} />
 
             <Route path="/courses" element={<Courses />} />
-            {/* <Route path="/courses/:courseId" element={<CourseDetail />} /> */}
+            <Route path="/courses/:courseId" element={<CourseDetail />} />
 
             <Route path="/educa-one" element={<ComingSoon />} />
             <Route path="/scholar-one" element={<ComingSoon />} />

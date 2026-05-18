@@ -7,6 +7,7 @@
     "featured": "Featured",
     "lessons": "lessons",
     "joinWatchlist": "Join Watchlist",
+    "viewDetails": "View Details",
     "ctaTitle": "Ready to Start Learning?",
     "ctaDescription": "Join thousands of students who are already advancing their careers with our expert-led courses.",
     "ctaButton": "Browse All Courses"
@@ -137,67 +138,246 @@
         }
       ]
     },
-    "aiDR": {
-      "title": "AI in the Dominican Republic",
-      "subtitle": "Discover how AI is transforming industries and opportunities locally",
-      "description": "Explore how AI is solving challenges and creating innovation in the Dominican Republic.",
-      "duration": "35 hours",
-      "tags": ["Innovation", "Impact", "Solutions"],
+    "1on1VirtualTutoring": {
+      "title": "1 on 1 Virtual Tutoring",
+      "subtitle": "Three live sessions a week. One hour each. A vetted teacher built around your level, your goals, and your schedule — delivered through DAIA Academy's secure learning platform.",
+      "description": "Get personalized, live 1-on-1 guidance from an expert instructor tailored entirely to your goals and pace.",
+      "duration": "12 hours / month",
+      "tags": ["Personalized", "Live Sessions", "Dedicated Professor"],
       "benefits": [
-        "Understand AI local impact",
-        "Real Dominican case studies",
-        "Industry collaboration insights",
-        "Innovation strategies",
-        "Government & private sector trends",
-        "Career opportunities overview",
-        "Community networking",
-        "Lifetime access"
+        "Personalized curriculum tailored to your goals",
+        "Flexible scheduling that fits your life",
+        "Direct feedback and instant Q&A",
+        "Real-world projects aligned to your career",
+        "Session recordings you can revisit anytime",
+        "Priority support between sessions",
+        "Progress tracking each month",
+        "Certificate of completion"
       ],
       "requirements": [
-        "Basic technology knowledge",
-        "Interest in innovation",
-        "Computer with internet",
-        "No advanced AI knowledge required"
+        "Access to a computer with internet",
+        "Commitment to attending scheduled sessions",
+        "Openness to learn and apply feedback",
+        "No prior experience required"
       ],
-      "whatToExpect": "Learn how artificial intelligence is transforming businesses, healthcare, education, and public services in the Dominican Republic. Gain insights into real-world implementations and future opportunities.",
+      "whatToExpect": "Experience the fastest path to mastery with dedicated 1-on-1 attention. Your instructor will build a curriculum around your specific goals, meet you at your level, and accelerate your growth through focused feedback, real-world projects, and consistent accountability every month.",
       "curriculum": [
         {
-          "title": "Module 1: AI Overview in the DR",
+          "title": "Session 1: Discovery & Goal Setting",
           "lessons": [
-            "AI landscape overview",
-            "Local technology ecosystem",
-            "Startup innovations",
-            "Government initiatives"
+            "Define your learning objectives",
+            "Assess your current knowledge level",
+            "Build your personal learning roadmap",
+            "Set milestones for the first month"
           ]
         },
         {
-          "title": "Module 2: Industry Applications",
+          "title": "Sessions 2–4: Core Foundations",
           "lessons": [
-            "AI in healthcare",
-            "AI in finance",
-            "AI in education",
-            "Smart cities development"
+            "Targeted skill-building exercises",
+            "Hands-on guided projects",
+            "Q&A and concept review",
+            "Instructor feedback loops"
           ]
         },
         {
-          "title": "Module 3: Business & Innovation",
+          "title": "Sessions 5–8: Applied Practice",
           "lessons": [
-            "Entrepreneurship opportunities",
-            "Investment trends",
-            "Digital transformation",
-            "Case studies"
+            "Real-world project work",
+            "Problem-solving sessions",
+            "Portfolio building",
+            "Industry tools & workflows"
           ]
         },
         {
-          "title": "Module 4: Future of AI in the DR",
+          "title": "Month Review: Progress & Next Steps",
           "lessons": [
-            "Emerging technologies",
-            "Workforce transformation",
-            "Ethics and regulation",
-            "Final project"
+            "Progress evaluation",
+            "Adjust learning path",
+            "Celebrate wins and milestones",
+            "Plan next month's focus"
           ]
         }
       ]
+    }
+  },
+  "courseDetail": {
+    "notFound": {
+      "title": "Course not found",
+      "back": "Back to courses"
+    },
+    "breadcrumb": {
+      "home": "Home",
+      "courses": "Courses"
+    },
+    "hero": {
+      "reviews": "reviews",
+      "students": "students",
+      "imageOverlay": "Personalized 1-on-1 Live Sessions"
+    },
+    "card": {
+      "monthlyPlan": "Monthly Plan",
+      "oneTimePurchase": "One-time Purchase",
+      "perMonth": "/ month",
+      "billingNote": "Billed on the day of your first session — not before.",
+      "oneTimeNote": "One-time payment · Lifetime access",
+      "tutoringFeatures": [
+        "12 live one-on-one sessions each month",
+        "A teacher matched to your level & goals",
+        "Personalized lesson plans & progress tracking",
+        "DAIA Academy certification path",
+        "DAIA AI Assistant for practice between sessions"
+      ],
+      "joinWaitlist": "Join the Waitlist →",
+      "enrollNow": "Enroll Now →",
+      "securedByStripe": "Secured by Stripe",
+      "onDemandLessons": "on-demand lessons",
+      "videoContent": "of video content",
+      "ownPace": "Learn at your own pace",
+      "certificate": "Certificate of completion"
+    },
+    "promise": {
+      "eyebrow": "The Promise",
+      "titleStart": "The 72-Hour",
+      "titleMatch": "Match",
+      "titleGuarantee": "Guarantee.",
+      "p1Pre": "When you sign up today, we securely save your payment method —",
+      "p1Bold": "but we don't charge it.",
+      "p1Post": "Within 72 hours, we'll match you with your personal teacher and schedule your first lesson.",
+      "p2": "If we can't match you in time, your card is released. No charge. No questions. No paperwork.",
+      "p3Pre": "Your billing cycle starts the day of your",
+      "p3Bold": "first lesson",
+      "p3Post": "— never the day you sign up. So every month you pay for is a full month of lessons, never a partial one."
+    },
+    "howItWorks": {
+      "titleStart": "How it",
+      "titleEnd": "works.",
+      "subtitle": "Four moments between signing up and your first lesson. Each one designed to protect your time and your money.",
+      "steps": [
+        {
+          "timing": "Today",
+          "title": "You enroll",
+          "desc": "You complete checkout. Your card is securely saved through Stripe and authorized.",
+          "badge": "No charge yet"
+        },
+        {
+          "timing": "Within 72 hours",
+          "title": "We match you",
+          "desc": "We pair you with the right teacher based on your level, goals, and schedule. Your first lesson is booked.",
+          "badge": "No charge yet"
+        },
+        {
+          "timing": "Day of first lesson",
+          "title": "The cycle begins",
+          "desc": "You attend your first lesson. Your US$200 is charged, and your 30-day cycle of sessions begins from today.",
+          "badge": "$200 charged"
+        },
+        {
+          "timing": "Day 30",
+          "title": "Renew or pause",
+          "desc": "Your next month renews automatically with another set of sessions. Cancel anytime before renewal — no penalty.",
+          "badge": "Auto-renew (or cancel)"
+        }
+      ]
+    },
+    "goodToKnow": {
+      "eyebrow": "Good to Know",
+      "items": [
+        {
+          "title": "Cancellation policy",
+          "body": "Cancel a scheduled lesson at least 24 hours in advance and it won't count against your monthly total. Inside 24 hours, the lesson is consumed."
+        },
+        {
+          "title": "Unused lessons",
+          "body": "Lessons are designed to be used within your 30-day cycle and do not roll over. This protects your teacher's time and keeps you on a consistent learning rhythm."
+        },
+        {
+          "title": "If we miss 72 hours",
+          "body": "If we don't match you within 72 hours of signup, your payment authorization is automatically released and you owe nothing. You can stay on the waitlist or walk away."
+        },
+        {
+          "title": "Refunds",
+          "body": "Because we don't charge until your first lesson is delivered, refunds are rare. If something goes wrong after your cycle begins, contact support and we'll make it right."
+        },
+        {
+          "title": "Payment",
+          "body": "All payments are processed securely by Stripe. We accept Visa, Mastercard, and American Express. Pricing is in US dollars; your bank may convert to RD$ at the daily rate."
+        },
+        {
+          "title": "Who teaches you",
+          "body": "Every DAIA teacher is vetted for credentials, fluency, and teaching experience. Most are bilingual and familiar with the Dominican educational context."
+        }
+      ]
+    },
+    "cta": {
+      "brand": "DAIA Academy",
+      "tutoringTitle": "Ready to meet your teacher?",
+      "defaultTitle": "Start Your Learning Journey",
+      "tutoringDesc": "Match in 72 hours. First lesson scheduled before you're billed. Cancel anytime.",
+      "defaultDesc": "Join thousands of students advancing their skills with DAIA.",
+      "tutoringButton": "Start my 72-hour match",
+      "defaultButton": "Enroll Now"
+    }
+  },
+  "enrollment": {
+    "steps": ["Your Info", "Your Goals", "Payment"],
+    "header": "1-on-1 Tutoring",
+    "loadingPayment": "Setting up secure payment…",
+    "step1": {
+      "title": "Create your account",
+      "subtitle": "Your DAIA Academy account — you'll use this to access your sessions.",
+      "firstName": "First name",
+      "lastName": "Last name",
+      "email": "Email",
+      "password": "Password",
+      "passwordPlaceholder": "Min. 8 characters",
+      "showPassword": "Show",
+      "hidePassword": "Hide",
+      "continue": "Continue",
+      "newUser": "New to DAIA",
+      "hasAccount": "I have an account",
+      "hasAccountNote": "We'll look up your account by email — no new account will be created."
+    },
+    "step2": {
+      "title": "Tell us about your goals",
+      "subtitle": "This helps us match you with the right teacher.",
+      "goalLabel": "What do you want to learn?",
+      "goalPlaceholder": "e.g. I want to improve my English for job interviews and business meetings...",
+      "availabilityLabel": "When are you generally available?",
+      "availabilityOptions": [
+        "Weekday mornings",
+        "Weekday afternoons",
+        "Weekday evenings",
+        "Weekend mornings",
+        "Weekend afternoons",
+        "Weekend evenings"
+      ],
+      "back": "Back",
+      "continue": "Continue"
+    },
+    "payment": {
+      "title": "Secure your spot",
+      "subtitlePre": "Your card is saved securely.",
+      "subtitleBold": "No charge today",
+      "subtitlePost": "— you're billed only when your teacher accepts.",
+      "planLabel": "1-on-1 Tutoring (monthly)",
+      "planPrice": "US$200",
+      "billingNote": "Charged on day of first session",
+      "noCharge": "No charge today",
+      "back": "Back",
+      "submitting": "Processing…",
+      "submit": "Secure my spot →",
+      "stripeNote": "Secured by Stripe · No charge until your teacher accepts"
+    },
+    "success": {
+      "title": "You're on the list, {{name}}!",
+      "subtitle": "We'll match you with the perfect teacher within 72 hours.",
+      "note": "Check your email for a confirmation. No charge has been made.",
+      "done": "Done"
+    },
+    "errors": {
+      "paymentFailed": "Something went wrong. Please try again.",
+      "enrollmentFailed": "Enrollment failed. Please try again."
     }
   }
 }

@@ -1,12 +1,15 @@
-import { Plus, Sparkles, Megaphone, Users } from "lucide-react";
-import { NavLink } from "react-router-dom";
+import { Home, GraduationCap, Award, Video } from "lucide-react";
 import { SidebarLink } from "./SidebarLink";
 import { SidebarSection } from "./SidebarSection";
+import { useRole } from "@packages/auth";
 
 export const Sidebar = () => {
+  const { hasAnyRole } = useRole("academy");
+  const canAccessTutoring = hasAnyRole("student", "teacher");
+
   return (
     <div className="w-72 bg-[#F8FAFC] flex flex-col border-r border-gray-200 h-full overflow-y-auto rounded-l-3xl">
-      <SidebarSection>
+      {/* <SidebarSection>
         <div className="px-2 pt-4 space-y-1">
           <NavLink
             to="/chat-daia"
@@ -51,20 +54,26 @@ export const Sidebar = () => {
             </div>
           </NavLink>
         </div>
-      </SidebarSection>
+      </SidebarSection> */}
 
       <div className="p-4">
         <SidebarSection>
-          <SidebarLink to="/" label="Home" hasSubmenu={false} />
+          <SidebarLink to="/" icon={Home} label="Home" hasSubmenu={false} />
         </SidebarSection>
 
         <SidebarSection>
-          <SidebarLink to="/courses" label="Courses" hasSubmenu={false} />
+          <SidebarLink to="/courses" icon={GraduationCap} label="Courses" hasSubmenu={false} />
         </SidebarSection>
 
         <SidebarSection>
-          <SidebarLink to="/badges-certificates" label="Badges & Certificates" hasSubmenu={false} />
+          <SidebarLink to="/badges-certificates" icon={Award} label="Badges & Certificates" hasSubmenu={false} />
         </SidebarSection>
+
+        {canAccessTutoring && (
+          <SidebarSection>
+            <SidebarLink to="/tutoring" icon={Video} label="Virtual Tutoring" hasSubmenu={false} />
+          </SidebarSection>
+        )}
       </div>
 
       <div className="flex-1"></div>

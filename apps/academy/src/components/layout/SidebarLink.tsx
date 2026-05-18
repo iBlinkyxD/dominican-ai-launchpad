@@ -1,14 +1,15 @@
 import { NavLink } from "react-router-dom";
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, LucideIcon } from "lucide-react";
 
 interface Props {
   to: string;
   label: string;
+  icon?: LucideIcon;
   badge?: string;
   hasSubmenu?: boolean;
 }
 
-export const SidebarLink = ({ to, label, badge, hasSubmenu }: Props) => {
+export const SidebarLink = ({ to, label, icon: Icon, badge, hasSubmenu }: Props) => {
   return (
     <NavLink
       to={to}
@@ -20,7 +21,12 @@ export const SidebarLink = ({ to, label, badge, hasSubmenu }: Props) => {
         }`
       }
     >
-      <span>{label}</span>
+      <div className="flex items-center gap-2.5">
+        {Icon && (
+          <Icon className="w-4 h-4 shrink-0 opacity-70" />
+        )}
+        <span>{label}</span>
+      </div>
 
       <div className="flex items-center gap-2">
         {badge && (
@@ -28,7 +34,6 @@ export const SidebarLink = ({ to, label, badge, hasSubmenu }: Props) => {
             {badge}
           </span>
         )}
-
         {hasSubmenu && <ChevronRight className="w-4 h-4 text-gray-400" />}
       </div>
     </NavLink>
