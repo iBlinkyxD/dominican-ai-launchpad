@@ -1,25 +1,26 @@
 import { NavLink } from "react-router-dom";
 import {
   Home,
-  LayoutGrid,
   GraduationCap,
-  MessageSquare,
-  Sparkles,
-  Megaphone,
   Settings,
+  Video,
+  Award,
 } from "lucide-react";
 import { useSettingsMenu } from "@packages/SettingsMenuContext";
+import { useRole } from "@packages/auth";
 
 export const BottomNav = () => {
+  const { setIsOpen } = useSettingsMenu();
+  const { hasAnyRole } = useRole("academy");
+  const canAccessTutoring = hasAnyRole("student", "teacher");
+
   const navItems = [
     { to: "/", icon: Home, label: "Home" },
     { to: "/courses", icon: GraduationCap, label: "Courses" },
-    { to: "/chat-daia", icon: Sparkles, label: "DAIA AI" },
-    { to: "/announcements", icon: Megaphone, label: "Announcments" },
+    { to: "/badges-certificates", icon: Award, label: "Badges" },
+    ...(canAccessTutoring ? [{ to: "/tutoring", icon: Video, label: "Virtual Tutoring" }] : []),
     { to: "/settings", icon: Settings, label: "Settings" },
   ];
-
-  const { setIsOpen } = useSettingsMenu();
 
   return (
     <div className="lg:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200">

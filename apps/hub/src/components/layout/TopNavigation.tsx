@@ -107,7 +107,11 @@ export const TopNavigation = () => {
               <p className="text-sm font-bold text-gray-900">
                 {user.first_name} {user.last_name}
               </p>
-              <p className="text-xs text-gray-500 truncate">{user?.email}</p>
+              <p className="text-xs text-gray-500 font-mono tracking-wide">
+                {user.daia_member_id != null
+                  ? `#${String(user.daia_member_id).padStart(8, "0")}`
+                  : "—"}
+              </p>
             </div>
 
             <div className="p-2">
@@ -131,7 +135,7 @@ export const TopNavigation = () => {
                   }}
                   className="w-full flex items-center gap-3 px-3 py-2 text-sm text-red-600 hover:bg-red-50 rounded-lg transition-colors"
                 >
-                  <LogOut className="w-4 h-4" /> LogOut
+                  <LogOut className="w-4 h-4" /> Log Out
                 </button>
               </div>
             </div>

@@ -1,3 +1,8 @@
+export interface UserRole {
+  context: string;
+  role: string;
+}
+
 export interface User {
   id: string;
   first_name: string;
@@ -6,10 +11,11 @@ export interface User {
   phone: string;
   username: string | null;
   profile_picture_url: string | null;
-
+  daia_member_id: number | null;
   is_active: boolean;
   is_admin: boolean;
   is_verified: boolean;
+  roles: UserRole[];
 }
 
 const TOKEN_KEY = "token";

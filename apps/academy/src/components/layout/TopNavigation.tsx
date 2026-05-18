@@ -145,7 +145,11 @@ export const TopNavigation = () => {
               <p className="text-sm font-bold text-gray-900">
                 {user.first_name} {user.last_name}
               </p>
-              <p className="text-xs text-gray-500 truncate">{user?.email}</p>
+              <p className="text-xs text-gray-500 font-mono tracking-wide">
+                {user.daia_member_id != null
+                  ? `#${String(user.daia_member_id).padStart(8, "0")}`
+                  : "—"}
+              </p>
             </div>
 
             <div className="p-2">

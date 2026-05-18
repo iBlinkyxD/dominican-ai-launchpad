@@ -1,6 +1,6 @@
 import introAI from "@/assets/courses/intro-AI.jpeg";
 import learnEnglishAI from "@/assets/courses/learn-English-AI.jpeg";
-import AIinDR from "@/assets/courses/AI-in-DR.jpeg";
+import VirtualTutoring from "@/assets/courses/1on1_Virtual_Tutoring.jpeg";
 
 export interface CourseDetail {
   slug: string;
@@ -61,18 +61,18 @@ export const courseDetail: Record<string, CourseDetail> = {
     trustedBy: ["Analytics Co", "DataDriven", "InsightHub", "MetricsPro"],
   },
 
-  "ai-in-the-dominican-republic": {
-    slug: "ai-in-the-dominican-republic",
-    i18nKey: "aiDR",
+  "1on1-virtual-tutoring": {
+    slug: "1on1-virtual-tutoring",
+    i18nKey: "1on1VirtualTutoring",
 
-    price: 99,
+    price: 200,
     rating: 4.7,
     reviews: 456,
     students: 0,
-    lessons: 68,
+    lessons: 0,
 
-    instructorId: "salomon",
-    image: AIinDR,
+    instructorId: "arianna",
+    image: VirtualTutoring,
     videoThumbnail:
       "https://images.unsplash.com/photo-1627398242454-45a1465c2479?w=800&h=450&fit=crop",
 

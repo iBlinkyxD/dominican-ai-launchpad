@@ -15,4 +15,12 @@ export const instructors = {
       "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop",
     bio: "Carlos Rodriguez is a senior data scientist with extensive experience in analytics and machine learning at Fortune 500 companies.",
   },
+  arianna: {
+    id: "arianna",
+    name: "Prof. Arianna Martinez",
+    title: "Senior Data Scientist",
+    image:
+      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop",
+    bio: "Carlos Rodriguez is a senior data scientist with extensive experience in analytics and machine learning at Fortune 500 companies.",
+  },
 };

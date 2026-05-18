@@ -50,7 +50,10 @@ const Courses = () => {
                 animation="fade-up"
                 delay={index * 100}
               >
-                <Link to={`#`} className="group block">
+                <Link
+                  to={course.slug === "1on1-virtual-tutoring" ? `/courses/${course.slug}` : "#"}
+                  className="group block"
+                >
                   <div className="bg-card border border-border rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
                     {/* Course Image */}
                     <div className="relative aspect-video overflow-hidden">
@@ -102,12 +105,14 @@ const Courses = () => {
                             {t(`coursesDetails.${course.i18nKey}.duration`)}
                           </span>
                         </div>
-                        <div className="flex items-center gap-1">
-                          <BookOpen className="w-4 h-4" />
-                          <span>
-                            {course.lessons} {t("courses.lessons")}
-                          </span>
-                        </div>
+                        {course.lessons > 0 && (
+                          <div className="flex items-center gap-1">
+                            <BookOpen className="w-4 h-4" />
+                            <span>
+                              {course.lessons} {t("courses.lessons")}
+                            </span>
+                          </div>
+                        )}
                       </div>
 
                       {/* Rating & Students */}
@@ -134,7 +139,9 @@ const Courses = () => {
                           ${course.price}
                         </span>
                         <Button className="bg-primary hover:bg-primary/90">
-                          {t("courses.joinWatchlist")}
+                          {course.slug === "1on1-virtual-tutoring"
+                            ? t("courses.viewDetails")
+                            : t("courses.joinWatchlist")}
                         </Button>
                       </div>
                     </div>

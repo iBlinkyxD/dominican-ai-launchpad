@@ -13,6 +13,7 @@ import { SettingsMenuProvider } from "@packages/SettingsMenuContext";
 import { BadgesPage } from "./pages/Badges";
 import { CourseDetail } from "./pages/CourseDetail";
 import Settings from "./pages/Settings";
+import { VirtualTutoring } from "./pages/VirtualTutoring";
 
 const App = () => {
   return (
@@ -41,6 +42,7 @@ const App = () => {
               <Route path="messages" element={<Messages />} />
               <Route path="admin" element={<AdminDashboard />} />
               <Route path="settings" element={<Settings />} />
+              <Route path="tutoring" element={<VirtualTutoring />} />
             </Route>
 
             {/* fallback */}
