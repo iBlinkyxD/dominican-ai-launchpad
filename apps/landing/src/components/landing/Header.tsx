@@ -16,7 +16,6 @@ import {
   TreePalm,
   Earth,
   ShieldCheck,
-  GraduationCap,
   Globe,
   Users,
   Rocket,
@@ -25,15 +24,12 @@ import {
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useTranslation } from "react-i18next";
-import { useAuth } from "@packages/auth";
 
 import banner from "../../assets/banner.jpeg";
 import ComingSoon from "@/pages/ComingSoon";
 
 const Header = () => {
   const { t, i18n } = useTranslation("home");
-  const { user, logout } = useAuth();
-  const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSolutionsOpen, setIsSolutionsOpen] = useState(false);
@@ -370,56 +366,20 @@ const Header = () => {
                 </div>
               )} */}
             </div>
-            {user ? (
-              <div
-                className="relative"
-                onMouseEnter={() => setIsUserMenuOpen(true)}
-                onMouseLeave={() => setIsUserMenuOpen(false)}
+            <>
+              <Link
+                to="/login"
+                className="text-sm font-medium text-foreground hover:text-primary transition-colors"
               >
-                <button className="flex items-center gap-2 pl-2 pr-3 py-1.5 rounded-full border border-border hover:bg-muted transition-colors">
-                  <div className="w-7 h-7 rounded-full bg-[#0B1E40] flex items-center justify-center text-white text-xs font-bold">
-                    {user.first_name[0]}{user.last_name[0]}
-                  </div>
-                  <span className="text-sm font-medium text-foreground">{user.first_name}</span>
-                  <ChevronDown className={`w-3.5 h-3.5 text-muted-foreground transition-transform ${isUserMenuOpen ? "rotate-180" : ""}`} />
-                </button>
-                {isUserMenuOpen && (
-                  <div className="absolute top-full right-0 pt-2 w-48">
-                    <div className="bg-background/95 backdrop-blur-xl border border-border rounded-xl shadow-xl p-2">
-                      <a
-                        href={import.meta.env.VITE_ACADEMY_URL}
-                        className="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium text-foreground hover:bg-muted transition-colors"
-                      >
-                        <GraduationCap className="w-4 h-4 text-primary" />
-                        Go to Academy
-                      </a>
-                      <hr className="my-1 border-border" />
-                      <button
-                        onClick={logout}
-                        className="flex items-center gap-2 w-full px-3 py-2.5 rounded-lg text-sm font-medium text-red-600 hover:bg-red-50 transition-colors"
-                      >
-                        Sign out
-                      </button>
-                    </div>
-                  </div>
-                )}
-              </div>
-            ) : (
-              <>
-                <Link
-                  to="/login"
-                  className="text-sm font-medium text-foreground hover:text-primary transition-colors"
-                >
-                  {t("header.nav.login")}
-                </Link>
-                <Link to="/signup">
-                  <Button className="bg-foreground text-background hover:bg-foreground/90 rounded-full px-6 gap-2">
-                    <Crown className="w-4 h-4" />
-                    {t("header.nav.signup")}
-                  </Button>
-                </Link>
-              </>
-            )}
+                {t("header.nav.login")}
+              </Link>
+              <Link to="/signup">
+                <Button className="bg-foreground text-background hover:bg-foreground/90 rounded-full px-6 gap-2">
+                  <Crown className="w-4 h-4" />
+                  {t("header.nav.signup")}
+                </Button>
+              </Link>
+            </>
           </div>
 
           {/* Mobile Menu Button */}
@@ -528,47 +488,20 @@ const Header = () => {
                   </Link>
 
                   <hr className="my-2 border-border" />
-                  {user ? (
-                    <>
-                      <div className="flex items-center gap-3 px-4 py-3">
-                        <div className="w-9 h-9 rounded-full bg-[#0B1E40] flex items-center justify-center text-white text-sm font-bold shrink-0">
-                          {user.first_name[0]}{user.last_name[0]}
-                        </div>
-                        <div>
-                          <p className="text-sm font-semibold text-foreground">{user.first_name} {user.last_name}</p>
-                          <p className="text-xs text-muted-foreground">{user.email}</p>
-                        </div>
-                      </div>
-                      <a
-                        href={import.meta.env.VITE_ACADEMY_URL}
-                        className="flex items-center gap-2 py-3 px-4 text-foreground hover:bg-muted rounded-lg transition-colors font-medium"
-                      >
-                        <GraduationCap className="w-4 h-4 text-primary" />
-                        Go to Academy
-                      </a>
-                      <button
-                        onClick={logout}
-                        className="w-full text-left py-3 px-4 text-red-600 hover:bg-red-50 rounded-lg transition-colors font-medium"
-                      >
-                        Sign out
-                      </button>
-                    </>
-                  ) : (
-                    <>
-                      <Link
-                        to="/login"
-                        className="py-3 px-4 text-foreground hover:bg-muted rounded-lg transition-colors font-medium"
-                      >
-                        {t("header.nav.login")}
-                      </Link>
-                      <Link to="/signup">
-                        <Button className="bg-foreground text-background hover:bg-foreground/90 mt-2 gap-2 p-6 w-[100%]">
-                          <Crown className="w-4 h-4" />
-                          {t("header.nav.signup")}
-                        </Button>
-                      </Link>
-                    </>
-                  )}
+                  <>
+                    <Link
+                      to="/login"
+                      className="py-3 px-4 text-foreground hover:bg-muted rounded-lg transition-colors font-medium"
+                    >
+                      {t("header.nav.login")}
+                    </Link>
+                    <Link to="/signup">
+                      <Button className="bg-foreground text-background hover:bg-foreground/90 mt-2 gap-2 p-6 w-[100%]">
+                        <Crown className="w-4 h-4" />
+                        {t("header.nav.signup")}
+                      </Button>
+                    </Link>
+                  </>
                 </nav>
               </div>
 
