@@ -35,12 +35,6 @@ const Login = () => {
       // Immediately fetch user
       const userData = await getMe();
       authLogin(userData);
-
-      toast.success("Login successful! Redirecting...");
-
-      setTimeout(() => {
-        navigate(`${import.meta.env.VITE_HUB_URL}`);
-      }, 1500);
     } catch (error: any) {
       toast.error(error.response?.data?.detail || "Login failed");
     }
