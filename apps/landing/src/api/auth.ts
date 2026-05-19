@@ -66,10 +66,15 @@ export const resetPassword = async (token: string, newPassword: string) => {
   return res.data;
 };
 
+export const lookupByEmail = async (email: string): Promise<{ first_name: string; last_name: string }> => {
+  const res = await api.get(`/users/email-lookup?email=${encodeURIComponent(email)}`);
+  return res.data;
+};
+
 export const getMe = async () => {
   try {
     const res = await api.get("/users/me");
-    return res.data.user;
+    return res.data;
   } catch (err: any) {
     throw new Error(err.response?.data?.detail || "Failed to get user");
   }

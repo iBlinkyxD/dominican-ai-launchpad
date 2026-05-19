@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { useAuth } from "@packages/auth";
+import { lookupByEmail } from "@/api/auth";
 import { loadStripe } from "@stripe/stripe-js";
 import {
   Elements,
@@ -55,9 +55,32 @@ const Step1 = ({
 }) => {
   const { t } = useTranslation("courses");
   const [showPass, setShowPass] = useState(false);
+  const [lookupLoading, setLookupLoading] = useState(false);
+  const [lookupError, setLookupError] = useState<string | null>(null);
+  const [lookupDone, setLookupDone] = useState(false);
+
+  const handleAccountToggle = (hasAccount: boolean) => {
+    onChange({ has_account: hasAccount, password: "", first_name: "", last_name: "" });
+    setLookupDone(false);
+    setLookupError(null);
+  };
+
+  const handleLookup = async () => {
+    setLookupLoading(true);
+    setLookupError(null);
+    try {
+      const result = await lookupByEmail(data.email);
+      onChange({ first_name: result.first_name, last_name: result.last_name });
+      setLookupDone(true);
+    } catch {
+      setLookupError("No account found with this email.");
+    } finally {
+      setLookupLoading(false);
+    }
+  };
 
   const valid = data.has_account
-    ? data.first_name && data.last_name && data.email
+    ? lookupDone && data.first_name && data.last_name
     : data.first_name && data.last_name && data.email && data.password.length >= 8;
 
   return (
@@ -71,62 +94,94 @@ const Step1 = ({
       <div className="flex rounded-xl border border-gray-200 overflow-hidden text-sm font-medium">
         <button
           type="button"
-          onClick={() => onChange({ has_account: false, password: "" })}
+          onClick={() => handleAccountToggle(false)}
           className={`flex-1 py-2.5 transition-colors ${!data.has_account ? "bg-[#0B1E40] text-white" : "text-gray-500 hover:bg-gray-50"}`}
         >
           {t("enrollment.step1.newUser")}
         </button>
         <button
           type="button"
-          onClick={() => onChange({ has_account: true, password: "" })}
+          onClick={() => handleAccountToggle(true)}
           className={`flex-1 py-2.5 transition-colors ${data.has_account ? "bg-[#0B1E40] text-white" : "text-gray-500 hover:bg-gray-50"}`}
         >
           {t("enrollment.step1.hasAccount")}
         </button>
       </div>
 
-      {data.has_account && (
-        <p className="text-xs text-blue-600 bg-blue-50 border border-blue-100 rounded-lg px-3 py-2">
-          {t("enrollment.step1.hasAccountNote")}
-        </p>
-      )}
-
-      <div className="grid grid-cols-2 gap-3">
-        <div>
-          <label className="text-xs font-medium text-gray-700 mb-1 block">{t("enrollment.step1.firstName")}</label>
-          <input value={data.first_name} onChange={e => onChange({ first_name: e.target.value })} className={INPUT} placeholder="John" />
-        </div>
-        <div>
-          <label className="text-xs font-medium text-gray-700 mb-1 block">{t("enrollment.step1.lastName")}</label>
-          <input value={data.last_name} onChange={e => onChange({ last_name: e.target.value })} className={INPUT} placeholder="Doe" />
-        </div>
-      </div>
-
-      <div>
-        <label className="text-xs font-medium text-gray-700 mb-1 block">{t("enrollment.step1.email")}</label>
-        <input type="email" value={data.email} onChange={e => onChange({ email: e.target.value })} className={INPUT} placeholder="you@example.com" />
-      </div>
-
-      {!data.has_account && (
-        <div>
-          <label className="text-xs font-medium text-gray-700 mb-1 block">{t("enrollment.step1.password")}</label>
-          <div className="relative">
-            <input
-              type={showPass ? "text" : "password"}
-              value={data.password}
-              onChange={e => onChange({ password: e.target.value })}
-              className={`${INPUT} pr-16`}
-              placeholder={t("enrollment.step1.passwordPlaceholder")}
-            />
-            <button
-              type="button"
-              onClick={() => setShowPass(p => !p)}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-gray-400 hover:text-gray-600"
-            >
-              {showPass ? t("enrollment.step1.hidePassword") : t("enrollment.step1.showPassword")}
-            </button>
+      {data.has_account ? (
+        <>
+          <div>
+            <label className="text-xs font-medium text-gray-700 mb-1 block">{t("enrollment.step1.email")}</label>
+            <div className="flex gap-2">
+              <input
+                type="email"
+                value={data.email}
+                onChange={e => { onChange({ email: e.target.value }); setLookupDone(false); setLookupError(null); }}
+                className={INPUT}
+                placeholder="you@example.com"
+              />
+              <Button
+                type="button"
+                onClick={handleLookup}
+                disabled={!data.email || lookupLoading}
+                className="shrink-0 bg-[#0B1E40] hover:bg-[#0B1E40]/90 px-4"
+              >
+                {lookupLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : "Find"}
+              </Button>
+            </div>
           </div>
-        </div>
+
+          {lookupError && (
+            <p className="text-xs text-red-600 bg-red-50 border border-red-100 rounded-lg px-3 py-2">{lookupError}</p>
+          )}
+
+          {lookupDone && (
+            <div className="bg-green-50 border border-green-200 rounded-lg px-3 py-2.5 flex items-center gap-2">
+              <CheckCircle2 className="w-4 h-4 text-green-500 shrink-0" />
+              <span className="text-sm text-green-800 font-medium">
+                {data.first_name} {data.last_name}
+              </span>
+            </div>
+          )}
+        </>
+      ) : (
+        <>
+          <div className="grid grid-cols-2 gap-3">
+            <div>
+              <label className="text-xs font-medium text-gray-700 mb-1 block">{t("enrollment.step1.firstName")}</label>
+              <input value={data.first_name} onChange={e => onChange({ first_name: e.target.value })} className={INPUT} placeholder="John" />
+            </div>
+            <div>
+              <label className="text-xs font-medium text-gray-700 mb-1 block">{t("enrollment.step1.lastName")}</label>
+              <input value={data.last_name} onChange={e => onChange({ last_name: e.target.value })} className={INPUT} placeholder="Doe" />
+            </div>
+          </div>
+
+          <div>
+            <label className="text-xs font-medium text-gray-700 mb-1 block">{t("enrollment.step1.email")}</label>
+            <input type="email" value={data.email} onChange={e => onChange({ email: e.target.value })} className={INPUT} placeholder="you@example.com" />
+          </div>
+
+          <div>
+            <label className="text-xs font-medium text-gray-700 mb-1 block">{t("enrollment.step1.password")}</label>
+            <div className="relative">
+              <input
+                type={showPass ? "text" : "password"}
+                value={data.password}
+                onChange={e => onChange({ password: e.target.value })}
+                className={`${INPUT} pr-16`}
+                placeholder={t("enrollment.step1.passwordPlaceholder")}
+              />
+              <button
+                type="button"
+                onClick={() => setShowPass(p => !p)}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-gray-400 hover:text-gray-600"
+              >
+                {showPass ? t("enrollment.step1.hidePassword") : t("enrollment.step1.showPassword")}
+              </button>
+            </div>
+          </div>
+        </>
       )}
 
       <Button onClick={onNext} disabled={!valid} className="w-full bg-[#0B1E40] hover:bg-[#0B1E40]/90 h-11 font-semibold">
@@ -323,32 +378,19 @@ const SuccessScreen = ({ firstName, onClose }: { firstName: string; onClose: () 
 
 export const EnrollmentModal = ({ onClose }: { onClose: () => void }) => {
   const { t } = useTranslation("courses");
-  const { user } = useAuth();
-  const allSteps = t("enrollment.steps", { returnObjects: true }) as string[];
+  const steps = t("enrollment.steps", { returnObjects: true }) as string[];
 
-  // Logged-in users skip Step 1 (account creation)
-  const steps    = user ? allSteps.slice(1) : allSteps;
-  const startStep = 0; // always index 0 within the visible steps
-
-  const [step,          setStep]          = useState(startStep);
+  const [step,          setStep]          = useState(0);
   const [succeeded,     setSucceeded]     = useState(false);
   const [clientSecret,  setClientSecret]  = useState<string | null>(null);
   const [customerId,    setCustomerId]    = useState<string>("");
   const [loadingIntent, setLoadingIntent] = useState(false);
 
-  const [step1, setStep1] = useState({
-    first_name:  user?.first_name ?? "",
-    last_name:   user?.last_name  ?? "",
-    email:       user?.email      ?? "",
-    password:    "",
-    has_account: false,
-  });
+  const [step1, setStep1] = useState({ first_name: "", last_name: "", email: "", password: "", has_account: false });
   const [step2, setStep2] = useState({ goal: "", availability: "" });
 
-  const paymentStep = user ? 1 : 2;
-
   useEffect(() => {
-    if (step !== paymentStep || clientSecret) return;
+    if (step !== 2 || clientSecret) return;
     setLoadingIntent(true);
     createSetupIntent(step1.email)
       .then(res => { setClientSecret(res.client_secret); setCustomerId(res.customer_id); })
@@ -360,7 +402,6 @@ export const EnrollmentModal = ({ onClose }: { onClose: () => void }) => {
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
       <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md max-h-[90vh] overflow-y-auto">
         <div className="p-6">
-          {/* Header */}
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center gap-2">
               <div className="w-8 h-1 bg-[#C72B2B] rounded-full" />
@@ -377,16 +418,14 @@ export const EnrollmentModal = ({ onClose }: { onClose: () => void }) => {
 
           {succeeded ? (
             <SuccessScreen firstName={step1.first_name} onClose={onClose} />
-          ) : !user && step === 0 ? (
-            // Guest: Step 0 = account creation
+          ) : step === 0 ? (
             <Step1 data={step1} onChange={d => setStep1(p => ({ ...p, ...d }))} onNext={() => setStep(1)} />
-          ) : (!user && step === 1) || (user && step === 0) ? (
-            // Guest: Step 1 = goals | Logged-in: Step 0 = goals
+          ) : step === 1 ? (
             <Step2
               data={step2}
               onChange={d => setStep2(p => ({ ...p, ...d }))}
-              onNext={() => setStep(user ? 1 : 2)}
-              onBack={() => !user && setStep(0)}
+              onNext={() => setStep(2)}
+              onBack={() => setStep(0)}
             />
           ) : loadingIntent || !clientSecret ? (
             <div className="flex flex-col items-center justify-center py-16 gap-3">
