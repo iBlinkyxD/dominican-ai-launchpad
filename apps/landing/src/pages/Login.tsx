@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { Eye, EyeOff, Mail, Lock, User, ArrowRight, Phone } from "lucide-react";
 import daiaLogo from "@/assets/DAIA-logo.png";
 import { Link, useNavigate } from "react-router-dom";
@@ -8,40 +8,23 @@ import toast, { Toaster } from "react-hot-toast";
 
 const Login = () => {
   const navigate = useNavigate();
-  const { login: authLogin } = useAuth();
+  const { user, loading, login: authLogin } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
 
-  const hasChecked = useRef(false);
-
-  // CHECK COOKIE ON MOUNT — skip if coming from logout
+  // Redirect if already logged in — skip if coming from logout
   useEffect(() => {
-    if (hasChecked.current) return;
-    hasChecked.current = true;
-
+    if (loading) return;
     const params = new URLSearchParams(window.location.search);
     if (params.get("logout") === "true") return;
-
-    const checkUser = async () => {
-      try {
-        const userData = await getMe();
-        if (userData) {
-          authLogin(userData);
-          toast.success("Login successful! Redirecting...");
-          setTimeout(() => {
-            navigate(import.meta.env.VITE_HUB_URL);
-          }, 1500);
-        }
-      } catch {
-        // no valid session
-      }
-    };
-
-    checkUser();
-  }, [authLogin, navigate]);
+    if (user) {
+      toast.success("Login successful! Redirecting...");
+      setTimeout(() => navigate(import.meta.env.VITE_HUB_URL), 1500);
+    }
+  }, [user, loading, navigate]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
