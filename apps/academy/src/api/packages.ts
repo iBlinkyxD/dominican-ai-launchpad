@@ -58,6 +58,7 @@ export const getEnrolledPackages = async (): Promise<AcademyPackage[]> => {
     const res = await academyAPI.get("/packages/enrolled");
     return res.data;
   } catch (err: any) {
+    if (err.response?.status === 401 || err.response?.status === 403) return [];
     throw new Error(err.response?.data?.detail || "Failed to fetch enrolled packages");
   }
 };
