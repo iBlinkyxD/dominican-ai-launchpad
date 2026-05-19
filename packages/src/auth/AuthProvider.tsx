@@ -36,8 +36,10 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     } catch (err) {
       console.error("Logout API failed:", err);
     } finally {
-      setUser(null); // clear local user state
-      window.location.href = `${import.meta.env.VITE_LANDING_URL}/login`; // redirect to login
+      setUser(null);
+      setTimeout(() => {
+        window.location.href = `${import.meta.env.VITE_LANDING_URL}/login?logout=true`;
+      }, 1500);
     }
   };
 
