@@ -377,7 +377,8 @@ const SuccessScreen = ({ firstName, onClose }: { firstName: string; onClose: () 
 // ── Root modal ────────────────────────────────────────────────────────────────
 
 export const EnrollmentModal = ({ onClose }: { onClose: () => void }) => {
-  const { t } = useTranslation("courses");
+  const { t, i18n } = useTranslation("courses");
+  const stripeLocale = i18n.language?.startsWith("es") ? "es" : "en";
   const steps = t("enrollment.steps", { returnObjects: true }) as string[];
 
   const [step,          setStep]          = useState(0);
@@ -433,7 +434,7 @@ export const EnrollmentModal = ({ onClose }: { onClose: () => void }) => {
               <p className="text-sm text-muted-foreground">{t("enrollment.loadingPayment")}</p>
             </div>
           ) : (
-            <Elements stripe={stripePromise} options={{ clientSecret, appearance: { theme: "stripe" } }}>
+            <Elements stripe={stripePromise} options={{ clientSecret, appearance: { theme: "stripe" }, locale: stripeLocale }}>
               <PaymentForm
                 formData={{ ...step1, ...step2 }}
                 customerId={customerId}
