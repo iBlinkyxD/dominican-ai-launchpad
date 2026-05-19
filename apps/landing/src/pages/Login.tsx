@@ -17,21 +17,26 @@ const Login = () => {
 
   const hasChecked = useRef(false);
 
-  // CHECK COOKIE ON MOUNT
+  // CHECK COOKIE ON MOUNT — skip if coming from logout
   useEffect(() => {
     if (hasChecked.current) return;
     hasChecked.current = true;
 
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("logout") === "true") return;
+
     const checkUser = async () => {
       try {
         const userData = await getMe();
-
         if (userData) {
           authLogin(userData);
-          navigate(import.meta.env.VITE_HUB_URL);
+          toast.success("Login successful! Redirecting...");
+          setTimeout(() => {
+            navigate(import.meta.env.VITE_HUB_URL);
+          }, 1500);
         }
       } catch {
-        console.error("No valid session, please login");
+        // no valid session
       }
     };
 
