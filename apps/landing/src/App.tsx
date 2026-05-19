@@ -28,6 +28,7 @@ import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
 import Services from "./pages/Services";
 import ServiceRequest from "./pages/ServiceRequest";
+import WaitlistRespond from "./pages/WaitlistRespond";
 import { AuthProvider } from "../../../packages/src/auth";
 
 const queryClient = new QueryClient();
@@ -77,6 +78,7 @@ const App = () => (
             {/* <Route path="/blog/:blogId" element={<BlogDetail />} /> */}
 
             <Route path="/contact" element={<Contact />} />
+            <Route path="/waitlist/respond" element={<WaitlistRespond />} />
             {/* 
           <Route path="/education" element={<Education />} />
           <Route path="/tourism" element={<ComingSoon />} />
