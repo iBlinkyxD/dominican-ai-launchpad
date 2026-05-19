@@ -27,5 +27,10 @@ dist-ssr
 WORK_PLAN.md
 docs/
 docs/generation-accuracy-data.mdx
+apps/landing/.env
 apps/landing/.env.development
 apps/landing/.env.production
+apps/academy/.env
+apps/hub/.env
+apps/admin/.env
+packages/.env
