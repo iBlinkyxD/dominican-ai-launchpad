@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { Camera, Edit, Mail, Phone, Save } from "lucide-react";
-import { uploadAvatar } from "@/api/user";
+import { Camera, Edit, Mail, Phone, Save, CreditCard, Loader2 } from "lucide-react";
+import { uploadAvatar, updateProfile, getSubscription, cancelSubscription, reactivateSubscription, StripeSubscription } from "@/api/user";
 import { useAuth } from "@packages/auth";
-import { updateProfile } from "@/api/user";
 import toast, { Toaster } from "react-hot-toast";
 import PasswordModal from "@/components/PasswordModal";
 import EmailModal from "@/components/EmailModal";
@@ -23,7 +22,7 @@ useEffect(() => {
   const params = new URLSearchParams(location.search);
   const tabFromUrl = params.get("tab");
 
-  const validTabs = ["profile", "security", "notifications"];
+  const validTabs = ["profile", "security", "notifications", "billing"];
 
   if (tabFromUrl && validTabs.includes(tabFromUrl)) {
     setActiveSettingsTab(tabFromUrl);
@@ -31,6 +30,46 @@ useEffect(() => {
     setActiveSettingsTab("profile");
   }
 }, [location.search]);
+
+  const [subscription, setSubscription] = useState<StripeSubscription | null>(null);
+  const [subLoading, setSubLoading] = useState(false);
+  const [subActing, setSubActing] = useState(false);
+
+  useEffect(() => {
+    if (activeSettingsTab !== "billing") return;
+    setSubLoading(true);
+    getSubscription()
+      .then(setSubscription)
+      .catch(() => setSubscription(null))
+      .finally(() => setSubLoading(false));
+  }, [activeSettingsTab]);
+
+  const handleCancelSubscription = async () => {
+    if (!confirm("Are you sure? Your access will continue until the end of the billing period.")) return;
+    setSubActing(true);
+    try {
+      await cancelSubscription();
+      setSubscription(prev => prev ? { ...prev, cancel_at_period_end: true } : prev);
+      toast.success("Subscription will be cancelled at the end of the billing period.");
+    } catch {
+      toast.error("Failed to cancel subscription.");
+    } finally {
+      setSubActing(false);
+    }
+  };
+
+  const handleReactivateSubscription = async () => {
+    setSubActing(true);
+    try {
+      await reactivateSubscription();
+      setSubscription(prev => prev ? { ...prev, cancel_at_period_end: false } : prev);
+      toast.success("Subscription reactivated successfully.");
+    } catch {
+      toast.error("Failed to reactivate subscription.");
+    } finally {
+      setSubActing(false);
+    }
+  };
 
   const [formData, setFormData] = useState({
     first_name: user?.first_name || "",
@@ -74,7 +113,8 @@ useEffect(() => {
     }
 
     try {
-      const userId = user.id;
+      const userId = user?.id;
+      if (!userId) return;
 
       const avatarUrl = await uploadAvatar(userId, avatar);
 
@@ -147,6 +187,16 @@ useEffect(() => {
                 }`}
               >
                 Notifications
+              </button>
+              <button
+                onClick={() => setActiveSettingsTab("billing")}
+                className={`w-full text-left px-3 py-2 text-sm rounded-md transition ${
+                  activeSettingsTab === "billing"
+                    ? "bg-gray-100 text-gray-900 font-medium"
+                    : "text-gray-700 hover:bg-gray-50"
+                }`}
+              >
+                Billing
               </button>
             </nav>
           </div>
@@ -424,6 +474,100 @@ useEffect(() => {
                 <p className="text-gray-600">
                   Manage your notification preferences here.
                 </p>
+              </>
+            )}
+
+            {activeSettingsTab === "billing" && (
+              <>
+                <h2 className="text-2xl font-semibold text-gray-900 mb-8">Billing</h2>
+
+                {subLoading ? (
+                  <div className="flex items-center gap-3 text-gray-500 py-12">
+                    <Loader2 className="w-5 h-5 animate-spin" />
+                    <span className="text-sm">Loading subscription...</span>
+                  </div>
+                ) : !subscription ? (
+                  <div className="border border-gray-200 rounded-xl p-8 text-center">
+                    <CreditCard className="w-10 h-10 text-gray-300 mx-auto mb-3" />
+                    <p className="text-gray-500 text-sm">No active subscription found.</p>
+                  </div>
+                ) : (
+                  <div className="space-y-6">
+                    {/* Subscription card */}
+                    <div className="border border-gray-200 rounded-xl p-6">
+                      <div className="flex items-start justify-between mb-4">
+                        <div>
+                          <h3 className="text-base font-semibold text-gray-900">1-on-1 Tutoring</h3>
+                          <p className="text-sm text-gray-500 mt-0.5">Monthly subscription</p>
+                        </div>
+                        <span className={`text-xs font-semibold px-2.5 py-1 rounded-full ${
+                          subscription.cancel_at_period_end
+                            ? "bg-amber-50 text-amber-700 border border-amber-200"
+                            : "bg-green-50 text-green-700 border border-green-200"
+                        }`}>
+                          {subscription.cancel_at_period_end ? "Cancelling" : "Active"}
+                        </span>
+                      </div>
+
+                      <div className="grid grid-cols-2 gap-4 py-4 border-t border-gray-100">
+                        <div>
+                          <p className="text-xs text-gray-400 mb-1">Amount</p>
+                          <p className="text-sm font-semibold text-gray-900">
+                            {(subscription.amount / 100).toLocaleString("en-US", { style: "currency", currency: subscription.currency.toUpperCase() })}
+                            <span className="text-gray-400 font-normal"> / {subscription.interval}</span>
+                          </p>
+                        </div>
+                        <div>
+                          <p className="text-xs text-gray-400 mb-1">
+                            {subscription.cancel_at_period_end ? "Access until" : "Next billing date"}
+                          </p>
+                          <p className="text-sm font-semibold text-gray-900">
+                            {new Date(subscription.current_period_end * 1000).toLocaleDateString("en-US", {
+                              year: "numeric", month: "long", day: "numeric",
+                            })}
+                          </p>
+                        </div>
+                      </div>
+
+                      {subscription.cancel_at_period_end && (
+                        <div className="mt-4 bg-amber-50 border border-amber-200 rounded-lg px-4 py-3 text-sm text-amber-700">
+                          Your subscription is set to cancel. You'll keep access until the end of the billing period.
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Actions */}
+                    <div className="border border-gray-200 rounded-xl p-6">
+                      <h3 className="text-base font-semibold text-gray-900 mb-1">
+                        {subscription.cancel_at_period_end ? "Reactivate Subscription" : "Cancel Subscription"}
+                      </h3>
+                      <p className="text-sm text-gray-500 mb-4">
+                        {subscription.cancel_at_period_end
+                          ? "Changed your mind? Reactivate and keep uninterrupted access."
+                          : "You can cancel anytime. Access continues until the end of the current billing period."}
+                      </p>
+                      {subscription.cancel_at_period_end ? (
+                        <button
+                          onClick={handleReactivateSubscription}
+                          disabled={subActing}
+                          className="flex items-center gap-2 px-5 py-2 bg-[#002D62] text-white text-sm font-medium rounded-lg hover:bg-[#003d7a] transition disabled:opacity-50"
+                        >
+                          {subActing && <Loader2 className="w-4 h-4 animate-spin" />}
+                          Reactivate Subscription
+                        </button>
+                      ) : (
+                        <button
+                          onClick={handleCancelSubscription}
+                          disabled={subActing}
+                          className="flex items-center gap-2 px-5 py-2 border border-red-200 text-red-600 text-sm font-medium rounded-lg hover:bg-red-50 transition disabled:opacity-50"
+                        >
+                          {subActing && <Loader2 className="w-4 h-4 animate-spin" />}
+                          Cancel Subscription
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                )}
               </>
             )}
           </div>

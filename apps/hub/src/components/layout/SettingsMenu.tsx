@@ -10,6 +10,7 @@ const SettingsMenu = () => {
     { id: "profile", label: "My Profile", isDanger: false },
     { id: "security", label: "Security", isDanger: false },
     { id: "notifications", label: "Notifications", isDanger: false },
+    { id: "billing", label: "Billing", isDanger: false },
   ];
 
   if (!isOpen) return null;
