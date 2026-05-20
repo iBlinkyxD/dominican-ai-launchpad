@@ -41,7 +41,7 @@ export const Login = () => {
               </div>
             </div>
 
-            <Button className="w-full" onClick={login}>Sign In</Button>
+            <Button className="w-full" onClick={() => {}}>Sign In</Button>
             
             <div className="relative">
                 <div className="absolute inset-0 flex items-center"><div className="w-full border-t border-gray-300"></div></div>

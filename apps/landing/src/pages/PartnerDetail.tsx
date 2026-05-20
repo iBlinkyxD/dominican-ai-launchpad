@@ -71,7 +71,7 @@ const PartnerDetail = () => {
                   <Icon className="w-4 h-4 text-primary" />
 
                   <span className="text-sm font-medium text-foreground">
-                    {partner.role}
+                    {partner.roleKey}
                   </span>
                 </div>
 
