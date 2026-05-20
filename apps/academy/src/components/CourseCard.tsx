@@ -15,7 +15,7 @@ export const CourseCard: React.FC<Props> = ({ course, onClick }) => {
     >
       <div className="relative h-44 overflow-hidden bg-gray-100">
         <img
-          src={course.thumbnail}
+          src={course.thumbnail_url ?? undefined}
           alt={course.title}
           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
         />
