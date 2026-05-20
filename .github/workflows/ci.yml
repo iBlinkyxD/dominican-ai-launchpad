@@ -33,7 +33,7 @@ jobs:
         run: npx tsc --noEmit -p apps/academy/tsconfig.app.json
 
       - name: Type check — admin
-        run: npx tsc --noEmit -p apps/admin/tsconfig.app.json
+        run: npx tsc --noEmit -p apps/admin/tsconfig.json
 
   build:
     name: Build

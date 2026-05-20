@@ -1,5 +1,5 @@
 import React from "react";
-import { Course } from "@/types";
+import { AcademyCourse as Course } from "@/api/courses";
 import { Crown } from "lucide-react";
 
 interface Props {
