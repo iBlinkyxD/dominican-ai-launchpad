@@ -2,6 +2,14 @@ import { academyApi } from "./axios";
 
 // ── Admin course list ──────────────────────────────────────────────────────────
 
+export interface BadgeItem {
+  id: string;
+  name: string;
+  description: string | null;
+  icon_url: string | null;
+  criteria: string | null;
+}
+
 export interface AdminCourse {
   id: string;
   title: string;
@@ -10,6 +18,7 @@ export interface AdminCourse {
   short_description: string | null;
   thumbnail_url: string | null;
   badge_url: string | null;
+  badge: BadgeItem | null;
   is_published: boolean;
   module_count: number;
   total_lessons: number;
@@ -262,4 +271,25 @@ export const uploadCourseThumbnail = async (slug: string, file: File): Promise<s
 
 export const publishCourse = async (slug: string): Promise<void> => {
   await academyApi.patch(`/courses/${slug}/publish`);
+};
+
+// ── Badges ────────────────────────────────────────────────────────────────────
+
+export const getBadges = async (): Promise<BadgeItem[]> => {
+  const res = await academyApi.get("/badges/");
+  return res.data;
+};
+
+export const updateBadge = async (id: string, payload: { name: string }): Promise<BadgeItem> => {
+  const res = await academyApi.patch(`/badges/${id}`, payload);
+  return res.data;
+};
+
+export const uploadBadgeIcon = async (id: string, file: File): Promise<BadgeItem> => {
+  const formData = new FormData();
+  formData.append("file", file);
+  const res = await academyApi.post(`/badges/${id}/icon`, formData, {
+    headers: { "Content-Type": "multipart/form-data" },
+  });
+  return res.data;
 };
