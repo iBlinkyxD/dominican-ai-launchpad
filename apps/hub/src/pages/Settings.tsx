@@ -6,6 +6,7 @@ import { useAuth } from "@packages/auth";
 import toast, { Toaster } from "react-hot-toast";
 import PasswordModal from "@/components/PasswordModal";
 import EmailModal from "@/components/EmailModal";
+import { ConfirmDialog, DialogConfig } from "@/components/ConfirmDialog";
 
 const Settings = () => {
   const { user, loading } = useAuth();
@@ -34,6 +35,7 @@ useEffect(() => {
   const [subscription, setSubscription] = useState<StripeSubscription | null>(null);
   const [subLoading, setSubLoading] = useState(false);
   const [subActing, setSubActing] = useState(false);
+  const [confirmConfig, setConfirmConfig] = useState<DialogConfig | null>(null);
 
   useEffect(() => {
     if (activeSettingsTab !== "billing") return;
@@ -44,18 +46,26 @@ useEffect(() => {
       .finally(() => setSubLoading(false));
   }, [activeSettingsTab]);
 
-  const handleCancelSubscription = async () => {
-    if (!confirm("Are you sure? Your access will continue until the end of the billing period.")) return;
-    setSubActing(true);
-    try {
-      await cancelSubscription();
-      setSubscription(prev => prev ? { ...prev, cancel_at_period_end: true } : prev);
-      toast.success("Subscription will be cancelled at the end of the billing period.");
-    } catch {
-      toast.error("Failed to cancel subscription.");
-    } finally {
-      setSubActing(false);
-    }
+  const handleCancelSubscription = () => {
+    setConfirmConfig({
+      title: "Cancel Subscription",
+      message: "Are you sure you want to cancel? Your access will continue until the end of the current billing period.",
+      confirmText: "Yes, Cancel",
+      cancelText: "Keep Subscription",
+      variant: "danger",
+      onConfirm: async () => {
+        setSubActing(true);
+        try {
+          await cancelSubscription();
+          setSubscription(prev => prev ? { ...prev, cancel_at_period_end: true } : prev);
+          toast.success("Subscription will be cancelled at the end of the billing period.");
+        } catch {
+          toast.error("Failed to cancel subscription.");
+        } finally {
+          setSubActing(false);
+        }
+      },
+    });
   };
 
   const handleReactivateSubscription = async () => {
@@ -572,17 +582,18 @@ useEffect(() => {
             )}
           </div>
 
-          {/* Change Password Modal */}
           <PasswordModal
             isOpen={showChangePasswordModal}
             onClose={() => setShowChangePasswordModal(false)}
           />
-
-          {/* Edit Email Modal */}
           <EmailModal
             isOpen={showEditEmailModal}
             onClose={() => setShowEditEmailModal(false)}
             currentEmail={user.email}
+          />
+          <ConfirmDialog
+            config={confirmConfig}
+            onClose={() => setConfirmConfig(null)}
           />
         </div>
       </div>
